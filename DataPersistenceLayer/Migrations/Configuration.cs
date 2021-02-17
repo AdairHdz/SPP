@@ -18,55 +18,55 @@ namespace DataPersistenceLayer.Migrations
             try
             {
                 context.Cities.AddOrUpdate(x => x.IdCity,
-                    new City() { IdCity = 1, NameCity = "Coatepec" },
-                    new City() { IdCity = 2, NameCity = "Xalapa" },
-                    new City() { IdCity = 3, NameCity = "Veracruz" }
+                    new City { IdCity = 1, NameCity = "Coatepec" },
+                    new City { IdCity = 2, NameCity = "Xalapa" },
+                    new City { IdCity = 3, NameCity = "Veracruz" }
                 );
 
                 context.States.AddOrUpdate(x => x.IdState,
-                    new State() { IdState = 1, NameState = "Veracruz" }
+                    new State { IdState = 1, NameState = "Veracruz" }
                 );
 
                 context.Sectors.AddOrUpdate(x => x.IdSector,
-                    new Sector() { IdSector = 1, NameSector = "Económico" },
-                    new Sector() { IdSector = 2, NameSector = "Industrial" }
+                    new Sector { IdSector = 1, NameSector = "Económico" },
+                    new Sector { IdSector = 2, NameSector = "Industrial" }
                 );
 
                 context.UserStatuses.AddOrUpdate(x => x.UserStatusId,
-                    new UserStatus() { UserStatusId = 1, Status = "Aceptado" }
+                    new UserStatus { UserStatusId = 1, Status = "Aceptado" }
                 );
 
                 context.Periods.AddOrUpdate(x => x.IdPeriod,
-                    new Period() { IdPeriod = 1, PeriodName = "Febrero-Julio" },
-                    new Period() { IdPeriod = 2, PeriodName = "Agosto-Enero" }
+                    new Period { IdPeriod = 1, PeriodName = "Febrero-Julio" },
+                    new Period { IdPeriod = 2, PeriodName = "Agosto-Enero" }
                 );
 
                 context.Positions.AddOrUpdate(x => x.IdPosition,
-                    new Position() { IdPosition = 1, NamePosition = "CEO" },
-                    new Position() { IdPosition = 2, NamePosition = "Analista de negocios" }
+                    new Position { IdPosition = 1, NamePosition = "CEO" },
+                    new Position { IdPosition = 2, NamePosition = "Analista de negocios" }
                 );
 
                 context.Genders.AddOrUpdate(x => x.IdGender,
-                    new Gender() { IdGender = 1, GenderName = "Hombre" },
-                    new Gender() { IdGender = 2, GenderName = "Mujer" }
+                    new Gender { IdGender = 1, GenderName = "Hombre" },
+                    new Gender { IdGender = 2, GenderName = "Mujer" }
                 );
 
                 context.ProjectStatuses.AddOrUpdate(x => x.IdProjectStatus,
-                    new ProjectStatus() { IdProjectStatus = 1, Status = "En proceso" }
+                    new ProjectStatus { IdProjectStatus = 1, Status = "En proceso" }
                 );
 
                 context.Turns.AddOrUpdate(x => x.IdTurn,
-                    new Turn() { IdTurn = 1, TurnName = "Matutino" },
-                    new Turn() { IdTurn = 2, TurnName = "Vespertino" }
+                    new Turn { IdTurn = 1, TurnName = "Matutino" },
+                    new Turn { IdTurn = 2, TurnName = "Vespertino" }
                 );
 
                 context.RequestStatuses.AddOrUpdate(x => x.IdRequestStatus,
-                    new RequestStatus() { IdRequestStatus = 1, Status = "Aprobada" },
-                    new RequestStatus() { IdRequestStatus = 2, Status = "Rechazada" }
+                    new RequestStatus { IdRequestStatus = 1, Status = "Aprobada" },
+                    new RequestStatus { IdRequestStatus = 2, Status = "Rechazada" }
                 );
 
                 context.LinkedOrganizations.AddOrUpdate(x => x.IdLinkedOrganization,
-                    new LinkedOrganization()
+                    new LinkedOrganization
                     {
                         IdLinkedOrganization = 1,
                         Name = "Softech",
@@ -82,7 +82,7 @@ namespace DataPersistenceLayer.Migrations
                 );
 
                 context.Users.AddOrUpdate(x => x.IdUser,
-                    new User()
+                    new User
                     {
                         IdUser = 1,
                         Name = "Adair Benjamín",
@@ -93,7 +93,7 @@ namespace DataPersistenceLayer.Migrations
                         AlternateEmail = "adairho16@gmail.com",
                         PhoneNumber = "2281244285"
                     },
-                     new User()
+                     new User
                      {
                          IdUser = 2,
                          Name = "Yazmín Alejandra",
@@ -104,7 +104,7 @@ namespace DataPersistenceLayer.Migrations
                          AlternateEmail = "luna.yazmin@gmail.com",
                          PhoneNumber = "2281249071"
                      },
-                     new User()
+                     new User
                      {
                          IdUser = 3,
                          Name = "Ángel José",
@@ -115,7 +115,7 @@ namespace DataPersistenceLayer.Migrations
                          AlternateEmail = "angel@gmail.com",
                          PhoneNumber = "2281091542"
                      },
-                     new User()
+                     new User
                      {
                          IdUser = 4,
                          Name = "Martha Miroslava",
@@ -129,7 +129,7 @@ namespace DataPersistenceLayer.Migrations
                 );
 
                 context.Coordinators.AddOrUpdate(x => x.StaffNumber,
-                    new Coordinator()
+                    new Coordinator
                     {
                         StaffNumber = "ABC123",
                         RegistrationDate = DateTime.Today,
@@ -138,7 +138,7 @@ namespace DataPersistenceLayer.Migrations
                 );
 
                 context.Teachers.AddOrUpdate(x => x.StaffNumber,
-                    new Teacher()
+                    new Teacher
                     {
                         StaffNumber = "DEF456",
                         RegistrationDate = DateTime.Now,
@@ -148,7 +148,7 @@ namespace DataPersistenceLayer.Migrations
                 );
 
                 context.ResponsibleProjects.AddOrUpdate(x => x.IdResponsibleProject,
-                    new ResponsibleProject()
+                    new ResponsibleProject
                     {
                         IdResponsibleProject = 1,
                         Name = "Carlos",
@@ -159,7 +159,7 @@ namespace DataPersistenceLayer.Migrations
                 );
 
                 context.Projects.AddOrUpdate(x => x.IdProject,
-                    new Project()
+                    new Project
                     {
                         IdProject = 1,
                         NameProject = "Desarrollo de inventario",
@@ -181,7 +181,7 @@ namespace DataPersistenceLayer.Migrations
                 );
 
                 context.Practicings.AddOrUpdate(x => x.Enrollment,
-                    new Practicing()
+                    new Practicing
                     {
                         Enrollment = "S18012122",
                         IdTurn = 1,
@@ -192,7 +192,7 @@ namespace DataPersistenceLayer.Migrations
                 );
 
                 context.Activities.AddOrUpdate(x => x.IdActivity,
-                    new Activity()
+                    new Activity
                     {
                         IdActivity = 1,
                         Value = 5,
@@ -204,13 +204,13 @@ namespace DataPersistenceLayer.Migrations
                 );
 
                 context.Reports.AddOrUpdate(x => x.IdReport,
-                    new Report()
+                    new Report
                     {
                         IdReport = 1,
                         Activities = "Actividades realizadas",
                         EnrollmentPracticing = "S18012122"
                     },
-                    new Report()
+                    new Report
                     {
                         IdReport = 2,
                         Activities = "Actividades realizadas",
@@ -219,7 +219,7 @@ namespace DataPersistenceLayer.Migrations
                 );
 
                 context.ReportPartials.AddOrUpdate(x => x.IdReportParcial,
-                    new ReportPartial()
+                    new ReportPartial
                     {
                         IdReportParcial = 2,
                         NumberReport = 1,
