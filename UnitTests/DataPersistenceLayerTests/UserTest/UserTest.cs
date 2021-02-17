@@ -67,7 +67,7 @@ namespace UnitTests.DataPersistenceLayerTests.UserTest
         [TestMethod]
         public void RegisterManyUsers_Success()
         {
-            List<User> users = new List<User>()
+            List<User> users = new List<User>
             {
                 new User
                 {
