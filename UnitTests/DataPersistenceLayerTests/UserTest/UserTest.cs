@@ -21,9 +21,9 @@ namespace UnitTests.DataPersistenceLayerTests.UserTest
         [TestInitialize]
         public void TestInitialize()
         {
-            _data = new List<User>()
+            _data = new List<User>
             {
-                new User()
+                new User
                 {
                     IdUser = 1,
                     Name = "Eduardo Aldair",
@@ -44,7 +44,7 @@ namespace UnitTests.DataPersistenceLayerTests.UserTest
         [TestMethod]
         public void RegisterUser_Success()
         {
-            User newUser = new User()
+            User newUser = new User
             {
                 Name = "Irving",
                 LastName = "Lozada Rodríguez",
@@ -69,7 +69,8 @@ namespace UnitTests.DataPersistenceLayerTests.UserTest
         {
             List<User> users = new List<User>()
             {
-                new User(){
+                new User
+                {
                     Name = "Yair",
                     LastName = "Domínguez López",
                     IdGender = 1,
@@ -77,7 +78,7 @@ namespace UnitTests.DataPersistenceLayerTests.UserTest
                     Email = "yair@gmail.com",
                     PhoneNumber = "2298040941"
                 },
-                new User()
+                new User
                 {
                     Name = "Francisco",
                     LastName = "Portilla Texon",
