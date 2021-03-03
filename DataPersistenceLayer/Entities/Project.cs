@@ -35,11 +35,6 @@ namespace DataPersistenceLayer.Entities
         [Required]
         [MaxLength(254)]
         public string Resources { get; set; }
-
-        [Required]
-        public int IdProjectStatus { get; set; }
-            
-        [ForeignKey("IdProjectStatus")]
         public virtual ProjectStatus Status { get; set; }
 
         [Required]
@@ -53,6 +48,8 @@ namespace DataPersistenceLayer.Entities
 
         [Required]
         public int QuantityPracticing { get; set; }
+
+        public string Term { get; set; }
 
         [Required]
         public int IdLinkedOrganization { get; set; }

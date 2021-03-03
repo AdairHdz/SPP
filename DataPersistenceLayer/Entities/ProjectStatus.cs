@@ -1,14 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace DataPersistenceLayer.Entities
+﻿namespace DataPersistenceLayer.Entities
 {
-    public class ProjectStatus
+    public enum ProjectStatus
     {
-        [Key]
-        public int IdProjectStatus { get; set; }
-
-        [Required]
-        [MaxLength(30)]
-        public string Status { get; set; }
+        ACTIVE,
+        INACTIVE,
+        CANCELLED,
+        FILLED
     }
 }

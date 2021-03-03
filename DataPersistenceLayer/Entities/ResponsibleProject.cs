@@ -20,10 +20,8 @@ namespace DataPersistenceLayer.Entities
         [MaxLength(254)]
         public string EmailAddress { get; set; }
 
-        [Required]
-        public int IdPosition { get; set; }
-               
-        [ForeignKey("IdPosition")]
-        public Position Position { get; set; }
+        public string Charge { get; set; }
+
+        public virtual ResponsibleProjectStatus ResponsibleProjectStatus { get; set; }
     }
 }

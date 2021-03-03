@@ -1,15 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace DataPersistenceLayer.Entities
+﻿namespace DataPersistenceLayer.Entities
 {
-    public class Gender
+    public enum Gender
     {
-
-        [Key]
-        public int IdGender { get; set; }
-
-        [Required]
-        [MaxLength(25)]
-        public string GenderName { get; set; }
+        MALE,
+        FEMALE        
     }
 }

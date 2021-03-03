@@ -9,9 +9,9 @@ namespace DataPersistenceLayer.Entities
         [Key]
         [MaxLength(20)]
         public string StaffNumber { get; set; }
-        
+
         [Required]
-        public DateTime RegistrationDate { get; set; }
+        public DateTime RegistrationDate { get; set; } = DateTime.Now;
         
         public DateTime? DischargeDate { get; set; }
 
@@ -19,5 +19,6 @@ namespace DataPersistenceLayer.Entities
         
         [ForeignKey("IdUser")]
         public User User { get; set; }
+        
     }
 }

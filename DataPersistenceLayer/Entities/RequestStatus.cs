@@ -2,13 +2,9 @@
 
 namespace DataPersistenceLayer.Entities
 {
-    public class RequestStatus
+    public enum RequestStatus
     {
-        [Key]
-        public int IdRequestStatus { get; set; }
-
-        [Required]
-        [MaxLength(50)]
-        public string Status { get; set; }
+        APROVED,
+        DENIED
     }
 }
