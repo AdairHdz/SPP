@@ -28,8 +28,8 @@ namespace UnitTests.DataPersistenceLayerTests.UserTest
                     IdUser = 1,
                     Name = "Eduardo Aldair",
                     LastName = "Hernández Solís",
-                    IdGender = 1,
-                    IdStatus = 1,
+                    Gender = Gender.MALE,
+                    UserStatus = UserStatus.ACTIVE,
                     Email = "eduardo@hotmail.com",
                     AlternateEmail = "aldair@hotmail.com",
                     PhoneNumber = "2298046218"
@@ -48,8 +48,8 @@ namespace UnitTests.DataPersistenceLayerTests.UserTest
             {
                 Name = "Irving",
                 LastName = "Lozada Rodríguez",
-                IdGender = 1,
-                IdStatus = 1,
+                Gender = Gender.MALE,
+                UserStatus = UserStatus.ACTIVE,
                 Email = "irving@hotmail.com",
                 PhoneNumber = "2298040941"
             };
@@ -73,8 +73,8 @@ namespace UnitTests.DataPersistenceLayerTests.UserTest
                 {
                     Name = "Yair",
                     LastName = "Domínguez López",
-                    IdGender = 1,
-                    IdStatus = 1,
+                    Gender = Gender.MALE,
+                    UserStatus = UserStatus.ACTIVE,
                     Email = "yair@gmail.com",
                     PhoneNumber = "2298040941"
                 },
@@ -82,8 +82,8 @@ namespace UnitTests.DataPersistenceLayerTests.UserTest
                 {
                     Name = "Francisco",
                     LastName = "Portilla Texon",
-                    IdGender = 1,
-                    IdStatus = 1,
+                    Gender = Gender.MALE,
+                    UserStatus = UserStatus.ACTIVE,
                     Email = "francisco@hotmail.com",
                     PhoneNumber = "2298040941"
                 }
@@ -139,7 +139,7 @@ namespace UnitTests.DataPersistenceLayerTests.UserTest
         [TestMethod]
         public void FindUser_Success()
         {
-            var users = _unitOfWork.Users.Find(x => x.IdGender == 1);
+            var users = _unitOfWork.Users.Find(x => x.Gender == Gender.MALE);
             string expected = "Hernández Solís";
             string actual = users.ElementAt(0).LastName;
             Assert.AreEqual(expected, actual);
@@ -164,5 +164,82 @@ namespace UnitTests.DataPersistenceLayerTests.UserTest
 
             Assert.AreEqual(expected, actual);
         }
+
+
+        [TestMethod]
+        public void DetermineIfEmailIsAlreadyRegistered()
+        {
+            User newlyCreatedUser = new User
+            {
+                IdUser = 3,
+                Name = "Yair",
+                LastName = "Domínguez López",
+                Gender = Gender.MALE,
+                UserStatus = UserStatus.ACTIVE,
+                Email = "eduardo@hotmail.com",
+                AlternateEmail = "",
+                PhoneNumber = "2298040909",
+                Account = new Account
+                {
+                    Username = "Yair123",
+                    Password = "salf,lsflfgs",
+                    FirstLogin = true
+                }
+            };
+
+            bool userIsAlreadyRegistered = _unitOfWork.Users.UserIsAlreadyRegistered(newlyCreatedUser);
+            Assert.IsTrue(userIsAlreadyRegistered);
+        }
+
+        [TestMethod]
+        public void DetermineIfAlternateEmailIsAlreadyRegistered()
+        {
+            User newlyCreatedUser = new User
+            {
+                IdUser = 4,
+                Name = "Francisco",
+                LastName = "Portilla Texon",
+                Gender = Gender.MALE,
+                UserStatus = UserStatus.ACTIVE,
+                Email = "francisco@hotmail.com",
+                AlternateEmail = "aldair@hotmail.com",
+                PhoneNumber = "2298040147",
+                Account = new Account
+                {
+                    Username = "Francisco",
+                    Password = "salf,lsflfgs",
+                    FirstLogin = true
+                }
+            };
+
+            bool userIsAlreadyRegistered = _unitOfWork.Users.UserIsAlreadyRegistered(newlyCreatedUser);
+            Assert.IsTrue(userIsAlreadyRegistered);
+        }
+
+        [TestMethod]
+        public void DetermineIfPhoneNumberIsAlreadyRegistered()
+        {
+            User newlyCreatedUser = new User
+            {
+                IdUser = 5,
+                Name = "Adair",
+                LastName = "Hernández Ortiz",
+                Gender = Gender.MALE,
+                UserStatus = UserStatus.ACTIVE,
+                Email = "adairho16@gmail.com",
+                AlternateEmail = "",
+                PhoneNumber = "2298046218",
+                Account = new Account
+                {
+                    Username = "AdairHz",
+                    Password = "salf,lsflfgs",
+                    FirstLogin = true
+                }
+            };
+
+            bool userIsAlreadyRegistered = _unitOfWork.Users.UserIsAlreadyRegistered(newlyCreatedUser);            
+            Assert.IsTrue(userIsAlreadyRegistered);
+        }
+
     }
 }

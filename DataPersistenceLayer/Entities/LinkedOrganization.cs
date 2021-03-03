@@ -49,6 +49,8 @@ namespace DataPersistenceLayer.Entities
         [ForeignKey("IdSector")]
         public virtual Sector Sector { get; set; }
 
+        public virtual LinkedOrganizationStatus LinkedOrganizationStatus { get; set; }
+
         public virtual List<Project> Projects { get; set; }
 
     }

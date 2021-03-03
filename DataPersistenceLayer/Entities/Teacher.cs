@@ -13,11 +13,6 @@ namespace DataPersistenceLayer.Entities
         public DateTime? RegistrationDate { get; set; }
         
         public DateTime? DischargeDate { get; set; }
-        
-        public int IdTurn { get; set; }
-
-        [ForeignKey("IdTurn")]
-        public virtual Turn Turn { get; set; }
 
         public int IdUser { get; set; }
 

@@ -51,27 +51,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Activity.cs" />
+    <Compile Include="Entities\ActivityMade.cs" />
+    <Compile Include="Entities\Manager.cs" />
+    <Compile Include="Entities\AdvanceQuestion.cs" />
+    <Compile Include="Entities\Assignment.cs" />
     <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\AssignmentStatus.cs" />
     <Compile Include="Entities\Coordinator.cs" />
+    <Compile Include="Entities\Document.cs" />
     <Compile Include="Entities\Gender.cs" />
+    <Compile Include="Entities\Group.cs" />
+    <Compile Include="Entities\GroupStatus.cs" />
     <Compile Include="Entities\LinkedOrganization.cs" />
-    <Compile Include="Entities\Period.cs" />
-    <Compile Include="Entities\Position.cs" />
-    <Compile Include="Entities\Practicing.cs" />
+    <Compile Include="Entities\Account.cs" />
+    <Compile Include="Entities\LinkedOrganizationStatus.cs" />
+    <Compile Include="Entities\MonthlyReport.cs" />
+    <Compile Include="Entities\OfficeOfAcceptance.cs" />
+    <Compile Include="Entities\Phone.cs" />
+    <Compile Include="Entities\Practicioner.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\ProjectStatus.cs" />
-    <Compile Include="Entities\Report.cs" />
-    <Compile Include="Entities\ReportPartial.cs" />
-    <Compile Include="Entities\Request.cs" />
+    <Compile Include="Entities\PartialReport.cs" />
+    <Compile Include="Entities\RequestProject.cs" />
     <Compile Include="Entities\RequestStatus.cs" />
     <Compile Include="Entities\ResponsibleProject.cs" />
+    <Compile Include="Entities\ResponsibleProjectStatus.cs" />
+    <Compile Include="Entities\SchedulingActivity.cs" />
     <Compile Include="Entities\Sector.cs" />
     <Compile Include="Entities\State.cs" />
     <Compile Include="Entities\Teacher.cs" />
-    <Compile Include="Entities\Turn.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserStatus.cs" />
+    <Compile Include="Entities\UserType.cs" />
     <Compile Include="Migrations\202102131617518_Initial.cs" />
     <Compile Include="Migrations\202102131617518_Initial.designer.cs">
       <DependentUpon>202102131617518_Initial.cs</DependentUpon>
@@ -84,11 +95,19 @@
     <Compile Include="Migrations\202102131641417_SetDateTimesToNullable.designer.cs">
       <DependentUpon>202102131641417_SetDateTimesToNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102241803442_ChangedDatabaseStructure.cs" />
+    <Compile Include="Migrations\202102241803442_ChangedDatabaseStructure.designer.cs">
+      <DependentUpon>202102241803442_ChangedDatabaseStructure.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProfessionalPracticesContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CoordinatorRepository.cs" />
+    <Compile Include="Repositories\ICoordinatorRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="UnitsOfWork\IUnitOfWork.cs" />
     <Compile Include="UnitsOfWork\UnitOfWork.cs" />
   </ItemGroup>
@@ -105,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102131641417_SetDateTimesToNullable.resx">
       <DependentUpon>202102131641417_SetDateTimesToNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102241803442_ChangedDatabaseStructure.resx">
+      <DependentUpon>202102241803442_ChangedDatabaseStructure.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
