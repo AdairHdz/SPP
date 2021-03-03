@@ -21,9 +21,9 @@ namespace DataPersistenceLayer.Entities
         public string EmailAddress { get; set; }
 
         [Required]
-        public int IdPosition { get; set; }
-               
-        [ForeignKey("IdPosition")]
-        public Position Position { get; set; }
+        [MaxLength(50)]
+        public string Charge { get; set; }
+
+        public virtual ResponsibleProjectStatus ResponsibleProjectStatus { get; set; } = ResponsibleProjectStatus.ACTIVE;
     }
 }

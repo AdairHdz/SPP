@@ -26,12 +26,15 @@ namespace PresentationLayer
 
         private void ModifyUsernameButtonClicked(object sender, RoutedEventArgs e)
         {
-            UnitOfWork unitOfWork = new UnitOfWork(new ProfessionalPracticesContext());
+            /*UnitOfWork unitOfWork = new UnitOfWork(new ProfessionalPracticesContext());
             var user = unitOfWork.Users.Get(1);
             user.Name = "Ángel José";
             unitOfWork.Complete();
             unitOfWork.Dispose();
-            UserNameLabel.Content = "Se modificó el nombre. Vuelve a cargarlo para comprobar";
+            UserNameLabel.Content = "Se modificó el nombre. Vuelve a cargarlo para comprobar";*/
+            RegisterResponsableProject register = new RegisterResponsableProject();
+            register.Show();
+            this.Close();
         }
     }
 }
