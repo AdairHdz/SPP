@@ -16,17 +16,9 @@ namespace DataPersistenceLayer.Entities
         [MaxLength(30)]
         public string LastName { get; set; }
 
-        [Required]
-        public int IdGender { get; set; }
-        
-        [ForeignKey("IdGender")]
         public virtual Gender Gender { get; set; }
 
-        [Required]
-        public int IdStatus { get; set; }
-        
-        [ForeignKey("IdStatus")]
-        public virtual UserStatus UserStatus { get; set; }
+        public virtual UserStatus UserStatus { get; set; } = UserStatus.ACTIVE;
 
         [Required]
         [MaxLength(254)]
@@ -38,6 +30,11 @@ namespace DataPersistenceLayer.Entities
         [MaxLength(10)]
         public string PhoneNumber { get; set; }
 
+        public virtual UserType UserType { get; set; }
 
+        public int IdAccount { get; set; }
+
+        [ForeignKey("IdAccount")]
+        public virtual Account Account { get; set; }
     }
 }

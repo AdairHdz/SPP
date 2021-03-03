@@ -24,19 +24,7 @@ namespace DataPersistenceLayer.UnitsOfWork
         public UnitOfWork(ProfessionalPracticesContext context)
         {
             _context = context;
-            Accounts = new Repository<Account>(_context);
-            Coordinators = new CoordinatorRepository(_context);
-            LinkedOrganizations = new Repository<LinkedOrganization>(_context);
-            Practicioners = new Repository<Practicioner>(_context);
-            Projects = new Repository<Project>(_context);
-            PartialReports = new Repository<PartialReport>(_context);
-            MonthlyReports = new Repository<MonthlyReport>(_context);
-            RequestProjects = new Repository<RequestProject>(_context);
-            ResponsibleProjects = new ResponsibleProjectRepository(_context);
-            Teachers = new Repository<Teacher>(_context);
-            Users = new UserRepository(_context);
-            
-            
+            Users = new Repository<User>(_context);
         }
 
         /// <summary>

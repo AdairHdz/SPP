@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "Presen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataPersistenceLayer", "DataPersistenceLayer\DataPersistenceLayer.csproj", "{5AEEAEAA-3CB2-4EAE-B3AC-1703740CDDEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{A9E4A035-F960-4160-80B3-62F4C2732D85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{03A013A2-08B4-4031-84F2-CCAFB399509F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{5AEEAEAA-3CB2-4EAE-B3AC-1703740CDDEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AEEAEAA-3CB2-4EAE-B3AC-1703740CDDEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AEEAEAA-3CB2-4EAE-B3AC-1703740CDDEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9E4A035-F960-4160-80B3-62F4C2732D85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9E4A035-F960-4160-80B3-62F4C2732D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9E4A035-F960-4160-80B3-62F4C2732D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9E4A035-F960-4160-80B3-62F4C2732D85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03A013A2-08B4-4031-84F2-CCAFB399509F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03A013A2-08B4-4031-84F2-CCAFB399509F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03A013A2-08B4-4031-84F2-CCAFB399509F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03A013A2-08B4-4031-84F2-CCAFB399509F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
