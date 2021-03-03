@@ -7,7 +7,7 @@ namespace PresentationLayer.Validators
     {
         public CoordinatorValidator()
         {
-            RuleFor(coordinator => coordinator.StaffNumber.Trim()).NotEmpty();
+            RuleFor(coordinator => coordinator.StaffNumber).NotEmpty().WithState(coordinator => "TextBoxStaffNumber");
             RuleFor(coordinator => coordinator.User).SetValidator(new UserValidator());
             RuleFor(coordinator => coordinator.User.Account).SetValidator(new AccountValidator());
         }
