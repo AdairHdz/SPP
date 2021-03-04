@@ -79,6 +79,7 @@
     </Compile>
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
+    <Compile Include="Validators\UserFeedback.cs" />
     <Compile Include="Validators\UserValidator.cs" />
     <Page Include="Alert\AlertInformation.xaml">
       <SubType>Designer</SubType>

@@ -19,7 +19,7 @@ namespace DataPersistenceLayer.Repositories
         {
             User retrievedUser;
 
-            if (userToBeRegistered.AlternateEmail.Length > 0)
+            if (userToBeRegistered.AlternateEmail != null && userToBeRegistered.AlternateEmail.Length > 0)
             {
                 retrievedUser = FindFirstOccurence(user => user.Email.Equals(userToBeRegistered.Email)
                 || user.AlternateEmail.Equals(userToBeRegistered.AlternateEmail)

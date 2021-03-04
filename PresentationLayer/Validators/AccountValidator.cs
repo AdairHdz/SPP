@@ -7,9 +7,10 @@ namespace PresentationLayer.Validators
     {
         public AccountValidator()
         {
-            RuleFor(loginAccount => loginAccount.Username).NotEmpty()
-                .MaximumLength(50).MinimumLength(1);
-            RuleFor(loginAccount => loginAccount.Password).NotEmpty()
+            RuleFor(account => account.Username).NotEmpty()
+                .WithState(account => "TextBoxUsername").MaximumLength(50);
+            RuleFor(account => account.Password).NotEmpty()
+                .WithState(account => "PasswordBoxPassword")
                 .MaximumLength(50).MinimumLength(8);
         }
     }
