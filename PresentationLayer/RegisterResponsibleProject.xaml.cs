@@ -13,7 +13,7 @@ namespace PresentationLayer
 	/// </summary>
 	public partial class RegisterResponsableProject : Window
     {
-		private ResponsibleProject responsibleProject= new ResponsibleProject();
+		private ResponsibleProject responsibleProject;
 		public RegisterResponsableProject()
         {
             InitializeComponent();
@@ -27,20 +27,17 @@ namespace PresentationLayer
 
 		private void RegisterButtonClicked(object sender, RoutedEventArgs e)
 		{
+			responsibleProject = new ResponsibleProject();
 			CreateResponsabileProjectFromInputData();
-			bool isValidDataResponsibleProject = ValidateDataResponsibleProject();
-			if (isValidDataResponsibleProject)
+			if (ValidateDataResponsibleProject())
 			{
-				bool isValidEmail = ResponsibleProjectIsAlreadyRegistered();
-
-				if (isValidEmail)
+				if (ResponsibleProjectIsAlreadyRegistered())
 				{
 					MessageBox.Show("Existe un responsable del proyecto con el mismo correo electrónico registrado", "Dato Repetido", MessageBoxButton.OK, MessageBoxImage.Warning);
 				}
 				else
 				{
-					bool isRegisterResponsableProject = RegisternewResponsibleProject();
-					if (isRegisterResponsableProject)
+					if (RegisternewResponsibleProject())
 					{
 						MessageBox.Show("El responsable del proyecto se registró exitosamente", "Registro Exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
                     }

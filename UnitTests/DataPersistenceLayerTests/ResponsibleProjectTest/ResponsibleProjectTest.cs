@@ -28,7 +28,6 @@ namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
             };
             DbSet<ResponsibleProject>  _mockSet = DbContextMock.GetQueryableMockDbSet(_data, x => x.EmailAddress);
             ProfessionalPracticesContext _mockContext = DbContextMock.GetContext(_mockSet);
-            ResponsibleProjectRepository _repository = new ResponsibleProjectRepository(_mockContext);
             _unitOfWork = new UnitOfWork(_mockContext);
         }
 

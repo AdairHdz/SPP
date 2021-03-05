@@ -74,9 +74,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Alert\AlertInformation.xaml.cs">
-      <DependentUpon>AlertInformation.xaml</DependentUpon>
-    </Compile>
     <Compile Include="RegisterResponsibleProject.xaml.cs">
       <DependentUpon>RegisterResponsibleProject.xaml</DependentUpon>
     </Compile>
@@ -85,10 +82,6 @@
     <Compile Include="Validators\ResponsibleProjectValidator.cs" />
     <Compile Include="Validators\UserFeedback.cs" />
     <Compile Include="Validators\UserValidator.cs" />
-    <Page Include="Alert\AlertInformation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CoordinatorRegistry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
