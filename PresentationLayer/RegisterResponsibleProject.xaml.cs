@@ -8,20 +8,21 @@ using System.Collections.Generic;
 
 namespace PresentationLayer
 {
-
-    public partial class RegisterResponsableProject : Window
+	/// <summary>
+	/// Lógica de interacción para CoordinatorRegistry.xaml
+	/// </summary>
+	public partial class RegisterResponsableProject : Window
     {
-		public ResponsibleProject ResponsibleProject= new ResponsibleProject();
+		private ResponsibleProject responsibleProject= new ResponsibleProject();
 		public RegisterResponsableProject()
         {
             InitializeComponent();
-			this.DataContext = ResponsibleProject;
+			this.DataContext = responsibleProject;
 		}
 
 		private void CancelButtonClicked(object sender, RoutedEventArgs e)
 		{
 			MessageBox.Show("¿Seguro desea cancelar?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
-			//Si es si regresar al menu coordinador
 		}
 
 		private void RegisterButtonClicked(object sender, RoutedEventArgs e)
@@ -47,7 +48,6 @@ namespace PresentationLayer
                     {
 						MessageBox.Show("El responsable del proyecto no pudo registrarse. Intente más tarde", "Registro Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
 					}
-					//Regresar al menu coordinador
 				}
 			}
 			else
@@ -58,10 +58,10 @@ namespace PresentationLayer
 		
 		private void CreateResponsabileProjectFromInputData()
 		{
-			ResponsibleProject.Charge = TextBoxCharge.Text;
-			ResponsibleProject.EmailAddress = TextBoxEmail.Text;
-			ResponsibleProject.Name = TextBoxName.Text;
-			ResponsibleProject.LastName = TextBoxLastName.Text;
+			responsibleProject.Charge = TextBoxCharge.Text;
+			responsibleProject.EmailAddress = TextBoxEmail.Text;
+			responsibleProject.Name = TextBoxName.Text;
+			responsibleProject.LastName = TextBoxLastName.Text;
 			
 		}
 
@@ -69,7 +69,7 @@ namespace PresentationLayer
 		{
 			ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
 			UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-			bool responsibleProjectIsAlreadyRegistered = unitOfWork.ResponsibleProjects.ResponsibleProjectIsAlreadyRegistered(ResponsibleProject.EmailAddress);
+			bool responsibleProjectIsAlreadyRegistered = unitOfWork.ResponsibleProjects.ResponsibleProjectIsAlreadyRegistered(responsibleProject.EmailAddress);
 			unitOfWork.Dispose();
 			if (responsibleProjectIsAlreadyRegistered)
 			{
@@ -81,7 +81,7 @@ namespace PresentationLayer
 		private bool ValidateDataResponsibleProject()
 		{
 			ResponsibleProjectValidator responsibleProjectValidator = new ResponsibleProjectValidator();
-			ValidationResult dataValidationResult = responsibleProjectValidator.Validate(ResponsibleProject);
+			ValidationResult dataValidationResult = responsibleProjectValidator.Validate(responsibleProject);
 			IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
 			UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
 			userFeedback.ShowFeedback();
@@ -92,7 +92,7 @@ namespace PresentationLayer
 		{
 			ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
 			UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-			unitOfWork.ResponsibleProjects.Add(ResponsibleProject);
+			unitOfWork.ResponsibleProjects.Add(responsibleProject);
 			int rowsAffected = unitOfWork.Complete();
 			unitOfWork.Dispose();
 			return rowsAffected == 1;

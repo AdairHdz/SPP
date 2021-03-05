@@ -11,17 +11,12 @@ namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
     [TestClass]
     public class ResponsibleProjectTest
     {
-        private List<ResponsibleProject> _data;
-        private DbSet<ResponsibleProject> _mockSet;
-        private ProfessionalPracticesContext _mockContext;
-        private ResponsibleProjectRepository _repository;
         private UnitOfWork _unitOfWork;
-
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _data = new List<ResponsibleProject>
+            List<ResponsibleProject> _data = new List<ResponsibleProject>
             {
                 new ResponsibleProject
                 {
@@ -31,9 +26,9 @@ namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
                     Charge = "Jefe de departamento de Tecnología Educativa"
                 }
             };
-            _mockSet = DbContextMock.GetQueryableMockDbSet(_data, x => x.EmailAddress);
-            _mockContext = DbContextMock.GetContext(_mockSet);
-            _repository = new ResponsibleProjectRepository(_mockContext);
+            DbSet<ResponsibleProject>  _mockSet = DbContextMock.GetQueryableMockDbSet(_data, x => x.EmailAddress);
+            ProfessionalPracticesContext _mockContext = DbContextMock.GetContext(_mockSet);
+            ResponsibleProjectRepository _repository = new ResponsibleProjectRepository(_mockContext);
             _unitOfWork = new UnitOfWork(_mockContext);
         }
 
