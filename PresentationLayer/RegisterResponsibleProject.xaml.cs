@@ -1,9 +1,10 @@
-﻿using System.Windows.Input;
-using System.Windows;
-using System.Windows.Media;
+﻿using System.Windows;
 using DataPersistenceLayer.Entities;
 using DataPersistenceLayer;
 using DataPersistenceLayer.UnitsOfWork;
+using PresentationLayer.Validators;
+using FluentValidation.Results;
+using System.Collections.Generic;
 
 namespace PresentationLayer
 {
@@ -20,23 +21,25 @@ namespace PresentationLayer
 		private void CancelButtonClicked(object sender, RoutedEventArgs e)
 		{
 			MessageBox.Show("¿Seguro desea cancelar?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+			//Si es si regresar al menu coordinador
 		}
 
 		private void RegisterButtonClicked(object sender, RoutedEventArgs e)
 		{
+			CreateResponsabileProjectFromInputData();
 			bool isValidDataResponsibleProject = ValidateDataResponsibleProject();
 			if (isValidDataResponsibleProject)
 			{
-				CreateResponsabileProjectFromInputData();
 				bool isValidEmail = ResponsibleProjectIsAlreadyRegistered();
 
 				if (isValidEmail)
 				{
-					MessageBox.Show("Existe un responsable del proyecto con el mismo correo electrónico registrado", "Dato Repetido", MessageBoxButton.OK, MessageBoxImage.Error);
+					MessageBox.Show("Existe un responsable del proyecto con el mismo correo electrónico registrado", "Dato Repetido", MessageBoxButton.OK, MessageBoxImage.Warning);
 				}
 				else
 				{
-					if (RegisternewResponsibleProject())
+					bool isRegisterResponsableProject = RegisternewResponsibleProject();
+					if (isRegisterResponsableProject)
 					{
 						MessageBox.Show("El responsable del proyecto se registró exitosamente", "Registro Exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
@@ -44,6 +47,7 @@ namespace PresentationLayer
                     {
 						MessageBox.Show("El responsable del proyecto no pudo registrarse. Intente más tarde", "Registro Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
 					}
+					//Regresar al menu coordinador
 				}
 			}
 			else
@@ -54,10 +58,10 @@ namespace PresentationLayer
 		
 		private void CreateResponsabileProjectFromInputData()
 		{
-			ResponsibleProject.Charge = ChargeTextBox.Text;
-			ResponsibleProject.EmailAddress = EmailTextBox.Text;
-			ResponsibleProject.Name = NameTextBox.Text;
-			ResponsibleProject.LastName = LastNameTextBox.Text;
+			ResponsibleProject.Charge = TextBoxCharge.Text;
+			ResponsibleProject.EmailAddress = TextBoxEmail.Text;
+			ResponsibleProject.Name = TextBoxName.Text;
+			ResponsibleProject.LastName = TextBoxLastName.Text;
 			
 		}
 
@@ -76,79 +80,12 @@ namespace PresentationLayer
 
 		private bool ValidateDataResponsibleProject()
 		{
-			NameTextBox.BorderBrush = Brushes.Transparent;
-			LastNameTextBox.BorderBrush = Brushes.Transparent;
-			ChargeTextBox.BorderBrush = Brushes.Transparent;
-			EmailTextBox.BorderBrush = Brushes.Transparent;
-
-			bool isValidName = ValidateName();
-			bool isValidLastName = ValidateLastName();
-			bool isValidCharge = ValidateCharge();
-			bool isValidEmail = ValidateEmail();
-
-			bool isValidDataResponsibleProject = false;
-			if (isValidName && isValidLastName && isValidCharge && isValidEmail)
-			{
-				isValidDataResponsibleProject = true;
-
-			}
-			return isValidDataResponsibleProject;
-		}
-
-		private bool ValidateName()
-		{
-			bool isValidName = ValidationData.ValidateNameComplete(NameTextBox.Text);
-			if (isValidName)
-			{
-				NameTextBox.BorderBrush = Brushes.Green;
-			}
-			else
-			{
-				NameTextBox.BorderBrush = Brushes.Red;
-			}
-			return isValidName;
-		}
-
-		private bool ValidateLastName()
-		{
-			bool isValidLastName = ValidationData.ValidateNameComplete(LastNameTextBox.Text);
-			if (isValidLastName)
-			{
-				LastNameTextBox.BorderBrush = Brushes.Green;
-			}
-			else
-			{
-				LastNameTextBox.BorderBrush = Brushes.Red;
-			}
-			return isValidLastName;
-		}
-
-		private bool ValidateEmail()
-		{
-			bool isValidEmail = ValidationData.ValidateEmail(EmailTextBox.Text);
-			if (isValidEmail)
-			{
-				EmailTextBox.BorderBrush = Brushes.Green;
-			}
-			else
-			{
-				EmailTextBox.BorderBrush = Brushes.Red;
-			}
-			return isValidEmail;
-		}
-
-		private bool ValidateCharge()
-		{
-			bool isValidCharge = ValidationData.ValidateCharge(ChargeTextBox.Text);
-			if (isValidCharge)
-			{
-				ChargeTextBox.BorderBrush = Brushes.Green;
-			}
-			else
-			{
-				ChargeTextBox.BorderBrush = Brushes.Red;
-			}
-			return isValidCharge;
+			ResponsibleProjectValidator responsibleProjectValidator = new ResponsibleProjectValidator();
+			ValidationResult dataValidationResult = responsibleProjectValidator.Validate(ResponsibleProject);
+			IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
+			UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
+			userFeedback.ShowFeedback();
+			return dataValidationResult.IsValid;
 		}
 
 		private bool RegisternewResponsibleProject()
@@ -159,12 +96,6 @@ namespace PresentationLayer
 			int rowsAffected = unitOfWork.Complete();
 			unitOfWork.Dispose();
 			return rowsAffected == 1;
-		}
-
-		private void ProhibitSpace(object sender, KeyEventArgs e)
-		{
-			if (e.Key == Key.Space)
-				e.Handled = true;
 		}
 	}
 }

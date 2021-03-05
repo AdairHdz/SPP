@@ -1,37 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using DataPersistenceLayer.Entities;
+using FluentValidation;
 using System.Text.RegularExpressions;
-namespace PresentationLayer
+
+namespace PresentationLayer.Validators
 {
-    class ValidationData
-    {
-		public static bool ValidateNameComplete(string name)
-		{
-			bool isValidNameComplete = false;
-			name = name.Trim();
-			Regex regexName = new Regex(@"^[a-zA-Záéíóú\s]{3,50}$");
-			isValidNameComplete = regexName.IsMatch(name);
-			return isValidNameComplete;
+    public class ResponsibleProjectValidator : AbstractValidator<ResponsibleProject>
+	{
+		public ResponsibleProjectValidator()
+        {
+			RuleFor(responsibleProject => responsibleProject.Name).NotEmpty()
+			   .MinimumLength(3).MaximumLength(50).Matches("[a-zA-Z+]").WithState(responsibleProject => "TextBoxName");
+			RuleFor(responsibleProject => responsibleProject.LastName).NotEmpty()
+				.MinimumLength(3).MaximumLength(50).Matches("[a-zA-Z+]").WithState(responsibleProject => "TextBoxLastName");
+			RuleFor(responsibleProject => responsibleProject.EmailAddress).Must(BeValidEmail)
+			   .WithState(responsibleProject => "TextBoxEmail");
+			RuleFor(responsibleProject => responsibleProject.Charge).NotEmpty()
+				.MinimumLength(3).MaximumLength(50).Matches("[a-zA-Z+]").WithState(responsibleProject => "TextBoxCharge");
 		}
 
-		public static bool ValidateEmail(string email)
+		public bool BeValidEmail(string email)
 		{
-			bool isValidEmail = false;
-			Regex regexEmail = new Regex(@"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$");
-			isValidEmail = regexEmail.IsMatch(email);
-			return isValidEmail;
-		}
-
-		public static bool ValidateCharge(string charge)
-		{
-			bool isValidCharge = false;
-			charge = charge.Trim();
-			Regex regexCharge = new Regex(@"^[a-zA-Záéíóú\s]{4,50}$");
-			isValidCharge = regexCharge.IsMatch(charge);
-			return isValidCharge;
+			Regex regularExpression = new Regex("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+			if (email == null || email.Length == 0)
+			{
+				return false;
+			}
+			bool hasValidFormat = regularExpression.IsMatch(email);
+			bool hasValidLength = email.Length <= 254;
+			return hasValidFormat && hasValidLength;
 		}
 	}
 }

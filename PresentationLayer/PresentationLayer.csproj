@@ -77,8 +77,13 @@
     <Compile Include="Alert\AlertInformation.xaml.cs">
       <DependentUpon>AlertInformation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RegisterResponsibleProject.xaml.cs">
+      <DependentUpon>RegisterResponsibleProject.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
+    <Compile Include="Validators\ResponsibleProjectValidator.cs" />
+    <Compile Include="Validators\UserFeedback.cs" />
     <Compile Include="Validators\UserValidator.cs" />
     <Page Include="Alert\AlertInformation.xaml">
       <SubType>Designer</SubType>
@@ -103,6 +108,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RegisterResponsibleProject.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -140,6 +149,9 @@
       <Project>{03A013A2-08B4-4031-84F2-CCAFB399509F}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\IconoSystem.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

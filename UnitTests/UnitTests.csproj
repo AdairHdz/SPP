@@ -88,6 +88,7 @@
   <ItemGroup>
     <Compile Include="DataPersistenceLayerTests\CoordinatorTest\CoordinatorTest.cs" />
     <Compile Include="DataPersistenceLayerTests\DbContextMock.cs" />
+    <Compile Include="DataPersistenceLayerTests\ResponsibleProjectTest\ResponsibleProjectTest.cs" />
     <Compile Include="DataPersistenceLayerTests\UserTest\UserTest.cs" />
     <Compile Include="HashingTests\BCryptHashingTest.cs" />
     <Compile Include="HashingTests\BCryptHasherTest.cs" />

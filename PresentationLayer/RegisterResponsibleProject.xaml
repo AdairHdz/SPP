@@ -4,6 +4,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        Icon="images/IconoSystem.png"
         mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -26,7 +28,7 @@
             <materialDesign:PackIcon Kind="ArrowLeftBold" Height="30" Width="30" HorizontalAlignment="Center"/>
         </Button>
 
-        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid x:Name="FormGrid" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"></RowDefinition>
                 <RowDefinition Height="60"></RowDefinition>
@@ -39,16 +41,16 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label Content="Nombre: " VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-            <TextBox Name="NameTextBox" Height="30" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" FontSize="15" VerticalAlignment="Top" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z."/>
+            <TextBox Name="TextBoxName" Height="30" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z." />
 
             <Label Content="Apellidos: " VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-            <TextBox Name="LastNameTextBox" Height="30"  Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" FontSize="15" VerticalAlignment="Top" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z."/>
+            <TextBox Name="TextBoxLastName" Height="30"  Grid.Row="1" Grid.Column="1"  TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z."/>
 
             <Label Content="Correo electrónico: " VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-            <TextBox Name="EmailTextBox" Height="30" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" FontSize="15" VerticalAlignment="Top" Width="250" HorizontalAlignment="Left" materialDesign:HintAssist.HelperText="Máximo 254 caracteres Ej. martha_14_5@gmail.com."/>
+            <TextBox Name="TextBoxEmail" Height="30" Grid.Row="2" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="250" HorizontalAlignment="Left" materialDesign:HintAssist.HelperText="Máximo 254 caracteres Ej. martha_14_5@gmail.com."/>
 
             <Label Content="Cargo: " VerticalAlignment="Top" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-            <TextBox Name="ChargeTextBox" Height="30" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" FontSize="15" VerticalAlignment="Top" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z."/>
+            <TextBox Name="TextBoxCharge" Height="30" Grid.Row="3" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z."/>
 
             <Button Grid.Row="4" Grid.Column="0" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
             ToolTip="Resource name: MaterialDesignRaisedAccentButton" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Registrar" Click="RegisterButtonClicked"></Button>
