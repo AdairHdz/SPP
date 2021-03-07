@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Data.Entity;
 
+
 namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
 {
     [TestClass]
@@ -22,11 +23,11 @@ namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
                 {
                     Name = "Gustavo Antonio",
                     LastName = "Ruiz Zapata",
-                    EmailAddress = "guruiz@uv.mx",
+                    EmailAddress = "ruizZapata@uv.mx",
                     Charge = "Jefe de departamento de Tecnología Educativa"
                 }
             };
-            DbSet<ResponsibleProject>  _mockSet = DbContextMock.GetQueryableMockDbSet(_data, x => x.EmailAddress);
+            DbSet<ResponsibleProject> _mockSet = DbContextMock.GetQueryableMockDbSet(_data, x => x.EmailAddress);
             ProfessionalPracticesContext _mockContext = DbContextMock.GetContext(_mockSet);
             _unitOfWork = new UnitOfWork(_mockContext);
         }
@@ -34,10 +35,29 @@ namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
         [TestMethod]
         public void DetermineIfResponsibleProjectAlreadyExists_Exists()
         {
-            bool responsibleProjectIsAlreadyRegistered = _unitOfWork.ResponsibleProjects.ResponsibleProjectIsAlreadyRegistered("guruiz@uv.mx");
+            bool responsibleProjectIsAlreadyRegistered = _unitOfWork.ResponsibleProjects.ResponsibleProjectIsAlreadyRegistered("ruizZapata@uv.mx");
 
             Assert.IsTrue(responsibleProjectIsAlreadyRegistered);
         }
 
+        [TestMethod]
+        public void RegisterResponsibleProject_Exists()
+        {
+            List<ResponsibleProject> responsiblesProject = new List<ResponsibleProject>();
+            DbSet<ResponsibleProject> mockSet = DbContextMock.GetQueryableMockDbSet(responsiblesProject, r => r.EmailAddress);
+            ProfessionalPracticesContext mockContext = DbContextMock.GetContext(mockSet);
+            UnitOfWork unitOfWork = DbContextMock.GetUnitOfWork(mockContext);
+            ResponsibleProject newResponsibleProject = new ResponsibleProject
+            {
+                Name = "Gustavo Antonio",
+                LastName = "Ruiz Zapata",
+                EmailAddress = "guztavo@uv.mx",
+                Charge = "Jefe de departamento de Tecnología Educativa"
+            };
+            unitOfWork.ResponsibleProjects.Add(newResponsibleProject);
+            int expected = 1;
+            int actual = responsiblesProject.Count;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
