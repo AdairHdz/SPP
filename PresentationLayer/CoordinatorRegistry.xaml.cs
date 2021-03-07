@@ -3,6 +3,7 @@ using DataPersistenceLayer.Entities;
 using DataPersistenceLayer.UnitsOfWork;
 using FluentValidation.Results;
 using PresentationLayer.Validators;
+using System.Collections.Generic;
 using System.Windows;
 using Utilities;
 
@@ -24,7 +25,7 @@ namespace PresentationLayer
         public CoordinatorRegistry()
         {
             InitializeComponent();
-            this.DataContext = Coordinator;
+            this.DataContext = Coordinator;   
         }
 
         private void RegisterButtonClicked(object sender, RoutedEventArgs e)
@@ -61,7 +62,7 @@ namespace PresentationLayer
         private void CreateCoordinatorFromInputData()
         {            
             Coordinator.User.UserType = UserType.Coordinator;
-            Coordinator.User.Account.Password = PasswordPasswordBox.Password;
+            Coordinator.User.Account.Password = PasswordBoxPassword.Password;
 
             if (ManRadioButton.IsChecked == true)
             {                
@@ -75,13 +76,12 @@ namespace PresentationLayer
 
         private bool IsValidData()
         {
-            CoordinatorValidator coordiantorDataValidator = new CoordinatorValidator();
-            ValidationResult dataValidationResult = coordiantorDataValidator.Validate(Coordinator);            
-            if (dataValidationResult.IsValid) 
-            {
-                return true;
-            }
-            return false;
+            CoordinatorValidator coordinatorDataValidator = new CoordinatorValidator();
+            FluentValidation.Results.ValidationResult dataValidationResult = coordinatorDataValidator.Validate(Coordinator);
+            IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
+            UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
+            userFeedback.ShowFeedback();
+            return dataValidationResult.IsValid;
         }
 
         private bool CoordinatorIsAlreadyRegistered()
