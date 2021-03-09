@@ -171,7 +171,7 @@
 
                     <Button Width="auto" Content="Cancelar"
                             Style="{StaticResource MaterialDesignRaisedButton}"
-                            Grid.Column="4" Grid.ColumnSpan="2"/>
+                            Grid.Column="4" Grid.ColumnSpan="2" Click="CancelButtonClicked"/>
                 </Grid>
                 
                 

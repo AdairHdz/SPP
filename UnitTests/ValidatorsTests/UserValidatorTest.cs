@@ -21,8 +21,8 @@ namespace UnitTests.ValidatorsTests
         {
             User user = new User
             {
-                Name = "Adair Benjamín",
-                LastName = "Hernández",
+                Name = "Adair Benjamin",
+                LastName = "Hernandez",
                 Gender = Gender.MALE,
                 UserStatus = UserStatus.ACTIVE,
                 UserType = UserType.Coordinator,
@@ -41,8 +41,8 @@ namespace UnitTests.ValidatorsTests
         {
             User user = new User
             {
-                Name = "Adair Benjamín",
-                LastName = "Hernández",
+                Name = "Adair Benjamin",
+                LastName = "Hernandez",
                 Gender = Gender.MALE,
                 UserStatus = UserStatus.ACTIVE,
                 UserType = UserType.Coordinator,
