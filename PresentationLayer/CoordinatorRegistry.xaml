@@ -48,7 +48,7 @@
         </Grid>
         
         <materialDesign:Card Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="6" Padding="10">
-            <Grid>
+            <Grid x:Name="FormGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -73,7 +73,7 @@
                          Grid.Column="1"
                          Grid.ColumnSpan="2"
                          Grid.Row="0"
-                         Name="StaffNumberTextBox"
+                         Name="TextBoxStaffNumber"
                          Text="{Binding StaffNumber, Mode=TwoWay}"/>
 
                 <Label Grid.Column="0" Grid.Row="1" Content="Nombre(s)"/>
@@ -82,7 +82,7 @@
                          Grid.Column="1"
                          Grid.ColumnSpan="2"
                          Grid.Row="1"
-                         Name="FirstNameTextBox"
+                         Name="TextBoxFirstName"
                          Text="{Binding User.Name, Mode=TwoWay}"/>
 
                 <Label Grid.Column="0" Grid.Row="2" Content="Apellido(s)"/>
@@ -91,7 +91,7 @@
                          Grid.Column="1"
                          Grid.ColumnSpan="2"
                          Grid.Row="2"
-                         Name="LastNameTextBox"
+                         Name="TextBoxLastName"
                          Text="{Binding User.LastName, Mode=TwoWay}"/>
 
                 <Label Grid.Column="0" Grid.Row="3" Content="Género"/>
@@ -113,7 +113,7 @@
                          Grid.Column="1"
                          Grid.ColumnSpan="2"
                          Grid.Row="4"
-                         Name="EmailTextBox"
+                         Name="TextBoxEmail"
                          Text="{Binding User.Email, Mode=TwoWay}"/>
 
                 <Label Grid.Column="0" Grid.Row="5" Content="Correo alternativo"/>
@@ -122,7 +122,7 @@
                          Grid.Column="1"
                          Grid.ColumnSpan="2"
                          Grid.Row="5"
-                         Name="AlternateEmailTextBox"
+                         Name="TextBoxAlternateEmail"
                          Text="{Binding User.AlternateEmail, Mode=TwoWay}"/>
 
                 <Label Grid.Column="0" Grid.Row="6" Content="Teléfono"/>
@@ -131,7 +131,7 @@
                          Grid.Column="1"
                          Grid.ColumnSpan="2"
                          Grid.Row="6"
-                         Name="PhoneNumberTextBox"
+                         Name="TextBoxPhoneNumber"
                          Text="{Binding User.PhoneNumber, Mode=TwoWay}"/>
 
                 <Label Grid.Column="0" Grid.Row="7" Content="Nombre de usuario"/>
@@ -140,7 +140,7 @@
                          Grid.Column="1"
                          Grid.ColumnSpan="2"
                          Grid.Row="7"
-                         Name="UsernameTextBox"
+                         Name="TextBoxUsername"
                          Text="{Binding User.Account.Username, Mode=TwoWay}"/>
 
                 <Label Grid.Column="0" Grid.Row="8" Content="Contraseña"/>
@@ -149,7 +149,7 @@
                          Grid.Column="1"
                          Grid.ColumnSpan="2"
                          Grid.Row="8"
-                         Name="PasswordPasswordBox"/>
+                         Name="PasswordBoxPassword"/>
 
                 <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="9">
                     <Grid.ColumnDefinitions>
