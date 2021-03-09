@@ -5,6 +5,8 @@ using DataPersistenceLayer.UnitsOfWork;
 using PresentationLayer.Validators;
 using FluentValidation.Results;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
+
 
 namespace PresentationLayer
 {
@@ -31,20 +33,27 @@ namespace PresentationLayer
 			CreateResponsabileProjectFromInputData();
 			if (ValidateDataResponsibleProject())
 			{
-				if (ResponsibleProjectIsAlreadyRegistered())
+				try
 				{
-					MessageBox.Show("Existe un responsable del proyecto con el mismo correo electrónico registrado", "Dato Repetido", MessageBoxButton.OK, MessageBoxImage.Warning);
-				}
-				else
-				{
-					if (RegisternewResponsibleProject())
+					if (ResponsibleProjectIsAlreadyRegistered())
 					{
-						MessageBox.Show("El responsable del proyecto se registró exitosamente", "Registro Exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
-                    else
-                    {
-						MessageBox.Show("El responsable del proyecto no pudo registrarse. Intente más tarde", "Registro Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
+						MessageBox.Show("Existe un responsable del proyecto con el mismo correo electrónico registrado", "Dato Repetido", MessageBoxButton.OK, MessageBoxImage.Warning);
 					}
+					else
+					{
+						if (RegisternewResponsibleProject())
+						{
+							MessageBox.Show("El responsable del proyecto se registró exitosamente", "Registro Exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
+						}
+						else
+						{
+							MessageBox.Show("El responsable del proyecto no pudo registrarse. Intente más tarde", "Registro Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
+						}
+					}
+                }
+                catch (EntityException)
+				{
+					MessageBox.Show("El responsable del proyecto no pudo registrarse. Intente más tarde", "Registro Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
 				}
 			}
 			else
@@ -66,9 +75,8 @@ namespace PresentationLayer
 		{
 			ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
 			UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-			bool responsibleProjectIsAlreadyRegistered = unitOfWork.ResponsibleProjects.ResponsibleProjectIsAlreadyRegistered(responsibleProject.EmailAddress);
-			unitOfWork.Dispose();
-			if (responsibleProjectIsAlreadyRegistered)
+			ResponsibleProject responsibleProjectWithSameEmailAddress = unitOfWork.ResponsibleProjects.FindFirstOccurence(ResponsibleProject => ResponsibleProject.EmailAddress == responsibleProject.EmailAddress);
+			if (responsibleProjectWithSameEmailAddress != null)
 			{
 				return true;
 			}

@@ -14,7 +14,7 @@ namespace DataPersistenceLayer.UnitsOfWork
         public IRepository<PartialReport> PartialReports { get; private set; }
         public IRepository<MonthlyReport> MonthlyReports { get; private set; }
         public IRepository<RequestProject> RequestProjects { get; private set; }
-        public IResponsibleProjectRepository ResponsibleProjects { get; private set; }
+        public IRepository<ResponsibleProject> ResponsibleProjects { get; private set; }
         public IRepository<Sector> Sectors { get; private set; }
         public IRepository<State> States { get; private set; }
         public IRepository<Teacher> Teachers { get; private set; }
@@ -32,7 +32,7 @@ namespace DataPersistenceLayer.UnitsOfWork
             PartialReports = new Repository<PartialReport>(_context);
             MonthlyReports = new Repository<MonthlyReport>(_context);
             RequestProjects = new Repository<RequestProject>(_context);
-            ResponsibleProjects = new ResponsibleProjectRepository(_context);
+            ResponsibleProjects = new Repository<ResponsibleProject>(_context);
             Teachers = new Repository<Teacher>(_context);
             Users = new UserRepository(_context);
         }
