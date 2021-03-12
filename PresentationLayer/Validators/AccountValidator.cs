@@ -7,11 +7,11 @@ namespace PresentationLayer.Validators
     {
         public AccountValidator()
         {
-            RuleFor(account => account.Username).NotEmpty()
-                .WithState(account => "TextBoxUsername").MaximumLength(50);
-            RuleFor(account => account.Password).NotEmpty()
-                .WithState(account => "PasswordBoxPassword")
-                .MaximumLength(50).MinimumLength(8);
+            RuleFor(account => account.Username).NotEmpty().WithState(account => "TextBoxUsername")
+                .MaximumLength(50).WithState(account => "TextBoxUsername");
+            RuleFor(account => account.Password).NotEmpty().WithState(account => "PasswordBoxPassword")
+                .WithState(account => "PasswordBoxPassword").MaximumLength(50)
+                .WithState(account => "PasswordBoxPassword").MinimumLength(8);
         }
     }
 }

@@ -191,30 +191,6 @@ namespace UnitTests.DataPersistenceLayerTests.UserTest
             Assert.IsTrue(userIsAlreadyRegistered);
         }
 
-        [TestMethod]
-        public void DetermineIfAlternateEmailIsAlreadyRegistered()
-        {
-            User newlyCreatedUser = new User
-            {
-                IdUser = 4,
-                Name = "Francisco",
-                LastName = "Portilla Texon",
-                Gender = Gender.MALE,
-                UserStatus = UserStatus.ACTIVE,
-                Email = "francisco@hotmail.com",
-                AlternateEmail = "aldair@hotmail.com",
-                PhoneNumber = "2298040147",
-                Account = new Account
-                {
-                    Username = "Francisco",
-                    Password = "salf,lsflfgs",
-                    FirstLogin = true
-                }
-            };
-
-            bool userIsAlreadyRegistered = _unitOfWork.Users.UserIsAlreadyRegistered(newlyCreatedUser);
-            Assert.IsTrue(userIsAlreadyRegistered);
-        }
 
         [TestMethod]
         public void DetermineIfPhoneNumberIsAlreadyRegistered()

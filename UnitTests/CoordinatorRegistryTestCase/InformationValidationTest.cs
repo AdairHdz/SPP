@@ -69,7 +69,7 @@ namespace UnitTests.CoordinatorRegistryTestCase
                 {
                     IdUser = 1,
                     Name = "Yair",
-                    LastName = "Domínguez López",
+                    LastName = "Dominguez Lopez",
                     Gender = Gender.MALE,
                     UserStatus = UserStatus.ACTIVE,
                     Email = "yair@hotmail.com",
