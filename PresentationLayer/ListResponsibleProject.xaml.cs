@@ -17,7 +17,6 @@ namespace PresentationLayer
     public partial class ListResponsibleProject : Window
     {
         private bool handle = true;
-        private bool mouseClicked;
         private string textSearch;
         private string optionFilter;
         public ListResponsibleProject()
@@ -50,7 +49,6 @@ namespace PresentationLayer
                 {
                     SearchButton.IsEnabled = true;
                     SearchTextBox.IsEnabled = false;
-                    SearchTextBox.Text = "";
                 }
                 else
                 {
@@ -139,15 +137,9 @@ namespace PresentationLayer
             return responsiblesProjects;
         }
 
-        private void ResponsibleProjectListViewPreviewMouseDown(object sender, MouseButtonEventArgs mouseButtonEvent)
-        {
-           mouseClicked = true;
-        }
-
         private void ResponsibleProjectListViewSelectionChanged(object sender, SelectionChangedEventArgs selectionChanged)
         {
-            if (mouseClicked)
-            {
+            
                 ResponsibleProject responsible = ((ResponsibleProject)ResponsibleProjectListView.SelectedItem);
                 if(responsible.ResponsibleProjectStatus == ResponsibleProjectStatus.ACTIVE)
                 {
@@ -159,8 +151,6 @@ namespace PresentationLayer
                     ModifyButton.IsEnabled = true;
                     DeleteButton.IsEnabled = false;
                 }
-            }
-            mouseClicked = false;
         }
 
         private void DeleteButtonClicked(object sender, RoutedEventArgs routedEventArgs)
@@ -171,16 +161,16 @@ namespace PresentationLayer
                 ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
                 UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
                 bool responsibleProjectIsAssigned = unitOfWork.ResponsibleProjects.ResponsibleProjectIsAssigned(responsibleProject.IdResponsibleProject);
-                if (!responsibleProjectIsAssigned)
+                if (responsibleProjectIsAssigned)
+                {
+                  MessageBox.Show("El responsable del proyecto está asignado, no se puede eliminar", "Eliminar", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
                 {
                     DeleteResponsibleProject deleteResponsibleProject = new DeleteResponsibleProject();
                     deleteResponsibleProject.InitializeDataResponsibleProject(responsibleProject);
                     deleteResponsibleProject.Show();
                     Close();
-                }
-                else
-                {
-                    MessageBox.Show("El responsable del proyecto está asignado, no se puede eliminar", "Eliminar", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (EntityException)

@@ -52,7 +52,7 @@
         </Grid>
 
         <ListView x:Name="ResponsibleProjectListView" Grid.Row="2" HorizontalAlignment="Center" ItemsSource="{Binding Items1}" Margin="30,0,30,10" Background="Azure" SelectedIndex="{Binding Path=SelectedIndexValue}" 
-                  PreviewMouseDown="ResponsibleProjectListViewPreviewMouseDown" SelectionChanged="ResponsibleProjectListViewSelectionChanged">
+                  SelectionChanged="ResponsibleProjectListViewSelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Nombre" />
