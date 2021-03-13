@@ -17,7 +17,7 @@ namespace PresentationLayer
     public partial class ListResponsibleProject : Window
     {
         private bool handle = true;
-        private bool mouseClicked = false;
+        private bool mouseClicked;
         private string textSearch;
         private string optionFilter;
         public ListResponsibleProject()
@@ -45,8 +45,8 @@ namespace PresentationLayer
             if (FilterComboBox.SelectedItem != null)
             {
                 string opcionFilter = ((ComboBoxItem)FilterComboBox.SelectedItem).Content.ToString();
-                if (opcionFilter.Equals("Todos") | opcionFilter.Equals("Activos")
-                    | opcionFilter.Equals("Inactivos"))
+                if (opcionFilter.Equals("Todos") || opcionFilter.Equals("Activos")
+                    || opcionFilter.Equals("Inactivos"))
                 {
                     SearchButton.IsEnabled = true;
                     SearchTextBox.IsEnabled = false;
@@ -81,8 +81,8 @@ namespace PresentationLayer
 
         private bool ValidateIsTextSearch()
         {
-            if (String.IsNullOrWhiteSpace(textSearch) && (optionFilter.Equals("Nombre") | optionFilter.Equals("Apellido")
-                | optionFilter.Equals("Cargo") | optionFilter.Equals("Correo")))
+            if (String.IsNullOrWhiteSpace(textSearch) && (optionFilter.Equals("Nombre") || optionFilter.Equals("Apellido")
+                || optionFilter.Equals("Cargo") || optionFilter.Equals("Correo")))
             {
                 return false;
             }
@@ -116,16 +116,19 @@ namespace PresentationLayer
                         responsiblesProjects = unitOfWork.ResponsibleProjects.Find(ResponsibleProject => ResponsibleProject.ResponsibleProjectStatus == ResponsibleProjectStatus.INACTIVE);
                         break;
                     case "Nombre":
-                        responsiblesProjects = unitOfWork.ResponsibleProjects.Find(ResponsibleProject => ResponsibleProject.Name.ToUpper().Contains(textSearch.ToUpper()));
+                        responsiblesProjects = unitOfWork.ResponsibleProjects.Find(ResponsibleProject => ResponsibleProject.Name.ToUpperInvariant().Contains(textSearch.ToUpperInvariant()));
                         break;
                     case "Apellido":
-                        responsiblesProjects = unitOfWork.ResponsibleProjects.Find(ResponsibleProject => ResponsibleProject.LastName.ToUpper().Contains(textSearch.ToUpper())); 
+                        responsiblesProjects = unitOfWork.ResponsibleProjects.Find(ResponsibleProject => ResponsibleProject.LastName.ToUpperInvariant().Contains(textSearch.ToUpperInvariant())); 
                         break;
                     case "Correo":
                         responsiblesProjects = unitOfWork.ResponsibleProjects.Find(ResponsibleProject => ResponsibleProject.EmailAddress.Equals(textSearch));
                         break;
                     case "Cargo":
-                        responsiblesProjects = unitOfWork.ResponsibleProjects.Find(ResponsibleProject => ResponsibleProject.Charge.ToUpper().Contains(textSearch.ToUpper()));
+                        responsiblesProjects = unitOfWork.ResponsibleProjects.Find(ResponsibleProject => ResponsibleProject.Charge.ToUpperInvariant().Contains(textSearch.ToUpperInvariant()));
+                        break;
+                    default:
+                        MessageBox.Show("Ingrese un filtro valido", "Filtro", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         break;
                 }
             }
