@@ -19,6 +19,7 @@ namespace PresentationLayer
         private bool handle = true;
         private string textSearch;
         private string optionFilter;
+        private bool isFilterWithText;
         public ListResponsibleProject()
         {
             InitializeComponent();
@@ -43,17 +44,17 @@ namespace PresentationLayer
         {
             if (FilterComboBox.SelectedItem != null)
             {
-                string opcionFilter = ((ComboBoxItem)FilterComboBox.SelectedItem).Content.ToString();
-                if (opcionFilter.Equals("Todos") || opcionFilter.Equals("Activos")
-                    || opcionFilter.Equals("Inactivos"))
+                SearchButton.IsEnabled = true;
+                optionFilter = ((ComboBoxItem)FilterComboBox.SelectedItem).Content.ToString();
+                if (optionFilter.Equals("Todos") || optionFilter.Equals("Activos") || optionFilter.Equals("Inactivos"))
                 {
-                    SearchButton.IsEnabled = true;
                     SearchTextBox.IsEnabled = false;
+                    isFilterWithText = false;
                 }
                 else
                 {
-                    SearchButton.IsEnabled = true;
                     SearchTextBox.IsEnabled = true;
+                    isFilterWithText = true;
                 }
             }
         }
@@ -64,6 +65,8 @@ namespace PresentationLayer
             optionFilter = ((ComboBoxItem)FilterComboBox.SelectedItem).Content.ToString();
             if (ValidateIsTextSearch())
             {
+                DeleteButton.IsEnabled = false;
+                ModifyButton.IsEnabled = false;
                 ResponsibleProjectListView.Items.Clear();
                 IEnumerable<ResponsibleProject> responsiblesProjects = ConsultResponsibleProject();
                 if (responsiblesProjects.Count() > 0)
@@ -79,8 +82,7 @@ namespace PresentationLayer
 
         private bool ValidateIsTextSearch()
         {
-            if (String.IsNullOrWhiteSpace(textSearch) && (optionFilter.Equals("Nombre") || optionFilter.Equals("Apellido")
-                || optionFilter.Equals("Cargo") || optionFilter.Equals("Correo")))
+            if (String.IsNullOrWhiteSpace(textSearch) && isFilterWithText)
             {
                 return false;
             }
@@ -139,18 +141,19 @@ namespace PresentationLayer
 
         private void ResponsibleProjectListViewSelectionChanged(object sender, SelectionChangedEventArgs selectionChanged)
         {
-            
-                ResponsibleProject responsible = ((ResponsibleProject)ResponsibleProjectListView.SelectedItem);
-                if(responsible.ResponsibleProjectStatus == ResponsibleProjectStatus.ACTIVE)
+            ResponsibleProject responsible = ((ResponsibleProject)ResponsibleProjectListView.SelectedItem);
+            if (responsible != null)
+            {
+                ModifyButton.IsEnabled = true;
+                if (responsible.ResponsibleProjectStatus == ResponsibleProjectStatus.ACTIVE)
                 {
-                    ModifyButton.IsEnabled = true;
                     DeleteButton.IsEnabled = true;
                 }
                 else
                 {
-                    ModifyButton.IsEnabled = true;
                     DeleteButton.IsEnabled = false;
                 }
+            }
         }
 
         private void DeleteButtonClicked(object sender, RoutedEventArgs routedEventArgs)
