@@ -77,11 +77,18 @@
     <Compile Include="Alert\AlertInformation.xaml.cs">
       <DependentUpon>AlertInformation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CoordinatorDeletion.xaml.cs">
+      <DependentUpon>CoordinatorDeletion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
     <Compile Include="Validators\UserFeedback.cs" />
     <Compile Include="Validators\UserValidator.cs" />
     <Page Include="Alert\AlertInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CoordinatorDeletion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
