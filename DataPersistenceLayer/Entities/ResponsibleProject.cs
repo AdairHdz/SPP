@@ -20,8 +20,10 @@ namespace DataPersistenceLayer.Entities
         [MaxLength(254)]
         public string EmailAddress { get; set; }
 
+        [Required]
+        [MaxLength(50)]
         public string Charge { get; set; }
 
-        public virtual ResponsibleProjectStatus ResponsibleProjectStatus { get; set; }
+        public virtual ResponsibleProjectStatus ResponsibleProjectStatus { get; set; } = ResponsibleProjectStatus.ACTIVE;
     }
 }

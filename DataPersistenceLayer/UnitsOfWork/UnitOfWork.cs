@@ -35,8 +35,6 @@ namespace DataPersistenceLayer.UnitsOfWork
             ResponsibleProjects = new Repository<ResponsibleProject>(_context);
             Teachers = new Repository<Teacher>(_context);
             Users = new UserRepository(_context);
-            
-            
         }
 
         /// <summary>
