@@ -17,7 +17,7 @@ namespace DataPersistenceLayer.Repositories
         public ResponsibleProjectRepository(DbContext context) : base(context) { }
         public bool ResponsibleProjectIsAssigned(int idResponsibleProject)
         {
-            Project proyecIsAssigned = ProfessionalPracticesContext.Projects.SingleOrDefault(Project => Project.ResponsibleProject.IdResponsibleProject == idResponsibleProject && Project.Status == ProjectStatus.FILLED || Project.Status == ProjectStatus.ACTIVE);
+            Project proyecIsAssigned = _context.Set<Project>().SingleOrDefault(Project => Project.ResponsibleProject.IdResponsibleProject == idResponsibleProject && Project.Status == ProjectStatus.FILLED || Project.Status == ProjectStatus.ACTIVE);
             if(proyecIsAssigned != null)
             {
                 return true;

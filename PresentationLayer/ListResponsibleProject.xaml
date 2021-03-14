@@ -36,7 +36,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <ComboBox Name="FilterComboBox" Height="30" Width="120" Grid.Column="0" materialDesign:HintAssist.Hint="Filtro" materialDesign:HintAssist.HintOpacity=".26" SelectionChanged="FilterComboBoxSelectionChanged" DropDownClosed="FilterComboBoxDropDownClosed"
+            <ComboBox Name="ComboBoxFilter" Height="30" Width="120" Grid.Column="0" materialDesign:HintAssist.Hint="Filtro" materialDesign:HintAssist.HintOpacity=".26" SelectionChanged="FilterComboBoxSelectionChanged" DropDownClosed="FilterComboBoxDropDownClosed"
                 IsEditable="False" Margin="0,0,25,0">
                     <ComboBoxItem Content="Todos"/>
                     <ComboBoxItem Content="Activos"/>
@@ -46,12 +46,12 @@
                     <ComboBoxItem Content="Correo"/>
                     <ComboBoxItem Content="Cargo"/>
             </ComboBox>
-            <TextBox x:Name="SearchTextBox" Grid.Column="1" BorderThickness="1" VerticalAlignment="Center" Width="300" Height="33" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Buscar"
+            <TextBox x:Name="TextBoxSearch" Grid.Column="1" BorderThickness="1" VerticalAlignment="Center" Width="300" Height="33" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Buscar"
                 IsEnabled="False" FontFamily="Arial" FontSize="15" />
-            <Button x:Name="SearchButton" IsEnabled="False" Grid.Column="2" Foreground="White" Content="{materialDesign:PackIcon Magnify}" ToolTip="Buscar un filtro" Style="{StaticResource MaterialDesignRaisedLightButton}" Click="SearchButtonClicked"/>
+            <Button x:Name="ButtonSearch" IsEnabled="False" Grid.Column="2" Foreground="White" Content="{materialDesign:PackIcon Magnify}" ToolTip="Buscar un filtro" Style="{StaticResource MaterialDesignRaisedLightButton}" Click="SearchButtonClicked"/>
         </Grid>
 
-        <ListView x:Name="ResponsibleProjectListView" Grid.Row="2" HorizontalAlignment="Center" ItemsSource="{Binding Items1}" Margin="30,0,30,10" Background="Azure" SelectedIndex="{Binding Path=SelectedIndexValue}" 
+        <ListView x:Name="ListViewResponsibleProject" Grid.Row="2" HorizontalAlignment="Center" ItemsSource="{Binding Items1}" Margin="30,0,30,10" Background="Azure" SelectedIndex="{Binding Path=SelectedIndexValue}" 
                   SelectionChanged="ResponsibleProjectListViewSelectionChanged">
             <ListView.View>
                 <GridView>
@@ -69,8 +69,8 @@
                 <ColumnDefinition Width="150"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button x:Name="ModifyButton" Grid.Column="0" IsEnabled="False" Style="{StaticResource MaterialDesignRaisedAccentButton}" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Modificar" Click="ModifyButtonClicked"/>
-            <Button x:Name="DeleteButton" Grid.Column="1" IsEnabled="False" Style="{StaticResource MaterialDesignRaisedDarkButton}"  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Eliminar" Click="DeleteButtonClicked"/>
+            <Button x:Name="ButtonModify" Grid.Column="0" IsEnabled="False" Style="{StaticResource MaterialDesignRaisedAccentButton}" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Modificar" Click="ModifyButtonClicked"/>
+            <Button x:Name="ButtonDelete" Grid.Column="1" IsEnabled="False" Style="{StaticResource MaterialDesignRaisedDarkButton}"  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Eliminar" Click="DeleteButtonClicked"/>
         </Grid>
     </Grid>
 </Window>

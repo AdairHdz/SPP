@@ -42,18 +42,18 @@ namespace PresentationLayer
 
         private void DisableSearch()
         {
-            if (FilterComboBox.SelectedItem != null)
+            if (ComboBoxFilter.SelectedItem != null)
             {
-                SearchButton.IsEnabled = true;
-                optionFilter = ((ComboBoxItem)FilterComboBox.SelectedItem).Content.ToString();
+                ButtonSearch.IsEnabled = true;
+                optionFilter = ((ComboBoxItem)ComboBoxFilter.SelectedItem).Content.ToString();
                 if (optionFilter.Equals("Todos") || optionFilter.Equals("Activos") || optionFilter.Equals("Inactivos"))
                 {
-                    SearchTextBox.IsEnabled = false;
+                    TextBoxSearch.IsEnabled = false;
                     isFilterWithText = false;
                 }
                 else
                 {
-                    SearchTextBox.IsEnabled = true;
+                    TextBoxSearch.IsEnabled = true;
                     isFilterWithText = true;
                 }
             }
@@ -61,13 +61,13 @@ namespace PresentationLayer
 
         private void SearchButtonClicked(object sender, RoutedEventArgs routedEvent)
         {
-            textSearch = SearchTextBox.Text;
-            optionFilter = ((ComboBoxItem)FilterComboBox.SelectedItem).Content.ToString();
+            textSearch = TextBoxSearch.Text;
+            optionFilter = ((ComboBoxItem)ComboBoxFilter.SelectedItem).Content.ToString();
             if (ValidateIsTextSearch())
             {
-                DeleteButton.IsEnabled = false;
-                ModifyButton.IsEnabled = false;
-                ResponsibleProjectListView.Items.Clear();
+                ButtonDelete.IsEnabled = false;
+                ButtonModify.IsEnabled = false;
+                ListViewResponsibleProject.Items.Clear();
                 IEnumerable<ResponsibleProject> responsiblesProjects = ConsultResponsibleProject();
                 if (responsiblesProjects.Count() > 0)
                 {
@@ -93,7 +93,7 @@ namespace PresentationLayer
         {
             foreach (ResponsibleProject responsibleProject in responsiblesProjects)
             {
-                ResponsibleProjectListView.Items.Add(responsibleProject);
+                ListViewResponsibleProject.Items.Add(responsibleProject);
             }
         }
 
@@ -141,24 +141,24 @@ namespace PresentationLayer
 
         private void ResponsibleProjectListViewSelectionChanged(object sender, SelectionChangedEventArgs selectionChanged)
         {
-            ResponsibleProject responsible = ((ResponsibleProject)ResponsibleProjectListView.SelectedItem);
+            ResponsibleProject responsible = ((ResponsibleProject)ListViewResponsibleProject.SelectedItem);
             if (responsible != null)
             {
-                ModifyButton.IsEnabled = true;
+                ButtonModify.IsEnabled = true;
                 if (responsible.ResponsibleProjectStatus == ResponsibleProjectStatus.ACTIVE)
                 {
-                    DeleteButton.IsEnabled = true;
+                    ButtonDelete.IsEnabled = true;
                 }
                 else
                 {
-                    DeleteButton.IsEnabled = false;
+                    ButtonDelete.IsEnabled = false;
                 }
             }
         }
 
         private void DeleteButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
-            ResponsibleProject responsibleProject = ((ResponsibleProject)ResponsibleProjectListView.SelectedItem);
+            ResponsibleProject responsibleProject = ((ResponsibleProject)ListViewResponsibleProject.SelectedItem);
             try
             {
                 ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
@@ -184,7 +184,7 @@ namespace PresentationLayer
 
         private void ModifyButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
-            ResponsibleProject responsibleProject = ((ResponsibleProject)ResponsibleProjectListView.SelectedItem);
+            ResponsibleProject responsibleProject = ((ResponsibleProject)ListViewResponsibleProject.SelectedItem);
             ModifyResponsibleProject modifyResponsibleProject = new ModifyResponsibleProject();
             modifyResponsibleProject.InitializeDataResponsibleProject(responsibleProject);
             modifyResponsibleProject.Show();
