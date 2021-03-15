@@ -1,6 +1,5 @@
 ﻿using DataPersistenceLayer;
 using DataPersistenceLayer.Entities;
-using DataPersistenceLayer.Repositories;
 using DataPersistenceLayer.UnitsOfWork;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -35,9 +34,9 @@ namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
         [TestMethod]
         public void DetermineIfResponsibleProjectAlreadyExists_Exists()
         {
-            bool responsibleProjectIsAlreadyRegistered = _unitOfWork.ResponsibleProjects.ResponsibleProjectIsAlreadyRegistered("ruizZapata@uv.mx");
+            ResponsibleProject responsibleProjectWithSameEmailAddress = _unitOfWork.ResponsibleProjects.FindFirstOccurence(ResponsibleProject => ResponsibleProject.EmailAddress == "guztavo@uv.mx");
 
-            Assert.IsTrue(responsibleProjectIsAlreadyRegistered);
+            Assert.IsNull(responsibleProjectWithSameEmailAddress);
         }
 
         [TestMethod]
