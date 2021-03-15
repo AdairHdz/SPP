@@ -5,5 +5,7 @@ namespace DataPersistenceLayer.Repositories
     public interface IResponsibleProjectRepository : IRepository<ResponsibleProject>
     {
         bool ResponsibleProjectIsAssigned(int idResponsibleProject);
+
+        bool SoftDeleteResponsibleProject(ResponsibleProject responsibleProject);
     }
 }

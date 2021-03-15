@@ -26,7 +26,7 @@
         <Rectangle Grid.Row="0" Fill="#5B007B"/>
         <TextBlock Grid.Row="0" Text="Lista de responsable del proyecto" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
                    VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
-        <Button Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="15">
+        <Button Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="15" Click="BehindButtonClicked">
             <materialDesign:PackIcon Kind="ArrowLeftBold" Height="30" Width="30" HorizontalAlignment="Center"/>
         </Button>
 

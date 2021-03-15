@@ -22,15 +22,28 @@ namespace PresentationLayer
 			this.DataContext = responsibleProject;
 		}
 
-		private void CancelButtonClicked(object sender, RoutedEventArgs e)
+		private void CancelButtonClicked(object sender, RoutedEventArgs routedEventArgs)
 		{
-			MessageBox.Show("¿Seguro desea cancelar?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+			MessageBoxResult messageBoxResult = MessageBox.Show("¿Seguro desea cancelar?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+			if (messageBoxResult == MessageBoxResult.Yes)
+			{
+				CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
+				coordinatorMenu.Show();
+				Close();
+			}
 		}
 
-		private void RegisterButtonClicked(object sender, RoutedEventArgs e)
+		private void BehindButtonClicked(object sender, RoutedEventArgs routedEventArgs)
+		{
+			CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
+			coordinatorMenu.Show();
+			Close();
+		}
+
+		private void RegisterButtonClicked(object sender, RoutedEventArgs routedEventArgs)
 		{
 			responsibleProject = new ResponsibleProject();
-			CreateResponsabileProjectFromInputData();
+			CreateResponsibleProjectFromInputData();
 			if (ValidateDataResponsibleProject())
 			{
 				try
@@ -62,7 +75,7 @@ namespace PresentationLayer
 			}
 		}
 		
-		private void CreateResponsabileProjectFromInputData()
+		private void CreateResponsibleProjectFromInputData()
 		{
 			responsibleProject.Charge = TextBoxCharge.Text;
 			responsibleProject.EmailAddress = TextBoxEmail.Text;

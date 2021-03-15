@@ -24,7 +24,7 @@
         <Rectangle Grid.Row="0" Fill="#5B007B"/>
         <TextBlock Grid.Row="0" Text="Registrar Responsable del Proyecto" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
                    VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
-        <Button Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="MaterialDesignFloatingActionAccentButton" Margin="15">
+        <Button Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="15" Click="BehindButtonClicked">
             <materialDesign:PackIcon Kind="ArrowLeftBold" Height="30" Width="30" HorizontalAlignment="Center"/>
         </Button>
 
@@ -53,8 +53,8 @@
             <TextBox Name="TextBoxCharge" Height="30" Grid.Row="3" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z."/>
 
             <Button Grid.Row="4" Grid.Column="0" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
-            ToolTip="Resource name: MaterialDesignRaisedAccentButton" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Registrar" Click="RegisterButtonClicked"></Button>
-            <Button Grid.Row="4" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                VerticalAlignment="Center" HorizontalAlignment="Center" Content="Registrar" Click="RegisterButtonClicked"></Button>
+            <Button Grid.Row="4" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}"
             Content="Cancelar" Click="CancelButtonClicked"/>
         </Grid>
     </Grid>
