@@ -54,8 +54,10 @@ namespace PresentationLayer
                     responsibleProject.ResponsibleProjectStatus = ResponsibleProjectStatus.INACTIVE;
                     ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
                     UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-                    bool isSoftDeleteResponsibleProject = unitOfWork.ResponsibleProjects.SoftDeleteResponsibleProject(responsibleProject);
-                    if (isSoftDeleteResponsibleProject)
+                    unitOfWork.ResponsibleProjects.SoftDeleteResponsibleProject(responsibleProject);
+                    int rowsAffected = unitOfWork.Complete();
+                    unitOfWork.Dispose();
+                    if (rowsAffected == 1)
                     {
                         MessageBox.Show("El Responsable del proyecto se eliminó exitosamente", "Elimiación Exitosa", MessageBoxButton.OK, MessageBoxImage.Information);
                     }

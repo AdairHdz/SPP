@@ -25,14 +25,12 @@ namespace DataPersistenceLayer.Repositories
             return false;
         }
 
-        public bool SoftDeleteResponsibleProject(ResponsibleProject responsibleProject)
+        public void SoftDeleteResponsibleProject(ResponsibleProject responsibleProject)
         {
             ResponsibleProject responsibleProjectCurrent = _context.Set<ResponsibleProject>().SingleOrDefault(ResponsibleProject => ResponsibleProject.IdResponsibleProject == responsibleProject.IdResponsibleProject);
             if (!object.ReferenceEquals(null, responsibleProjectCurrent)) {
                 responsibleProjectCurrent.ResponsibleProjectStatus = ResponsibleProjectStatus.INACTIVE;
-                _context.SaveChanges();
             }
-            return true;
         }
     }
 }
