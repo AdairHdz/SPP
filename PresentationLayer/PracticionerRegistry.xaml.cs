@@ -46,7 +46,7 @@ namespace PresentationLayer
 		private void LogOutButtonClicked(object sender, RoutedEventArgs e)
 		{
 			MessageBoxResult messageBoxResult = MessageBox.Show("¿Seguro desea cerrar sesión?",
-				"Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+				"Cerrar Sesión", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
 			if (messageBoxResult == MessageBoxResult.Yes)
 			{
