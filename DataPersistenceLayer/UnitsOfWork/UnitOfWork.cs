@@ -9,7 +9,7 @@ namespace DataPersistenceLayer.UnitsOfWork
         public IRepository<City> Cities { get; private set; }
         public ICoordinatorRepository Coordinators { get; private set; }
         public IRepository<LinkedOrganization> LinkedOrganizations { get; private set; }
-        public IRepository<Practicioner> Practicioners { get; private set; }
+        public IPracticionerRepository Practicioners { get; private set; }
         public IRepository<Project> Projects { get; private set; }
         public IRepository<PartialReport> PartialReports { get; private set; }
         public IRepository<MonthlyReport> MonthlyReports { get; private set; }
@@ -27,7 +27,7 @@ namespace DataPersistenceLayer.UnitsOfWork
             Accounts = new Repository<Account>(_context);
             Coordinators = new CoordinatorRepository(_context);
             LinkedOrganizations = new Repository<LinkedOrganization>(_context);
-            Practicioners = new Repository<Practicioner>(_context);
+            Practicioners = new PracticionerRepository(_context);
             Projects = new Repository<Project>(_context);
             PartialReports = new Repository<PartialReport>(_context);
             MonthlyReports = new Repository<MonthlyReport>(_context);
