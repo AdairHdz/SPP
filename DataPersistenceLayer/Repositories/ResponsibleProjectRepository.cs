@@ -18,11 +18,19 @@ namespace DataPersistenceLayer.Repositories
         public bool ResponsibleProjectIsAssigned(int idResponsibleProject)
         {
             Project proyecIsAssigned = _context.Set<Project>().SingleOrDefault(Project => Project.ResponsibleProject.IdResponsibleProject == idResponsibleProject && Project.Status == ProjectStatus.FILLED || Project.Status == ProjectStatus.ACTIVE);
-            if(proyecIsAssigned != null)
+            if(!object.ReferenceEquals(null, proyecIsAssigned))
             {
                 return true;
             }
             return false;
+        }
+
+        public void SoftDeleteResponsibleProject(ResponsibleProject responsibleProject)
+        {
+            ResponsibleProject responsibleProjectCurrent = _context.Set<ResponsibleProject>().SingleOrDefault(ResponsibleProject => ResponsibleProject.IdResponsibleProject == responsibleProject.IdResponsibleProject);
+            if (!object.ReferenceEquals(null, responsibleProjectCurrent)) {
+                responsibleProjectCurrent.ResponsibleProjectStatus = ResponsibleProjectStatus.INACTIVE;
+            }
         }
     }
 }

@@ -5,6 +5,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
+        WindowStartupLocation="CenterScreen"
+        Icon="images/IconoSystem.png"
         mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -13,7 +15,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Eliminar responsable del proyecto" Height="500" Width="600">
+        Title="Eliminar responsable del proyecto" Height="500" Width="700">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"></RowDefinition>
@@ -22,7 +24,7 @@
         <Rectangle Grid.Row="0" Fill="#5B007B"/>
         <TextBlock Grid.Row="0" Text="Eliminar Responsable del Proyecto" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
                    VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
-        <Button Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="15">
+        <Button Name="ButtonBehind" Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="15" Click="BehindButtonClicked">
             <materialDesign:PackIcon Kind="ArrowLeftBold" Height="30" Width="30" HorizontalAlignment="Center"/>
         </Button>
 
@@ -39,20 +41,20 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label Content="Nombre: " VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-            <Label Name="NameLabel" Height="35" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Label Name="LabelName" Height="35" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
             <Label Content="Apellidos: " VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-            <Label Name="LastNameLabel" Height="35" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Label Name="LabelLastName" Height="35" Grid.Row="1" Grid.Column="1"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
             <Label Content="Correo electrónico: " VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-            <Label Name="EmailLabel" Height="35" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Label Name="LabelEmail" Height="35" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
             <Label Content="Cargo: " VerticalAlignment="Top" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-            <Label Name="ChargeLabel" Height="35" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Label Name="LabelCharge" Height="35" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
-            <Button Grid.Row="4" Grid.Column="0" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                VerticalAlignment="Center" HorizontalAlignment="Center" Content="Eliminar"></Button>
-            <Button Grid.Row="4" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" Content="Cancelar" />
+            <Button Name="ButtonDelete" Grid.Row="4" Grid.Column="0" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                VerticalAlignment="Center" HorizontalAlignment="Center" Content="Eliminar" Click="DeleteButtonClicked"></Button>
+            <Button Name="ButtonCancel" Grid.Row="4" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" Content="Cancelar" Click="CancelButtonClicked" />
         </Grid>
     </Grid>
 </Window>

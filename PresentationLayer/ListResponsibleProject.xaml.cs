@@ -40,6 +40,13 @@ namespace PresentationLayer
             DisableSearch();
         }
 
+        private void BehindButtonClicked(object sender, RoutedEventArgs routedEventArgs)
+        {
+            CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
+            coordinatorMenu.Show();
+            Close();
+        }
+
         private void DisableSearch()
         {
             if (ComboBoxFilter.SelectedItem != null)

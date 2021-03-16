@@ -58,5 +58,27 @@ namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
             int actual = responsiblesProject.Count;
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void SoftDeleteResponsibleProject_Exists()
+        {
+            List<ResponsibleProject> responsiblesProject = new List<ResponsibleProject>();
+            DbSet<ResponsibleProject> mockSet = DbContextMock.GetQueryableMockDbSet(responsiblesProject, r => r.EmailAddress);
+            ProfessionalPracticesContext mockContext = DbContextMock.GetContext(mockSet);
+            UnitOfWork unitOfWork = DbContextMock.GetUnitOfWork(mockContext);
+            ResponsibleProject newResponsibleProject = new ResponsibleProject
+            {
+                IdResponsibleProject = 1,
+                Name = "Gustavo Antonio",
+                LastName = "Ruiz Zapata",
+                EmailAddress = "guztavo@uv.mx",
+                Charge = "Jefe de departamento de Tecnología Educativa"
+            };
+            unitOfWork.ResponsibleProjects.SoftDeleteResponsibleProject(newResponsibleProject);
+            responsiblesProject.Remove(newResponsibleProject);
+            int expected = 0;
+            int actual = responsiblesProject.Count;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
