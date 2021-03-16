@@ -89,7 +89,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoordinatorDeletionTestCase\CoordinatorDeletionTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\CoordinatorRegistryTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\InformationValidationTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\GreenTextBoxesTest.cs" />
@@ -99,6 +98,7 @@
     <Compile Include="DataPersistenceLayerTests\UserTest\UserTest.cs" />
     <Compile Include="HashingTests\BCryptHashingTest.cs" />
     <Compile Include="HashingTests\BCryptHasherTest.cs" />
+    <Compile Include="PracticionerRegistryTestCase\PracticionerRegistryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidatorsTests\UserValidatorTest.cs" />
   </ItemGroup>
@@ -133,5 +133,4 @@
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="..\packages\MSTest.TestAdapter.2.1.1\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.2.1.1\build\net45\MSTest.TestAdapter.targets')" />
-  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

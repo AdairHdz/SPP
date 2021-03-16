@@ -9,12 +9,12 @@ namespace DataPersistenceLayer.UnitsOfWork
         public IRepository<City> Cities { get; private set; }
         public ICoordinatorRepository Coordinators { get; private set; }
         public IRepository<LinkedOrganization> LinkedOrganizations { get; private set; }
-        public IRepository<Practicioner> Practicioners { get; private set; }
+        public IPracticionerRepository Practicioners { get; private set; }
         public IRepository<Project> Projects { get; private set; }
         public IRepository<PartialReport> PartialReports { get; private set; }
         public IRepository<MonthlyReport> MonthlyReports { get; private set; }
         public IRepository<RequestProject> RequestProjects { get; private set; }
-        public IRepository<ResponsibleProject> ResponsibleProjects { get; private set; }
+        public IResponsibleProjectRepository ResponsibleProjects { get; private set; }
         public IRepository<Sector> Sectors { get; private set; }
         public IRepository<State> States { get; private set; }
         public IRepository<Teacher> Teachers { get; private set; }
@@ -27,12 +27,12 @@ namespace DataPersistenceLayer.UnitsOfWork
             Accounts = new Repository<Account>(_context);
             Coordinators = new CoordinatorRepository(_context);
             LinkedOrganizations = new Repository<LinkedOrganization>(_context);
-            Practicioners = new Repository<Practicioner>(_context);
+            Practicioners = new PracticionerRepository(_context);
             Projects = new Repository<Project>(_context);
             PartialReports = new Repository<PartialReport>(_context);
             MonthlyReports = new Repository<MonthlyReport>(_context);
             RequestProjects = new Repository<RequestProject>(_context);
-            ResponsibleProjects = new Repository<ResponsibleProject>(_context);
+            ResponsibleProjects = new ResponsibleProjectRepository(_context);
             Teachers = new Repository<Teacher>(_context);
             Users = new UserRepository(_context);
         }

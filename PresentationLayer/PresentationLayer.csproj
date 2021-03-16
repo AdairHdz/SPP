@@ -74,24 +74,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Alert\AlertInformation.xaml.cs">
-      <DependentUpon>AlertInformation.xaml</DependentUpon>
+    <Compile Include="PracticionerRegistry.xaml.cs">
+      <DependentUpon>PracticionerRegistry.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CoordinatorDeletion.xaml.cs">
-      <DependentUpon>CoordinatorDeletion.xaml</DependentUpon>
+    <Compile Include="RegisterResponsibleProject.xaml.cs">
+      <DependentUpon>RegisterResponsibleProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
+    <Compile Include="Validators\PracticionerValidator.cs" />
+    <Compile Include="Validators\ResponsibleProjectValidator.cs" />
     <Compile Include="Validators\UserFeedback.cs" />
     <Compile Include="Validators\UserValidator.cs" />
-    <Page Include="Alert\AlertInformation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CoordinatorDeletion.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CoordinatorRegistry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -111,6 +105,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PracticionerRegistry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegisterResponsibleProject.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

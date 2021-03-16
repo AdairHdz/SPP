@@ -1,6 +1,5 @@
 ﻿using DataPersistenceLayer;
 using DataPersistenceLayer.Entities;
-using DataPersistenceLayer.Repositories;
 using DataPersistenceLayer.UnitsOfWork;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -35,9 +34,9 @@ namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
         [TestMethod]
         public void DetermineIfResponsibleProjectAlreadyExists_Exists()
         {
-            bool responsibleProjectIsAlreadyRegistered = _unitOfWork.ResponsibleProjects.ResponsibleProjectIsAlreadyRegistered("ruizZapata@uv.mx");
+            ResponsibleProject responsibleProjectWithSameEmailAddress = _unitOfWork.ResponsibleProjects.FindFirstOccurence(ResponsibleProject => ResponsibleProject.EmailAddress == "guztavo@uv.mx");
 
-            Assert.IsTrue(responsibleProjectIsAlreadyRegistered);
+            Assert.IsNull(responsibleProjectWithSameEmailAddress);
         }
 
         [TestMethod]
@@ -56,6 +55,28 @@ namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
             };
             unitOfWork.ResponsibleProjects.Add(newResponsibleProject);
             int expected = 1;
+            int actual = responsiblesProject.Count;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void SoftDeleteResponsibleProject_Exists()
+        {
+            List<ResponsibleProject> responsiblesProject = new List<ResponsibleProject>();
+            DbSet<ResponsibleProject> mockSet = DbContextMock.GetQueryableMockDbSet(responsiblesProject, r => r.EmailAddress);
+            ProfessionalPracticesContext mockContext = DbContextMock.GetContext(mockSet);
+            UnitOfWork unitOfWork = DbContextMock.GetUnitOfWork(mockContext);
+            ResponsibleProject newResponsibleProject = new ResponsibleProject
+            {
+                IdResponsibleProject = 1,
+                Name = "Gustavo Antonio",
+                LastName = "Ruiz Zapata",
+                EmailAddress = "guztavo@uv.mx",
+                Charge = "Jefe de departamento de Tecnología Educativa"
+            };
+            unitOfWork.ResponsibleProjects.SoftDeleteResponsibleProject(newResponsibleProject);
+            responsiblesProject.Remove(newResponsibleProject);
+            int expected = 0;
             int actual = responsiblesProject.Count;
             Assert.AreEqual(expected, actual);
         }
