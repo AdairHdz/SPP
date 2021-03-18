@@ -60,9 +60,9 @@
                      materialDesign:HintAssist.HelperText="Deben ser al menos el 80% de los créditos totales Ej. Mínimo 285" Text="{Binding Credits, Mode=TwoWay}"/>
 
             <Label Content="Género: " VerticalAlignment="Top" Grid.Row="4" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="0,8,0,0"/>
-            <RadioButton Name="RadioButtonWomen" Content="Femenino" Grid.Column="1" HorizontalAlignment="Left" Margin="40,13,0,0" Grid.Row="4" VerticalAlignment="Top" FontFamily="Arial"
+            <RadioButton Name="WomenRadioButton" Content="Femenino" Grid.Column="1" HorizontalAlignment="Left" Margin="40,13,0,0" Grid.Row="4" VerticalAlignment="Top" FontFamily="Arial"
                          Style="{DynamicResource MaterialDesignAccentRadioButton}" GroupName="GenderRadioButtonGroup"  Tag="2"/>
-            <RadioButton Name="RadioButtonMen" Content="Masculino" Grid.Column="1" HorizontalAlignment="Left" Margin="158,13,0,0" Grid.Row="4" VerticalAlignment="Top" FontFamily="Arial"
+            <RadioButton Name="ManRadioButton" Content="Masculino" Grid.Column="1" HorizontalAlignment="Left" Margin="158,13,0,0" Grid.Row="4" VerticalAlignment="Top" FontFamily="Arial"
                          Style="{DynamicResource MaterialDesignAccentRadioButton}" GroupName="GenderRadioButtonGroup"  Tag="1"/>
 
             <Label Content="Correo electrónico: " VerticalAlignment="Top" Grid.Row="5" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>

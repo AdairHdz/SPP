@@ -89,6 +89,7 @@
     <Compile Include="RegisterResponsibleProject.xaml.cs">
       <DependentUpon>RegisterResponsibleProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\GenderParser.cs" />
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
     <Compile Include="Validators\PracticionerValidator.cs" />

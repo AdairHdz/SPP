@@ -130,16 +130,16 @@ namespace PresentationLayer
                         practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.LastName.ToUpperInvariant().Contains(textSearch.ToUpperInvariant()));
                         break;
                     case "Correo":
-                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.Email.Equals(textSearch));
+                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.Email.ToUpperInvariant().Contains(textSearch.ToUpperInvariant())); ;
                         break;
                     case "Periodo":
-                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.Term.Equals(textSearch));
+                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.Term.ToUpperInvariant().Contains(textSearch.ToUpperInvariant())); ;
                         break;
                     case "Teléfono":
                         practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.PhoneNumber.Equals(textSearch));
                         break;
                     case "CorreoAlterno":
-                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.AlternateEmail.Equals(textSearch));
+                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.AlternateEmail.ToUpperInvariant().Contains(textSearch.ToUpperInvariant()));
                         break;
                     case "Matrícula":
                         practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.Enrollment.Equals(textSearch));
@@ -183,18 +183,16 @@ namespace PresentationLayer
             {
                 ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
                 UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-                bool practicionerCantBeDeleted = true;
-                    //unitOfWork.Practicioners.ResponsibleProjectIsAssigned(responsibleProject.IdResponsibleProject);
+                bool practicionerCantBeDeleted = unitOfWork.Practicioners.PracticionerHasActiveProject(practicioner.Enrollment);
+                unitOfWork.Practicioners.PracticionerHasActiveProject(practicioner.Enrollment);
                 if (practicionerCantBeDeleted)
                 {
-                    MessageBox.Show("El practicante tiene asignado un proyecto activo, no se puede eliminar", "Eliminar", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("El practicante tiene asignado un proyecto activo, no se puede eliminar", "No se puede eliminar", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else
                 {
-                    /*DeleteResponsibleProject deleteResponsibleProject = new DeleteResponsibleProject();
-                    deleteResponsibleProject.InitializeDataResponsibleProject(responsibleProject);
-                    deleteResponsibleProject.Show();
-                    Close();*/
+                    MessageBox.Show("El practicante se puede eliminar", "Eliminar", MessageBoxButton.OK, MessageBoxImage.Warning);
+
                 }
             }
             catch (EntityException)
@@ -205,13 +203,7 @@ namespace PresentationLayer
 
         private void ModifyButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
-            /*
-            ResponsibleProject responsibleProject = ((ResponsibleProject)ListViewResponsibleProject.SelectedItem);
-            ModifyResponsibleProject modifyResponsibleProject = new ModifyResponsibleProject();
-            modifyResponsibleProject.InitializeDataResponsibleProject(responsibleProject);
-            modifyResponsibleProject.Show();
-            Close();
-            */
+            
         }
     }
 }

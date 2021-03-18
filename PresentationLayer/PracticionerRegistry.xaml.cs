@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Data.Entity.Core;
 using System.Windows;
 using Utilities;
+using PresentationLayer.Utils;
+
 
 namespace PresentationLayer
 {
@@ -97,15 +99,7 @@ namespace PresentationLayer
 			Practicioner.User.UserType = UserType.Practicioner;
 			Practicioner.User.Account.Password = PasswordBoxPassword.Password;
 			Practicioner.User.Account.Username = TextBoxUsername.Text;
-
-			if (RadioButtonMen.IsChecked == true)
-			{
-				Practicioner.User.Gender = Gender.MALE;
-			}
-			else if (RadioButtonWomen.IsChecked == true)
-			{
-				Practicioner.User.Gender = Gender.FEMALE;
-			}
+			GenderParser.ParseFromRadioButtonsToObject(ManRadioButton);
 		}
 
 		private bool IsValidData()
@@ -116,24 +110,10 @@ namespace PresentationLayer
 			IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
 			UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
 			userFeedback.ShowFeedback();
-			if (ValidateGender() && dataValidationResult.IsValid)
+			if (dataValidationResult.IsValid)
 			{
 				isValid = true;
 			} 
-			return isValid;
-		}
-
-		private bool ValidateGender()
-		{
-			bool isValid = false;
-			if (RadioButtonMen.IsChecked == true)
-			{
-				isValid = true;
-			}
-			else if (RadioButtonWomen.IsChecked == true)
-			{
-				isValid = true;
-			}
 			return isValid;
 		}
 
