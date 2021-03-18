@@ -74,6 +74,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CoordinatorMenu.xaml.cs">
+      <DependentUpon>CoordinatorMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListResponsibleProject.xaml.cs">
+      <DependentUpon>ListResponsibleProject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PracticionerConsult.xaml.cs">
+      <DependentUpon>PracticionerConsult.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PracticionerRegistry.xaml.cs">
       <DependentUpon>PracticionerRegistry.xaml</DependentUpon>
     </Compile>
@@ -86,9 +95,17 @@
     <Compile Include="Validators\ResponsibleProjectValidator.cs" />
     <Compile Include="Validators\UserFeedback.cs" />
     <Compile Include="Validators\UserValidator.cs" />
+    <Page Include="CoordinatorMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CoordinatorRegistry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListResponsibleProject.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -105,6 +122,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PracticionerConsult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PracticionerRegistry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

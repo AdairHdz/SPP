@@ -177,10 +177,10 @@ namespace PresentationLayer
                 }
                 else
                 {
-                    DeleteResponsibleProject deleteResponsibleProject = new DeleteResponsibleProject();
+                    /*DeleteResponsibleProject deleteResponsibleProject = new DeleteResponsibleProject();
                     deleteResponsibleProject.InitializeDataResponsibleProject(responsibleProject);
                     deleteResponsibleProject.Show();
-                    Close();
+                    Close();*/
                 }
             }
             catch (EntityException)
@@ -191,11 +191,13 @@ namespace PresentationLayer
 
         private void ModifyButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
+            /*
             ResponsibleProject responsibleProject = ((ResponsibleProject)ListViewResponsibleProject.SelectedItem);
             ModifyResponsibleProject modifyResponsibleProject = new ModifyResponsibleProject();
             modifyResponsibleProject.InitializeDataResponsibleProject(responsibleProject);
             modifyResponsibleProject.Show();
             Close();
+            */
         }
     }
 }
