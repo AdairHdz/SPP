@@ -21,9 +21,9 @@ namespace PresentationLayer.Validators
                 .Matches("^[0-9]{10}$").WithState(user => "TextBoxPhoneNumber");
             RuleFor(user => user.Email).Must(BeValidEmail)
                 .WithState(user => "TextBoxEmail");
-            RuleFor(user => user.AlternateEmail).Must(BeValidEmail).
-                Unless(e => e.AlternateEmail == null || e.AlternateEmail.Length == 0).WithState(s => "TextBoxAlternateEmail");
-            
+            RuleFor(user => user.AlternateEmail).Must(BeValidEmail).WithState(s => "TextBoxAlternateEmail");
+            //Unless(e => e.AlternateEmail == null || e.AlternateEmail.Length == 0).WithState(s => "TextBoxAlternateEmail");
+
         }
 
         public bool BeValidEmail(string email)

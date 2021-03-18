@@ -28,7 +28,7 @@ namespace UnitTests.ValidatorsTests
                 UserType = UserType.Coordinator,
                 PhoneNumber = "2281244285",
                 Email = "adairho16@gmail.com",
-                AlternateEmail = ""
+                AlternateEmail = "adairho160@gmail.com"
             };
 
             var result = _userValidator.TestValidate(user);

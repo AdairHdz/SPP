@@ -82,7 +82,7 @@ namespace UnitTests.DataPersistenceLayerTests.CoordinatorTest
                 }
             };
 
-            bool coordinatorIsAlreadyRegistered = _unitOfWork.Coordinators.CoordinatorIsAlreadyRegistered(newlyCreatedCoordinator);
+            bool coordinatorIsAlreadyRegistered = _unitOfWork.Coordinators.CoordinatorIsAlreadyRegistered(newlyCreatedCoordinator, false);
                         
             Assert.IsTrue(coordinatorIsAlreadyRegistered);
 
@@ -116,10 +116,231 @@ namespace UnitTests.DataPersistenceLayerTests.CoordinatorTest
                 }
             };
 
-            bool coordinatorIsAlreadyRegistered = _unitOfWork.Coordinators.CoordinatorIsAlreadyRegistered(newlyCreatedCoordinator);
+            bool coordinatorIsAlreadyRegistered = _unitOfWork.Coordinators.CoordinatorIsAlreadyRegistered(newlyCreatedCoordinator, false);
             Assert.IsTrue(coordinatorIsAlreadyRegistered);
         }
 
+        [TestMethod]
+        public void DetermineIfEmailAlreadyExists_Exists()
+        {
+            Coordinator newlyCreatedCoordinator = new Coordinator
+            {
+                StaffNumber = "XGC16097",
+                RegistrationDate = DateTime.Now,
+                DischargeDate = null,
+                User = new User
+                {
+                    IdUser = 2,
+                    Name = "Irving",
+                    LastName = "Lozada Rodríguez",
+                    Gender = Gender.MALE,
+                    UserStatus = UserStatus.ACTIVE,
+                    Email = "eduardo@hotmail.com",
+                    AlternateEmail = "irving2@hotmail.com",
+                    PhoneNumber = "2298040941",
+                    Account = new Account
+                    {
+                        Username = "Irving",
+                        Password = "salf,lsflfgs",
+                        FirstLogin = true
+                    }
+                }
+            };
+
+            bool coordinatorIsAlreadyRegistered = _unitOfWork.Coordinators.CoordinatorIsAlreadyRegistered(newlyCreatedCoordinator, false);
+            Assert.IsTrue(coordinatorIsAlreadyRegistered);
+        }
+
+
+        [TestMethod]
+        public void DetermineIfAlternateEmailAlreadyExists_Exists()
+        {
+            Coordinator newlyCreatedCoordinator = new Coordinator
+            {
+                StaffNumber = "XGC16097",
+                RegistrationDate = DateTime.Now,
+                DischargeDate = null,
+                User = new User
+                {
+                    IdUser = 2,
+                    Name = "Irving",
+                    LastName = "Lozada Rodríguez",
+                    Gender = Gender.MALE,
+                    UserStatus = UserStatus.ACTIVE,
+                    Email = "irving2@hotmail.com",
+                    AlternateEmail = "eduardo@hotmail.com",
+                    PhoneNumber = "2298040941",
+                    Account = new Account
+                    {
+                        Username = "Irving",
+                        Password = "salf,lsflfgs",
+                        FirstLogin = true
+                    }
+                }
+            };
+
+            bool coordinatorIsAlreadyRegistered = _unitOfWork.Coordinators.CoordinatorIsAlreadyRegistered(newlyCreatedCoordinator, false);
+            Assert.IsTrue(coordinatorIsAlreadyRegistered);
+        }
+
+        [TestMethod]
+        public void DetermineIfPhoneNumberAlreadyExists_Exists()
+        {
+            Coordinator newlyCreatedCoordinator = new Coordinator
+            {
+                StaffNumber = "XGC16097",
+                RegistrationDate = DateTime.Now,
+                DischargeDate = null,
+                User = new User
+                {
+                    IdUser = 2,
+                    Name = "Irving",
+                    LastName = "Lozada Rodríguez",
+                    Gender = Gender.MALE,
+                    UserStatus = UserStatus.ACTIVE,
+                    Email = "irving@hotmail.com",
+                    AlternateEmail = "irving2@hotmail.com",
+                    PhoneNumber = "2298046218",
+                    Account = new Account
+                    {
+                        Username = "Irving",
+                        Password = "salf,lsflfgs",
+                        FirstLogin = true
+                    }
+                }
+            };
+
+            bool coordinatorIsAlreadyRegistered = _unitOfWork.Coordinators.CoordinatorIsAlreadyRegistered(newlyCreatedCoordinator, false);
+            Assert.IsTrue(coordinatorIsAlreadyRegistered);
+        }
+
+        //
+
+        [TestMethod]
+        public void DetermineIfCoordinatorStaffNumberAlreadyExists_DoesNotExists()
+        {
+
+            Coordinator newlyCreatedCoordinator = new Coordinator
+            {
+                StaffNumber = "XGC16213",
+                RegistrationDate = DateTime.Now,
+                DischargeDate = null,
+                User = new User
+                {
+                    IdUser = 2,
+                    Name = "Irving",
+                    LastName = "Lozada Rodríguez",
+                    Gender = Gender.MALE,
+                    UserStatus = UserStatus.ACTIVE,
+                    Email = "irving@hotmail.com",
+                    AlternateEmail = "",
+                    PhoneNumber = "2298040941",
+                    Account = new Account
+                    {
+                        Username = "Irving",
+                        Password = "salf,lsflfgs",
+                        FirstLogin = true
+                    }
+                }
+            };
+
+            bool coordinatorIsAlreadyRegistered = _unitOfWork.Coordinators.CoordinatorIsAlreadyRegistered(newlyCreatedCoordinator, false);
+            Assert.IsFalse(coordinatorIsAlreadyRegistered);
+        }
+
+        [TestMethod]
+        public void DetermineIfEmailAlreadyExists_DoesNotExists()
+        {
+            Coordinator newlyCreatedCoordinator = new Coordinator
+            {
+                StaffNumber = "XGC16097",
+                RegistrationDate = DateTime.Now,
+                DischargeDate = null,
+                User = new User
+                {
+                    IdUser = 2,
+                    Name = "Irving",
+                    LastName = "Lozada Rodríguez",
+                    Gender = Gender.MALE,
+                    UserStatus = UserStatus.ACTIVE,
+                    Email = "irv@hotmail.com",
+                    AlternateEmail = "irving2@hotmail.com",
+                    PhoneNumber = "2298040941",
+                    Account = new Account
+                    {
+                        Username = "Irving",
+                        Password = "salf,lsflfgs",
+                        FirstLogin = true
+                    }
+                }
+            };
+
+            bool coordinatorIsAlreadyRegistered = _unitOfWork.Coordinators.CoordinatorIsAlreadyRegistered(newlyCreatedCoordinator, false);
+            Assert.IsFalse(coordinatorIsAlreadyRegistered);
+        }
+
+
+        [TestMethod]
+        public void DetermineIfAlternateEmailAlreadyExists_DoesNotExists()
+        {
+            Coordinator newlyCreatedCoordinator = new Coordinator
+            {
+                StaffNumber = "XGC16097",
+                RegistrationDate = DateTime.Now,
+                DischargeDate = null,
+                User = new User
+                {
+                    IdUser = 2,
+                    Name = "Irving",
+                    LastName = "Lozada Rodríguez",
+                    Gender = Gender.MALE,
+                    UserStatus = UserStatus.ACTIVE,
+                    Email = "irving2@hotmail.com",
+                    AlternateEmail = "irv@hotmail.com",
+                    PhoneNumber = "2298040941",
+                    Account = new Account
+                    {
+                        Username = "Irving",
+                        Password = "salf,lsflfgs",
+                        FirstLogin = true
+                    }
+                }
+            };
+
+            bool coordinatorIsAlreadyRegistered = _unitOfWork.Coordinators.CoordinatorIsAlreadyRegistered(newlyCreatedCoordinator, false);
+            Assert.IsFalse(coordinatorIsAlreadyRegistered);
+        }
+
+        [TestMethod]
+        public void DetermineIfPhoneNumberAlreadyExists_DoesNotExists()
+        {
+            Coordinator newlyCreatedCoordinator = new Coordinator
+            {
+                StaffNumber = "XGC16097",
+                RegistrationDate = DateTime.Now,
+                DischargeDate = null,
+                User = new User
+                {
+                    IdUser = 2,
+                    Name = "Irving",
+                    LastName = "Lozada Rodríguez",
+                    Gender = Gender.MALE,
+                    UserStatus = UserStatus.ACTIVE,
+                    Email = "irving@hotmail.com",
+                    AlternateEmail = "irving2@hotmail.com",
+                    PhoneNumber = "2298046290",
+                    Account = new Account
+                    {
+                        Username = "Irving",
+                        Password = "salf,lsflfgs",
+                        FirstLogin = true
+                    }
+                }
+            };
+
+            bool coordinatorIsAlreadyRegistered = _unitOfWork.Coordinators.CoordinatorIsAlreadyRegistered(newlyCreatedCoordinator, false);
+            Assert.IsFalse(coordinatorIsAlreadyRegistered);
+        }
 
     }
 }

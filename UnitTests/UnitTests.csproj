@@ -89,8 +89,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CoordinatorModificationTestCase\CoordinatorModificationTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\CoordinatorRegistryTest.cs" />
-    <Compile Include="CoordinatorRegistryTestCase\InformationValidationTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\GreenTextBoxesTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\RedTextBoxesTest.cs" />
     <Compile Include="DataPersistenceLayerTests\CoordinatorTest\CoordinatorTest.cs" />
