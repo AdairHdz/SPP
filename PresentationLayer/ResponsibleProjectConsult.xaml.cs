@@ -14,13 +14,13 @@ namespace PresentationLayer
     /// <summary>
     /// Lógica de interacción para ListResponsibleProject.xaml
     /// </summary>
-    public partial class ListResponsibleProject : Window
+    public partial class ResponsibleProjectConsult : Window
     {
         private bool handle = true;
         private string textSearch;
         private string optionFilter;
         private bool isFilterWithText;
-        public ListResponsibleProject()
+        public ResponsibleProjectConsult()
         {
             InitializeComponent();
         }
@@ -177,7 +177,7 @@ namespace PresentationLayer
                 }
                 else
                 {
-                    DeleteResponsibleProject deleteResponsibleProject = new DeleteResponsibleProject();
+                    ResponsibleProjectDeletion deleteResponsibleProject = new ResponsibleProjectDeletion();
                     deleteResponsibleProject.InitializeDataResponsibleProject(responsibleProject);
                     deleteResponsibleProject.Show();
                     Close();
@@ -192,7 +192,7 @@ namespace PresentationLayer
         private void ModifyButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
             ResponsibleProject responsibleProject = ((ResponsibleProject)ListViewResponsibleProject.SelectedItem);
-            ModifyResponsibleProject modifyResponsibleProject = new ModifyResponsibleProject();
+            ResponsibleProjectModification modifyResponsibleProject = new ResponsibleProjectModification();
             modifyResponsibleProject.InitializeDataResponsibleProject(responsibleProject);
             modifyResponsibleProject.Show();
             Close();

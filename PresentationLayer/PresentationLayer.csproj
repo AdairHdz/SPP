@@ -74,11 +74,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CoordinatorMenu.xaml.cs">
+      <DependentUpon>CoordinatorMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResponsibleProjectDeletion.xaml.cs">
+      <DependentUpon>ResponsibleProjectDeletion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResponsibleProjectConsult.xaml.cs">
+      <DependentUpon>ResponsibleProjectConsult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResponsibleProjectModification.xaml.cs">
+      <DependentUpon>ResponsibleProjectModification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PracticionerRegistry.xaml.cs">
       <DependentUpon>PracticionerRegistry.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RegisterResponsibleProject.xaml.cs">
-      <DependentUpon>RegisterResponsibleProject.xaml</DependentUpon>
+    <Compile Include="ResponsibleProjectRegistry.xaml.cs">
+      <DependentUpon>ResponsibleProjectRegistry.xaml</DependentUpon>
     </Compile>
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
@@ -86,9 +98,21 @@
     <Compile Include="Validators\ResponsibleProjectValidator.cs" />
     <Compile Include="Validators\UserFeedback.cs" />
     <Compile Include="Validators\UserValidator.cs" />
+    <Page Include="CoordinatorMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CoordinatorRegistry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResponsibleProjectDeletion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResponsibleProjectConsult.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -105,11 +129,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ResponsibleProjectModification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="PracticionerRegistry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RegisterResponsibleProject.xaml">
+    <Page Include="ResponsibleProjectRegistry.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -150,6 +178,10 @@
       <Project>{03A013A2-08B4-4031-84F2-CCAFB399509F}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\IconoSystem.png" />
+    <Resource Include="Images\logOut.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

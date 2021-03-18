@@ -60,6 +60,29 @@ namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
         }
 
         [TestMethod]
+        public void UpdateResponsibleProject_Exists()
+        {
+            List<ResponsibleProject> responsiblesProject = new List<ResponsibleProject>();
+            DbSet<ResponsibleProject> mockSet = DbContextMock.GetQueryableMockDbSet(responsiblesProject, r => r.EmailAddress);
+            ProfessionalPracticesContext mockContext = DbContextMock.GetContext(mockSet);
+            UnitOfWork unitOfWork = DbContextMock.GetUnitOfWork(mockContext);
+            ResponsibleProject updateResponsibleProject = new ResponsibleProject
+            {
+                IdResponsibleProject =1,
+                Name = "Gustavo Antonio",
+                LastName = "Ruiz Zapata",
+                EmailAddress = "guztavo@uv.mx",
+                Charge = "Jefe de departamento de Tecnología Educativa"
+            };
+            responsiblesProject.Add(updateResponsibleProject);
+            unitOfWork.ResponsibleProjects.UpdateResponsibleProject(updateResponsibleProject);
+            int expected = 1;
+            int actual = responsiblesProject.Count;
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
         public void SoftDeleteResponsibleProject_Exists()
         {
             List<ResponsibleProject> responsiblesProject = new List<ResponsibleProject>();
@@ -80,5 +103,15 @@ namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
             int actual = responsiblesProject.Count;
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void DetermineIfResponsibleProjectAlreadyExistsNotSameID_Exists()
+        {
+            ResponsibleProject responsibleProjectWithSameEmailAddress = _unitOfWork.ResponsibleProjects.FindFirstOccurence(ResponsibleProject => ResponsibleProject.EmailAddress == "guztavo@uv.mx"
+            && ResponsibleProject.IdResponsibleProject == 1);
+
+            Assert.IsNull(responsibleProjectWithSameEmailAddress);
+        }
+
     }
 }

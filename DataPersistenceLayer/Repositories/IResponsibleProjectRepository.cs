@@ -7,5 +7,9 @@ namespace DataPersistenceLayer.Repositories
         bool ResponsibleProjectIsAssigned(int idResponsibleProject);
 
         void SoftDeleteResponsibleProject(ResponsibleProject responsibleProject);
+
+        void UpdateResponsibleProject(ResponsibleProject responsibleProjectEdit);
+
+        void ActiveResponsibleProject(ResponsibleProject responsibleProject);
     }
 }
