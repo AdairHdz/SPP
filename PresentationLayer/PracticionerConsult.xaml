@@ -14,7 +14,7 @@
 		TextOptions.TextRenderingMode="Auto"
 		Background="{DynamicResource MaterialDesignPaper}"
 		FontFamily="{DynamicResource MaterialDesignFont}"
-		Title="Lista de practicantes" Height="648" Width="1167.5">
+		Title="Lista de practicantes" Height="648" Width="1267.5">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"></RowDefinition>
@@ -46,7 +46,7 @@
                 <ComboBoxItem Content="Activos"/>
                 <ComboBoxItem Content="Inactivos"/>
                 <ComboBoxItem Content="Correo"/>
-                <ComboBoxItem Content="Correo Alterno"/>
+                <ComboBoxItem Content="CorreoAlterno"/>
                 <ComboBoxItem Content="Teléfono"/>
                 <ComboBoxItem Content="Periodo"/>
             </ComboBox>
@@ -55,18 +55,18 @@
             <Button x:Name="ButtonSearch" IsEnabled="False" Grid.Column="2" Foreground="White" Content="{materialDesign:PackIcon Magnify}" ToolTip="Buscar un filtro" Style="{StaticResource MaterialDesignRaisedLightButton}" Click="SearchButtonClicked"/>
         </Grid>
 
-        <ListView x:Name="ListViewPracticioners" Grid.Row="2" HorizontalAlignment="Center" ItemsSource="{Binding Items1}" Margin="30,0,30,10" Background="Azure" SelectedIndex="{Binding Path=SelectedIndexValue}" 
-				  >
+        <ListView x:Name="ListViewPracticioners" Grid.Row="2" HorizontalAlignment="Center" ItemsSource="{Binding Items1}" Margin="12,0,8,10" Background="Azure" SelectedIndex="{Binding Path=SelectedIndexValue}" Width="1240" 
+				  SelectionChanged="PracticionerListViewSelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Enrollment}" Header="Matrícula" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Nombre" />
-                    <GridViewColumn DisplayMemberBinding="{Binding LastName}" Header="Apellido" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Gender}" Header="Género" />
-                    <GridViewColumn DisplayMemberBinding="{Binding UserStatus}" Header="Estado" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Email}" Header="Correo" />
-                    <GridViewColumn DisplayMemberBinding="{Binding AlternateEmail}" Header="Correo alterno" />
-                    <GridViewColumn DisplayMemberBinding="{Binding PhoneNumber}" Header="Teléfono" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Enrollment}" Header="Matrícula"  />
+                    <GridViewColumn DisplayMemberBinding="{Binding User.Name}" Header="Nombre" />
+                    <GridViewColumn DisplayMemberBinding="{Binding User.LastName}" Header="Apellido" />
+                    <GridViewColumn DisplayMemberBinding="{Binding User.Gender}" Header="Género" />
+                    <GridViewColumn DisplayMemberBinding="{Binding User.UserStatus}" Header="Estado" />
+                    <GridViewColumn DisplayMemberBinding="{Binding User.Email}" Header="Correo" Width="200" />
+                    <GridViewColumn DisplayMemberBinding="{Binding User.AlternateEmail}" Header="CorreoAlterno" Width="200" />
+                    <GridViewColumn DisplayMemberBinding="{Binding User.PhoneNumber}" Header="Teléfono" />
                     <GridViewColumn DisplayMemberBinding="{Binding Term}" Header="Periodo" />
 
                 </GridView>

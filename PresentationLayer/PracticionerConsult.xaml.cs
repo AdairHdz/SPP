@@ -76,10 +76,10 @@ namespace PresentationLayer
                 ButtonDelete.IsEnabled = false;
                 ButtonModify.IsEnabled = false;
                 ListViewPracticioners.Items.Clear();
-                IEnumerable<ResponsibleProject> responsiblesProjects = ConsultResponsibleProject();
-                if (responsiblesProjects.Count() > 0)
+                IEnumerable<Practicioner> practicioners = ConsultPracticioner();
+                if (practicioners.Count() > 0)
                 {
-                    AddResponsiblesProjectsInListView(responsiblesProjects);
+                    AddPracticionersInListView(practicioners);
                 }
                 else
                 {
@@ -97,17 +97,17 @@ namespace PresentationLayer
             return true;
         }
 
-        private void AddResponsiblesProjectsInListView(IEnumerable<ResponsibleProject> responsiblesProjects)
+        private void AddPracticionersInListView(IEnumerable<Practicioner> practicioners)
         {
-            foreach (ResponsibleProject responsibleProject in responsiblesProjects)
+            foreach (Practicioner practioner in practicioners)
             {
-                ListViewPracticioners.Items.Add(responsibleProject);
+                ListViewPracticioners.Items.Add(practioner);
             }
         }
 
-        private IEnumerable<ResponsibleProject> ConsultResponsibleProject()
+        private IEnumerable<Practicioner> ConsultPracticioner()
         {
-            IEnumerable<ResponsibleProject> responsiblesProjects = null;
+            IEnumerable<Practicioner> practicioner = null;
             try
             {
                 ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
@@ -115,25 +115,37 @@ namespace PresentationLayer
                 switch (optionFilter)
                 {
                     case "Todos":
-                        responsiblesProjects = unitOfWork.ResponsibleProjects.GetAll();
+                        practicioner = unitOfWork.Practicioners.GetAll();
                         break;
                     case "Activos":
-                        responsiblesProjects = unitOfWork.ResponsibleProjects.Find(ResponsibleProject => ResponsibleProject.ResponsibleProjectStatus == ResponsibleProjectStatus.ACTIVE);
+                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.UserStatus == UserStatus.ACTIVE);
                         break;
                     case "Inactivos":
-                        responsiblesProjects = unitOfWork.ResponsibleProjects.Find(ResponsibleProject => ResponsibleProject.ResponsibleProjectStatus == ResponsibleProjectStatus.INACTIVE);
+                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.UserStatus == UserStatus.INACTIVE);
                         break;
                     case "Nombre":
-                        responsiblesProjects = unitOfWork.ResponsibleProjects.Find(ResponsibleProject => ResponsibleProject.Name.ToUpperInvariant().Contains(textSearch.ToUpperInvariant()));
+                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.Name.ToUpperInvariant().Contains(textSearch.ToUpperInvariant()));
                         break;
                     case "Apellido":
-                        responsiblesProjects = unitOfWork.ResponsibleProjects.Find(ResponsibleProject => ResponsibleProject.LastName.ToUpperInvariant().Contains(textSearch.ToUpperInvariant()));
+                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.LastName.ToUpperInvariant().Contains(textSearch.ToUpperInvariant()));
                         break;
                     case "Correo":
-                        responsiblesProjects = unitOfWork.ResponsibleProjects.Find(ResponsibleProject => ResponsibleProject.EmailAddress.Equals(textSearch));
+                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.Email.Equals(textSearch));
                         break;
-                    case "Cargo":
-                        responsiblesProjects = unitOfWork.ResponsibleProjects.Find(ResponsibleProject => ResponsibleProject.Charge.ToUpperInvariant().Contains(textSearch.ToUpperInvariant()));
+                    case "Periodo":
+                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.Term.Equals(textSearch));
+                        break;
+                    case "Teléfono":
+                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.PhoneNumber.Equals(textSearch));
+                        break;
+                    case "CorreoAlterno":
+                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.AlternateEmail.Equals(textSearch));
+                        break;
+                    case "Matrícula":
+                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.Enrollment.Equals(textSearch));
+                        break;
+                    case "Género":
+                        practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.Gender.Equals(textSearch));
                         break;
                     default:
                         MessageBox.Show("Ingrese un filtro valido", "Filtro", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -144,16 +156,16 @@ namespace PresentationLayer
             {
                 MessageBox.Show("No se pudo obtener información de la base de datos. Intente más tarde", "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            return responsiblesProjects;
+            return practicioner;
         }
 
-        private void ResponsibleProjectListViewSelectionChanged(object sender, SelectionChangedEventArgs selectionChanged)
+        private void PracticionerListViewSelectionChanged(object sender, SelectionChangedEventArgs selectionChanged)
         {
-            ResponsibleProject responsible = ((ResponsibleProject)ListViewPracticioners.SelectedItem);
-            if (responsible != null)
+            Practicioner practicioner = ((Practicioner)ListViewPracticioners.SelectedItem);
+            if (practicioner != null)
             {
                 ButtonModify.IsEnabled = true;
-                if (responsible.ResponsibleProjectStatus == ResponsibleProjectStatus.ACTIVE)
+                if (practicioner.User.UserStatus == UserStatus.ACTIVE)
                 {
                     ButtonDelete.IsEnabled = true;
                 }
@@ -166,15 +178,16 @@ namespace PresentationLayer
 
         private void DeleteButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
-            ResponsibleProject responsibleProject = ((ResponsibleProject)ListViewPracticioners.SelectedItem);
+            Practicioner practicioner = ((Practicioner)ListViewPracticioners.SelectedItem);
             try
             {
                 ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
                 UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-                bool responsibleProjectIsAssigned = unitOfWork.ResponsibleProjects.ResponsibleProjectIsAssigned(responsibleProject.IdResponsibleProject);
-                if (responsibleProjectIsAssigned)
+                bool practicionerCantBeDeleted = true;
+                    //unitOfWork.Practicioners.ResponsibleProjectIsAssigned(responsibleProject.IdResponsibleProject);
+                if (practicionerCantBeDeleted)
                 {
-                    MessageBox.Show("El responsable del proyecto está asignado, no se puede eliminar", "Eliminar", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("El practicante tiene asignado un proyecto activo, no se puede eliminar", "Eliminar", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 else
                 {
@@ -186,7 +199,7 @@ namespace PresentationLayer
             }
             catch (EntityException)
             {
-                MessageBox.Show("No se pudo obtener información de la base de datos. Intente más tarde", "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("No hay conexión con la base de datos. Por favor intente más tarde", "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
