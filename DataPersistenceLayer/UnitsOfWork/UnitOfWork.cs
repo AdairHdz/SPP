@@ -8,7 +8,8 @@ namespace DataPersistenceLayer.UnitsOfWork
         public IRepository<Account> Accounts { get; private set; }
         public IRepository<City> Cities { get; private set; }
         public ICoordinatorRepository Coordinators { get; private set; }
-        public IRepository<LinkedOrganization> LinkedOrganizations { get; private set; }
+        public ILinkedOrganizationRepository LinkedOrganizations { get; private set; }
+        public IRepository<Phone> Phones { get; private set; }
         public IRepository<Practicioner> Practicioners { get; private set; }
         public IRepository<Project> Projects { get; private set; }
         public IRepository<PartialReport> PartialReports { get; private set; }
@@ -26,7 +27,7 @@ namespace DataPersistenceLayer.UnitsOfWork
             _context = context;
             Accounts = new Repository<Account>(_context);
             Coordinators = new CoordinatorRepository(_context);
-            LinkedOrganizations = new Repository<LinkedOrganization>(_context);
+            LinkedOrganizations = new LinkedOrganizationRepository(_context);
             Practicioners = new Repository<Practicioner>(_context);
             Projects = new Repository<Project>(_context);
             PartialReports = new Repository<PartialReport>(_context);
@@ -35,8 +36,11 @@ namespace DataPersistenceLayer.UnitsOfWork
             ResponsibleProjects = new Repository<ResponsibleProject>(_context);
             Teachers = new Repository<Teacher>(_context);
             Users = new UserRepository(_context);
-            
-            
+
+            Cities = new Repository<City>(_context);
+            States = new Repository<State>(_context);
+            Sectors = new Repository<Sector>(_context);
+            Phones = new Repository<Phone>(_context);
         }
 
         /// <summary>
