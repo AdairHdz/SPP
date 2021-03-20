@@ -131,7 +131,11 @@ namespace PresentationLayer
         {
             ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
             UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-            unitOfWork.ResponsibleProjects.UpdateResponsibleProject(responsibleProject);
+            ResponsibleProject responsibleCurrent = unitOfWork.ResponsibleProjects.Get(responsibleProject.IdResponsibleProject);
+            responsibleCurrent.Name = responsibleProject.Name;
+            responsibleCurrent.LastName = responsibleProject.LastName;
+            responsibleCurrent.EmailAddress = responsibleProject.EmailAddress;
+            responsibleCurrent.Charge = responsibleProject.Charge;
             int rowsAffected = unitOfWork.Complete();
             unitOfWork.Dispose();
             return rowsAffected == 1;
@@ -151,10 +155,10 @@ namespace PresentationLayer
 
         private bool ActiveResponsibleProject()
         {
-            responsibleProject.ResponsibleProjectStatus = ResponsibleProjectStatus.ACTIVE;
             ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
             UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-            unitOfWork.ResponsibleProjects.ActiveResponsibleProject(responsibleProject);
+            ResponsibleProject responsibleCurrent = unitOfWork.ResponsibleProjects.Get(responsibleProject.IdResponsibleProject);
+            responsibleCurrent.ResponsibleProjectStatus = ResponsibleProjectStatus.ACTIVE;
             int rowsAffected = unitOfWork.Complete();
             unitOfWork.Dispose();
             return rowsAffected == 1;

@@ -75,7 +75,15 @@ namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
                 Charge = "Jefe de departamento de Tecnología Educativa"
             };
             responsiblesProject.Add(updateResponsibleProject);
-            unitOfWork.ResponsibleProjects.UpdateResponsibleProject(updateResponsibleProject);
+            ResponsibleProject responsobleProjectCurrent = unitOfWork.ResponsibleProjects.Get(updateResponsibleProject.IdResponsibleProject);
+            if (responsobleProjectCurrent != null)
+            {
+                responsobleProjectCurrent.ResponsibleProjectStatus = ResponsibleProjectStatus.ACTIVE;
+                responsobleProjectCurrent.Name = updateResponsibleProject.Name;
+                responsobleProjectCurrent.LastName = updateResponsibleProject.LastName;
+                responsobleProjectCurrent.EmailAddress = updateResponsibleProject.EmailAddress;
+                responsobleProjectCurrent.Charge = updateResponsibleProject.Charge;
+            }
             int expected = 1;
             int actual = responsiblesProject.Count;
             Assert.AreEqual(expected, actual);
@@ -89,7 +97,7 @@ namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
             DbSet<ResponsibleProject> mockSet = DbContextMock.GetQueryableMockDbSet(responsiblesProject, r => r.EmailAddress);
             ProfessionalPracticesContext mockContext = DbContextMock.GetContext(mockSet);
             UnitOfWork unitOfWork = DbContextMock.GetUnitOfWork(mockContext);
-            ResponsibleProject newResponsibleProject = new ResponsibleProject
+            ResponsibleProject responsibleProject = new ResponsibleProject
             {
                 IdResponsibleProject = 1,
                 Name = "Gustavo Antonio",
@@ -97,8 +105,13 @@ namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
                 EmailAddress = "guztavo@uv.mx",
                 Charge = "Jefe de departamento de Tecnología Educativa"
             };
-            unitOfWork.ResponsibleProjects.SoftDeleteResponsibleProject(newResponsibleProject);
-            responsiblesProject.Remove(newResponsibleProject);
+            responsiblesProject.Add(responsibleProject);
+            ResponsibleProject responsobleProjectCurrent = unitOfWork.ResponsibleProjects.Get(responsibleProject.IdResponsibleProject);
+            if (responsobleProjectCurrent != null)
+            {
+                responsobleProjectCurrent.ResponsibleProjectStatus = ResponsibleProjectStatus.INACTIVE;
+            }
+            responsiblesProject.Remove(responsibleProject);
             int expected = 0;
             int actual = responsiblesProject.Count;
             Assert.AreEqual(expected, actual);

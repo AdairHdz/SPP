@@ -51,10 +51,10 @@ namespace PresentationLayer
             {
                 try
                 {
-                    responsibleProject.ResponsibleProjectStatus = ResponsibleProjectStatus.INACTIVE;
                     ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
                     UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-                    unitOfWork.ResponsibleProjects.SoftDeleteResponsibleProject(responsibleProject);
+                    ResponsibleProject responsibleCurrent = unitOfWork.ResponsibleProjects.Get(responsibleProject.IdResponsibleProject);
+                    responsibleCurrent.ResponsibleProjectStatus = ResponsibleProjectStatus.INACTIVE;
                     int rowsAffected = unitOfWork.Complete();
                     unitOfWork.Dispose();
                     if (rowsAffected == 1)
