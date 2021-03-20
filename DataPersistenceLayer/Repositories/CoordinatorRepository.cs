@@ -65,5 +65,30 @@ namespace DataPersistenceLayer.Repositories
             Coordinator retrievedCoordinator = _context.Set<Coordinator>().Include(s => s.User.Account).Where(coordinator => coordinator.StaffNumber == staffNumber).First();
             return retrievedCoordinator;
         }
+
+        public Coordinator GetActiveCoordinator()
+        {
+
+            IQueryable<Coordinator> registeredCoordinators = _context.Set<Coordinator>().Include(coordinator => coordinator.User);
+            try
+            {
+                Coordinator activeCoordinator = registeredCoordinators.Where(coordinator => coordinator.User.UserStatus == UserStatus.ACTIVE).First();
+                return activeCoordinator;
+            }
+            catch (InvalidOperationException)
+            {
+                return null;
+            }
+            catch (ArgumentNullException)
+            {
+                return null;
+            }
+        }
+
+        public void SetCoordinatorStatusAsInactive(string staffNumber)
+        {
+            Coordinator retrievedCoordinator = _context.Set<Coordinator>().Where(coordinator => coordinator.StaffNumber.Equals(staffNumber)).Include(c => c.User).First();
+            retrievedCoordinator.User.UserStatus = UserStatus.INACTIVE;
+        }
     }
 }
