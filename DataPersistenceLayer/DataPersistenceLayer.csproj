@@ -87,6 +87,10 @@
     <Compile Include="Migrations\202103150155533_DatabaseRestore.designer.cs">
       <DependentUpon>202103150155533_DatabaseRestore.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103162047165_AddedVirtualNavigationToUserFromCoordinator.cs" />
+    <Compile Include="Migrations\202103162047165_AddedVirtualNavigationToUserFromCoordinator.designer.cs">
+      <DependentUpon>202103162047165_AddedVirtualNavigationToUserFromCoordinator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProfessionalPracticesContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,6 +114,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202103150155533_DatabaseRestore.resx">
       <DependentUpon>202103150155533_DatabaseRestore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103162047165_AddedVirtualNavigationToUserFromCoordinator.resx">
+      <DependentUpon>202103162047165_AddedVirtualNavigationToUserFromCoordinator.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

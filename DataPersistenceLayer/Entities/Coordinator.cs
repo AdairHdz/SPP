@@ -18,7 +18,7 @@ namespace DataPersistenceLayer.Entities
         public int IdUser { get; set; }
         
         [ForeignKey("IdUser")]
-        public User User { get; set; }
+        public virtual User User { get; set; }
         
     }
 }
