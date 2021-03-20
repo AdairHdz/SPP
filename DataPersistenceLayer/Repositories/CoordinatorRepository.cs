@@ -1,5 +1,6 @@
 ﻿using DataPersistenceLayer.Entities;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -89,6 +90,16 @@ namespace DataPersistenceLayer.Repositories
         {
             Coordinator retrievedCoordinator = _context.Set<Coordinator>().Where(coordinator => coordinator.StaffNumber.Equals(staffNumber)).Include(c => c.User).First();
             retrievedCoordinator.User.UserStatus = UserStatus.INACTIVE;
+        }
+
+        public IList<Coordinator> GetAllCoordinatorsWithUserData()
+        {
+            return _context.Set<Coordinator>().Include(c => c.User).ToList();
+        }
+
+        public IList<Coordinator> GetCoordinatorsWithUserData(Func<Coordinator, bool> predicate)
+        {
+            return _context.Set<Coordinator>().Include(c => c.User).Where(predicate).ToList();
         }
     }
 }

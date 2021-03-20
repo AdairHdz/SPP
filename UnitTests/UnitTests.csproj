@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\MSTest.TestAdapter.2.1.1\build\net45\MSTest.TestAdapter.props" Condition="Exists('..\packages\MSTest.TestAdapter.2.1.1\build\net45\MSTest.TestAdapter.props')" />
@@ -89,12 +89,16 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CoordinatorConsultationTestCase\CoordinatorConsultationTest.cs" />
+    <Compile Include="CoordinatorDeletionTestCase\CoordinatorDeletionTest.cs" />
     <Compile Include="CoordinatorModificationTestCase\CoordinatorModificationTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\CoordinatorRegistryTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\GreenTextBoxesTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\RedTextBoxesTest.cs" />
     <Compile Include="DataPersistenceLayerTests\CoordinatorTest\CoordinatorTest.cs" />
     <Compile Include="DataPersistenceLayerTests\DbContextMock.cs" />
+    <Compile Include="DataPersistenceLayerTests\ResponsibleProjectTest\ConsultResponsibleProjectTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\ResponsibleProjectTest\ResponsibleProjectTest.cs" />
     <Compile Include="DataPersistenceLayerTests\UserTest\UserTest.cs" />
     <Compile Include="HashingTests\BCryptHashingTest.cs" />
     <Compile Include="HashingTests\BCryptHasherTest.cs" />
