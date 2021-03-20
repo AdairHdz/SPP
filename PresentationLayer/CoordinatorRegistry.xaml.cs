@@ -2,6 +2,7 @@
 using DataPersistenceLayer.Entities;
 using DataPersistenceLayer.UnitsOfWork;
 using FluentValidation.Results;
+using PresentationLayer.Utils;
 using PresentationLayer.Validators;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
@@ -76,15 +77,7 @@ namespace PresentationLayer
         {            
             Coordinator.User.UserType = UserType.Coordinator;
             Coordinator.User.Account.Password = PasswordBoxPassword.Password;
-
-            if (ManRadioButton.IsChecked == true)
-            {                
-                Coordinator.User.Gender = Gender.MALE;
-            }
-            else if (WomanRadioButton.IsChecked == true)
-            {                
-                Coordinator.User.Gender = Gender.FEMALE;
-            }            
+            Coordinator.User.Gender = GenderParser.ParseFromRadioButtonsToObject(ManRadioButton);
         }
 
         private bool IsValidData()
@@ -99,13 +92,8 @@ namespace PresentationLayer
 
         private bool CoordinatorIsAlreadyRegistered(UnitOfWork unitOfWork)
         {
-            bool coordinatorIsAlreadyRegistered = unitOfWork.Coordinators.CoordinatorIsAlreadyRegistered(Coordinator);
-            bool userIsAlreadyRegistered = unitOfWork.Users.UserIsAlreadyRegistered(Coordinator.User);
-            if (coordinatorIsAlreadyRegistered || userIsAlreadyRegistered)
-            {
-                return true;
-            }
-            return false;
+            bool coordinatorIsAlreadyRegistered = unitOfWork.Coordinators.CoordinatorIsAlreadyRegistered(Coordinator, false);            
+            return coordinatorIsAlreadyRegistered;
         }
 
         private bool ThereIsAnActiveCoordinator(UnitOfWork unitOfWork)

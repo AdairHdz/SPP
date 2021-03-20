@@ -4,8 +4,7 @@ namespace DataPersistenceLayer.Repositories
 {
     public interface ICoordinatorRepository : IRepository<Coordinator>
     {
-        bool CoordinatorIsAlreadyRegistered(Coordinator coordinator);
-        Coordinator GetActiveCoordinator();
-        void SetCoordinatorStatusAsInactive(string staffNumber);
+        bool CoordinatorIsAlreadyRegistered(Coordinator coordinator, bool isUpdate);
+        Coordinator GetCoordinatorWithUserAndAccountData(string staffNumber);
     }
 }
