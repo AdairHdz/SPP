@@ -83,25 +83,21 @@
     <Compile Include="CoordinatorMenu.xaml.cs">
       <DependentUpon>CoordinatorMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CoordinatorModification.xaml.cs">
-      <DependentUpon>CoordinatorModification.xaml</DependentUpon>
+    <Compile Include="ResponsibleProjectDeletion.xaml.cs">
+      <DependentUpon>ResponsibleProjectDeletion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DeleteResponsibleProject.xaml.cs">
-      <DependentUpon>DeleteResponsibleProject.xaml</DependentUpon>
+    <Compile Include="ResponsibleProjectConsult.xaml.cs">
+      <DependentUpon>ResponsibleProjectConsult.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ListResponsibleProject.xaml.cs">
-      <DependentUpon>ListResponsibleProject.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ModifyResponsibleProject.xaml.cs">
-      <DependentUpon>ModifyResponsibleProject.xaml</DependentUpon>
+    <Compile Include="ResponsibleProjectModification.xaml.cs">
+      <DependentUpon>ResponsibleProjectModification.xaml</DependentUpon>
     </Compile>
     <Compile Include="PracticionerRegistry.xaml.cs">
       <DependentUpon>PracticionerRegistry.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RegisterResponsibleProject.xaml.cs">
-      <DependentUpon>RegisterResponsibleProject.xaml</DependentUpon>
+    <Compile Include="ResponsibleProjectRegistry.xaml.cs">
+      <DependentUpon>ResponsibleProjectRegistry.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utils\GenderParser.cs" />
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
     <Compile Include="Validators\PracticionerValidator.cs" />
@@ -120,19 +116,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CoordinatorModification.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CoordinatorRegistry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DeleteResponsibleProject.xaml">
+    <Page Include="ResponsibleProjectDeletion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ListResponsibleProject.xaml">
+    <Page Include="ResponsibleProjectConsult.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -151,7 +143,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ModifyResponsibleProject.xaml">
+    <Page Include="ResponsibleProjectModification.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -159,7 +151,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RegisterResponsibleProject.xaml">
+    <Page Include="ResponsibleProjectRegistry.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

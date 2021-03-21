@@ -26,13 +26,13 @@ namespace PresentationLayer
 
         private void ConsultResponsibleProjectButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
-            ListResponsibleProject listResponsibleProject = new ListResponsibleProject();
+            ResponsibleProjectConsult listResponsibleProject = new ResponsibleProjectConsult();
             listResponsibleProject.Show();
             Close();
         }
         private void RegisterResponsibleProjectButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
-            RegisterResponsableProject registerResponsable = new RegisterResponsableProject();
+            ResponsableProjectRegistry registerResponsable = new ResponsableProjectRegistry();
             registerResponsable.Show();
             Close();
         }

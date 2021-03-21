@@ -1,7 +1,6 @@
 ﻿
 using DataPersistenceLayer.Entities;
 using FluentValidation;
-using System.Text.RegularExpressions;
 
 namespace PresentationLayer.Validators
 {

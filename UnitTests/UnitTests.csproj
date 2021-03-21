@@ -93,17 +93,19 @@
     <Compile Include="CoordinatorDeletionTestCase\CoordinatorDeletionTest.cs" />
     <Compile Include="CoordinatorModificationTestCase\CoordinatorModificationTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\CoordinatorRegistryTest.cs" />
+    <Compile Include="CoordinatorRegistryTestCase\InformationValidationTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\GreenTextBoxesTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\RedTextBoxesTest.cs" />
     <Compile Include="DataPersistenceLayerTests\CoordinatorTest\CoordinatorTest.cs" />
     <Compile Include="DataPersistenceLayerTests\DbContextMock.cs" />
-    <Compile Include="DataPersistenceLayerTests\ResponsibleProjectTest\ConsultResponsibleProjectTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\ResponsibleProjectTest\ResponsibleProjectTestConsult.cs" />
     <Compile Include="DataPersistenceLayerTests\ResponsibleProjectTest\ResponsibleProjectTest.cs" />
     <Compile Include="DataPersistenceLayerTests\UserTest\UserTest.cs" />
     <Compile Include="HashingTests\BCryptHashingTest.cs" />
     <Compile Include="HashingTests\BCryptHasherTest.cs" />
     <Compile Include="PracticionerRegistryTestCase\PracticionerRegistryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidatorsTests\ResponsibleProjectValidatorTest.cs" />
     <Compile Include="ValidatorsTests\UserValidatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
