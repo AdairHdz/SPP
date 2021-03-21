@@ -166,7 +166,7 @@
                         DirectUsers = c.Int(nullable: false),
                         IndirectUsers = c.Int(nullable: false),
                         Email = c.String(nullable: false, maxLength: 254),
-                        PhoneNumber = c.String(nullable: false, maxLength: 15),
+                        //PhoneNumber = c.String(nullable: false, maxLength: 15),
                         Address = c.String(nullable: false, maxLength: 100),
                         IdCity = c.Int(nullable: false),
                         IdState = c.Int(nullable: false),

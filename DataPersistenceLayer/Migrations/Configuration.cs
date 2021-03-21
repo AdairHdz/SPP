@@ -7,7 +7,7 @@ namespace DataPersistenceLayer.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(ProfessionalPracticesContext context)
@@ -70,7 +70,6 @@ namespace DataPersistenceLayer.Migrations
             //            DirectUsers = 5,
             //            IndirectUsers = 100,
             //            Email = "softech@gmail.com",
-            //            PhoneNumber = "2281214885",
             //            Address = "Av. Xalapa #21",
             //            IdCity = 1,
             //            IdState = 1,
