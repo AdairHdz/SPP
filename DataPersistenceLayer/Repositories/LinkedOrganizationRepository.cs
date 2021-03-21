@@ -15,17 +15,17 @@ namespace DataPersistenceLayer.Repositories
 
         public LinkedOrganizationRepository(DbContext context) : base(context) { }
 
-        public bool LinkedOrganizationIsAlreadyRegistered(LinkedOrganization linkedOrganizationToBeRegistered)
+        public bool LinkedOrganizationIsAlreadyRegistered(LinkedOrganization linkedOrganization)
         {
-            LinkedOrganization retrievedLinkedOrganization = null;
-
-            if (linkedOrganizationToBeRegistered.Name != null && linkedOrganizationToBeRegistered.Email != null)
+            LinkedOrganization retrievedLinkedOrganization = FindFirstOccurence
+                (x => x.Name.Equals(linkedOrganization.Name) || x.Email.Equals(linkedOrganization.Email)); ;
+            
+            if (retrievedLinkedOrganization != null)
             {
-                retrievedLinkedOrganization = FindFirstOccurence(linkedOrganization => linkedOrganization.Name.Equals(linkedOrganizationToBeRegistered.Name)
-                || linkedOrganization.Email.Equals(linkedOrganizationToBeRegistered.Email));
+                return true;
             }
 
-            return retrievedLinkedOrganization != null;
+            return false;
         }
     }
 }

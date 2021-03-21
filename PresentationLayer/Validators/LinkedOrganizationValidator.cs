@@ -1,5 +1,6 @@
 ﻿using DataPersistenceLayer.Entities;
 using FluentValidation;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace PresentationLayer.Validators
@@ -15,6 +16,8 @@ namespace PresentationLayer.Validators
             RuleFor(linkedOrganization => linkedOrganization.Address).NotEmpty()
                 .MinimumLength(3).MaximumLength(100).Matches("[a-zA-Z+]")
                 .WithState(linkedOrganization => "TextBoxAddress");
+
+            RuleForEach(linkedList => linkedList.PhoneNumbers).SetValidator(new PhoneValidator());
 
             UserValidator userValidator = new UserValidator();
             RuleFor(linkedOrganization => linkedOrganization.Email)

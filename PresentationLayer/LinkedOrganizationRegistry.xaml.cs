@@ -25,9 +25,8 @@ namespace PresentationLayer
     /// </summary>
     public partial class LinkedOrganizationRegistry : Window
     {
-        public LinkedOrganization LinkedOrganization = new LinkedOrganization();
-        public Phone PhoneOne = new Phone();
-        public Phone PhoneTwo = new Phone();
+        private LinkedOrganization LinkedOrganization = new LinkedOrganization();
+        private List<Phone> PhonesNumbers = new List<Phone>();
 
         public LinkedOrganizationRegistry()
         {
@@ -45,7 +44,6 @@ namespace PresentationLayer
             ComboBoxSector.DisplayMemberPath = "NameSector";
             ComboBoxSector.SelectedValuePath = "IdSector";
             ComboBoxSector.ItemsSource = RecoverSectors().ToList();
-
         }
 
         private IEnumerable<City> RecoverCities()
@@ -53,11 +51,7 @@ namespace PresentationLayer
             IEnumerable<City> Cities = null;
             ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
             UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-            if (unitOfWork != null)
-            {
-                Cities = unitOfWork.Cities.GetAll();
-
-            }
+            Cities = unitOfWork.Cities.GetAll();
             return Cities;
         }
 
@@ -66,10 +60,7 @@ namespace PresentationLayer
             IEnumerable<State> States = null;
             ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
             UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-            if (unitOfWork != null)
-            {
-                States = unitOfWork.States.GetAll();
-            }
+            States = unitOfWork.States.GetAll();
             return States;
         }
 
@@ -78,19 +69,14 @@ namespace PresentationLayer
             IEnumerable<Sector> Sectors = null;
             ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
             UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-            if (unitOfWork != null)
-            {
-                Sectors = unitOfWork.Sectors.GetAll();
-            }
+            Sectors = unitOfWork.Sectors.GetAll();
             return Sectors;
         }
 
         private void RegisterButtonClicked(object sender, RoutedEventArgs e)
         {
             CreateLinkedOrganizationFromInputData();
-            CreatePhoneFromInputData();
-            bool validData = IsValidData() && AreValidPhoneNumbers();
-            if (validData)
+            if (IsValidData())
             {
                 if (!LinkedOrganizationIsAlreadyRegistered())
                 {
@@ -112,7 +98,13 @@ namespace PresentationLayer
 
         private void CancelButtonClicked(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult messageBoxResult = MessageBox.Show("¿Seguro desea cancelar?",
+                "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                Close();
+            }
         }
 
         private void TextBoxKeyDownOnlyNumber(object sender, KeyEventArgs e)
@@ -133,25 +125,18 @@ namespace PresentationLayer
             LinkedOrganization.Name = TextBoxName.Text;
             LinkedOrganization.Address = TextBoxAddress.Text;
             LinkedOrganization.Email = TextBoxEmail.Text;
+
+            CreatePhonesFromInputData();
+
             if (TextBoxDirectUsers.Text != null && TextBoxDirectUsers.Text.Length > 0)
             {
                 LinkedOrganization.DirectUsers = Int32.Parse(TextBoxDirectUsers.Text);
-            }
-            else
-            {
-                LinkedOrganization.DirectUsers = -1;
             }
             if (TextBoxIndirectUsers.Text != null && TextBoxIndirectUsers.Text.Length > 0)
             {
                 LinkedOrganization.IndirectUsers = Int32.Parse(TextBoxIndirectUsers.Text);
             }
-            else
-            {
-                LinkedOrganization.IndirectUsers = -1;
-            }
-
-            LinkedOrganization.PhoneNumber = TextBoxExtension.Text + TextBoxPhoneNumber.Text;
-
+            
             if (ComboBoxCity.SelectedValue != null)
             {
                 LinkedOrganization.IdCity = (int)ComboBoxCity.SelectedValue;
@@ -168,12 +153,30 @@ namespace PresentationLayer
             LinkedOrganization.LinkedOrganizationStatus = LinkedOrganizationStatus.ACTIVE;
         }
 
-        private void CreatePhoneFromInputData()
+        private void CreatePhonesFromInputData()
         {
-            PhoneOne.Extension = TextBoxExtension.Text;
-            PhoneOne.PhoneNumber = TextBoxPhoneNumber.Text;
-            PhoneTwo.Extension = TextBoxExtension2.Text;
-            PhoneTwo.PhoneNumber = TextBoxPhoneNumber2.Text;
+            PhonesNumbers.Clear();
+            PhonesNumbers.Add(new Phone()
+            {
+                Extension = TextBoxExtension.Text,
+                PhoneNumber = TextBoxPhoneNumber.Text,
+                IdLinkedOrganization = LinkedOrganization.IdLinkedOrganization
+            });
+            
+            if (TextBoxExtension2.Text.Length > 0 || TextBoxPhoneNumber2.Text.Length > 0)
+            {
+                PhonesNumbers.Add(new Phone()
+                {
+                    Extension = TextBoxExtension2.Text,
+                    PhoneNumber = TextBoxPhoneNumber2.Text,
+                    IdLinkedOrganization = LinkedOrganization.IdLinkedOrganization
+                });
+            }
+            foreach(var a in PhonesNumbers)
+            {
+                MessageBox.Show(a.Extension,a.PhoneNumber);
+            }
+            LinkedOrganization.PhoneNumbers = PhonesNumbers;
         }
 
         private bool IsValidData()
@@ -185,45 +188,14 @@ namespace PresentationLayer
             userFeedback.ShowFeedback();
             return dataValidationResult.IsValid;
         }
-
-        public bool AreValidPhoneNumbers()
-        {
-            bool validPhoneNumbers;
-            if (TextBoxExtension2.Text.Length <= 0 && TextBoxPhoneNumber2.Text.Length <= 0)
-            {
-                validPhoneNumbers = IsValidPhoneNumber(PhoneOne);
-            }
-            else
-            {
-                validPhoneNumbers = IsValidPhoneNumber(PhoneOne) && IsValidPhoneNumber(PhoneTwo);
-            }
-            return validPhoneNumbers;
-        }
-
-        private bool IsValidPhoneNumber(Phone phone)
-        {
-            PhoneValidator phoneValidator = new PhoneValidator();
-            FluentValidation.Results.ValidationResult dataValidationResult = phoneValidator.Validate(phone);
-            IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
-            UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
-            userFeedback.ShowFeedback();
-            return dataValidationResult.IsValid;
-        }
-
+        
         private bool LinkedOrganizationIsAlreadyRegistered()
         {
-            
             ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
             UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-
             bool linkedOrganizationIsAlreadyRegistered = unitOfWork.LinkedOrganizations.LinkedOrganizationIsAlreadyRegistered(LinkedOrganization);
             unitOfWork.Dispose();
-            if (linkedOrganizationIsAlreadyRegistered)
-            {
-                return true;
-            }
-            
-            return false;
+            return linkedOrganizationIsAlreadyRegistered;
         }
 
         private bool RegisterNewLinkedOrganization()
@@ -231,16 +203,8 @@ namespace PresentationLayer
             ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
             UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
             unitOfWork.LinkedOrganizations.Add(LinkedOrganization);
-            PhoneOne.IdLinkedOrganization = LinkedOrganization.IdLinkedOrganization;
-            unitOfWork.Phones.Add(PhoneOne);
-            if (PhoneTwo.Extension.Length > 0 && PhoneTwo.PhoneNumber.Length > 0)
-            {
-                PhoneTwo.IdLinkedOrganization = LinkedOrganization.IdLinkedOrganization;
-                unitOfWork.Phones.Add(PhoneTwo);
-            }
             int rowsAffected = unitOfWork.Complete();
             unitOfWork.Dispose();
-
             return rowsAffected >= 2;
         }
     }
