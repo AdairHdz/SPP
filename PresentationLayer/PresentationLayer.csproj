@@ -77,8 +77,13 @@
     <Compile Include="Alert\AlertInformation.xaml.cs">
       <DependentUpon>AlertInformation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LinkedOrganizationRegistry.xaml.cs">
+      <DependentUpon>LinkedOrganizationRegistry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
+    <Compile Include="Validators\LinkedOrganizationValidator.cs" />
+    <Compile Include="Validators\PhoneValidator.cs" />
     <Compile Include="Validators\UserFeedback.cs" />
     <Compile Include="Validators\UserValidator.cs" />
     <Page Include="Alert\AlertInformation.xaml">
@@ -86,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CoordinatorRegistry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LinkedOrganizationRegistry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
