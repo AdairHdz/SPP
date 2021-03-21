@@ -92,7 +92,6 @@
     <Compile Include="CoordinatorDeletionTestCase\CoordinatorDeletionTest.cs" />
     <Compile Include="CoordinatorModificationTestCase\CoordinatorModificationTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\CoordinatorRegistryTest.cs" />
-    <Compile Include="CoordinatorRegistryTestCase\InformationValidationTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\GreenTextBoxesTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\RedTextBoxesTest.cs" />
     <Compile Include="DataPersistenceLayerTests\CoordinatorTest\CoordinatorTest.cs" />
@@ -102,6 +101,7 @@
     <Compile Include="DataPersistenceLayerTests\UserTest\UserTest.cs" />
     <Compile Include="HashingTests\BCryptHashingTest.cs" />
     <Compile Include="HashingTests\BCryptHasherTest.cs" />
+    <Compile Include="PracticionerDeletionTestCase\PracticionerDeletionTest.cs" />
     <Compile Include="PracticionerRegistryTestCase\PracticionerRegistryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidatorsTests\ResponsibleProjectValidatorTest.cs" />

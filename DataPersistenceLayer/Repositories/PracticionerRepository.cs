@@ -40,5 +40,13 @@ namespace DataPersistenceLayer.Repositories
             return false;
         }
 
+        public void SetPracticionerStatusAsInactive(string enrollment)
+        {
+            Practicioner practicioner = _context.Set<Practicioner>().SingleOrDefault(Practicioner => Practicioner.Enrollment == enrollment);
+            if (!object.ReferenceEquals(null, practicioner))
+            {
+                practicioner.User.UserStatus = UserStatus.INACTIVE;
+            }
+        }
     }
 }
