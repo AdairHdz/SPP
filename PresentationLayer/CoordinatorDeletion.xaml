@@ -15,24 +15,17 @@
         mc:Ignorable="d"
         Title="CoordinatorDeletion" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30"/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="30"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        
-        <Button Grid.Column="4" Grid.Row="0" Content="Cerrar sesión" Background="CadetBlue"/>
+
+        <Rectangle Grid.Row="0" Fill="#5B007B"/>
+        <TextBlock Grid.Row="0" Text="Eliminar coordinador" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
+        <Button Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="15" Click="BackButtonClicked">
+            <materialDesign:PackIcon Kind="ArrowLeftBold" Height="30" Width="30" HorizontalAlignment="Center"/>
+        </Button>
 
         <materialDesign:Card Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1" Grid.RowSpan="4" Padding="10">
             <Grid>
@@ -88,12 +81,12 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Width="auto" Content="Eliminar"
-                            Style="{StaticResource MaterialDesignRaisedButton}" Background="Red"
+                            Style="{StaticResource MaterialDesignRaisedAccentButton}"
                             Grid.Column="2" Grid.Row="0"
                             Click="DeleteButtonClicked"/>
 
                     <Button Width="auto" Content="Cancelar"
-                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
                             Grid.Column="4" Grid.Row="0"
                             Click="CancelButtonClicked"/>
 

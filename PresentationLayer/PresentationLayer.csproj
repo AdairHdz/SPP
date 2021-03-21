@@ -83,6 +83,9 @@
     <Compile Include="CoordinatorMenu.xaml.cs">
       <DependentUpon>CoordinatorMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CoordinatorModification.xaml.cs">
+      <DependentUpon>CoordinatorModification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ResponsibleProjectDeletion.xaml.cs">
       <DependentUpon>ResponsibleProjectDeletion.xaml</DependentUpon>
     </Compile>
@@ -98,6 +101,7 @@
     <Compile Include="ResponsibleProjectRegistry.xaml.cs">
       <DependentUpon>ResponsibleProjectRegistry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\GenderParser.cs" />
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
     <Compile Include="Validators\PracticionerValidator.cs" />
@@ -113,6 +117,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CoordinatorMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CoordinatorModification.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -129,5 +129,10 @@ namespace PresentationLayer
             }
             
         }
+
+        private void BackButtonClicked(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
