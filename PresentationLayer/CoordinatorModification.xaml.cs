@@ -23,20 +23,20 @@ namespace PresentationLayer
                 Account = new Account()
             }
         };
-        public CoordinatorModification()
+        public CoordinatorModification(string staffNumber)
         {
             InitializeComponent();
             _professionalPracticesContext = new ProfessionalPracticesContext();
             _unitOfWork = new UnitOfWork(_professionalPracticesContext);
-            LoadCoordinator();
+            LoadCoordinator(staffNumber);
             this.DataContext = Coordinator;
         }
 
-        private void LoadCoordinator()
+        private void LoadCoordinator(string staffNumber)
         {
             try
             {
-                Coordinator = _unitOfWork.Coordinators.GetCoordinatorWithUserAndAccountData("zS18012123");                
+                Coordinator = _unitOfWork.Coordinators.GetCoordinatorWithUserAndAccountData(staffNumber);                
                 ManRadioButton.IsChecked = Coordinator.User.Gender == Gender.MALE;
                 WomanRadioButton.IsChecked = !ManRadioButton.IsChecked;
                 if(Coordinator.User.UserStatus == UserStatus.ACTIVE)
@@ -161,6 +161,8 @@ namespace PresentationLayer
         private void CancelButtonClicked(object sender, RoutedEventArgs e)
         {
             _unitOfWork.Dispose();
+            CoordinatorConsultation coordinatorConsultation = new CoordinatorConsultation();
+            coordinatorConsultation.Show();
             this.Close();
         }
     }
