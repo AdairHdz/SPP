@@ -26,26 +26,7 @@
         <Button Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="15" Click="BackButtonClicked">
             <materialDesign:PackIcon Kind="ArrowLeftBold" Height="30" Width="30" HorizontalAlignment="Center"/>
         </Button>
-        <!--
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
--->
-        
+
         <materialDesign:Card Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="6" Padding="10">
             <Grid x:Name="FormGrid">
                 <Grid.RowDefinitions>
