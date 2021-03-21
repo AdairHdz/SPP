@@ -8,8 +8,7 @@ namespace DataPersistenceLayer.UnitsOfWork
     {
         IRepository<City> Cities { get; }
         ICoordinatorRepository Coordinators { get; }
-        ILinkedOrganizationRepository LinkedOrganizations { get; }
-        IRepository<Phone> Phones { get; }
+        IRepository<LinkedOrganization> LinkedOrganizations { get; }
         IRepository<Practicioner> Practicioners { get; }
         IRepository<Project> Projects { get; }
         IRepository<PartialReport> PartialReports { get; }
