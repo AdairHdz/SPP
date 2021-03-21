@@ -18,8 +18,6 @@ namespace PresentationLayer
             InitializeComponent();            
         }
 
-
-        //Ya
         private void FilterComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ButtonSearch.IsEnabled = true;
@@ -34,7 +32,6 @@ namespace PresentationLayer
             }
         }
 
-        //Ya
         private void SearchButtonClicked(object sender, RoutedEventArgs e)
         {            
             IList<Coordinator> retrievedCoordinators = GetMatchingResults();
@@ -46,7 +43,6 @@ namespace PresentationLayer
             DisplayCoordinatorsData(retrievedCoordinators);
         }
 
-        //Ya
         private IList<Coordinator> GetMatchingResults()
         {
             IList<Coordinator> retrievedCoordinators = new List<Coordinator>();
@@ -94,7 +90,6 @@ namespace PresentationLayer
             return retrievedCoordinators;
         }
 
-        ///Ya
         private void ModifyButtonClicked(object sender, RoutedEventArgs e)
         {
             Coordinator coordinator = (Coordinator)ListViewCoordinator.SelectedItem;
@@ -103,7 +98,6 @@ namespace PresentationLayer
             this.Close();
         }
 
-        ///Ya
         private void DeleteButtonClicked(object sender, RoutedEventArgs e)
         {            
             CoordinatorDeletion coordinatorDeletion = new CoordinatorDeletion();
@@ -111,7 +105,6 @@ namespace PresentationLayer
             this.Close();
         }
 
-        //Ya
         private void DisplayCoordinatorsData(IList<Coordinator> coordinators)
         {
             ListViewCoordinator.Items.Clear();
@@ -121,13 +114,11 @@ namespace PresentationLayer
             }
         }
 
-        //Ya
         private void BackButtonClicked(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        //Ya
         private void CoordinatorListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Coordinator coordinator = ((Coordinator)ListViewCoordinator.SelectedItem);
