@@ -9,10 +9,10 @@ namespace PresentationLayer
     /// <summary>
     /// Lógica de interacción para DeleteResponsibleProject.xaml
     /// </summary>
-    public partial class DeleteResponsibleProject : Window
+    public partial class ResponsibleProjectDeletion : Window
     {
         private ResponsibleProject responsibleProject;
-        public DeleteResponsibleProject()
+        public ResponsibleProjectDeletion()
         {
             InitializeComponent();
         }
@@ -31,7 +31,7 @@ namespace PresentationLayer
             MessageBoxResult messageBoxResult = MessageBox.Show("¿Seguro desea cancelar?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
-                ListResponsibleProject listResponsibleProject = new ListResponsibleProject();
+                ResponsibleProjectConsult listResponsibleProject = new ResponsibleProjectConsult();
                 listResponsibleProject.Show();
                 Close();
             }
@@ -39,7 +39,7 @@ namespace PresentationLayer
 
         private void BehindButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
-            ListResponsibleProject listResponsibleProject = new ListResponsibleProject();
+            ResponsibleProjectConsult listResponsibleProject = new ResponsibleProjectConsult();
             listResponsibleProject.Show();
             Close();
         }
@@ -51,10 +51,10 @@ namespace PresentationLayer
             {
                 try
                 {
-                    responsibleProject.ResponsibleProjectStatus = ResponsibleProjectStatus.INACTIVE;
                     ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
                     UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-                    unitOfWork.ResponsibleProjects.SoftDeleteResponsibleProject(responsibleProject);
+                    ResponsibleProject responsibleCurrent = unitOfWork.ResponsibleProjects.Get(responsibleProject.IdResponsibleProject);
+                    responsibleCurrent.ResponsibleProjectStatus = ResponsibleProjectStatus.INACTIVE;
                     int rowsAffected = unitOfWork.Complete();
                     unitOfWork.Dispose();
                     if (rowsAffected == 1)
@@ -70,7 +70,7 @@ namespace PresentationLayer
                 {
                     MessageBox.Show("El responsable del proyecto no pudo eliminarse", "Eliminación Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                ListResponsibleProject listResponsibleProject = new ListResponsibleProject();
+                ResponsibleProjectConsult listResponsibleProject = new ResponsibleProjectConsult();
                 listResponsibleProject.Show();
                 Close();
             }

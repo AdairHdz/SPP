@@ -9,7 +9,7 @@ using System.Data.Entity;
 namespace UnitTests.DataPersistenceLayerTests.ResponsibleProjectTest
 {
     [TestClass]
-    public class ConsultResponsibleProjectTest
+    public class ResponsibleProjectTestConsult
     {
         private UnitOfWork _unitOfWork;
         private List<ResponsibleProject> _data;
