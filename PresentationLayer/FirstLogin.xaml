@@ -1,0 +1,58 @@
+﻿<Window x:Class="PresentationLayer.FirstLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        WindowStartupLocation="CenterScreen"
+        Icon="images/IconoSystem.png"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="15"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Primer Inicio de sesión" Height="400" Width="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition Width="190"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Primer inicio de sesión" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="DarkBlue"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
+        <Button Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="20" Click="BehindButtonClicked">
+            <materialDesign:PackIcon Kind="ArrowLeftBold" Height="30" Width="30" HorizontalAlignment="Center"/>
+        </Button>
+        <Grid x:Name="FormGrid" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Content="Nuevo Usuario: " VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <TextBox Name="TextBoxNewUser" Height="30" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="145" HorizontalAlignment="Left" />
+
+            <Label Content="Nueva Contraseña: " VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <PasswordBox Name="PasswordBoxNewPassword" Height="30"  Grid.Row="1" Grid.Column="1"  FontSize="15" VerticalAlignment="Top" Width="145" HorizontalAlignment="Left"/>
+
+            <Label Content="Confirmación de Contraseña: " VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <PasswordBox Name="PasswordBoxPasswordConfirmation" Height="30"  Grid.Row="2" Grid.Column="1"  FontSize="15" VerticalAlignment="Top" Width="145" HorizontalAlignment="Left"/>
+            
+            <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                VerticalAlignment="Center" HorizontalAlignment="Center" Content="Guardar" Click="SaveButtonClicked"></Button>
+        </Grid>
+        <Image Grid.Row="1" Grid.Column="1" Source="Images/logoSystem.png" Margin="10,40,20,10" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+    </Grid>
+</Window>
