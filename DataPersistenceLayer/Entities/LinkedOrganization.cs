@@ -24,8 +24,9 @@ namespace DataPersistenceLayer.Entities
         public string Email { get; set; }
 
         [Required]
-        public virtual List<Phone> PhoneNumbers { get; set; }
-        
+        [MaxLength(15)]
+        public string PhoneNumber { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string Address { get; set; }
