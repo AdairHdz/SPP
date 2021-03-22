@@ -89,6 +89,9 @@
     <Compile Include="PracticionerConsult.xaml.cs">
       <DependentUpon>PracticionerConsult.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PracticionerDeletion.xaml.cs">
+      <DependentUpon>PracticionerDeletion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ResponsibleProjectDeletion.xaml.cs">
       <DependentUpon>ResponsibleProjectDeletion.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PracticionerConsult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PracticionerDeletion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -6,5 +6,6 @@ namespace DataPersistenceLayer.Repositories
     {
         bool PracticionerIsAlreadyRegistered(Practicioner practicioner);
         bool PracticionerHasActiveProject(string enrollment);
+        void SetPracticionerStatusAsInactive(string enrollment);
     }
 }

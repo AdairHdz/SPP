@@ -185,8 +185,21 @@ namespace PresentationLayer
             Practicioner practicioner = ((Practicioner)ListViewPracticioners.SelectedItem);
             try
             {
-                MessageBox.Show("Funcion Eliminar");
-
+                ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
+                UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
+                bool practicionerCantBeDeleted = unitOfWork.Practicioners.PracticionerHasActiveProject(practicioner.Enrollment);
+                unitOfWork.Practicioners.PracticionerHasActiveProject(practicioner.Enrollment);
+                if (practicionerCantBeDeleted)
+                {
+                    MessageBox.Show("El practicante tiene asignado un proyecto activo, no se puede eliminar", "No se puede eliminar", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    PracticionerDeletion practicionerDeletion = new PracticionerDeletion();
+                    practicionerDeletion.InitializeDataPracticioner(practicioner);
+                    practicionerDeletion.Show();
+                    Close();
+                }
             }
             catch (EntityException)
             {
