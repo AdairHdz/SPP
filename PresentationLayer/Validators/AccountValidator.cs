@@ -13,5 +13,13 @@ namespace PresentationLayer.Validators
                 .WithState(account => "PasswordBoxPassword").MaximumLength(60)
                 .WithState(account => "PasswordBoxPassword").MinimumLength(8);
         }
+
+        public AccountValidator(Account accountCurrent)
+        {
+            RuleFor(account => account.Username).NotEmpty()
+                .MaximumLength(50).Equal(accountCurrent.Username).WithState(account => "TextBoxUsername");
+            RuleFor(account => account.Password).NotEmpty().MaximumLength(60).MinimumLength(8).Equal(accountCurrent.Password).WithState(account => "PasswordBoxPassword");
+        }
+
     }
 }
