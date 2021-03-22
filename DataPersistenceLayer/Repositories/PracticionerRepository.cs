@@ -1,5 +1,6 @@
 ﻿using DataPersistenceLayer.Entities;
 using System.Data.Entity;
+using System.Linq;
 
 namespace DataPersistenceLayer.Repositories
 {
@@ -18,13 +19,34 @@ namespace DataPersistenceLayer.Repositories
         public bool PracticionerIsAlreadyRegistered(Practicioner practicioner)
         {
             Practicioner practicionerWithSameEnrollment = Get(practicioner.Enrollment);
-            bool exist = false;
             if (practicionerWithSameEnrollment != null)
             {
-                exist = true;
+                return true;
             }
+            else
+            {
+                return false;
+            }
+        }
 
-            return exist;
+        public bool PracticionerHasActiveProject(string enrollment)
+        {
+            Assignment assignment = _context.Set<Assignment>().SingleOrDefault(Assignment => Assignment.Enrollment == enrollment
+            && (Assignment.Project.Status == ProjectStatus.FILLED || Assignment.Project.Status == ProjectStatus.ACTIVE));
+            if (!object.ReferenceEquals(null, assignment))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void SetPracticionerStatusAsInactive(string enrollment)
+        {
+            Practicioner practicioner = _context.Set<Practicioner>().SingleOrDefault(Practicioner => Practicioner.Enrollment == enrollment);
+            if (!object.ReferenceEquals(null, practicioner))
+            {
+                practicioner.User.UserStatus = UserStatus.INACTIVE;
+            }
         }
     }
 }

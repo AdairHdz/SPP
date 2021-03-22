@@ -96,6 +96,13 @@ namespace PresentationLayer
 
         private void CancelButtonClicked(object sender, RoutedEventArgs e)
         {
+            CoordinatorConsultation coordinatorConsultation = new CoordinatorConsultation();
+            coordinatorConsultation.Show();
+            this.Close();
+        }
+
+        private void BackButtonClicked(object sender, RoutedEventArgs e)
+        {
             this.Close();
         }
     }
