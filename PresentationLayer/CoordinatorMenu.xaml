@@ -70,7 +70,7 @@
                             <Label Height="35" VerticalContentAlignment="Center" Content="Asignar Proyecto" Grid.Column="0" FontSize="16" Foreground="White" FontFamily="Arial" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
                         </Grid>
                     </Button>
-                    <Button Margin="0,10,0,10" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightSteelBlue" Foreground="White">
+                    <Button Margin="0,10,0,10" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Background="LightSteelBlue" Foreground="White" Click="RegisterPracticionerButtonClicked">
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="130"></ColumnDefinition>
@@ -80,7 +80,7 @@
                             <Label VerticalContentAlignment="Center" Height="35" Content="Registrar" Grid.Column="0" FontSize="16" Foreground="Black" FontFamily="Arial" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
                         </Grid>
                     </Button>
-                    <Button Margin="0,10,0,0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" >
+                    <Button Margin="0,10,0,0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" Click="ConsultPracticionerButtonClicked" >
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="130"></ColumnDefinition>

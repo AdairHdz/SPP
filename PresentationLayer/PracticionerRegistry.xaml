@@ -21,8 +21,6 @@
         </Grid.RowDefinitions>
 
         <Rectangle Grid.Row="0" Fill="#5B007B"/>
-        <Button FontSize="12" Style="{StaticResource MaterialDesignRaisedAccentButton}"
-            ToolTip="Resource name: MaterialDesignRaisedAccentButton" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Cerrar Sesión" Click="LogOutButtonClicked" Margin="615,22,16,26" Width="111"/>
         <TextBlock Grid.Row="0" Text="Registrar Practicante" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
                    VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
 

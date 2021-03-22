@@ -204,6 +204,9 @@ namespace PresentationLayer
             catch (EntityException)
             {
                 MessageBox.Show("No hay conexión con la base de datos. Por favor intente más tarde", "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
+                CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
+                coordinatorMenu.Show();
+                this.Close();
             }
         }
 
