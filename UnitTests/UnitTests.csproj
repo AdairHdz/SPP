@@ -101,7 +101,7 @@
     <Compile Include="DataPersistenceLayerTests\UserTest\UserTest.cs" />
     <Compile Include="HashingTests\BCryptHashingTest.cs" />
     <Compile Include="HashingTests\BCryptHasherTest.cs" />
-    <Compile Include="LinkedOrganizationRegistryTest\LinkedOrganizationRegistryTest.cs" />
+    <Compile Include="PracticionerDeletionTestCase\PracticionerDeletionTest.cs" />
     <Compile Include="PracticionerRegistryTestCase\PracticionerRegistryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidatorsTests\ResponsibleProjectValidatorTest.cs" />
@@ -111,10 +111,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CoordinatorConsultationTestCase\" />
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DataPersistenceLayer\DataPersistenceLayer.csproj">
       <Project>{5AEEAEAA-3CB2-4EAE-B3AC-1703740CDDEE}</Project>

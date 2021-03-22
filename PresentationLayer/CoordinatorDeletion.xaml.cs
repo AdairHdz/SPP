@@ -100,5 +100,10 @@ namespace PresentationLayer
             coordinatorConsultation.Show();
             this.Close();
         }
+
+        private void BackButtonClicked(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
