@@ -1,10 +1,12 @@
 ﻿using DataPersistenceLayer;
 using DataPersistenceLayer.Entities;
 using DataPersistenceLayer.UnitsOfWork;
+using PresentationLayer.Validators;
 using System.Data.Entity.Core;
 using System.Windows;
-using System.Windows.Media;
 using Utilities;
+using FluentValidation.Results;
+using System.Collections.Generic;
 
 namespace PresentationLayer
 {
@@ -13,7 +15,8 @@ namespace PresentationLayer
     /// </summary>
     public partial class Login : Window
     {
-        private Account account;
+        private Account accountCurrent;
+        private Account accountReceived;
         private User user;
         public Login()
         {
@@ -26,24 +29,27 @@ namespace PresentationLayer
             {
                 ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
                 UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-                if (IsAccount(unitOfWork))
+                if (!IsAccount(unitOfWork))
                 {
-                    PasswordBoxPassword.BorderBrush = Brushes.Green;
-                    TextBoxUser.BorderBrush = Brushes.Green;
-                    if (IsActiveUser(unitOfWork))
+                    if (IsValidAccountPassword())
                     {
-                        OpenWindowUser();
+                        if (IsActiveUser(unitOfWork))
+                        {
+                            OpenWindowUser();
+                        }
+                        else
+                        {
+                            MessageBox.Show("La cuenta no esta activa", "Cuenta inactiva", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("La cuenta no esta activa", "Cuenta inactiva", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        MessageBox.Show("Contraseña incorrecta", "Login Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 else
                 {
-                    PasswordBoxPassword.BorderBrush = Brushes.Red;
-                    TextBoxUser.BorderBrush = Brushes.Red;
-                    MessageBox.Show("Contraseña o Usuario incorrectos", "Login Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Usuario incorrecto", "Login Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (EntityException)
@@ -54,20 +60,22 @@ namespace PresentationLayer
         
         private bool IsActiveUser(UnitOfWork unitOfWork)
         {
-            user = unitOfWork.Users.FindFirstOccurence(userObtein => userObtein.IdAccount == account.IdAccount);
+            user = unitOfWork.Users.FindFirstOccurence(userObtein => userObtein.IdAccount == accountReceived.IdAccount);
             return user.UserStatus == UserStatus.ACTIVE;
         }
 
         private bool IsAccount(UnitOfWork unitOfWork)
         {
-            string user = TextBoxUser.Text;
-            account = unitOfWork.Accounts.FindFirstOccurence(accountObtein => accountObtein.Username == user);
-            return !object.ReferenceEquals(null, account) && IsValidAccountPassword();
+            accountCurrent = new Account();
+            accountCurrent.Username = TextBoxUsername.Text;
+            accountCurrent.Password = PasswordBoxPassword.Password;
+            accountReceived = unitOfWork.Accounts.FindFirstOccurence(accountObtein => accountObtein.Username == accountCurrent.Username);
+            return object.ReferenceEquals(null, accountReceived);
         }
 
         private void OpenWindowUser()
         {
-            if (!account.FirstLogin) {
+            if (!accountReceived.FirstLogin) {
                 if (user.UserType == UserType.Coordinator)
                 {
                     CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
@@ -102,7 +110,7 @@ namespace PresentationLayer
             else
             {
                 FirstLogin firstLogin = new FirstLogin();
-                firstLogin.InitializeAccount(account);
+                firstLogin.InitializeAccount(accountReceived);
                 firstLogin.Show();
                 Close();
             }
@@ -111,9 +119,14 @@ namespace PresentationLayer
         private bool IsValidAccountPassword()
         {
             BCryptHashGenerator bCryptHashGenerator = new BCryptHashGenerator();
-            string hashedPassword = bCryptHashGenerator.GenerateHashedString(PasswordBoxPassword.Password, account.Salt);
-            return hashedPassword.Equals(account.Password);
+            string hashedPassword = bCryptHashGenerator.GenerateHashedString(accountCurrent.Password, accountReceived.Salt);
+            accountCurrent.Password = hashedPassword;
+            AccountValidator accountValidator = new AccountValidator(accountReceived);
+            ValidationResult dataValidationResult = accountValidator.Validate(accountCurrent);
+            IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
+            UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
+            userFeedback.ShowFeedback();
+            return dataValidationResult.IsValid;
         }
-
     }
 }

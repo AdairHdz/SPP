@@ -2,9 +2,6 @@
 using DataPersistenceLayer.Entities;
 using DataPersistenceLayer;
 using DataPersistenceLayer.UnitsOfWork;
-using PresentationLayer.Validators;
-using FluentValidation.Results;
-using System.Collections.Generic;
 using System.Data.Entity.Core;
 using System.Windows.Media;
 using Utilities;
@@ -36,29 +33,21 @@ namespace PresentationLayer
 
         private void SaveButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
-            CreateAccountFromInputData();
             if (PasswordBoxNewPassword.Password.Equals(PasswordBoxPasswordConfirmation.Password))
             {
-                if (IsValidAccount()){
-                    PasswordBoxPasswordConfirmation.BorderBrush = Brushes.Green;
+                if (IsValidAccount())
+                {
                     try
                     {
                         ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
                         UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-                        if (!AccountIsAlreadyRegistered(unitOfWork))
+                        HashAccountPassword();
+                        if (SaveAccount(unitOfWork))
                         {
-                            HashAccountPassword();
-                            if (RegisternewAccount(unitOfWork))
-                            {
-                                MessageBox.Show("La cuenta se guardo con éxito", "Cambios exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
-                                Login login = new Login();
-                                login.Show();
-                                Close();
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Existe una cuenta con el mismo usuario registrado", "Dato Repetido", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show("La cuenta se guardo con éxito", "Cambios exitoso", MessageBoxButton.OK, MessageBoxImage.Information);
+                            Login login = new Login();
+                            login.Show();
+                            Close();
                         }
                     }
                     catch (EntityException)
@@ -68,50 +57,44 @@ namespace PresentationLayer
                 }
                 else
                 {
-                    PasswordBoxPasswordConfirmation.BorderBrush = Brushes.Red;
-                    MessageBox.Show("Contraseña o Usuario inválidos", "Datos inválidos", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Contraseña y Confirmación inválidos", "Datos inválidos", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 
             }else
             {
+                PasswordBoxPasswordConfirmation.BorderBrush = Brushes.Red;
+                PasswordBoxNewPassword.BorderBrush = Brushes.Red;
                 MessageBox.Show("La contraseña y la confirmación no son iguales", "Contraseñas diferentes", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-        }
-
-        private bool AccountIsAlreadyRegistered(UnitOfWork unitOfWork)
-        {
-            Account accountWithSameEmailAddress = unitOfWork.Accounts.FindFirstOccurence(accountObtein => accountObtein.Username == account.Username && accountObtein.IdAccount != account.IdAccount);
-            if (accountWithSameEmailAddress != null)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private void CreateAccountFromInputData()
-        {
-            account.Username = TextBoxNewUser.Text;
-            account.Password = PasswordBoxNewPassword.Password;
-            account.FirstLogin = false;
         }
 
         private bool IsValidAccount()
         {
             PasswordBoxPasswordConfirmation.BorderBrush = Brushes.Gray;
-            AccountValidator accountValidator = new AccountValidator();
-            ValidationResult dataValidationResult = accountValidator.Validate(account);
-            IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
-            UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
-            userFeedback.ShowFeedback();
-            return dataValidationResult.IsValid;
+            PasswordBoxNewPassword.BorderBrush = Brushes.Gray;
+            string password = PasswordBoxNewPassword.Password;
+            if (!string.IsNullOrWhiteSpace(password) && password.Length<61 && password.Length>7)
+            {
+                PasswordBoxPasswordConfirmation.BorderBrush = Brushes.Green;
+                PasswordBoxNewPassword.BorderBrush = Brushes.Green;
+                account.Password = PasswordBoxNewPassword.Password;
+                return true;
+            }
+            else
+            {
+                PasswordBoxPasswordConfirmation.BorderBrush = Brushes.Red;
+                PasswordBoxNewPassword.BorderBrush = Brushes.Red;
+                return false;
+            }
+
         }
 
-        private bool RegisternewAccount(UnitOfWork unitOfWork)
+        private bool SaveAccount(UnitOfWork unitOfWork)
         {
             Account accountCurrent = unitOfWork.Accounts.Get(account.IdAccount);
-            accountCurrent.Username = account.Username;
             accountCurrent.Password = account.Password;
             accountCurrent.Salt = account.Salt;
+            accountCurrent.FirstLogin = false;
             int rowsAffected = unitOfWork.Complete();
             unitOfWork.Dispose();
             return rowsAffected == 1;

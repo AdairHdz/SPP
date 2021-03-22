@@ -15,7 +15,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Primer Inicio de sesión" Height="400" Width="600">
+        Title="Primer Inicio de sesión" Height="350" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition ></ColumnDefinition>
@@ -38,21 +38,17 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"></RowDefinition>
                 <RowDefinition Height="60"></RowDefinition>
-                <RowDefinition Height="60"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Content="Nuevo Usuario: " VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-            <TextBox Name="TextBoxNewUser" Height="30" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="145" HorizontalAlignment="Left" />
+            <Label Content="Nueva Contraseña: " VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <PasswordBox Name="PasswordBoxNewPassword" Height="30"  Grid.Row="0" Grid.Column="1"  FontSize="15" VerticalAlignment="Top" Width="145" HorizontalAlignment="Left"/>
 
-            <Label Content="Nueva Contraseña: " VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-            <PasswordBox Name="PasswordBoxNewPassword" Height="30"  Grid.Row="1" Grid.Column="1"  FontSize="15" VerticalAlignment="Top" Width="145" HorizontalAlignment="Left"/>
-
-            <Label Content="Confirmación de Contraseña: " VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-            <PasswordBox Name="PasswordBoxPasswordConfirmation" Height="30"  Grid.Row="2" Grid.Column="1"  FontSize="15" VerticalAlignment="Top" Width="145" HorizontalAlignment="Left"/>
+            <Label Content="Confirmación de Contraseña: " VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <PasswordBox Name="PasswordBoxPasswordConfirmation" Height="30"  Grid.Row="1" Grid.Column="1"  FontSize="15" VerticalAlignment="Top" Width="145" HorizontalAlignment="Left"/>
             
-            <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
                 VerticalAlignment="Center" HorizontalAlignment="Center" Content="Guardar" Click="SaveButtonClicked"></Button>
         </Grid>
-        <Image Grid.Row="1" Grid.Column="1" Source="Images/logoSystem.png" Margin="10,40,20,10" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
+        <Image Grid.Row="1" Grid.Column="1" Source="Images/logoSystem.png" Margin="10,30,20,10" HorizontalAlignment="Center" VerticalAlignment="Top"></Image>
     </Grid>
 </Window>

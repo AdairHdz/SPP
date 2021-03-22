@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Prácticas Profesionales" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="DarkBlue"
                    VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
-        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Name="FormGrid" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -38,7 +38,7 @@
                 <RowDefinition Height="50"></RowDefinition>
             </Grid.RowDefinitions>
             <Label Content="Usuario: " VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-            <TextBox Name="TextBoxUser" Height="30" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="145" HorizontalAlignment="Left" />
+            <TextBox Name="TextBoxUsername" Height="30" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="145" HorizontalAlignment="Left" />
 
             <Label Content="Contraseña: " VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
             <PasswordBox Name="PasswordBoxPassword" Height="30"  Grid.Row="1" Grid.Column="1"  FontSize="15" VerticalAlignment="Top" Width="145" HorizontalAlignment="Left"/>
