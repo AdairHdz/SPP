@@ -32,18 +32,25 @@ namespace PresentationLayer
         {
             InitializeComponent();
             this.DataContext = LinkedOrganization;
+            try
+            {
+                ComboBoxCity.DisplayMemberPath = "NameCity";
+                ComboBoxCity.SelectedValuePath = "IdCity";
+                ComboBoxCity.ItemsSource = RecoverCities().ToList();
 
-            ComboBoxCity.DisplayMemberPath = "NameCity";
-            ComboBoxCity.SelectedValuePath = "IdCity";
-            ComboBoxCity.ItemsSource = RecoverCities().ToList();
+                ComboBoxState.DisplayMemberPath = "NameState";
+                ComboBoxState.SelectedValuePath = "IdState";
+                ComboBoxState.ItemsSource = RecoverStates().ToList();
 
-            ComboBoxState.DisplayMemberPath = "NameState";
-            ComboBoxState.SelectedValuePath = "IdState";
-            ComboBoxState.ItemsSource = RecoverStates().ToList();
-
-            ComboBoxSector.DisplayMemberPath = "NameSector";
-            ComboBoxSector.SelectedValuePath = "IdSector";
-            ComboBoxSector.ItemsSource = RecoverSectors().ToList();
+                ComboBoxSector.DisplayMemberPath = "NameSector";
+                ComboBoxSector.SelectedValuePath = "IdSector";
+                ComboBoxSector.ItemsSource = RecoverSectors().ToList();
+            }
+            catch (EntityException)
+            {
+                MessageBox.Show("Error de base de datos");
+            }
+            
         }
 
         private IEnumerable<City> RecoverCities()
@@ -75,25 +82,33 @@ namespace PresentationLayer
 
         private void RegisterButtonClicked(object sender, RoutedEventArgs e)
         {
-            CreateLinkedOrganizationFromInputData();
-            if (IsValidData())
+            try
             {
-                if (!LinkedOrganizationIsAlreadyRegistered())
+                CreateLinkedOrganizationFromInputData();
+                if (IsValidData())
                 {
-                    if (RegisterNewLinkedOrganization())
+                    if (!LinkedOrganizationIsAlreadyRegistered())
                     {
-                        MessageBox.Show("Organización vinculada registrado exitosamente");
+                        if (RegisterNewLinkedOrganization())
+                        {
+                            MessageBox.Show("Organización vinculada registrado exitosamente");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Esta Organización vinculada ya está registrado");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Esta Organización vinculada ya está registrado");
+                    MessageBox.Show("Datos no válidos");
                 }
             }
-            else
+            catch (EntityException)
             {
-                MessageBox.Show("Datos no válidos");
+                MessageBox.Show("Error de conexión con la base de datos");
             }
+            
         }
 
         private void CancelButtonClicked(object sender, RoutedEventArgs e)
@@ -125,7 +140,6 @@ namespace PresentationLayer
             LinkedOrganization.Name = TextBoxName.Text;
             LinkedOrganization.Address = TextBoxAddress.Text;
             LinkedOrganization.Email = TextBoxEmail.Text;
-
             CreatePhonesFromInputData();
 
             LinkedOrganization.DirectUsers = TextBoxDirectUsers.Text;
