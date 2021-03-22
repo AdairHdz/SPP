@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="135"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="1" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}" HorizontalAlignment="Right"
-                VerticalAlignment="Center" Content="Cerrar Sesión">
+                VerticalAlignment="Center" Content="Cerrar Sesión" Click="LogOutButtonClicked">
             </Button>
             <Image Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Source="images/logOut.png"></Image>
         </Grid>

@@ -94,6 +94,17 @@
     </Compile>
     <Compile Include="PracticionerDeletion.xaml.cs">
       <DependentUpon>PracticionerDeletion.xaml</DependentUpon>
+    <Compile Include="FirstLogin.xaml.cs">
+      <DependentUpon>FirstLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerMenu.xaml.cs">
+      <DependentUpon>ManagerMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PracticionerMenu.xaml.cs">
+      <DependentUpon>PracticionerMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="ResponsibleProjectDeletion.xaml.cs">
       <DependentUpon>ResponsibleProjectDeletion.xaml</DependentUpon>
@@ -115,6 +126,9 @@
     <Compile Include="Validators\AccountValidator.cs" />
     <Compile Include="Validators\LinkedOrganizationValidator.cs" />
     <Compile Include="Validators\PhoneValidator.cs" />
+    <Compile Include="TeacherMenu.xaml.cs">
+      <DependentUpon>TeacherMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Validators\PracticionerValidator.cs" />
     <Compile Include="Validators\ResponsibleProjectValidator.cs" />
     <Compile Include="Validators\UserFeedback.cs" />
@@ -150,6 +164,21 @@
     <Page Include="PracticionerDeletion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    <Page Include="FirstLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Login.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ManagerMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PracticionerMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ResponsibleProjectDeletion.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -183,6 +212,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResponsibleProjectRegistry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TeacherMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -227,6 +260,9 @@
   <ItemGroup>
     <Resource Include="Images\IconoSystem.png" />
     <Resource Include="Images\logOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logoSystem.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

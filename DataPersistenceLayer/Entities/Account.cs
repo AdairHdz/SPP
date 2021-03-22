@@ -14,5 +14,8 @@ namespace DataPersistenceLayer.Entities
         public string Password { get; set; }
 
         public bool FirstLogin { get; set; } = true;
+
+        [MaxLength(100)]
+        public string Salt { get; set; }
     }
 }

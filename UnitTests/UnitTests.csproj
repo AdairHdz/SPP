@@ -96,6 +96,7 @@
     <Compile Include="CoordinatorRegistryTestCase\RedTextBoxesTest.cs" />
     <Compile Include="DataPersistenceLayerTests\CoordinatorTest\CoordinatorTest.cs" />
     <Compile Include="DataPersistenceLayerTests\DbContextMock.cs" />
+    <Compile Include="DataPersistenceLayerTests\LoginTest.cs" />
     <Compile Include="DataPersistenceLayerTests\ResponsibleProjectTest\ResponsibleProjectTestConsult.cs" />
     <Compile Include="DataPersistenceLayerTests\ResponsibleProjectTest\ResponsibleProjectTest.cs" />
     <Compile Include="DataPersistenceLayerTests\UserTest\UserTest.cs" />
