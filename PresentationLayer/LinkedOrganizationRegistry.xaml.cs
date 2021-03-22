@@ -185,9 +185,14 @@ namespace PresentationLayer
         {
             ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
             UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-            bool linkedOrganizationIsAlreadyRegistered = unitOfWork.LinkedOrganizations.LinkedOrganizationIsAlreadyRegistered(LinkedOrganization);
-            unitOfWork.Dispose();
-            return linkedOrganizationIsAlreadyRegistered;
+            LinkedOrganization linkedOrganizationRetrieved = unitOfWork.LinkedOrganizations.FindFirstOccurence
+                (x => x.Name.Equals(LinkedOrganization.Name) || x.Email.Equals(LinkedOrganization.Email));
+
+            if (linkedOrganizationRetrieved != null)
+            {
+                return true;
+            }
+            return false;
         }
 
         private bool RegisterNewLinkedOrganization()

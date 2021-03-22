@@ -14,18 +14,5 @@ namespace DataPersistenceLayer.Repositories
         }
 
         public LinkedOrganizationRepository(DbContext context) : base(context) { }
-
-        public bool LinkedOrganizationIsAlreadyRegistered(LinkedOrganization linkedOrganization)
-        {
-            LinkedOrganization retrievedLinkedOrganization = FindFirstOccurence
-                (x => x.Name.Equals(linkedOrganization.Name) || x.Email.Equals(linkedOrganization.Email)); ;
-
-            if (retrievedLinkedOrganization != null)
-            {
-                return true;
-            }
-
-            return false;
-        }
     }
 }
