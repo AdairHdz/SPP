@@ -163,8 +163,8 @@
                     {
                         IdLinkedOrganization = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 50),
-                        DirectUsers = c.Int(nullable: false),
-                        IndirectUsers = c.Int(nullable: false),
+                        DirectUsers = c.String(nullable: false, maxLength: 150),
+                        IndirectUsers = c.String(nullable: false, maxLength: 150),
                         Email = c.String(nullable: false, maxLength: 254),
                         PhoneNumber = c.String(nullable: false, maxLength: 15),
                         Address = c.String(nullable: false, maxLength: 100),

@@ -25,10 +25,12 @@ namespace PresentationLayer.Validators
                 .Must(userValidator.BeValidEmail).WithState(linkedOrganization => "TextBoxEmail");
 
             RuleFor(linkedOrganization => linkedOrganization.DirectUsers).NotEmpty()
-                .GreaterThan(0).WithState(linkedOrganization => "TextBoxDirectUsers");
+                .MinimumLength(1).MaximumLength(150).Matches("[0-9a-zA-Z+]")
+                .WithState(linkedOrganization => "TextBoxDirectUsers");
 
             RuleFor(linkedOrganization => linkedOrganization.IndirectUsers).NotEmpty()
-                .GreaterThan(0).WithState(linkedOrganization => "TextBoxIndirectUsers");
+                .MinimumLength(1).MaximumLength(150).Matches("[0-9a-zA-Z+]")
+                .WithState(linkedOrganization => "TextBoxIndirectUsers");
 
             RuleFor(linkedOrganization => linkedOrganization.IdCity).NotEmpty()
                 .GreaterThan(0);

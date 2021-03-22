@@ -128,15 +128,10 @@ namespace PresentationLayer
 
             CreatePhonesFromInputData();
 
-            if (TextBoxDirectUsers.Text != null && TextBoxDirectUsers.Text.Length > 0)
-            {
-                LinkedOrganization.DirectUsers = Int32.Parse(TextBoxDirectUsers.Text);
-            }
-            if (TextBoxIndirectUsers.Text != null && TextBoxIndirectUsers.Text.Length > 0)
-            {
-                LinkedOrganization.IndirectUsers = Int32.Parse(TextBoxIndirectUsers.Text);
-            }
-
+            LinkedOrganization.DirectUsers = TextBoxDirectUsers.Text;
+            
+            LinkedOrganization.IndirectUsers = TextBoxIndirectUsers.Text;
+            
             if (ComboBoxCity.SelectedValue != null)
             {
                 LinkedOrganization.IdCity = (int)ComboBoxCity.SelectedValue;

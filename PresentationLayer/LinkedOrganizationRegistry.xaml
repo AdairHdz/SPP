@@ -114,17 +114,15 @@
 
             <Label Content="Núm. de usuarios directos:" VerticalAlignment="Top" Grid.Row="5" Grid.Column="0" HorizontalContentAlignment="Left" Height="35" FontFamily="Arial"/>
             <TextBox Name="TextBoxDirectUsers" Height="30" Grid.Row="5" Grid.Column="1"
-                     TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Bottom"
-                     Width="100" HorizontalAlignment="Left"
-                     materialDesign:HintAssist.HelperText="Solo números enteros"
-                     KeyDown="TextBoxKeyDownOnlyNumber" Margin="0,0,0,20"/>
+                     TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top"
+                     Width="250" HorizontalAlignment="Left" MaxLength="150"
+                     materialDesign:HintAssist.HelperText="Máximo 254 caracteres"/>
 
             <Label Content="Núm. de usuarios indirectos:" VerticalAlignment="Top" Grid.Row="6" Grid.Column="0" HorizontalContentAlignment="Left" Height="35" FontFamily="Arial"/>
             <TextBox Name="TextBoxIndirectUsers" Height="30" Grid.Row="6" Grid.Column="1"
                      TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top"
-                     Width="100" HorizontalAlignment="Left"
-                     materialDesign:HintAssist.HelperText="Solo números enteros"
-                     KeyDown="TextBoxKeyDownOnlyNumber"/>
+                     Width="250" HorizontalAlignment="Left" MaxLength="150"
+                     materialDesign:HintAssist.HelperText="Máximo 254 caracteres"/>
 
             <Label Content="Ciudad:" VerticalAlignment="Top" Grid.Row="7" Grid.Column="0" HorizontalContentAlignment="Left" Height="35" FontFamily="Arial"/>
             <ComboBox Name="ComboBoxCity" Grid.Row="7" Grid.Column="1" />

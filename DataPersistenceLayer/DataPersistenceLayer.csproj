@@ -83,7 +83,20 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserStatus.cs" />
     <Compile Include="Entities\UserType.cs" />
+    <Compile Include="Migrations\202103150155533_DatabaseRestore.cs" />
+    <Compile Include="Migrations\202103150155533_DatabaseRestore.designer.cs">
+      <DependentUpon>202103150155533_DatabaseRestore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103162047165_AddedVirtualNavigationToUserFromCoordinator.cs" />
+    <Compile Include="Migrations\202103162047165_AddedVirtualNavigationToUserFromCoordinator.designer.cs">
+      <DependentUpon>202103162047165_AddedVirtualNavigationToUserFromCoordinator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103212208493_DatabaseRestore1.cs" />
+    <Compile Include="Migrations\202103212208493_DatabaseRestore1.designer.cs">
+      <DependentUpon>202103212208493_DatabaseRestore1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\ModifyLinkedOrganization.cs" />
     <Compile Include="ProfessionalPracticesContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CoordinatorRepository.cs" />

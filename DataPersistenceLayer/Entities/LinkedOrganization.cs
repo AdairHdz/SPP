@@ -14,19 +14,15 @@ namespace DataPersistenceLayer.Entities
         public string Name { get; set; }
 
         [Required]
-        public int DirectUsers { get; set; }
+        public string DirectUsers { get; set; }
 
         [Required]
-        public int IndirectUsers { get; set; }
+        public string IndirectUsers { get; set; }
 
         [Required]
         [MaxLength(254)]
         public string Email { get; set; }
 
-        /*[Required]
-        [MaxLength(15)]
-        public string PhoneNumber { get; set; }
-        */
         [Required]
         public virtual List<Phone> PhoneNumbers { get; set; }
 
