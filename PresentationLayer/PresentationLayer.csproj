@@ -104,6 +104,9 @@
     <Compile Include="PracticionerMenu.xaml.cs">
       <DependentUpon>PracticionerMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PracticionerModification.xaml.cs">
+      <DependentUpon>PracticionerModification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ResponsibleProjectDeletion.xaml.cs">
       <DependentUpon>ResponsibleProjectDeletion.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,10 @@
     <Page Include="PracticionerMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PracticionerModification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResponsibleProjectDeletion.xaml">
       <Generator>MSBuild:Compile</Generator>

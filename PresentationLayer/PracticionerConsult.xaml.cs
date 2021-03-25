@@ -212,7 +212,10 @@ namespace PresentationLayer
 
         private void ModifyButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
-
+            Practicioner practicioner = (Practicioner)ListViewPracticioners.SelectedItem;
+            PracticionerModification practicionerModification= new PracticionerModification(practicioner.Enrollment);
+            practicionerModification.Show();
+            this.Close();
         }
     }
 }
