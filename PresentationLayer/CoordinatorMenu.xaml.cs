@@ -32,5 +32,12 @@ namespace PresentationLayer
             login.Show();
             Close();
         }
+
+        private void RegisterLinkedOrganizationButtonClicked(object sender, RoutedEventArgs e)
+        {
+            LinkedOrganizationRegistry linkedOrganizationRegistry = new LinkedOrganizationRegistry();
+            linkedOrganizationRegistry.Show();
+            this.Close();
+        }
     }
 }

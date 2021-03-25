@@ -7,7 +7,11 @@ namespace DataPersistenceLayer.Entities
     {
         [Key]
         public int IdPhoneNumber { get; set; }
-        public string Extension { get; set; }        
+
+        [MaxLength(3)]
+        public string Extension { get; set; }
+        
+        [MaxLength(10)]
         public string PhoneNumber { get; set; }
 
         public int IdLinkedOrganization { get; set; }

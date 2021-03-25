@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataPersistenceLayer.Entities
 {
@@ -8,6 +9,7 @@ namespace DataPersistenceLayer.Entities
         public int IdCity { get; set; }
 
         [MaxLength(25)]
-        public string NameCity { get; set; }        
+        public string NameCity { get; set; }    
+
     }
 }
