@@ -74,6 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CoordinatorConsultation.xaml.cs">
+      <DependentUpon>CoordinatorConsultation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CoordinatorDeletion.xaml.cs">
       <DependentUpon>CoordinatorDeletion.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,12 @@
     </Compile>
     <Compile Include="ManagerMenu.xaml.cs">
       <DependentUpon>ManagerMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PracticionerConsult.xaml.cs">
+      <DependentUpon>PracticionerConsult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PracticionerDeletion.xaml.cs">
+      <DependentUpon>PracticionerDeletion.xaml</DependentUpon>
     </Compile>
     <Compile Include="PracticionerMenu.xaml.cs">
       <DependentUpon>PracticionerMenu.xaml</DependentUpon>
@@ -120,6 +129,10 @@
     <Compile Include="Validators\ResponsibleProjectValidator.cs" />
     <Compile Include="Validators\UserFeedback.cs" />
     <Compile Include="Validators\UserValidator.cs" />
+    <Page Include="CoordinatorConsultation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CoordinatorDeletion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -145,6 +158,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ManagerMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PracticionerConsult.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PracticionerDeletion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
