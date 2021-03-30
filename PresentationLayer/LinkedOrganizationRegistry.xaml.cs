@@ -183,8 +183,9 @@ namespace PresentationLayer
                 PhoneNumber = TextBoxPhoneNumber2.Text,
             };
 
-            LinkedOrganization.PhoneNumbers.Add(phone1);
-            LinkedOrganization.PhoneNumbers.Add(phone2);
+            LinkedOrganization.PhoneNumbers.Clear();
+            LinkedOrganization.PhoneNumbers.Insert(0, phone1);
+            LinkedOrganization.PhoneNumbers.Insert(1, phone2);
         }
 
         private void ComboBoxSectorSelectionChanged(object sender, SelectionChangedEventArgs e)
