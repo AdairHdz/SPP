@@ -32,5 +32,18 @@ namespace PresentationLayer
             login.Show();
             Close();
         }
+
+        private void ConsultPracticionerButtonClicked(object sender, RoutedEventArgs routedEventArgs)
+        {
+            PracticionerConsult practicionerConsult = new PracticionerConsult();
+            practicionerConsult.Show();
+            Close();
+        }
+        private void RegisterPracticionerButtonClicked(object sender, RoutedEventArgs routedEventArgs)
+        {
+            PracticionerRegistry practicionerRegistry = new PracticionerRegistry();
+            practicionerRegistry.Show();
+            Close();
+        }
     }
 }

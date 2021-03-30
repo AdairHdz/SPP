@@ -38,18 +38,8 @@ namespace PresentationLayer
 
 			if (messageBoxResult == MessageBoxResult.Yes)
 			{
-				this.Close();
-			}
-
-		}
-
-		private void LogOutButtonClicked(object sender, RoutedEventArgs e)
-		{
-			MessageBoxResult messageBoxResult = MessageBox.Show("¿Seguro desea cerrar sesión?",
-				"Cerrar Sesión", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-			if (messageBoxResult == MessageBoxResult.Yes)
-			{
+				CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
+				coordinatorMenu.Show();
 				this.Close();
 			}
 
@@ -75,6 +65,9 @@ namespace PresentationLayer
 					HashAccountPassword();
 					RegisterNewPracticioner(unitOfWork);
 					MessageBox.Show("Practicante registrado exitosamente");
+					CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
+					coordinatorMenu.Show();
+					this.Close();
 				}
 				else
 				{
@@ -84,6 +77,9 @@ namespace PresentationLayer
 			catch (EntityException)
 			{
 				MessageBox.Show("No hay conexión con la base de datos. Intente más tarde");
+				CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
+				coordinatorMenu.Show();
+				this.Close();
 			}
 			finally
 			{
