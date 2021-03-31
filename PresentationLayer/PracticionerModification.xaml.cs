@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows;
 
-
 namespace PresentationLayer
 { 
 	/// <summary>
@@ -74,8 +73,7 @@ namespace PresentationLayer
 					_unitOfWork.Practicioners.PracticionerIsAlreadyRegistered(Practicioner, true);
 					if (thereIsAnotherCoordinatorWithTheSameInformation)
 					{
-						MessageBox.Show("El correo, correo alternativo o número " +
-							"de teléfono ingresado ya está ocupado por otro usuario");
+						MessageBox.Show("Este practicante ya está registrado");
 					}
 					else
 					{
@@ -93,7 +91,7 @@ namespace PresentationLayer
 				}
 				catch (SqlException)
 				{
-					MessageBox.Show("No hay conexión a la base de datos. Intente más tarde.");
+					MessageBox.Show("No hay conexión con la base de datos. Intente más tarde.");
 					_unitOfWork.Dispose();
 					this.Close();
 				}
@@ -120,7 +118,6 @@ namespace PresentationLayer
 			{
 				isValid = true;
 			}
-			Console.WriteLine(isValid + "metodo validatedata");
 			return isValid;
 		}
 
