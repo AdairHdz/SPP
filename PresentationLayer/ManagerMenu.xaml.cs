@@ -15,7 +15,9 @@ namespace PresentationLayer
 
         private void ConsultTeacherButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
-            
+            TeacherConsultation teacherConsultation = new TeacherConsultation();
+            teacherConsultation.Show();
+            Close();
         }
 
         private void LogOutButtonClicked(object sender, RoutedEventArgs routedEventArgs)
@@ -24,5 +26,6 @@ namespace PresentationLayer
             login.Show();
             Close();
         }
+
     }
 }
