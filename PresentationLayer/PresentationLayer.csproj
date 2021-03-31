@@ -122,6 +122,12 @@
     <Compile Include="ResponsibleProjectRegistry.xaml.cs">
       <DependentUpon>ResponsibleProjectRegistry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TeacherConsultation.xaml.cs">
+      <DependentUpon>TeacherConsultation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TeacherDeletion.xaml.cs">
+      <DependentUpon>TeacherDeletion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TeacherMenu.xaml.cs">
       <DependentUpon>TeacherMenu.xaml</DependentUpon>
     </Compile>
@@ -212,6 +218,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResponsibleProjectRegistry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TeacherConsultation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TeacherDeletion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
