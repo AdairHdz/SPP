@@ -1,21 +1,24 @@
 ﻿using DataPersistenceLayer;
 using DataPersistenceLayer.Entities;
 using DataPersistenceLayer.UnitsOfWork;
+using FluentValidation.Results;
 using PresentationLayer.Validators;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows;
-using System.Windows.Controls;
+
 
 namespace PresentationLayer
-{
+{ 
 	/// <summary>
 	/// Lógica de interacción para PractiiconerModification.xaml
 	/// </summary>
 	public partial class PracticionerModification : Window
 	{
+
 		private readonly ProfessionalPracticesContext _professionalPracticesContext;
-		private readonly UnitOfWork _unitOfWork;
+        private readonly UnitOfWork _unitOfWork;
 		public Practicioner Practicioner = new Practicioner
 		{
 			User = new User
@@ -25,9 +28,9 @@ namespace PresentationLayer
 		};
 		public PracticionerModification(string enrollment)
 		{
-			InitializeComponent();
 			_professionalPracticesContext = new ProfessionalPracticesContext();
 			_unitOfWork = new UnitOfWork(_professionalPracticesContext);
+			InitializeComponent();
 			ColocatePracticioner(enrollment);
 			this.DataContext = Practicioner;
 		}
@@ -58,24 +61,20 @@ namespace PresentationLayer
 				coordinatorMenu.Show();
 				this.Close();
 			}
-
 		}
 
 		private void ModifyButtonClicked(object sender, RoutedEventArgs e)
 		{
 			CreatePracticionerFromInputData();
-			FluentValidation.Results.ValidationResult dataValidationResult = ValidateData();
-			ShowUserFeedback(dataValidationResult);
-
-			try
+			if (ValidateData())
 			{
-				bool thereIsAnotherCoordinatorWithTheSameInformation =
-				_unitOfWork.Practicioners.PracticionerIsAlreadyRegistered(Practicioner, true);
-				if (dataValidationResult.IsValid)
+				try
 				{
+					bool thereIsAnotherCoordinatorWithTheSameInformation =
+					_unitOfWork.Practicioners.PracticionerIsAlreadyRegistered(Practicioner, true);
 					if (thereIsAnotherCoordinatorWithTheSameInformation)
 					{
-						MessageBox.Show("La matrícula, el correo, correo alternativo o número " +
+						MessageBox.Show("El correo, correo alternativo o número " +
 							"de teléfono ingresado ya está ocupado por otro usuario");
 					}
 					else
@@ -83,20 +82,48 @@ namespace PresentationLayer
 						bool userConfirmedAction = AskForConfirmation();
 						if (userConfirmedAction)
 						{
-							ModifyCoordinator();
+							_unitOfWork.Complete();
+							_unitOfWork.Dispose();
+							MessageBox.Show("Practicante modificado exitosamente.");
+							CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
+							coordinatorMenu.Show();
+							this.Close();
 						}
 					}
 				}
-			}
-			catch (SqlException)
-			{
-				MessageBox.Show("No hay conexión a la base de datos. Intente más tarde.");
-				_unitOfWork.Dispose();
-				CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
-				coordinatorMenu.Show();
-				this.Close();
+				catch (SqlException)
+				{
+					MessageBox.Show("No hay conexión a la base de datos. Intente más tarde.");
+					_unitOfWork.Dispose();
+					this.Close();
+				}
 			}
 		}
+
+		private bool ValidateData()
+		{
+			bool isValid = false;
+			PracticionerValidator practicionerDataValidator = new PracticionerValidator(true);
+			
+			ValidationResult dataValidationResult = practicionerDataValidator.Validate(Practicioner);
+	
+			IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
+			UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
+			userFeedback.ShowFeedback();
+
+			foreach (ValidationFailure v in validationFailures)
+			{
+				Console.WriteLine(v);
+			}
+
+			if (dataValidationResult.IsValid)
+			{
+				isValid = true;
+			}
+			Console.WriteLine(isValid + "metodo validatedata");
+			return isValid;
+		}
+
 
 		private void CreatePracticionerFromInputData()
 		{
@@ -109,7 +136,8 @@ namespace PresentationLayer
 			{
 				Practicioner.User.Gender = Gender.FEMALE;
 			}
-			int selectedTag = int.Parse(((ComboBoxItem)ComboBoxPracticionerStatus.SelectedItem).Tag.ToString());
+
+			int selectedTag = int.Parse(((System.Windows.Controls.ComboBoxItem)ComboBoxPracticionerStatus.SelectedItem).Tag.ToString());
 			if (selectedTag == 0)
 			{
 				Practicioner.User.UserStatus = UserStatus.INACTIVE;
@@ -118,30 +146,6 @@ namespace PresentationLayer
 			{
 				Practicioner.User.UserStatus = UserStatus.ACTIVE;
 			}
-		}
-
-		private FluentValidation.Results.ValidationResult ValidateData()
-		{
-			PracticionerValidator practicionerDataValidator = new PracticionerValidator();
-			FluentValidation.Results.ValidationResult dataValidationResult = practicionerDataValidator.Validate(Practicioner);
-			return dataValidationResult;
-		}
-
-		private void ShowUserFeedback(FluentValidation.Results.ValidationResult dataValidationResult)
-		{
-			UserFeedback userFeedback = new UserFeedback(FormGrid, dataValidationResult.Errors);
-			userFeedback.ShowFeedback();
-		}
-
-		private void ModifyCoordinator()
-		{
-			_unitOfWork.Complete();
-			_unitOfWork.Dispose();
-			MessageBox.Show("Practicante modificado exitosamente.");
-			CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
-			coordinatorMenu.Show();
-			this.Close();
-
 		}
 
 		private bool AskForConfirmation()
@@ -153,7 +157,6 @@ namespace PresentationLayer
 
 		private void CancelButtonClicked(object sender, RoutedEventArgs e)
 		{
-			_unitOfWork.Dispose();
 			PracticionerConsult practicionerConsult = new PracticionerConsult();
 			practicionerConsult.Show();
 			this.Close();
