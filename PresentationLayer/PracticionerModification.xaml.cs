@@ -108,12 +108,6 @@ namespace PresentationLayer
 			IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
 			UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
 			userFeedback.ShowFeedback();
-
-			foreach (ValidationFailure v in validationFailures)
-			{
-				Console.WriteLine(v);
-			}
-
 			if (dataValidationResult.IsValid)
 			{
 				isValid = true;
