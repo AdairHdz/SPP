@@ -79,6 +79,7 @@ namespace PresentationLayer
                 if (user.UserType == UserType.Coordinator)
                 {
                     CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
+                    CoordinatorMenu.User = user;
                     coordinatorMenu.Show();
                     Close();
                 }
