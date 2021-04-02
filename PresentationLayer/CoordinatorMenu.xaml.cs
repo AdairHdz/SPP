@@ -1,4 +1,7 @@
-﻿
+using DataPersistenceLayer;
+using DataPersistenceLayer.Entities;
+using DataPersistenceLayer.UnitsOfWork;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace PresentationLayer
@@ -32,6 +35,29 @@ namespace PresentationLayer
             login.Show();
             Close();
         }
+
+        private void ConsultPracticionerButtonClicked(object sender, RoutedEventArgs routedEventArgs)
+        {
+            ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
+            UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
+            IEnumerable<Practicioner> thereArePracticioners = unitOfWork.Practicioners.GetAll();
+            if (thereArePracticioners == null)
+            {
+                MessageBox.Show("No hay ningún practicante registrado", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                PracticionerConsult practicionerConsult = new PracticionerConsult();
+                practicionerConsult.Show();
+                Close();
+            }
+        }
+        private void RegisterPracticionerButtonClicked(object sender, RoutedEventArgs routedEventArgs)
+        {
+            PracticionerRegistry practicionerRegistry = new PracticionerRegistry();
+            practicionerRegistry.Show();
+            Close();
+        }
         
         private void RegisterLinkedOrganizationButtonClicked(object sender, RoutedEventArgs e)
         {
@@ -39,19 +65,7 @@ namespace PresentationLayer
             linkedOrganizationRegistry.Show();
             this.Close();
         }
-        
-        private void ConsultPracticionerButtonClicked(object sender, RoutedEventArgs routedEventArgs)
-        {
-            PracticionerConsult practicionerConsult = new PracticionerConsult();
-            practicionerConsult.Show();
-            Close();
-        }
-        
-        private void RegisterPracticionerButtonClicked(object sender, RoutedEventArgs routedEventArgs)
-        {
-            PracticionerRegistry practicionerRegistry = new PracticionerRegistry();
-            practicionerRegistry.Show();
-            Close();
-        }
+
+
     }
 }
