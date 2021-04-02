@@ -54,10 +54,10 @@ namespace PresentationLayer
             Close();
         }
 
-        private void ModifyLinkedOrganizationButtonClicked(object sender, RoutedEventArgs e)
+        private void ConsultLinkedOganizationButtonClicked(object sender, RoutedEventArgs e)
         {
-            LinkedOrganizationModification linkedOrganizationModification = new LinkedOrganizationModification();
-            linkedOrganizationModification.Show();
+            LinkedOrganizationConsultation linkedOrganizationConsultation = new LinkedOrganizationConsultation();
+            linkedOrganizationConsultation.Show();
             this.Close();
         }
     }
