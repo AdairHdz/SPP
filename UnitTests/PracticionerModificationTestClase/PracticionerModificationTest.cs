@@ -1,4 +1,4 @@
-﻿using DataPersistenceLayer;
+using DataPersistenceLayer;
 using DataPersistenceLayer.Entities;
 using DataPersistenceLayer.UnitsOfWork;
 using FluentValidation.TestHelper;
@@ -149,3 +149,4 @@ namespace UnitTests.PracticionerModificationTestCase
 		}
 	}
 }
+
