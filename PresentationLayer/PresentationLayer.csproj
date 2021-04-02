@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -89,9 +89,6 @@
     <Compile Include="FirstLogin.xaml.cs">
       <DependentUpon>FirstLogin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LinkedOrganizationRegistry.xaml.cs">
-      <DependentUpon>LinkedOrganizationRegistry.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -106,6 +103,9 @@
     </Compile>
     <Compile Include="PracticionerMenu.xaml.cs">
       <DependentUpon>PracticionerMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PracticionerModification.xaml.cs">
+      <DependentUpon>PracticionerModification.xaml</DependentUpon>
     </Compile>
     <Compile Include="ResponsibleProjectDeletion.xaml.cs">
       <DependentUpon>ResponsibleProjectDeletion.xaml</DependentUpon>
@@ -122,14 +122,18 @@
     <Compile Include="ResponsibleProjectRegistry.xaml.cs">
       <DependentUpon>ResponsibleProjectRegistry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TeacherConsultation.xaml.cs">
+      <DependentUpon>TeacherConsultation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TeacherDeletion.xaml.cs">
+      <DependentUpon>TeacherDeletion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TeacherMenu.xaml.cs">
       <DependentUpon>TeacherMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\GenderParser.cs" />
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
-    <Compile Include="Validators\LinkedOrganizationValidator.cs" />
-    <Compile Include="Validators\PhoneValidator.cs" />
     <Compile Include="Validators\PracticionerValidator.cs" />
     <Compile Include="Validators\ResponsibleProjectValidator.cs" />
     <Compile Include="Validators\UserFeedback.cs" />
@@ -158,10 +162,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LinkedOrganizationRegistry.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -181,6 +181,10 @@
     <Page Include="PracticionerMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PracticionerModification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResponsibleProjectDeletion.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -214,6 +218,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResponsibleProjectRegistry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TeacherConsultation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TeacherDeletion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

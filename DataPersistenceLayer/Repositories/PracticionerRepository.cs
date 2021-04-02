@@ -1,4 +1,5 @@
 ﻿using DataPersistenceLayer.Entities;
+using System;
 using System.Data.Entity;
 using System.Linq;
 
@@ -47,6 +48,55 @@ namespace DataPersistenceLayer.Repositories
             {
                 practicioner.User.UserStatus = UserStatus.INACTIVE;
             }
+        }
+
+        public bool PracticionerIsAlreadyRegistered(Practicioner practicioner, bool isUpdate)
+        {
+            User practicionerUser = practicioner.User;
+            int practicionerThatMatch = 0;
+            try
+            {
+                if (isUpdate)
+                {
+                    practicionerThatMatch = _context.Set<Practicioner>().Include(s => s.User)
+                    .Where(p => p.User.IdUser != practicionerUser.IdUser
+                    && (p.User.AlternateEmail.Equals(practicionerUser.AlternateEmail)
+                    || p.User.Email.Equals(practicionerUser.Email)
+                    || p.User.Email.Equals(practicionerUser.AlternateEmail)
+                    || p.User.AlternateEmail.Equals(practicionerUser.Email)
+                    || p.User.PhoneNumber.Equals(practicionerUser.PhoneNumber))).Count();
+                }
+                else
+                {
+                    practicionerThatMatch = _context.Set<Practicioner>()
+                    .Where(p => p.Enrollment.Equals(practicioner.Enrollment)
+                    || p.User.AlternateEmail.Equals(practicionerUser.AlternateEmail)
+                    || p.User.Email.Equals(practicionerUser.Email)
+                    || p.User.Email.Equals(practicionerUser.AlternateEmail)
+                    || p.User.AlternateEmail.Equals(practicionerUser.Email)
+                    || p.User.PhoneNumber.Equals(practicionerUser.PhoneNumber)).Include(c => c.User).Count();
+                }
+
+                if (practicionerThatMatch != 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
+        }
+
+        public Practicioner GetAllInformationPracticioner(string enrrolment)
+        {
+            Practicioner practicioner = _context.Set<Practicioner>().Include(s => s.User.Account).Where(practicionerSearch => practicionerSearch.Enrollment == enrrolment).First();
+            return practicioner;
         }
     }
 }
