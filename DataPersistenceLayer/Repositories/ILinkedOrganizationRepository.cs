@@ -6,5 +6,7 @@ namespace DataPersistenceLayer.Repositories
     {
         LinkedOrganization GetLinkedOrganization(int id);
         bool ThereIsAnotherLinkedOrganizationWithSameData(LinkedOrganization linkedOrganization);
+
+        bool HasActiveProjects(int idLinkedOrganization);
     }
 }

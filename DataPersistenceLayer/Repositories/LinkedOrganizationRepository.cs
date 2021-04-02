@@ -33,5 +33,21 @@ namespace DataPersistenceLayer.Repositories
 
             return retrievedLinkedOrganizations.Count() > 0;
         }
+
+        public bool HasActiveProjects(int idLinkedOrganization)
+        {
+            LinkedOrganization linkedOrganization = _context.Set<LinkedOrganization>().Find(idLinkedOrganization);
+            bool hasActiveProjects = false;
+            foreach(Project project in linkedOrganization.Projects)
+            {
+                if(project.Status == ProjectStatus.ACTIVE)
+                {
+                    hasActiveProjects = true;
+                    break;
+                }
+            }
+            return hasActiveProjects;
+            
+        }
     }
 }
