@@ -65,7 +65,7 @@
             <Label Name="LabelPhoneNumber" Height="35" Grid.Row="6" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
             <Button Name="ButtonDelete" Grid.Row="7" Grid.Column="0" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
-                VerticalAlignment="Center" HorizontalAlignment="Center" Content="Eliminar"></Button>
+                VerticalAlignment="Center" HorizontalAlignment="Center" Content="Eliminar" Click="DeleteButtonClicked"></Button>
             <Button Name="ButtonCancel" Grid.Row="7" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" Content="Cancelar" Click="CancelButtonClicked" />
         </Grid>
     </Grid>
