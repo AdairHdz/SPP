@@ -4,7 +4,6 @@ using DataPersistenceLayer.UnitsOfWork;
 using FluentValidation.TestHelper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PresentationLayer.Validators;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using UnitTests.DataPersistenceLayerTests;
@@ -28,7 +27,7 @@ namespace UnitTests.PracticionerRegistryTestCase
 			_practicioners = new List<Practicioner> {
 				new Practicioner
 				{
-					Enrollment = "zS18000000",
+					Enrollment = "zS18012124",
 					Term = "FEBRERO - JULIO 2021",
 					Credits = 288,
 					User = new User
@@ -38,12 +37,12 @@ namespace UnitTests.PracticionerRegistryTestCase
 						LastName = "Lune Herrera",
 						Gender = Gender.FEMALE,
 						UserStatus = UserStatus.ACTIVE,
-						Email = "anahi@hotmail.com",
-						AlternateEmail = "carmen@hotmail.com",
-						PhoneNumber = "2208043366",
+						Email = "zs18012124@estudiantes.uv.mx",
+						AlternateEmail = "ale_200200@hotmail.com",
+						PhoneNumber = "2281564676",
 						Account = new Account
 						{
-							Username = "zS18000000",
+							Username = "zS18012124",
 							Password = "Wigetta432f@",
 							FirstLogin = true
 						}
@@ -61,23 +60,23 @@ namespace UnitTests.PracticionerRegistryTestCase
 		{
 			Practicioner newPracticioner = new Practicioner
 			{
-				Enrollment = "zS19000000",
+				Enrollment = "zS18012124",
 				Term = "FEBRERO - JULIO 2021",
-				Credits = 288,
+				Credits = 285,
 				User = new User
 				{
 					IdUser = 1,
-					Name = "Angel Mauricio",
-					LastName = "Lopez Hernandez",
-					Gender = Gender.MALE,
+					Name = "Yazmin Alejandra",
+					LastName = "Luna Herrera",
+					Gender = Gender.FEMALE,
 					UserStatus = UserStatus.ACTIVE,
-					Email = "angel@hotmail.com",
-					AlternateEmail = "mau@hotmail.com",
-					PhoneNumber = "2298043366",
+					Email = "zs18012124@estudiantes.uv.mx",
+					AlternateEmail = "ale_200200@hotmail.com",
+					PhoneNumber = "2281564676",
 					Account = new Account
 					{
-						Username = "zS19000000",
-						Password = "WiLeontta432f@",
+						Username = "zS18012124",
+						Password = "Wigetta_200200",
 						FirstLogin = true
 					}
 				}
@@ -87,34 +86,34 @@ namespace UnitTests.PracticionerRegistryTestCase
 		}
 
 		[TestMethod]
-		public void RepeatedEnrollmentTest()
+		public void RepeatedInformationTest()
 		{
-			Practicioner repeatedEnrollmentPracticioner = new Practicioner
+			Practicioner repeatedInformationPracticioner = new Practicioner
 			{
-				Enrollment = "zS18000000",
+				Enrollment = "zS18012124",
 				Term = "FEBRERO - JULIO 2021",
-				Credits = 298,
+				Credits = 285,
 				User = new User
 				{
 					IdUser = 1,
-					Name = "Xiang",
-					LastName = "Ling",
+					Name = "Ana Maria",
+					LastName = "Herrera Espinosa",
 					Gender = Gender.FEMALE,
 					UserStatus = UserStatus.ACTIVE,
-					Email = "xiang@hotmail.com",
-					AlternateEmail = "ling@hotmail.com",
-					PhoneNumber = "2281346788",
+					Email = "zs18012124@estudiantes.uv.mx",
+					AlternateEmail = "ale_200200@hotmail.com",
+					PhoneNumber = "2281564676",
 					Account = new Account
 					{
-						Username = "zS18000000",
-						Password = "gouba432f@",
+						Username = "zS18012124",
+						Password = "Annita123@",
 						FirstLogin = true
 					}
 				}
 			};
 
 			bool expected = true;
-			bool actual = _unitOfWork.Practicioners.PracticionerIsAlreadyRegistered(repeatedEnrollmentPracticioner);
+			bool actual = _unitOfWork.Practicioners.PracticionerIsAlreadyRegistered(repeatedInformationPracticioner);
 			Assert.AreEqual(expected, actual);
 		}
 
@@ -123,23 +122,23 @@ namespace UnitTests.PracticionerRegistryTestCase
 		{
 			Practicioner invalidInformationPracticioner = new Practicioner
 			{
-				Enrollment = "zS17000000",
-				Term = "FEBRERO - JULIO 2021",
-				Credits = 298,
+				Enrollment = "AnaMaria",
+				Term = "",
+				Credits = 6,
 				User = new User
 				{
 					IdUser = 1,
-					Name = "",
-					LastName = "Lopez",
+					Name = "123",
+					LastName = "@@@@@",
 					Gender = Gender.FEMALE,
 					UserStatus = UserStatus.ACTIVE,
-					Email = "ganyu@hotmail.com",
-					AlternateEmail = "ganyuLz@hotmail.com",
-					PhoneNumber = "2281346711",
+					Email = "zs1801212estudiantes.uv.mx",
+					AlternateEmail = "ale_200200hotmail.com",
+					PhoneNumber = "666666",
 					Account = new Account
 					{
-						Username = "zS17000000",
-						Password = "ganyu20432f@",
+						Username = "AnaMaria",
+						Password = "a",
 						FirstLogin = true
 					}
 				}

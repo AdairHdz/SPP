@@ -44,13 +44,9 @@ namespace PresentationLayer
 		}
 		private void CancelButtonClicked(object sender, RoutedEventArgs routedEventArgs)
 		{
-			MessageBoxResult messageBoxResult = MessageBox.Show("¿Seguro desea cancelar?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
-			if (messageBoxResult == MessageBoxResult.Yes)
-			{
-				PracticionerConsult practicionerConsult = new PracticionerConsult();
-				practicionerConsult.Show();
-				Close();
-			}
+			PracticionerConsult practicionerConsult = new PracticionerConsult();
+			practicionerConsult.Show();
+			Close();
 		}
 
 		private void DeleteButtonClicked(object sender, RoutedEventArgs routedEventArgs)
