@@ -30,7 +30,7 @@ namespace PresentationLayer
         public LinkedOrganizationRegistry()
         {
             InitializeComponent();
-            this.DataContext = LinkedOrganization;            
+            this.DataContext = LinkedOrganization;
             LoadInitialDataForComboBoxes();
         }
 
@@ -58,14 +58,14 @@ namespace PresentationLayer
         private void LoadStates(UnitOfWork unitOfWork)
         {
             _statesList = unitOfWork.States.GetStatesWithCities();
-            foreach(State state in _statesList)
+            foreach (State state in _statesList)
             {
                 ComboBoxState.Items.Add(state);
             }
         }
 
         private void LoadSectors(UnitOfWork unitOfWork)
-        {            
+        {
             _sectorsList = unitOfWork.Sectors.GetAll().ToList();
             foreach (Sector sector in _sectorsList)
             {
@@ -75,9 +75,9 @@ namespace PresentationLayer
 
         private void ComboBoxStateSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBoxCity.Items.Clear();            
-            State stateSelected = (State)ComboBoxState.SelectedItem;            
-            _citiesList = stateSelected.Cities;             
+            ComboBoxCity.Items.Clear();
+            State stateSelected = (State)ComboBoxState.SelectedItem;
+            _citiesList = stateSelected.Cities;
             foreach (City city in _citiesList)
             {
                 ComboBoxCity.Items.Add(city);
@@ -111,7 +111,7 @@ namespace PresentationLayer
                     }
                     else
                     {
-                        unitOfWork.LinkedOrganizations.Add(LinkedOrganization);                        
+                        unitOfWork.LinkedOrganizations.Add(LinkedOrganization);
                         MessageBox.Show("La organización vinculada se registró exitosamente");
                     }
                 }
@@ -127,18 +127,18 @@ namespace PresentationLayer
                 }
             }
         }
-        
+
         private bool ThereIsAnotherLinkedOrganizationWithSameData(UnitOfWork unitOfWork)
         {
             LinkedOrganization retrievedLinkedOrganization =
-                unitOfWork.LinkedOrganizations.FindFirstOccurence(linkedOrganization => 
+                unitOfWork.LinkedOrganizations.FindFirstOccurence(linkedOrganization =>
                 linkedOrganization.Name.Equals(LinkedOrganization.Name)
                 || linkedOrganization.Email.Equals(LinkedOrganization.Email));
 
             Phone retrievedPhone = unitOfWork.Phones.FindFirstOccurence(phone => phone.PhoneNumber.Equals(LinkedOrganization.PhoneNumbers[0].PhoneNumber)
             || phone.PhoneNumber.Equals(LinkedOrganization.PhoneNumbers[1].PhoneNumber));
 
-            if(retrievedLinkedOrganization != null || retrievedPhone != null)
+            if (retrievedLinkedOrganization != null || retrievedPhone != null)
             {
                 return true;
             }
@@ -192,13 +192,6 @@ namespace PresentationLayer
             LinkedOrganization.PhoneNumbers.Clear();
             LinkedOrganization.PhoneNumbers.Insert(0, phone1);
             LinkedOrganization.PhoneNumbers.Insert(1, phone2);
-        }
-
-        private void ComboBoxSectorSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //string selectedSectorName = ComboBoxSector.SelectedItem.ToString();
-            //Sector selectedSector = _sectorsList.Find(sector => sector.NameSector.Equals(selectedSectorName));
-            //LinkedOrganization.Sector = selectedSector;
         }
     }
 }
