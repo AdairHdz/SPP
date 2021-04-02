@@ -39,6 +39,7 @@ namespace DataPersistenceLayer.Migrations
                     //}
                 }
             );
+            
 
             context.Sectors.AddOrUpdate(x => x.IdSector,
                 new Sector {NameSector = "Económico" },

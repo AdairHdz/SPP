@@ -11,6 +11,6 @@ namespace DataPersistenceLayer.Entities
         [MaxLength(25)]
         public string NameState { get; set; }
 
-        public List<City> Cities { get; set; }
+        public virtual List<City> Cities { get; set; }
     }
 }

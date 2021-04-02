@@ -89,6 +89,9 @@
     <Compile Include="FirstLogin.xaml.cs">
       <DependentUpon>FirstLogin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LinkedOrganizationModification.xaml.cs">
+      <DependentUpon>LinkedOrganizationModification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LinkedOrganizationRegistry.xaml.cs">
       <DependentUpon>LinkedOrganizationRegistry.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,12 @@
     </Compile>
     <Compile Include="ResponsibleProjectRegistry.xaml.cs">
       <DependentUpon>ResponsibleProjectRegistry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TeacherConsultation.xaml.cs">
+      <DependentUpon>TeacherConsultation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TeacherDeletion.xaml.cs">
+      <DependentUpon>TeacherDeletion.xaml</DependentUpon>
     </Compile>
     <Compile Include="TeacherMenu.xaml.cs">
       <DependentUpon>TeacherMenu.xaml</DependentUpon>
@@ -157,6 +166,10 @@
     <Page Include="FirstLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LinkedOrganizationModification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LinkedOrganizationRegistry.xaml">
       <SubType>Designer</SubType>
@@ -214,6 +227,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResponsibleProjectRegistry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TeacherConsultation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TeacherDeletion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -53,5 +53,12 @@ namespace PresentationLayer
             practicionerRegistry.Show();
             Close();
         }
+
+        private void ModifyLinkedOrganizationButtonClicked(object sender, RoutedEventArgs e)
+        {
+            LinkedOrganizationModification linkedOrganizationModification = new LinkedOrganizationModification();
+            linkedOrganizationModification.Show();
+            this.Close();
+        }
     }
 }
