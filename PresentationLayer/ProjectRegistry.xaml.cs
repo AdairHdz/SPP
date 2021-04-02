@@ -94,11 +94,17 @@ namespace PresentationLayer
 						{
 							MessageBox.Show("El proyecto no pudo registrarse. Intente más tarde", "Registro Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
 						}
+						CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
+						coordinatorMenu.Show();
+						Close();
 					}
 				}
 				catch (EntityException)
 				{
 					MessageBox.Show("El proyecto no pudo registrarse. Intente más tarde", "Registro Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
+					CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
+					coordinatorMenu.Show();
+					Close();
 				}
 			}
 			else
