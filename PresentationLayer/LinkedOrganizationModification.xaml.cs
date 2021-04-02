@@ -28,20 +28,20 @@ namespace PresentationLayer
             PhoneNumbers = new List<Phone>(),
         };
 
-        public LinkedOrganizationModification()
+        public LinkedOrganizationModification(int linkedOrganizationId)
         {
             InitializeComponent();
             _professionalPracticesContext = new ProfessionalPracticesContext();
             _unitOfWork = new UnitOfWork(_professionalPracticesContext);
-            LoadData(_unitOfWork);
+            LoadData(_unitOfWork, linkedOrganizationId);
             this.DataContext = LinkedOrganizationToBeModified;
         }
 
-        private void LoadData(UnitOfWork unitOfWork)
-        {
+        private void LoadData(UnitOfWork unitOfWork, int linkedOrganizationId)
+        {            
             try
             {
-                LoadLinkedOrganizationData(unitOfWork, 5);
+                LoadLinkedOrganizationData(unitOfWork, linkedOrganizationId);
                 LoadStatesWithCities(unitOfWork);
                 LoadSectors(unitOfWork);
             }
