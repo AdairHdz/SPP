@@ -26,6 +26,7 @@ namespace PresentationLayer
 
         private List<State> _statesList;
         private List<Sector> _sectorsList;
+        private List<City> _citiesList;
         public LinkedOrganizationRegistry()
         {
             InitializeComponent();
@@ -59,28 +60,27 @@ namespace PresentationLayer
             _statesList = unitOfWork.States.GetStatesWithCities();
             foreach(State state in _statesList)
             {
-                ComboBoxState.Items.Add(state.NameState);
+                ComboBoxState.Items.Add(state);
             }
         }
 
         private void LoadSectors(UnitOfWork unitOfWork)
         {            
             _sectorsList = unitOfWork.Sectors.GetAll().ToList();
-            foreach(Sector sector in _sectorsList)
+            foreach (Sector sector in _sectorsList)
             {
-                ComboBoxSector.Items.Add(sector.NameSector);
+                ComboBoxSector.Items.Add(sector);
             }
         }
 
         private void ComboBoxStateSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBoxCity.Items.Clear();
-            string selectedStateName = ComboBoxState.SelectedItem.ToString();
-            State stateSelected = _statesList.Find(st => st.NameState.Equals(selectedStateName));
-            LinkedOrganization.State = stateSelected;
-            foreach(City city in stateSelected.Cities)
+            ComboBoxCity.Items.Clear();            
+            State stateSelected = (State)ComboBoxState.SelectedItem;            
+            _citiesList = stateSelected.Cities;             
+            foreach (City city in _citiesList)
             {
-                ComboBoxCity.Items.Add(city.NameCity);
+                ComboBoxCity.Items.Add(city);
             }
             ComboBoxCity.SelectedIndex = 0;
         }
@@ -166,10 +166,16 @@ namespace PresentationLayer
 
         private void CreateLinkedOrganizationFromUserInput()
         {
-            var comboBoxItemSelected = ComboBoxCity.SelectedItem;
-            string selectedCityName = comboBoxItemSelected.ToString();
-            City selectedCity = LinkedOrganization.State.Cities.Find(citie => citie.NameCity.Equals(selectedCityName));
-            LinkedOrganization.City = selectedCity;
+            State selectedState = (State)ComboBoxState.SelectedItem;
+            City selectedCity = (City)ComboBoxCity.SelectedItem;
+            Sector selectedSector = (Sector)ComboBoxSector.SelectedItem;
+            LinkedOrganization.IdState = selectedState.IdState;
+            LinkedOrganization.IdCity = selectedCity.IdCity;
+            LinkedOrganization.IdSector = selectedSector.IdSector;
+
+            LinkedOrganization.State = null;
+            LinkedOrganization.City = null;
+            LinkedOrganization.Sector = null;
 
             Phone phone1 = new Phone()
             {
@@ -190,9 +196,9 @@ namespace PresentationLayer
 
         private void ComboBoxSectorSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string selectedSectorName = ComboBoxSector.SelectedItem.ToString();
-            Sector selectedSector = _sectorsList.Find(sector => sector.NameSector.Equals(selectedSectorName));
-            LinkedOrganization.Sector = selectedSector;
+            //string selectedSectorName = ComboBoxSector.SelectedItem.ToString();
+            //Sector selectedSector = _sectorsList.Find(sector => sector.NameSector.Equals(selectedSectorName));
+            //LinkedOrganization.Sector = selectedSector;
         }
     }
 }

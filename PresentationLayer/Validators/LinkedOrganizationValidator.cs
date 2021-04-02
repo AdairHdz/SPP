@@ -30,10 +30,6 @@ namespace PresentationLayer.Validators
                 .NotEmpty().WithState(linkedOrganization => "TextBoxAddress")
                 .MaximumLength(100).WithState(linkedOrganization => "TextBoxAddress");
 
-            RuleFor(linkedOrganization => linkedOrganization.City).NotNull();
-            RuleFor(linkedOrganization => linkedOrganization.State).NotNull();
-            RuleFor(linkedOrganization => linkedOrganization.Sector).NotNull();
-
             RuleFor(linkedOrganization => linkedOrganization.PhoneNumbers[0]).SetValidator(new PhoneValidator(1));
             RuleFor(linkedOrganization => linkedOrganization.PhoneNumbers[1]).SetValidator(new PhoneValidator(2));
         }

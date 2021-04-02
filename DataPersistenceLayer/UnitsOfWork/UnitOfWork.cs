@@ -8,7 +8,7 @@ namespace DataPersistenceLayer.UnitsOfWork
         public IRepository<Account> Accounts { get; private set; }
         public IRepository<City> Cities { get; private set; }
         public ICoordinatorRepository Coordinators { get; private set; }
-        public IRepository<LinkedOrganization> LinkedOrganizations { get; private set; }
+        public ILinkedOrganizationRepository LinkedOrganizations { get; private set; }
         public IPracticionerRepository Practicioners { get; private set; }
         public IRepository<Project> Projects { get; private set; }
         public IRepository<PartialReport> PartialReports { get; private set; }
@@ -18,7 +18,7 @@ namespace DataPersistenceLayer.UnitsOfWork
         public IRepository<Sector> Sectors { get; private set; }
         public IStateRepository States { get; private set; }
         public IRepository<Teacher> Teachers { get; private set; }
-        public IRepository<Phone> Phones { get; private set; }
+        public IPhoneRepository Phones { get; private set; }
         public IUserRepository Users { get; private set; }
         private readonly ProfessionalPracticesContext _context;
 
@@ -27,7 +27,7 @@ namespace DataPersistenceLayer.UnitsOfWork
             _context = context;
             Accounts = new Repository<Account>(_context);
             Coordinators = new CoordinatorRepository(_context);
-            LinkedOrganizations = new Repository<LinkedOrganization>(_context);
+            LinkedOrganizations = new LinkedOrganizationRepository(_context);
             Practicioners = new PracticionerRepository(_context);
             Projects = new Repository<Project>(_context);
             PartialReports = new Repository<PartialReport>(_context);
@@ -38,7 +38,7 @@ namespace DataPersistenceLayer.UnitsOfWork
             Users = new UserRepository(_context);
             States = new StateRepository(_context);
             Sectors = new Repository<Sector>(_context);
-            Phones = new Repository<Phone>(_context);
+            Phones = new PhoneRepository(_context);
         }
 
         /// <summary>

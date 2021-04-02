@@ -43,7 +43,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="230"></RowDefinition>
-                <RowDefinition Height="190"></RowDefinition>
+                <RowDefinition Height="240"></RowDefinition>
             </Grid.RowDefinitions>
             <GroupBox Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" >
                 <GroupBox.HeaderTemplate>
@@ -200,6 +200,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Button  Margin="0,0,0,10" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Background="DarkMagenta" Click="RegisterLinkedOrganizationButtonClicked">
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -211,7 +212,7 @@
                             <Label Height="35" VerticalContentAlignment="Center" Content="Registrar" Grid.Column="0" FontSize="16" Foreground="White" FontFamily="Arial" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
                         </Grid>
                     </Button>
-                    <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" >
+                    <Button Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" >
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
@@ -219,6 +220,16 @@
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon Kind="HomeSearch" Height="30" Width="35" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <Label Content="Consultar" Grid.Column="0" FontSize="16" Foreground="White" FontFamily="Arial" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                        </Grid>
+                    </Button>
+                    <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" Click="ModifyLinkedOrganizationButtonClicked" >
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon Kind="AccountSupervisorCircle" Height="30" Width="35" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Label Content="Modificar" Grid.Column="0" FontSize="16" Foreground="White" FontFamily="Arial" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
                         </Grid>
                     </Button>
                 </Grid>

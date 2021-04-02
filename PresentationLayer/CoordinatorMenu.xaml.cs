@@ -66,6 +66,5 @@ namespace PresentationLayer
             this.Close();
         }
 
-
     }
 }

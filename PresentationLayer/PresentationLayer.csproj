@@ -89,6 +89,12 @@
     <Compile Include="FirstLogin.xaml.cs">
       <DependentUpon>FirstLogin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LinkedOrganizationModification.xaml.cs">
+      <DependentUpon>LinkedOrganizationModification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LinkedOrganizationRegistry.xaml.cs">
+      <DependentUpon>LinkedOrganizationRegistry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
