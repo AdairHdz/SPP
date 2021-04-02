@@ -58,6 +58,12 @@ namespace PresentationLayer
             practicionerRegistry.Show();
             Close();
         }
+
+        private void ConsultLinkedOganizationButtonClicked(object sender, RoutedEventArgs e)
+        {
+            LinkedOrganizationConsultation linkedOrganizationConsultation = new LinkedOrganizationConsultation();
+            linkedOrganizationConsultation.Show();
+        }
         
         private void RegisterLinkedOrganizationButtonClicked(object sender, RoutedEventArgs e)
         {

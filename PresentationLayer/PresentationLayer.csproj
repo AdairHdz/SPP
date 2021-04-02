@@ -89,6 +89,9 @@
     <Compile Include="FirstLogin.xaml.cs">
       <DependentUpon>FirstLogin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LinkedOrganizationConsultation.xaml.cs">
+      <DependentUpon>LinkedOrganizationConsultation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LinkedOrganizationModification.xaml.cs">
       <DependentUpon>LinkedOrganizationModification.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,18 @@
     <Page Include="FirstLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LinkedOrganizationConsultation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LinkedOrganizationModification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LinkedOrganizationRegistry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
