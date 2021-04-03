@@ -21,6 +21,7 @@ namespace DataPersistenceLayer.UnitsOfWork
         public IRepository<Teacher> Teachers { get; private set; }
         public IPhoneRepository Phones { get; private set; }
         public IUserRepository Users { get; private set; }
+        public IRepository<SchedulingActivity> SchedulingActivities { get; private set; }
         private readonly ProfessionalPracticesContext _context;
 
         public UnitOfWork(ProfessionalPracticesContext context)
@@ -41,6 +42,7 @@ namespace DataPersistenceLayer.UnitsOfWork
             States = new StateRepository(_context);
             Sectors = new Repository<Sector>(_context);
             Phones = new PhoneRepository(_context);
+            SchedulingActivities = new Repository<SchedulingActivity>(_context);
         }
 
         /// <summary>
