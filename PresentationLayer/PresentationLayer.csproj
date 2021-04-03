@@ -122,6 +122,9 @@
     <Compile Include="ProjectConsultation.xaml.cs">
       <DependentUpon>ProjectConsultation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProjectDeletion.xaml.cs">
+      <DependentUpon>ProjectDeletion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ResponsibleProjectDeletion.xaml.cs">
       <DependentUpon>ResponsibleProjectDeletion.xaml</DependentUpon>
     </Compile>
@@ -220,6 +223,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProjectConsultation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectDeletion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

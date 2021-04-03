@@ -1,4 +1,6 @@
 ﻿using DataPersistenceLayer.Entities;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 
 namespace DataPersistenceLayer.Migrations
@@ -16,257 +18,240 @@ namespace DataPersistenceLayer.Migrations
             context.States.AddOrUpdate(x => x.IdState,
                 new State
                 {
+                    IdState = 1,
                     NameState = "Veracruz",
-                    //Cities = {
-                    //    new City { NameCity = "Coatepec" },
-                    //    new City { NameCity = "Xalapa" },
-                    //    new City { NameCity = "Veracruz" }
-                    //}
-                },
-                new State { 
-                    NameState = "Jalisco", 
-                    //Cities =
-                    //{
-                    //    new City { NameCity = "Guadalajara" }
-                    //}
+                    Cities = new List<City>
+                    {
+                        new City
+                        {
+                            IdCity = 1,
+                            NameCity = "Xalapa",                            
+                        },
+                        new City
+                        {
+                            IdCity = 2,
+                            NameCity = "Veracruz",
+                        },
+                        new City
+                        {
+                            IdCity = 3,
+                            NameCity = "Coatepec",
+                        },
+                    }
                 },
                 new State
                 { 
+                    IdState = 2,
+                    NameState = "Jalisco",
+                    Cities = new List<City>
+                    {
+                        new City
+                        {
+                            IdCity = 4,
+                            NameCity = "Tequila",
+                        },
+                        new City
+                        {
+                            IdCity = 5,
+                            NameCity = "Guadalajara",
+                        },                        
+                    }
+                },
+                new State
+                { 
+                    IdState = 3,
                     NameState = "Nuevo León",
-                    //Cities =
-                    //{
-                    //    new City { NameCity = "Monterrey" },                
-                    //}
+                    Cities = new List<City>
+                    {
+                        new City
+                        {
+                            IdCity = 6,
+                            NameCity = "Monterrey",
+                        },
+                    }
                 }
             );
             
 
             context.Sectors.AddOrUpdate(x => x.IdSector,
-                new Sector {NameSector = "Económico" },
-                new Sector {NameSector = "Industrial" }
+                new Sector
+                {
+                    IdSector = 1,
+                    NameSector = "Económico"
+                },
+                new Sector
+                {
+                    IdSector = 2,
+                    NameSector = "Industrial"
+                }
             );
 
-            //try
-            //{
+            context.Accounts.AddOrUpdate(x => x.IdAccount,
+                new Account
+                {
+                    IdAccount = 1,
+                    Username = "AdairHz",
+                    Password = "$2a$08$Rdx7XaN.UA7dKgNoX0GKdeRyXTiIHsnSW2zYDuzPaWi9EwlKF5FEe",
+                    FirstLogin = true,
+                    Salt = "$2a",
+                },
+                new Account
+                {
+                    IdAccount = 2,
+                    Username = "EduardoSl22",
+                    Password = "$2a$08$Rdx7XaN.UA7dKgNoX0GKdeRyXTiIHsnSW2zYDuzPaWi9EwlKF5FEe",
+                    FirstLogin = true,
+                    Salt = "$2a",
+                }
+            );
 
-                    //    context.UserStatuses.AddOrUpdate(x => x.UserStatusId,
-                    //        new UserStatus { UserStatusId = 1, Status = "Aceptado" }
-                    //    );
+            context.Users.AddOrUpdate(x => x.IdUser,
+                new User
+                {
+                    IdUser = 1,
+                    Name = "Adair Benjamin",
+                    LastName = "Hernandez Ortiz",
+                    Gender = Gender.MALE,
+                    UserStatus = UserStatus.ACTIVE,
+                    Email = "adairho16@gmail.com",
+                    AlternateEmail = "adair_lis.uv@gmail.com",
+                    PhoneNumber = "2281244285",
+                    UserType = UserType.Practicioner,
+                    IdAccount = 1,        
+                },
+                new User
+                {
+                    IdUser = 2,
+                    Name = "Eduardo Aldair",
+                    LastName = "Hernandez Solis",
+                    Gender = Gender.MALE,
+                    UserStatus = UserStatus.ACTIVE,
+                    Email = "eduardo@gmail.com",
+                    AlternateEmail = "edr_solis@gmail.com",
+                    PhoneNumber = "2283908831",
+                    UserType = UserType.Coordinator,
+                    IdAccount = 2,
+                }
+            );
 
-                    //    context.Periods.AddOrUpdate(x => x.IdPeriod,
-                    //        new Period { IdPeriod = 1, PeriodName = "Febrero-Julio" },
-                    //        new Period { IdPeriod = 2, PeriodName = "Agosto-Enero" }
-                    //    );
+            context.Practicioners.AddOrUpdate(x => x.Enrollment,
+                new Practicioner
+                {
+                    Enrollment = "S18012122",
+                    Term = "Febrero - Julio 2021",
+                    Credits = 250,
+                    IdUser = 1,                            
+                }
+            );
 
-                    //    context.Positions.AddOrUpdate(x => x.IdPosition,
-                    //        new Position { IdPosition = 1, NamePosition = "CEO" },
-                    //        new Position { IdPosition = 2, NamePosition = "Analista de negocios" }
-                    //    );
+            context.Coordinators.AddOrUpdate(x => x.StaffNumber,
+                new Coordinator
+                {
+                    StaffNumber = "ABC123",
+                    RegistrationDate = DateTime.Now,
+                    IdUser = 2        
+                }
+            );
 
-                    //    context.Genders.AddOrUpdate(x => x.IdGender,
-                    //        new Gender { IdGender = 1, GenderName = "Hombre" },
-                    //        new Gender { IdGender = 2, GenderName = "Mujer" }
-                    //    );
+            context.LinkedOrganizations.AddOrUpdate(x => x.IdLinkedOrganization,
+                new LinkedOrganization
+                {
+                    IdLinkedOrganization = 1,
+                    Name = "Dell",
+                    DirectUsers = "Desconocido",
+                    IndirectUsers = "Desconocido",
+                    Email = "bussiness_dell@gmail.com",
+                    PhoneNumbers = new List<Phone>
+                    {
+                        new Phone
+                        {
+                            IdPhoneNumber = 1,
+                            Extension = "521",
+                            PhoneNumber = "2280977854"
+                        }
+                    },
+                    Address = "Enrique Segoviano",
+                    IdCity = 1,
+                    IdState = 1,
+                    IdSector = 1,
+                    LinkedOrganizationStatus = LinkedOrganizationStatus.ACTIVE,        
+                }
+            );
 
-                    //    context.ProjectStatuses.AddOrUpdate(x => x.IdProjectStatus,
-                    //        new ProjectStatus { IdProjectStatus = 1, Status = "En proceso" }
-                    //    );
+            context.ResponsibleProjects.AddOrUpdate(x => x.IdResponsibleProject,
+                new ResponsibleProject
+                {
+                    IdResponsibleProject = 1,
+                    Name = "Hector",
+                    LastName = "Leal",
+                    EmailAddress = "hector@gmail.com",
+                    Charge = "Ejecutivo"
+                }
+            );
 
-                    //    context.Turns.AddOrUpdate(x => x.IdTurn,
-                    //        new Turn { IdTurn = 1, TurnName = "Matutino" },
-                    //        new Turn { IdTurn = 2, TurnName = "Vespertino" }
-                    //    );
+            context.Projects.AddOrUpdate(x => x.IdProject,
+            new Project
+            {
+                IdProject = 1,
+                NameProject = "Desarrollo de inventario",
+                Description = "Se debe desarrollar un inventario para una red inmobiliaria",
+                ObjectiveGeneral = "El objetivo general",
+                ObjectiveImmediate = "El objetivo inmediato",
+                ObjectiveMediate = "El objetivo mediato",
+                Methodology = "SCRUM",
+                Resources = "Recursos",
+                Status = ProjectStatus.ACTIVE,
+                Duration = 480,
+                Activities = "Actividades",
+                Responsibilities = "Responsabilidades",
+                QuantityPracticing = 2,
+                IdLinkedOrganization = 1,
+                StaffNumberCoordinator = "ABC123",
+                IdResponsibleProject = 1
+            },
+            new Project
+            {
+                IdProject = 2,
+                NameProject = "Sistema bibliotecario",
+                Description = "Se debe desarrollar un sistema bibliotecario",
+                ObjectiveGeneral = "El objetivo general",
+                ObjectiveImmediate = "El objetivo inmediato",
+                ObjectiveMediate = "El objetivo mediato",
+                Methodology = "SCRUM",
+                Resources = "Recursos",
+                Status = ProjectStatus.ACTIVE,
+                Duration = 360,
+                Activities = "Actividades",
+                Responsibilities = "Responsabilidades",
+                QuantityPracticing = 1,
+                IdLinkedOrganization = 1,
+                StaffNumberCoordinator = "ABC123",
+                IdResponsibleProject = 1
+            }
+        );
 
-                    //    context.RequestStatuses.AddOrUpdate(x => x.IdRequestStatus,
-                    //        new RequestStatus { IdRequestStatus = 1, Status = "Aprobada" },
-                    //        new RequestStatus { IdRequestStatus = 2, Status = "Rechazada" }
-                    //    );
+            context.OfficeOfAcceptances.AddOrUpdate(x => x.IdOfAcceptance,
+                new OfficeOfAcceptance
+                {
+                    IdOfAcceptance = 1,
+                    DateOfAcceptance = DateTime.Now,
+                    RouteSave = ""        
+                }
+             );
 
-                    //    context.LinkedOrganizations.AddOrUpdate(x => x.IdLinkedOrganization,
-                    //        new LinkedOrganization
-                    //        {
-                    //            IdLinkedOrganization = 1,
-                    //            Name = "Softech",
-                    //            DirectUsers = 5,
-                    //            IndirectUsers = 100,
-                    //            Email = "softech@gmail.com",
-                    //            PhoneNumber = "2281214885",
-                    //            Address = "Av. Xalapa #21",
-                    //            IdCity = 1,
-                    //            IdState = 1,
-                    //            IdSector = 1
-                    //        }
-                    //    );
-
-                    //    context.Users.AddOrUpdate(x => x.IdUser,
-                    //        new User
-                    //        {
-                    //            IdUser = 1,
-                    //            Name = "Adair Benjamín",
-                    //            LastName = "Hernández Ortiz",
-                    //            IdGender = 1,
-                    //            IdStatus = 1,
-                    //            Email = "zS18012122@uv.com.mx",
-                    //            AlternateEmail = "adairho16@gmail.com",
-                    //            PhoneNumber = "2281244285"
-                    //        },
-                    //         new User
-                    //         {
-                    //             IdUser = 2,
-                    //             Name = "Yazmín Alejandra",
-                    //             LastName = "Luna Herrera",
-                    //             IdGender = 2,
-                    //             IdStatus = 1,
-                    //             Email = "zS18012067@uv.com.mx",
-                    //             AlternateEmail = "luna.yazmin@gmail.com",
-                    //             PhoneNumber = "2281249071"
-                    //         },
-                    //         new User
-                    //         {
-                    //             IdUser = 3,
-                    //             Name = "Ángel José",
-                    //             LastName = "Calderón Ortega",
-                    //             IdGender = 1,
-                    //             IdStatus = 1,
-                    //             Email = "zS18012001@uv.com.mx",
-                    //             AlternateEmail = "angel@gmail.com",
-                    //             PhoneNumber = "2281091542"
-                    //         },
-                    //         new User
-                    //         {
-                    //             IdUser = 4,
-                    //             Name = "Martha Miroslava",
-                    //             LastName = "Ortiz López",
-                    //             IdGender = 2,
-                    //             IdStatus = 1,
-                    //             Email = "zS18012156@uv.com.mx",
-                    //             AlternateEmail = "martha_ortia@gmail.com",
-                    //             PhoneNumber = "2281091456"
-                    //         }
-                    //    );
-
-                    //    context.LoginAccounts.AddOrUpdate(x => x.IdLoginAccount,
-                    //        new Account
-                    //        {
-                    //            IdLoginAccount = 1,
-                    //            Username = "YazLuna",
-                    //            Password = "adadsnvcldsfk474",
-                    //            FirstLogin = false,
-                    //            IdUser = 2
-                    //        });
-
-                    //    context.Coordinators.AddOrUpdate(x => x.StaffNumber,
-                    //        new Coordinator
-                    //        {
-                    //            StaffNumber = "ABC123",
-                    //            RegistrationDate = DateTime.Today,
-                    //            IdUser = 2
-                    //        }
-                    //    );
-
-                    //    context.Teachers.AddOrUpdate(x => x.StaffNumber,
-                    //        new Teacher
-                    //        {
-                    //            StaffNumber = "DEF456",
-                    //            RegistrationDate = DateTime.Now,
-                    //            IdTurn = 1,
-                    //            IdUser = 3
-                    //        }
-                    //    );
-
-                    //    context.ResponsibleProjects.AddOrUpdate(x => x.IdResponsibleProject,
-                    //        new ResponsibleProject
-                    //        {
-                    //            IdResponsibleProject = 1,
-                    //            Name = "Carlos",
-                    //            LastName = "Esparza Rodriguez",
-                    //            EmailAddress = "carlos.esparza@gmail.com",
-                    //            IdPosition = 1
-                    //        }
-                    //    );
-
-                    //    context.Projects.AddOrUpdate(x => x.IdProject,
-                    //        new Project
-                    //        {
-                    //            IdProject = 1,
-                    //            NameProject = "Desarrollo de inventario",
-                    //            Description = "Se debe desarrollar un inventario para una red inmobiliaria",
-                    //            ObjectiveGeneral = "El objetivo general",
-                    //            ObjectiveImmediate = "El objetivo inmediato",
-                    //            ObjectiveMediate = "El objetivo mediato",
-                    //            Methodology = "SCRUM",
-                    //            Resources = "Recursos",
-                    //            IdProjectStatus = 1,
-                    //            Duration = 480,
-                    //            Activities = "Actividades",
-                    //            Responsibilities = "Responsabilidades",
-                    //            QuantityPracticing = 2,
-                    //            IdLinkedOrganization = 1,
-                    //            StaffNumberCoordinator = "ABC123",
-                    //            IdResponsibleProject = 1
-                    //        }
-                    //    );
-
-                    //    context.Practicings.AddOrUpdate(x => x.Enrollment,
-                    //        new Practicioner
-                    //        {
-                    //            Enrollment = "S18012122",
-                    //            IdTurn = 1,
-                    //            IdPeriod = 1,
-                    //            IdUser = 1,
-                    //            IdProject = 1
-                    //        }
-                    //    );
-
-                    //    context.Activities.AddOrUpdate(x => x.IdActivity,
-                    //        new Activity
-                    //        {
-                    //            IdActivity = 1,
-                    //            Value = 5,
-                    //            Name = "Actividad 1",
-                    //            DeliverDate = DateTime.Now,
-                    //            EnrollmentPracticing = "S18012122",
-                    //            StaffNumber = "DEF456"
-                    //        }
-                    //    );
-
-                    //    context.Reports.AddOrUpdate(x => x.IdReport,
-                    //        new Report
-                    //        {
-                    //            IdReport = 1,
-                    //            Activities = "Actividades realizadas",
-                    //            EnrollmentPracticing = "S18012122"
-                    //        },
-                    //        new Report
-                    //        {
-                    //            IdReport = 2,
-                    //            Activities = "Actividades realizadas",
-                    //            EnrollmentPracticing = "S18012122"
-                    //        }
-                    //    );
-
-                    //    context.ReportPartials.AddOrUpdate(x => x.IdReportParcial,
-                    //        new PartialReport
-                    //        {
-                    //            IdReportParcial = 2,
-                    //            NumberReport = 1,
-                    //            ResultsObtained = "Buenos resultados",
-                    //            HoursCovered = 100,
-                    //            IdReport = 2
-                    //        }
-                    //    );
-                    //}
-                    //catch (DbEntityValidationException dbEx)
-                    //{
-                    //    foreach (var validationErrors in dbEx.EntityValidationErrors)
-                    //    {
-                    //        foreach (var validationError in validationErrors.ValidationErrors)
-                    //        {
-                    //            Console.WriteLine(validationError.PropertyName, validationError.ErrorMessage);
-
-                    //        }
-                    //    }
-                    //}
+           context.Assignments.AddOrUpdate(x => x.IdAssignment,
+                new Assignment
+                {
+                    IdAssignment = 1,
+                    StartTerm = "Febrero - Julio 2021",
+                    CompletionTerm = "Agosto - Diciembre 2021",
+                    DateAssignment = DateTime.Now,                    
+                    Status = AssignmentStatus.Assigned,
+                    IdProject = 1,
+                    Enrollment = "S18012122",      
+                    IdOfficeOfAcceptance = 1
+                }
+            );
 
 
         }
