@@ -98,6 +98,7 @@
     <Compile Include="DataPersistenceLayerTests\DbContextMock.cs" />
     <Compile Include="DataPersistenceLayerTests\LoginTest.cs" />
     <Compile Include="DataPersistenceLayerTests\ProjectTest\LinkedOrganizationChooseTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\ProjectTest\ProjectModificationTest.cs" />
     <Compile Include="DataPersistenceLayerTests\ProjectTest\ProjectRegistryTest.cs" />
     <Compile Include="DataPersistenceLayerTests\ProjectTest\ResponsibleProjectChooseTest.cs" />
     <Compile Include="DataPersistenceLayerTests\ProjectTest\SchedulingActivityTest.cs" />

@@ -124,6 +124,10 @@
     </Compile>
     <Compile Include="ProjectConsultation.xaml.cs">
       <DependentUpon>ProjectConsultation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectModification.xaml.cs">
+      <DependentUpon>ProjectModification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProjectRegistry.xaml.cs">
       <DependentUpon>ProjectRegistry.xaml</DependentUpon>
     </Compile>
@@ -147,6 +151,12 @@
     </Compile>
     <Compile Include="ResponsibleProjectRegistry.xaml.cs">
       <DependentUpon>ResponsibleProjectRegistry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SchedulingActivityModification.xaml.cs">
+      <DependentUpon>SchedulingActivityModification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SchedulingActivityRegistration.xaml.cs">
+      <DependentUpon>SchedulingActivityRegistration.xaml</DependentUpon>
     </Compile>
     <Compile Include="TeacherConsultation.xaml.cs">
       <DependentUpon>TeacherConsultation.xaml</DependentUpon>
@@ -239,6 +249,11 @@
     <Page Include="ProjectConsultation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectModification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ProjectRegistry.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -283,6 +298,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResponsibleProjectRegistry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SchedulingActivityModification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SchedulingActivityRegistration.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
