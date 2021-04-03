@@ -77,7 +77,7 @@ namespace PresentationLayer
         
         private void RegisterProjectButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
-            try
+          try
             {
                 ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
                 UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
@@ -93,6 +93,13 @@ namespace PresentationLayer
             {
                 MessageBox.Show("El coordinador no se encontro. Intente más tarde", "Ingreso Faliido", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void ConsultProjectButtonClicked(object sender, RoutedEventArgs e)
+        {
+            ProjectConsultation projectConsultation = new ProjectConsultation();
+            projectConsultation.Show();
+            Close();
         }
     }
 }

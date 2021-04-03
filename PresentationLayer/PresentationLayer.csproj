@@ -122,6 +122,8 @@
     <Compile Include="PracticionerModification.xaml.cs">
       <DependentUpon>PracticionerModification.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProjectConsultation.xaml.cs">
+      <DependentUpon>ProjectConsultation.xaml</DependentUpon>
     <Compile Include="ProjectRegistry.xaml.cs">
       <DependentUpon>ProjectRegistry.xaml</DependentUpon>
     </Compile>
@@ -231,6 +233,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProjectConsultation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     <Page Include="ProjectRegistry.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
