@@ -1,0 +1,57 @@
+﻿<Window x:Class="PresentationLayer.SchedulingActivityModification"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        WindowStartupLocation="CenterOwner"
+        Icon="images/IconoSystem.png"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="15"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Modificar Actividad" Height="400" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="0" Fill="#5B007B"/>
+        <TextBlock Grid.Row="0" Text="Modificar Actividad" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
+        <Grid x:Name="FormGrid" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition MinWidth="350"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Content="Mes:" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <ComboBox x:Name="ComboBoxMonth" Height="30" HorizontalAlignment="Left" Width="120" Grid.Column="1" Grid.Row="0" materialDesign:HintAssist.HintOpacity=".26"
+                IsEditable="False" Margin="0,0,25,20">
+            </ComboBox>
+            <Label Content="Actividad: " VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <TextBox Name="TextBoxActivity" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="300" AcceptsReturn="True"
+                VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" SpellCheck.IsEnabled="True" Height="60" materialDesign:HintAssist.HelperText="Máximo 300 caracteres."></TextBox>
+        </Grid>
+
+        <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}" Margin="0,0,50,0"
+                VerticalAlignment="Center" HorizontalAlignment="Center" Content="Modificar" Click="ModifyButtonClicked"></Button>
+            <Button Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                Content="Cancelar" Click="CancelButtonClicked"/>
+        </Grid>
+    </Grid>
+</Window>

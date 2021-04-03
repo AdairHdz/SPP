@@ -88,9 +88,6 @@
       <DependentUpon>202103251843157_LinkedCityToState.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202104021823238_UpdateProject.cs" />
-    <Compile Include="Migrations\202104021823238_UpdateProject.designer.cs">
-      <DependentUpon>202104021823238_UpdateProject.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProfessionalPracticesContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,9 +117,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202103251843157_LinkedCityToState.resx">
       <DependentUpon>202103251843157_LinkedCityToState.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104021823238_UpdateProject.resx">
-      <DependentUpon>202104021823238_UpdateProject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
