@@ -6,6 +6,7 @@ namespace DataPersistenceLayer.UnitsOfWork
     public class UnitOfWork : IUnitOfWork
     {
         public IRepository<Account> Accounts { get; private set; }
+        public IRepository<Assignment> Assignments { get; private set; }
         public IRepository<City> Cities { get; private set; }
         public ICoordinatorRepository Coordinators { get; private set; }
         public ILinkedOrganizationRepository LinkedOrganizations { get; private set; }
@@ -27,6 +28,7 @@ namespace DataPersistenceLayer.UnitsOfWork
         {
             _context = context;
             Accounts = new Repository<Account>(_context);
+            Assignments = new Repository<Assignment>(_context);
             Coordinators = new CoordinatorRepository(_context);
             LinkedOrganizations = new LinkedOrganizationRepository(_context);
             Practicioners = new PracticionerRepository(_context);

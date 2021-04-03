@@ -27,7 +27,10 @@ namespace PresentationLayer
 
         private void DeleteButtonClicked(object sender, RoutedEventArgs e)
         {
-
+            Project project = ((Project)ListViewProject.SelectedItem);
+            ProjectDeletion projectDeletion = new ProjectDeletion(project.IdProject);
+            projectDeletion.Show();
+            Close();
         }
 
         private void FilterComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)

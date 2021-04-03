@@ -6,6 +6,7 @@ namespace DataPersistenceLayer.UnitsOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
+        IRepository<Assignment> Assignments { get; }
         IRepository<City> Cities { get; }
         ICoordinatorRepository Coordinators { get; }
         ILinkedOrganizationRepository LinkedOrganizations { get; }
