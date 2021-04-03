@@ -75,7 +75,17 @@ namespace PresentationLayer
 
         private void ConsultLinkedOrganizationButtonClicked(object sender, RoutedEventArgs e)
         {
+            LinkedOrganizationConsultation linkedOrganizationConsultation
+                = new LinkedOrganizationConsultation();
+            linkedOrganizationConsultation.Show();
+            Close();
+        }
 
+        private void ConsultProjectButtonClicked(object sender, RoutedEventArgs e)
+        {
+            ProjectConsultation projectConsultation = new ProjectConsultation();
+            projectConsultation.Show();
+            Close();
         }
     }
 }
