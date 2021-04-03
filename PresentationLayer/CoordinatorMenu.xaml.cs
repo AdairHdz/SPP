@@ -2,6 +2,7 @@ using DataPersistenceLayer;
 using DataPersistenceLayer.Entities;
 using DataPersistenceLayer.UnitsOfWork;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Windows;
 
 namespace PresentationLayer
@@ -11,6 +12,7 @@ namespace PresentationLayer
     /// </summary>
     public partial class CoordinatorMenu : Window
     {
+        public static User User { get; set; }
         public CoordinatorMenu()
         {
             InitializeComponent();
@@ -72,13 +74,25 @@ namespace PresentationLayer
             linkedOrganizationRegistry.Show();
             this.Close();
         }
-
-        private void ConsultLinkedOrganizationButtonClicked(object sender, RoutedEventArgs e)
+        
+        private void RegisterProjectButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
-            LinkedOrganizationConsultation linkedOrganizationConsultation
-                = new LinkedOrganizationConsultation();
-            linkedOrganizationConsultation.Show();
-            Close();
+          try
+            {
+                ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
+                UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
+                Coordinator coordinator = unitOfWork.Coordinators.FindFirstOccurence(Coordinator => Coordinator.IdUser == User.IdUser);
+                if (!object.ReferenceEquals(null, coordinator)) {
+                    ProjectRegistry projectRegistry = new ProjectRegistry();
+                    ProjectRegistry.StaffNumber = coordinator.StaffNumber;
+                    projectRegistry.Show();
+                    Close();
+                }
+            }
+            catch (EntityException)
+            {
+                MessageBox.Show("El coordinador no se encontro. Intente más tarde", "Ingreso Faliido", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void ConsultProjectButtonClicked(object sender, RoutedEventArgs e)
