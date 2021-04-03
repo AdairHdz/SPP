@@ -8,7 +8,12 @@ namespace DataPersistenceLayer.Entities
         [Key]
         public int IdSchedulingActivity { get; set; }
 
+        [Required]
+        [MaxLength(300)]
         public string Activity { get; set; }
+
+        [Required]
+        [MaxLength(50)]
         public string Month { get; set; }
 
         public int IdProject { get; set; }

@@ -89,6 +89,9 @@
     <Compile Include="FirstLogin.xaml.cs">
       <DependentUpon>FirstLogin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LinkedOrganizationChoose.xaml.cs">
+      <DependentUpon>LinkedOrganizationChoose.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LinkedOrganizationConsultation.xaml.cs">
       <DependentUpon>LinkedOrganizationConsultation.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,12 @@
     </Compile>
     <Compile Include="PracticionerModification.xaml.cs">
       <DependentUpon>PracticionerModification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectRegistry.xaml.cs">
+      <DependentUpon>ProjectRegistry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResponsibleProjectChoose.xaml.cs">
+      <DependentUpon>ResponsibleProjectChoose.xaml</DependentUpon>
     </Compile>
     <Compile Include="ResponsibleProjectDeletion.xaml.cs">
       <DependentUpon>ResponsibleProjectDeletion.xaml</DependentUpon>
@@ -149,7 +158,9 @@
     <Compile Include="Validators\LinkedOrganizationValidator.cs" />
     <Compile Include="Validators\PhoneValidator.cs" />
     <Compile Include="Validators\PracticionerValidator.cs" />
+    <Compile Include="Validators\ProjectValidator.cs" />
     <Compile Include="Validators\ResponsibleProjectValidator.cs" />
+    <Compile Include="Validators\SchedulingActivityValidator.cs" />
     <Compile Include="Validators\UserFeedback.cs" />
     <Compile Include="Validators\UserValidator.cs" />
     <Page Include="CoordinatorConsultation.xaml">
@@ -173,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FirstLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LinkedOrganizationChoose.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -215,6 +230,14 @@
     <Page Include="PracticionerModification.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectRegistry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResponsibleProjectChoose.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ResponsibleProjectDeletion.xaml">
       <Generator>MSBuild:Compile</Generator>
