@@ -194,6 +194,7 @@ namespace DataPersistenceLayer.Migrations
             {
                 IdProject = 1,
                 NameProject = "Desarrollo de inventario",
+                DaysHours = "Lunes a viernes de 7AM a 2PM",
                 Description = "Se debe desarrollar un inventario para una red inmobiliaria",
                 ObjectiveGeneral = "El objetivo general",
                 ObjectiveImmediate = "El objetivo inmediato",
@@ -213,6 +214,7 @@ namespace DataPersistenceLayer.Migrations
             {
                 IdProject = 2,
                 NameProject = "Sistema bibliotecario",
+                DaysHours = "Lunes a viernes de 7AM a 2PM",
                 Description = "Se debe desarrollar un sistema bibliotecario",
                 ObjectiveGeneral = "El objetivo general",
                 ObjectiveImmediate = "El objetivo inmediato",
@@ -238,6 +240,23 @@ namespace DataPersistenceLayer.Migrations
                     RouteSave = ""        
                 }
              );
+
+            context.SchedulingActivities.AddOrUpdate(x => x.IdSchedulingActivity,
+                new SchedulingActivity
+                {
+                    IdSchedulingActivity = 1,
+                    Activity = "Actividad 1",
+                    Month = "Enero",
+                    IdProject = 1,        
+                },
+                new SchedulingActivity
+                {
+                    IdSchedulingActivity = 1,
+                    Activity = "Actividad 2",
+                    Month = "Febrero",
+                    IdProject = 1,
+                }
+            );
 
            context.Assignments.AddOrUpdate(x => x.IdAssignment,
                 new Assignment

@@ -83,9 +83,9 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserStatus.cs" />
     <Compile Include="Entities\UserType.cs" />
-    <Compile Include="Migrations\202103251843157_LinkedCityToState.cs" />
-    <Compile Include="Migrations\202103251843157_LinkedCityToState.designer.cs">
-      <DependentUpon>202103251843157_LinkedCityToState.cs</DependentUpon>
+    <Compile Include="Migrations\202104032128405_AddingDayHourToProject.cs" />
+    <Compile Include="Migrations\202104032128405_AddingDayHourToProject.designer.cs">
+      <DependentUpon>202104032128405_AddingDayHourToProject.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProfessionalPracticesContext.cs" />
@@ -114,8 +114,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103251843157_LinkedCityToState.resx">
-      <DependentUpon>202103251843157_LinkedCityToState.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104032128405_AddingDayHourToProject.resx">
+      <DependentUpon>202104032128405_AddingDayHourToProject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

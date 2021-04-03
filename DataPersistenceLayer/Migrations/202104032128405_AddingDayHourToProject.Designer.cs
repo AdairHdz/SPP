@@ -7,13 +7,13 @@ namespace DataPersistenceLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class LinkedCityToState : IMigrationMetadata
+    public sealed partial class AddingDayHourToProject : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(LinkedCityToState));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddingDayHourToProject));
         
         string IMigrationMetadata.Id
         {
-            get { return "202103251843157_LinkedCityToState"; }
+            get { return "202104032128405_AddingDayHourToProject"; }
         }
         
         string IMigrationMetadata.Source
