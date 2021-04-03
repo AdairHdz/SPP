@@ -92,6 +92,9 @@
     <Compile Include="LinkedOrganizationConsultation.xaml.cs">
       <DependentUpon>LinkedOrganizationConsultation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LinkedOrganizationDeletion.xaml.cs">
+      <DependentUpon>LinkedOrganizationDeletion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LinkedOrganizationModification.xaml.cs">
       <DependentUpon>LinkedOrganizationModification.xaml</DependentUpon>
     </Compile>
@@ -174,6 +177,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="LinkedOrganizationConsultation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LinkedOrganizationDeletion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

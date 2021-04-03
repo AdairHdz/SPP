@@ -63,6 +63,7 @@ namespace PresentationLayer
         {
             LinkedOrganizationConsultation linkedOrganizationConsultation = new LinkedOrganizationConsultation();
             linkedOrganizationConsultation.Show();
+            this.Close();
         }
         
         private void RegisterLinkedOrganizationButtonClicked(object sender, RoutedEventArgs e)

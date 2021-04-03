@@ -27,5 +27,11 @@ namespace PresentationLayer
             Close();
         }
 
+        private void RegisterCoordinatorButtonClicked(object sender, RoutedEventArgs e)
+        {
+            CoordinatorRegistry coordinatorRegistry = new CoordinatorRegistry();
+            coordinatorRegistry.Show();
+            Close();
+        }
     }
 }
