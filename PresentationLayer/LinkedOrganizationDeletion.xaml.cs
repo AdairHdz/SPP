@@ -1,6 +1,7 @@
 ﻿using DataPersistenceLayer;
 using DataPersistenceLayer.Entities;
 using DataPersistenceLayer.UnitsOfWork;
+using System.Data.Entity.Core;
 using System.Data.SqlClient;
 using System.Windows;
 
@@ -27,13 +28,27 @@ namespace PresentationLayer
             try
             {                
                 _linkedOrganization = unitOfWork.LinkedOrganizations.Get(idLinkedOrganization);
+                TextBlockFirstPhoneNumber.Text = $"+{_linkedOrganization.PhoneNumbers[0].Extension}" +
+                    $" {_linkedOrganization.PhoneNumbers[0].PhoneNumber}";
+                TextBlockSecondPhoneNumber.Text = $"+{_linkedOrganization.PhoneNumbers[1].Extension}" +
+                    $" {_linkedOrganization.PhoneNumbers[1].PhoneNumber}";
             }
             catch (SqlException)
             {
-                MessageBox.Show("No se pudo obtener información de la base de datos");
                 unitOfWork.Dispose();
-                GoBackToLinkedOrganizationConsultation();
+                NotifyErrorAndExit();
             }
+            catch (EntityException)
+            {
+                unitOfWork.Dispose();
+                NotifyErrorAndExit();
+            }
+        }
+
+        private void NotifyErrorAndExit()
+        {
+            MessageBox.Show("No se pudo obtener información de la base de datos");            
+            GoBackToLinkedOrganizationConsultation();
         }
 
         private void GoBackToLinkedOrganizationConsultation()
@@ -49,28 +64,41 @@ namespace PresentationLayer
             {
                 ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
                 UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-                int linkedOrganizationId = _linkedOrganization.IdLinkedOrganization;
-                bool linkedOrganizationHasActiveProjects = unitOfWork.LinkedOrganizations.HasActiveProjects(linkedOrganizationId);
-                if (linkedOrganizationHasActiveProjects)
+                try
                 {
-                    MessageBox.Show("La organización vinculada no pudo eliminarse debido a que tiene uno o más proyectos activos");
-                }
-                else
-                {
-                    LinkedOrganization linkedOrganization = unitOfWork.LinkedOrganizations.Get(linkedOrganizationId);
-                    linkedOrganization.LinkedOrganizationStatus = LinkedOrganizationStatus.INACTIVE;
-                    int affectedRows = unitOfWork.Complete();
-                    if(affectedRows == 1)
+                    int linkedOrganizationId = _linkedOrganization.IdLinkedOrganization;
+                    bool linkedOrganizationHasActiveProjects = unitOfWork.LinkedOrganizations.HasActiveProjects(linkedOrganizationId);
+                    if (linkedOrganizationHasActiveProjects)
                     {
-                        MessageBox.Show("La organización vinculada se eliminó exitosamente");
+                        MessageBox.Show("La organización vinculada no pudo eliminarse debido a que tiene uno o más proyectos activos");
                     }
                     else
                     {
-                        MessageBox.Show("La organización vinculada no pudo eliminarse");
+                        LinkedOrganization linkedOrganization = unitOfWork.LinkedOrganizations.Get(linkedOrganizationId);
+                        linkedOrganization.LinkedOrganizationStatus = LinkedOrganizationStatus.INACTIVE;
+                        int affectedRows = unitOfWork.Complete();
+                        if (affectedRows == 1)
+                        {
+                            MessageBox.Show("La organización vinculada se eliminó exitosamente");
+                        }
+                        else
+                        {
+                            MessageBox.Show("La organización vinculada no pudo eliminarse");
 
-                    }                    
+                        }
+                    }
+                    GoBackToLinkedOrganizationConsultation();
                 }
-                GoBackToLinkedOrganizationConsultation();                
+                catch (SqlException)
+                {
+                    unitOfWork.Dispose();
+                    NotifyErrorAndExit();
+                }
+                catch (EntityException)
+                {
+                    unitOfWork.Dispose();
+                    NotifyErrorAndExit();
+                }
 
             }
         }

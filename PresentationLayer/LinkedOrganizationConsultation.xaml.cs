@@ -2,6 +2,7 @@
 using DataPersistenceLayer.Entities;
 using DataPersistenceLayer.UnitsOfWork;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
@@ -31,7 +32,11 @@ namespace PresentationLayer
 
         private void DeleteButtonClicked(object sender, RoutedEventArgs e)
         {
-
+            LinkedOrganization selectedLinkedOrganization = (LinkedOrganization)ListViewLinkedOrganization.SelectedItem;
+            int idOfSelectedLinkedOrganization = selectedLinkedOrganization.IdLinkedOrganization;
+            LinkedOrganizationDeletion linkedOrganizationDeletion = new LinkedOrganizationDeletion(idOfSelectedLinkedOrganization);
+            linkedOrganizationDeletion.Show();
+            this.Close();
         }
 
         private void SearchButtonClicked(object sender, RoutedEventArgs e)
@@ -83,9 +88,11 @@ namespace PresentationLayer
             }
             catch (SqlException)
             {
-                MessageBox.Show("No se pudo obtener información de la base de datos. Intente más tarde",
-                    "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
-                GoBackToCoordinatorMenu();
+                NotifyErrorAndExit();                
+            }
+            catch (EntityException)
+            {
+                NotifyErrorAndExit();
             }
             finally
             {
@@ -93,6 +100,13 @@ namespace PresentationLayer
             }
 
             return linkedOrganizationsList;
+        }
+
+        private void NotifyErrorAndExit()
+        {
+            MessageBox.Show("No se pudo obtener información de la base de datos. Intente más tarde",
+                    "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
+            GoBackToCoordinatorMenu();
         }
 
         private void GoBackToCoordinatorMenu()

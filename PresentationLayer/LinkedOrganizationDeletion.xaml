@@ -63,36 +63,36 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Content="Nombre:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                <TextBlock Text="Hola" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
 
                 <Label Content="Dirección:" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                <TextBlock Text="Hola" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding Address}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
 
                 <Label Content="Teléfono:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                <TextBlock Text="Hola" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                <TextBlock Text="Hola" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <TextBlock x:Name="TextBlockFirstPhoneNumber" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <!--<TextBlock Text="{Binding PhoneNumbers[0].PhoneNumber}" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>-->
 
                 <Label Content="Teléfono alternativo:" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                <TextBlock Text="Hola" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                <TextBlock Text="Hola" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <TextBlock x:Name="TextBlockSecondPhoneNumber" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <!--<TextBlock Text="{Binding PhoneNumbers[1].PhoneNumber}" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>-->
 
                 <Label Content="Correo electrónico" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                <TextBlock Text="Hola" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding Email}" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
 
                 <Label Content="Usuarios directos: " Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                <TextBlock Text="Hola" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding DirectUsers}" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
 
                 <Label Content="Usuarios indirectos: " Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                <TextBlock Text="Hola" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding IndirectUsers}" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
 
                 <Label Content="Estado: " Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                <TextBlock Text="Hola" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding State.NameState}" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
 
                 <Label Content="Ciudad: " Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                <TextBlock Text="Hola" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding City.NameCity}" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
 
                 <Label Content="Sector: " Grid.Row="9" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                <TextBlock Text="Hola" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{Binding Sector.NameSector}" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
 
                 <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="11">
                     <Grid.ColumnDefinitions>
