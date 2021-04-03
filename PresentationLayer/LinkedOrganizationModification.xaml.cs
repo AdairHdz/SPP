@@ -50,11 +50,11 @@ namespace PresentationLayer
                 MessageBox.Show("No se pudo obtener la información de la base de datos");
                 unitOfWork.Dispose();
                 GoBackToCoordinatorMenu();
-            }                                 
+            }
         }
 
         private void LoadStatesWithCities(UnitOfWork unitOfWork)
-        {            
+        {
             _registeredStates = unitOfWork.States.GetStatesWithCities();
 
             foreach (State state in _registeredStates)
@@ -80,7 +80,7 @@ namespace PresentationLayer
         }
 
         private void LoadSectors(UnitOfWork unitOfWork)
-        {            
+        {
             _sectorsList = unitOfWork.Sectors.GetAll().ToList();
             foreach (Sector sector in _sectorsList)
             {
@@ -173,7 +173,7 @@ namespace PresentationLayer
                 MessageBox.Show("No se pudo obtener la información de la base de datos");
                 GoBackToCoordinatorMenu();
             }
-            
+
         }
 
         private bool ThereIsAnotherLinkedOrganizationWithSameData(UnitOfWork unitOfWork)
@@ -190,10 +190,10 @@ namespace PresentationLayer
 
             if (retrievedLinkedOrganization != null)
             {
-                return true;                
+                return true;
             }
 
-            if(retrievedPhone != null)
+            if (retrievedPhone != null)
             {
                 if (retrievedPhone.IdPhoneNumber != LinkedOrganizationToBeModified.PhoneNumbers[0].IdPhoneNumber
                     || retrievedPhone.IdPhoneNumber != LinkedOrganizationToBeModified.PhoneNumbers[1].IdPhoneNumber)
@@ -204,7 +204,7 @@ namespace PresentationLayer
 
             return false;
 
-            
+
         }
     }
 }

@@ -73,7 +73,7 @@ namespace PresentationLayer
             linkedOrganizationRegistry.Show();
             this.Close();
         }
-
+        
         private void RegisterProjectButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
             try
@@ -92,7 +92,6 @@ namespace PresentationLayer
             {
                 MessageBox.Show("El coordinador no se encontro. Intente más tarde", "Ingreso Faliido", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
     }
 }
