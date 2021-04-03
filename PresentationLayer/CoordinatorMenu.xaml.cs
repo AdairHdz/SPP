@@ -72,5 +72,9 @@ namespace PresentationLayer
             this.Close();
         }
 
+        private void ConsultLinkedOrganizationButtonClicked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

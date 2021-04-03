@@ -96,7 +96,7 @@
                 <ComboBox x:Name="ComboBoxCity" ItemsSource="{Binding _citiesList}" DisplayMemberPath="NameCity" SelectedIndex="0" Grid.Row="8" Grid.Column="1" VerticalAlignment="Bottom"/>
 
                 <Label Content="Sector: " Grid.Row="9" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                <ComboBox x:Name="ComboBoxSector" ItemsSource="{Binding _sectorsList}" DisplayMemberPath="NameSector" SelectedIndex="0" Grid.Row="9" Grid.Column="1" VerticalAlignment="Bottom" SelectionChanged="ComboBoxSectorSelectionChanged"/>
+                <ComboBox x:Name="ComboBoxSector" ItemsSource="{Binding _sectorsList}" DisplayMemberPath="NameSector" SelectedIndex="0" Grid.Row="9" Grid.Column="1" VerticalAlignment="Bottom"/>
 
                 <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="11">
                     <Grid.ColumnDefinitions>
