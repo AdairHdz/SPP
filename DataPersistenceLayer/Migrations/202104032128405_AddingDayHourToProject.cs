@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class LinkedCityToState : DbMigration
+    public partial class AddingDayHourToProject : DbMigration
     {
         public override void Up()
         {
@@ -102,6 +102,7 @@
                     {
                         IdProject = c.Int(nullable: false, identity: true),
                         NameProject = c.String(nullable: false, maxLength: 50),
+                        DaysHours = c.String(nullable: false, maxLength: 100),
                         Description = c.String(nullable: false, maxLength: 254),
                         ObjectiveGeneral = c.String(nullable: false, maxLength: 254),
                         ObjectiveImmediate = c.String(nullable: false, maxLength: 254),
@@ -238,6 +239,19 @@
                 .PrimaryKey(t => t.IdResponsibleProject);
             
             CreateTable(
+                "dbo.SchedulingActivities",
+                c => new
+                    {
+                        IdSchedulingActivity = c.Int(nullable: false, identity: true),
+                        Activity = c.String(),
+                        Month = c.String(),
+                        IdProject = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.IdSchedulingActivity)
+                .ForeignKey("dbo.Projects", t => t.IdProject, cascadeDelete: true)
+                .Index(t => t.IdProject);
+            
+            CreateTable(
                 "dbo.AdvanceQuestions",
                 c => new
                     {
@@ -324,19 +338,6 @@
                 .Index(t => t.IdProject);
             
             CreateTable(
-                "dbo.SchedulingActivities",
-                c => new
-                    {
-                        IdSchedulingActivity = c.Int(nullable: false, identity: true),
-                        Activity = c.String(),
-                        Month = c.String(),
-                        IdProject = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.IdSchedulingActivity)
-                .ForeignKey("dbo.Projects", t => t.IdProject, cascadeDelete: true)
-                .Index(t => t.IdProject);
-            
-            CreateTable(
                 "dbo.Teachers",
                 c => new
                     {
@@ -354,7 +355,6 @@
         public override void Down()
         {
             DropForeignKey("dbo.Teachers", "IdUser", "dbo.Users");
-            DropForeignKey("dbo.SchedulingActivities", "IdProject", "dbo.Projects");
             DropForeignKey("dbo.MonthlyReports", "IdProject", "dbo.Projects");
             DropForeignKey("dbo.MonthlyReports", "Enrollment", "dbo.Practicioners");
             DropForeignKey("dbo.Managers", "IdUser", "dbo.Users");
@@ -367,6 +367,7 @@
             DropForeignKey("dbo.PartialReports", "Enrollment", "dbo.Practicioners");
             DropForeignKey("dbo.Practicioners", "IdUser", "dbo.Users");
             DropForeignKey("dbo.RequestProjects", "IdProject", "dbo.Projects");
+            DropForeignKey("dbo.SchedulingActivities", "IdProject", "dbo.Projects");
             DropForeignKey("dbo.Projects", "IdResponsibleProject", "dbo.ResponsibleProjects");
             DropForeignKey("dbo.LinkedOrganizations", "IdState", "dbo.States");
             DropForeignKey("dbo.Cities", "State_IdState", "dbo.States");
@@ -380,7 +381,6 @@
             DropForeignKey("dbo.RequestProjects", "Enrollment", "dbo.Practicioners");
             DropForeignKey("dbo.Practicioners", "Nrc", "dbo.Groups");
             DropIndex("dbo.Teachers", new[] { "IdUser" });
-            DropIndex("dbo.SchedulingActivities", new[] { "IdProject" });
             DropIndex("dbo.MonthlyReports", new[] { "IdProject" });
             DropIndex("dbo.MonthlyReports", new[] { "Enrollment" });
             DropIndex("dbo.Managers", new[] { "IdUser" });
@@ -388,6 +388,7 @@
             DropIndex("dbo.Assignments", new[] { "Enrollment" });
             DropIndex("dbo.Assignments", new[] { "IdProject" });
             DropIndex("dbo.Assignments", new[] { "IdOfficeOfAcceptance" });
+            DropIndex("dbo.SchedulingActivities", new[] { "IdProject" });
             DropIndex("dbo.Phones", new[] { "IdLinkedOrganization" });
             DropIndex("dbo.Cities", new[] { "State_IdState" });
             DropIndex("dbo.LinkedOrganizations", new[] { "IdSector" });
@@ -406,13 +407,13 @@
             DropIndex("dbo.PartialReports", new[] { "IdProject" });
             DropIndex("dbo.ActivityMades", new[] { "IdPartialReport" });
             DropTable("dbo.Teachers");
-            DropTable("dbo.SchedulingActivities");
             DropTable("dbo.MonthlyReports");
             DropTable("dbo.Managers");
             DropTable("dbo.Documents");
             DropTable("dbo.OfficeOfAcceptances");
             DropTable("dbo.Assignments");
             DropTable("dbo.AdvanceQuestions");
+            DropTable("dbo.SchedulingActivities");
             DropTable("dbo.ResponsibleProjects");
             DropTable("dbo.States");
             DropTable("dbo.Sectors");
