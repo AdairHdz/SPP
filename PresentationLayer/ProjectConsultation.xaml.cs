@@ -22,7 +22,17 @@ namespace PresentationLayer
 
         private void ModifyButtonClicked(object sender, RoutedEventArgs e)
         {
-
+            Project project = ((Project)ListViewProject.SelectedItem);
+            ProjectModification projectModification = new ProjectModification();
+            if (projectModification.InitializeProject(project.IdProject))
+            {
+                projectModification.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo obtener información del proyecto. Intente más tarde", "Ingreso Fallido", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void DeleteButtonClicked(object sender, RoutedEventArgs e)

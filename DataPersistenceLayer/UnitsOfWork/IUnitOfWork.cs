@@ -21,6 +21,7 @@ namespace DataPersistenceLayer.UnitsOfWork
         ITeacherRepository Teachers { get; }
         IUserRepository Users { get; }
         IPhoneRepository Phones { get; }
+        IRepository<SchedulingActivity> SchedulingActivities { get; }
         int Complete();
     }
 }

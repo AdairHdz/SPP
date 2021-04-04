@@ -87,6 +87,7 @@
     <Compile Include="Migrations\202104032128405_AddingDayHourToProject.designer.cs">
       <DependentUpon>202104032128405_AddingDayHourToProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104021823238_UpdateProject.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProfessionalPracticesContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
