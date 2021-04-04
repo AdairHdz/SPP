@@ -15,7 +15,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="ProjectDeletion" Height="850" Width="800">
+        Title="ProjectDeletion" Height="650" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -31,76 +31,92 @@
         <Button Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="15" Click="BackButtonClicked">
             <materialDesign:PackIcon Kind="ArrowLeftBold" Height="30" Width="30" HorizontalAlignment="Center"/>
         </Button>
-
         <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <Grid x:Name="FormGrid" Grid.Column="1" Grid.ColumnSpan="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Nombre:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="0"/>
-                <TextBlock Text="{Binding NameProject}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="0"/>
-                
-                <TextBlock Text="Descripción general:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="1"/>
-                <TextBlock Text="{Binding Description}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1"/>
-                
-                <TextBlock Text="Objetivo general:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2"/>
-                <TextBlock Text="{Binding ObjectiveGeneral}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="2"/>
-                
-                <TextBlock Text="Objetivos inmediatos:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="3"/>
-                <TextBlock Text="{Binding ObjectiveImmediate}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="3"/>
-                
-                <TextBlock Text="Objetivos mediatos:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="4"/>
-                <TextBlock Text="{Binding ObjectiveMediate}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="4"/>
-                
-                <TextBlock Text="Metodología:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="5"/>
-                <TextBlock Text="{Binding Methodology}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="5"/>
-                
-                <TextBlock Text="Recursos:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="6"/>
-                <TextBlock Text="{Binding Resources}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="6"/>
-                
-                <TextBlock Text="Actividades y funciones:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="7"/>
-                <TextBlock Text="{Binding Activities}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="7"/>
-                
-                <TextBlock Text="Duración:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="8"/>
-                <TextBlock Text="{Binding Duration}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="8"/>
-                
-                <TextBlock Text="Días y horario:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="9"/>
-                <TextBlock VerticalAlignment="Bottom" TextWrapping="Wrap" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="9"/>
-                
-                <TextBlock Text="Periodo:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="10"/>
-                <TextBlock Text="{Binding Term}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="10"/>
-                
-                <TextBlock Text="Organización vinculada:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="11"/>
-                <TextBlock Text="{Binding LinkedOrganization.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="11"/>
-                
-            </Grid>
-            
-        </Grid>
+            <ScrollViewer Grid.ColumnSpan="4" VerticalScrollBarVisibility="Visible">
+                <Grid x:Name="FormGrid" Grid.Column="1" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Nombre:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="0"/>
+                    <TextBlock Text="{Binding NameProject}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="0"/>
+
+                    <TextBlock Text="Descripción general:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="1"/>
+                    <TextBlock Text="{Binding Description}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1"/>
+
+                    <TextBlock Text="Objetivo general:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2"/>
+                    <TextBlock Text="{Binding ObjectiveGeneral}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="2"/>
+
+                    <TextBlock Text="Objetivos inmediatos:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="3"/>
+                    <TextBlock Text="{Binding ObjectiveImmediate}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="3"/>
+
+                    <TextBlock Text="Objetivos mediatos:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="4"/>
+                    <TextBlock Text="{Binding ObjectiveMediate}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="4"/>
+
+                    <TextBlock Text="Metodología:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="5"/>
+                    <TextBlock Text="{Binding Methodology}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="5"/>
+
+                    <TextBlock Text="Recursos:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="6"/>
+                    <TextBlock Text="{Binding Resources}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="6"/>
+
+                    <TextBlock Text="Actividades y funciones:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="7"/>
+                    <TextBlock Text="{Binding Activities}" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="7"/>
+
+                    <TextBlock Text="Duración:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="8"/>
+                    <TextBlock Text="{Binding Duration}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="8"/>
+
+                    <TextBlock Text="Días y horario:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="9"/>
+                    <TextBlock Text="{Binding DaysHours}" VerticalAlignment="Bottom" TextWrapping="Wrap" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="9"/>
+
+                    <TextBlock Text="Periodo:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="10"/>
+                    <TextBlock Text="{Binding Term}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="10"/>
+
+                    <TextBlock Text="Organización vinculada:" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="11"/>
+                    <TextBlock Text="{Binding LinkedOrganization.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="11"/>
+
+                    <TextBlock Text="Calendarización de actividades" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="13" Grid.ColumnSpan="3"/>
+
+                    <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Visible" Grid.Row="15" Grid.ColumnSpan="3">
+                        <Grid x:Name="GridCalendarizationActivities">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="20"/>                                
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </ScrollViewer>
+        </Grid>        
         <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="8">
             <Grid.RowDefinitions>
                 <RowDefinition/>
