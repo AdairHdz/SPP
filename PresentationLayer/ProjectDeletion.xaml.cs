@@ -4,7 +4,6 @@ using DataPersistenceLayer.UnitsOfWork;
 using System.Data.Entity.Core;
 using System.Data.SqlClient;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace PresentationLayer
 {

@@ -18,7 +18,7 @@ namespace DataPersistenceLayer.UnitsOfWork
         IResponsibleProjectRepository ResponsibleProjects { get; }
         IRepository<Sector> Sectors { get; }
         IStateRepository States { get; }
-        IRepository<Teacher> Teachers { get; }
+        ITeacherRepository Teachers { get; }
         IUserRepository Users { get; }
         IPhoneRepository Phones { get; }
         int Complete();
