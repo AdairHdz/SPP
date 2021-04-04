@@ -22,6 +22,9 @@ namespace DataPersistenceLayer.UnitsOfWork
         IUserRepository Users { get; }
         IPhoneRepository Phones { get; }
         IRepository<SchedulingActivity> SchedulingActivities { get; }
+        IRepository<Activity> Activities { get; }
+        IRepository<ActivityPracticioner> ActivityPracticioners { get; }
+        IRepository<Document> Documents { get;}
         int Complete();
     }
 }

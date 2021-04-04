@@ -1,0 +1,63 @@
+﻿<Window x:Class="PresentationLayer.ReportAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        WindowStartupLocation="CenterScreen"
+        Icon="images/IconoSystem.png"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="15"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Añadir Reporte" Height="650" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="0" Fill="#5B007B"/>
+        <TextBlock x:Name="TextBlockNameReport" Grid.Row="0" Text="Añadir Reporte Parcial" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
+        <Button Name="ButtonBehind" Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="15" Click="BehindButtonClicked">
+            <materialDesign:PackIcon Kind="ArrowLeftBold" Height="30" Width="30" HorizontalAlignment="Center"/>
+        </Button>
+
+        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="60,80,60,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="90"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Name="LabelName" Content="Actividad:" VerticalAlignment="Top" Grid.Row="0" HorizontalContentAlignment="Left" Height="35" FontFamily="Arial"/>
+            <Label Name="LabelDate" Content="Fecha de Inicio:" VerticalAlignment="Top" Grid.Row="1" HorizontalContentAlignment="Left" Height="35" FontFamily="Arial"/>
+            <TextBlock Name="TextBlockDescription" VerticalAlignment="Top" Grid.Row="2" Height="35" FontFamily="Arial"/>
+            <Label Name="LabelDateDeliveryDate" VerticalAlignment="Center" Grid.Row="3" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" HorizontalAlignment="Left" FontSize="12" FontFamily="Arial"/>
+            <TextBox x:Name="TextBoxAnswer" Grid.Row="4" Style="{StaticResource MaterialDesignOutlinedTextBox}" VerticalAlignment="Top" Height="85" MinWidth="600"
+                AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="Escribe tu respuesta"/>
+            <Grid Grid.Row="5" Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="170"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Name="LabelNameDocument" VerticalAlignment="Top" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" MaxWidth="300" FontFamily="Arial"/>
+                <Button Name="ButtonAddFile" Content="{materialDesign:PackIcon FileUpload}" ToolTip="Agregar un archivo" Grid.Column="1" Width="50" HorizontalAlignment="Left" Click="AddFileButtonClicked" Margin="20,0,0,0"/>
+                <Button Name="ButtonDownloadFile" IsEnabled="False" Content="Descargar" ToolTip="Descargar el archivo" Grid.Column="2" Width="95" HorizontalAlignment="Right" Foreground="Black" Style="{StaticResource MaterialDesignFlatButton}" Click="DownloadFileButtonClicked" Margin="30,0,0,0"/>
+            </Grid>
+            <TextBlock Name="TextBlockObservation" Visibility="Hidden" Background="AntiqueWhite" VerticalAlignment="Top" Grid.Row="6" FontFamily="Arial" MinHeight="70"/>
+            <Button Name="ButtonSave" Grid.Row="6" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                VerticalAlignment="Top" HorizontalAlignment="Center" Content="Guardar" Margin="0,40,0,0" Click="SaveFileButtonClicked"></Button>
+        </Grid>
+    </Grid>
+</Window>

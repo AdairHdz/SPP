@@ -22,6 +22,9 @@ namespace DataPersistenceLayer.UnitsOfWork
         public IPhoneRepository Phones { get; private set; }
         public IUserRepository Users { get; private set; }
         public IRepository<SchedulingActivity> SchedulingActivities { get; private set; }
+        public IRepository<Activity> Activities { get; private set; }
+        public IRepository<ActivityPracticioner> ActivityPracticioners { get; private set; }
+        public IRepository<Document> Documents { get; private set; }
         private readonly ProfessionalPracticesContext _context;
 
         public UnitOfWork(ProfessionalPracticesContext context)
@@ -43,6 +46,9 @@ namespace DataPersistenceLayer.UnitsOfWork
             Sectors = new Repository<Sector>(_context);
             Phones = new PhoneRepository(_context);
             SchedulingActivities = new Repository<SchedulingActivity>(_context);
+            Activities = new Repository<Activity>(_context);
+            ActivityPracticioners = new Repository<ActivityPracticioner>(_context);
+            Documents = new Repository<Document>(_context);
         }
 
         /// <summary>
