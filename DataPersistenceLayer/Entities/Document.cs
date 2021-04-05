@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataPersistenceLayer.Entities
 {
@@ -16,6 +17,11 @@ namespace DataPersistenceLayer.Entities
         [MaxLength(50)]
         public string TypeDocument { get; set; }
 
-        public string RouteSave { get; set; } 
+        public string RouteSave { get; set; }
+
+        public int IdActivityPracticioner { get; set; }
+
+        [ForeignKey("IdActivityPracticioner")]
+        public virtual ActivityPracticioner ActivityPracticioner { get; set; }
     }
 }

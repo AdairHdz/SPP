@@ -41,11 +41,6 @@ namespace UnitTests.DataPersistenceLayerTests.Report
                         StartDate = new DateTime(),
                         FinishDate = date,
                         StaffNumberTeacher ="5678"
-                    },
-                    Document = new Document
-                    {
-                        IdDocument = 1,
-                        TypeDocument = "Reporte Parcial"
                     }
                 }
             };
@@ -91,13 +86,26 @@ namespace UnitTests.DataPersistenceLayerTests.Report
         [TestMethod]
         public void AddReport()
         {
-            ActivityPracticioner activityPracticionerUpdate = _unitOfWork.ActivityPracticioners.Get(9);
-            activityPracticionerUpdate.Document.Name = "DoctoProyecto.docx";
-            activityPracticionerUpdate.Document.RouteSave = "C:/Users/MARTHA/Documents/Activity/1";
-            activityPracticionerUpdate.Document.TypeDocument = "Reporte Mensual";
-            activityPracticionerUpdate.Document.TypeDocument = "Reporte Parcial";
+            List<Document> data = new List<Document>
+            {
+                new Document
+                {
+                    IdDocument =9,
+                    Name = "DoctoProyecto.docx"
+                }
+            };
+            DbSet<Document> _mockSet = DbContextMock.GetQueryableMockDbSet(data, x => x.IdDocument);
+            ProfessionalPracticesContext _mockContext = DbContextMock.GetContext(_mockSet);
+            UnitOfWork unitOfWork = new UnitOfWork(_mockContext);
+            Document documentUpdate = unitOfWork.Documents.Get(9);
+            documentUpdate.Name = "DoctoProyecto.docx";
+            documentUpdate.RouteSave = "C:/Users/MARTHA/Documents/Activity/1";
+            documentUpdate.TypeDocument = "Reporte Mensual";
+            documentUpdate.TypeDocument = "Reporte Parcial";
             DateTime deliveryDate = DateTime.Now;
-            activityPracticionerUpdate.Document.DeliveryDate = deliveryDate;
+            documentUpdate.DeliveryDate = deliveryDate;
+
+            ActivityPracticioner activityPracticionerUpdate = _unitOfWork.ActivityPracticioners.Get(9);
             activityPracticionerUpdate.Activity.ActivityStatus = ActivityStatus.ACTIVE;
             activityPracticionerUpdate.Answer = "Entrega";
             int expected = 1;

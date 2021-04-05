@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataPersistenceLayer.Entities
@@ -28,9 +27,5 @@ namespace DataPersistenceLayer.Entities
 
         [ForeignKey("IdActivity")]
         public virtual Activity Activity { get; set; }
-        public int IdDocument { get; set; }
-
-        [ForeignKey("IdDocument")]
-        public virtual Document Document { get; set; }
     }
 }

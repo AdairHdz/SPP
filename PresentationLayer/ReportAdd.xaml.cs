@@ -19,6 +19,7 @@ namespace PresentationLayer
     {
         private string route;
         private ActivityPracticioner activityPracticioner;
+        private Document document;
         public ReportAdd()
         {
             InitializeComponent();
@@ -35,15 +36,29 @@ namespace PresentationLayer
             {
                 TextBlockDescription.Text = "Instrucciones: Ninguna";
             }
+            ObteinDocument();
             TextBoxAnswer.Text = activityPracticioner.Answer;
-            LabelNameDocument.Content = activityPracticioner.Document.Name;
-            route = activityPracticioner.Document.RouteSave+"/"+ activityPracticioner.Document.Name;
-            if (activityPracticioner.Document.DeliveryDate != null)
+            LabelNameDocument.Content = document.Name;
+            route = document.RouteSave+"/"+ document.Name;
+            if (document.DeliveryDate != null)
             {
-                LabelDateDeliveryDate.Content = "Fecha de entrega: "+activityPracticioner.Document.DeliveryDate;
+                LabelDateDeliveryDate.Content = "Fecha de entrega: "+ document.DeliveryDate;
                 ButtonDownloadFile.IsEnabled = true;
             }
             ValidateDateActivity();
+        }
+
+        private void ObteinDocument() {
+            try
+            {
+                ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
+                UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
+                document = unitOfWork.Documents.FindFirstOccurence(Document => Document.IdActivityPracticioner == activityPracticioner.IdActivityPracticioner);
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("No se pudo obtener información del documento", "Documento", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void ValidateDateActivity()
@@ -118,7 +133,7 @@ namespace PresentationLayer
         
         private bool CreateDirectoryDocument()
         {
-            string pathDirectoryDocument = activityPracticioner.Document.IdDocument.ToString();
+            string pathDirectoryDocument = document.IdDocument.ToString();
             string pathDirectory =  Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Activity/" + pathDirectoryDocument;
             string path = pathDirectory+ "/" + LabelNameDocument.Content;
             try
@@ -127,16 +142,16 @@ namespace PresentationLayer
                 {
                     Directory.CreateDirectory(pathDirectory);
                 }
-                if (!string.IsNullOrWhiteSpace(activityPracticioner.Document.RouteSave))
+                if (!string.IsNullOrWhiteSpace(document.RouteSave))
                 {
-                    File.Delete(activityPracticioner.Document.RouteSave+ "/" + activityPracticioner.Document.Name);
+                    File.Delete(document.RouteSave+ "/" + document.Name);
                 }
                 if (!route.Equals(path))
                 {
                     File.Copy(route, path, true);
                 }
-                activityPracticioner.Document.Name = LabelNameDocument.Content.ToString();
-                activityPracticioner.Document.RouteSave = pathDirectory;
+                document.Name = LabelNameDocument.Content.ToString();
+                document.RouteSave = pathDirectory;
                 return true;
             }
             catch (IOException)
@@ -163,15 +178,16 @@ namespace PresentationLayer
                 UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
                 ActivityPracticioner activityPracticionerUpdate = unitOfWork.ActivityPracticioners.Get(activityPracticioner.IdActivityPracticioner);
                 activityPracticionerUpdate.Answer = TextBoxAnswer.Text;
-                activityPracticionerUpdate.Document.Name = activityPracticioner.Document.Name;
-                activityPracticionerUpdate.Document.RouteSave = activityPracticioner.Document.RouteSave;
-                activityPracticionerUpdate.Document.TypeDocument = "Reporte Mensual";
+                Document documentUpdate = unitOfWork.Documents.Get(document.IdDocument);
+                documentUpdate.Name = document.Name;
+                documentUpdate.RouteSave = document.RouteSave;
+                documentUpdate.TypeDocument = "Reporte Mensual";
                 if (activityPracticioner.Activity.ActivityType.Equals(ActivityType.PartialReport))
                 {
-                    activityPracticionerUpdate.Document.TypeDocument = "Reporte Parcial";
+                    documentUpdate.TypeDocument = "Reporte Parcial";
                 }
                 DateTime deliveryDate = DateTime.Now;
-                activityPracticionerUpdate.Document.DeliveryDate = deliveryDate;
+                documentUpdate.DeliveryDate = deliveryDate;
                 activityPracticionerUpdate.Activity.ActivityStatus = activityPracticioner.Activity.ActivityStatus;
 
                 int rowsAffected = unitOfWork.Complete();

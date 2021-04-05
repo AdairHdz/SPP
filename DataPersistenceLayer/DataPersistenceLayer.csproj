@@ -97,6 +97,10 @@
     <Compile Include="Migrations\202104040518568_AddActivityPracticioner.designer.cs">
       <DependentUpon>202104040518568_AddActivityPracticioner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104051346599_UpdateActvity.cs" />
+    <Compile Include="Migrations\202104051346599_UpdateActvity.designer.cs">
+      <DependentUpon>202104051346599_UpdateActvity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProfessionalPracticesContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104040518568_AddActivityPracticioner.resx">
       <DependentUpon>202104040518568_AddActivityPracticioner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104051346599_UpdateActvity.resx">
+      <DependentUpon>202104051346599_UpdateActvity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
