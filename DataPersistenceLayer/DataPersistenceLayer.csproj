@@ -51,7 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Activity.cs" />
     <Compile Include="Entities\ActivityMade.cs" />
+    <Compile Include="Entities\ActivityPracticioner.cs" />
+    <Compile Include="Entities\ActivityPracticionerStatus.cs" />
+    <Compile Include="Entities\ActivityStatus.cs" />
+    <Compile Include="Entities\ActivityType.cs" />
     <Compile Include="Entities\Manager.cs" />
     <Compile Include="Entities\AdvanceQuestion.cs" />
     <Compile Include="Entities\Assignment.cs" />
@@ -88,6 +93,14 @@
       <DependentUpon>202104032128405_AddingDayHourToProject.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202104021823238_UpdateProject.cs" />
+    <Compile Include="Migrations\202104040518568_AddActivityPracticioner.cs" />
+    <Compile Include="Migrations\202104040518568_AddActivityPracticioner.designer.cs">
+      <DependentUpon>202104040518568_AddActivityPracticioner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104051346599_UpdateActvity.cs" />
+    <Compile Include="Migrations\202104051346599_UpdateActvity.designer.cs">
+      <DependentUpon>202104051346599_UpdateActvity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProfessionalPracticesContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,6 +132,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104032128405_AddingDayHourToProject.resx">
       <DependentUpon>202104032128405_AddingDayHourToProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104040518568_AddActivityPracticioner.resx">
+      <DependentUpon>202104040518568_AddActivityPracticioner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104051346599_UpdateActvity.resx">
+      <DependentUpon>202104051346599_UpdateActvity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

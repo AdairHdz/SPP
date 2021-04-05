@@ -9,7 +9,7 @@ namespace DataPersistenceLayer.Entities
         [Key]
         public int IdDocument { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Name { get; set; }
 
         public DateTime? DeliveryDate { get; set; }
@@ -19,10 +19,9 @@ namespace DataPersistenceLayer.Entities
 
         public string RouteSave { get; set; }
 
-        [MaxLength(9)]
-        public string Enrollment { get; set; }
+        public int IdActivityPracticioner { get; set; }
 
-        [ForeignKey("Enrollment")]        
-        public virtual Practicioner Practicing { get; set; }
+        [ForeignKey("IdActivityPracticioner")]
+        public virtual ActivityPracticioner ActivityPracticioner { get; set; }
     }
 }

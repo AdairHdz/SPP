@@ -30,5 +30,7 @@ namespace DataPersistenceLayer
         public DbSet<State> States { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<ActivityPracticioner> ActivityPracticioners { get; set; }
     }
 }

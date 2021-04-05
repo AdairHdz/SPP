@@ -129,7 +129,7 @@
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition Height="50"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Button Margin="0,0,0,10" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Background="DarkMagenta">
+                    <Button Margin="0,0,0,10" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Background="DarkMagenta" Click="AddPartialReport">
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="130"></ColumnDefinition>
@@ -139,7 +139,7 @@
                             <Label Height="35" VerticalContentAlignment="Center" Content="Reporte Parcial" Grid.Column="0" FontSize="16" Foreground="White" FontFamily="Arial" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
                         </Grid>
                     </Button>
-                    <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" >
+                    <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" Click="AddMonthlyReport">
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="130"></ColumnDefinition>

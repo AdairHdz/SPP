@@ -131,6 +131,12 @@
     <Compile Include="ProjectRegistry.xaml.cs">
       <DependentUpon>ProjectRegistry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ReportAdd.xaml.cs">
+      <DependentUpon>ReportAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportList.xaml.cs">
+      <DependentUpon>ReportList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ResponsibleProjectChoose.xaml.cs">
       <DependentUpon>ResponsibleProjectChoose.xaml</DependentUpon>
     </Compile>
@@ -259,6 +265,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ProjectRegistry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ReportAdd.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ReportList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
