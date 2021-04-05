@@ -112,7 +112,7 @@ namespace PresentationLayer
 		public bool ValidPracticioners()
         {
 			bool isValid = true;
-			if (PracticionersSelected.Count < 5 && PracticionersSelected.Count > 15)
+			if (PracticionersSelected.Count < 5 || PracticionersSelected.Count > 15)
             {
 				isValid = false;
             }
