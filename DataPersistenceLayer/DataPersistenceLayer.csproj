@@ -99,6 +99,7 @@
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IResponsibleProjectRepository.cs" />
     <Compile Include="Repositories\IStateRepository.cs" />
+    <Compile Include="Repositories\ITeacherRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\LinkedOrganizationRepository.cs" />
     <Compile Include="Repositories\PhoneRepository.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\ResponsibleProjectRepository.cs" />
     <Compile Include="Repositories\StateRepository.cs" />
+    <Compile Include="Repositories\TeacherRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="UnitsOfWork\IUnitOfWork.cs" />
     <Compile Include="UnitsOfWork\UnitOfWork.cs" />
