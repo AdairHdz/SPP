@@ -1,37 +1,22 @@
 ﻿using DataPersistenceLayer.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data.Entity;
+using System.Linq;
 
 namespace DataPersistenceLayer.Repositories
 {
-	public class TeacherRepository : Repository<Teacher>, ITeacherRepository
-	{
-		public ProfessionalPracticesContext ProfessionalPracticesContext
-		{
-			get
-			{
-				return _context as ProfessionalPracticesContext;
-			}
-		}
-
-
-		public TeacherRepository(DbContext context) : base(context) { }
-		{
-		public bool ActiveTeacher()
-		   IList<Teacher> teacher = _context.Set<Teacher>().Where(Teacher => Teacher.User.UserStatus == UserStatus.ACTIVE).ToList();
-		   if (object.ReferenceEquals(null, teacher))
-			{
-				return false;
-			return true;
-			}
-		}
-
-		public IList<Teacher> GetActiveTeachers()
+    public class TeacherRepository : Repository<Teacher>, ITeacherRepository
+    {
+        public ProfessionalPracticesContext ProfessionalPracticesContext
         {
-			return _context.Set<Teacher>().Include(teacher => teacher.User).Where(Teacher => Teacher.User.UserStatus == UserStatus.ACTIVE).ToList();
-		}
+            get
+            {
+                return _context as ProfessionalPracticesContext;
+            }
+        }
+
+        public TeacherRepository(DbContext context) : base(context) { }
 
         public bool TeacherIsAlreadyRegistered(Teacher teacher, bool isUpdate)
         {
@@ -41,11 +26,11 @@ namespace DataPersistenceLayer.Repositories
             {
                 if (isUpdate)
                 {
-                    .Where(c => c.User.IdUser != coordinatorUser.IdUser
                     coordinatorsThatMatch = _context.Set<Teacher>().Include(s => s.User)
+                    .Where(c => c.User.IdUser != coordinatorUser.IdUser
                     && (c.User.AlternateEmail.Equals(coordinatorUser.AlternateEmail)
-                    || c.User.Email.Equals(coordinatorUser.AlternateEmail)
                     || c.User.Email.Equals(coordinatorUser.Email)
+                    || c.User.Email.Equals(coordinatorUser.AlternateEmail)
                     || c.User.AlternateEmail.Equals(coordinatorUser.Email)
                     || c.User.PhoneNumber.Equals(coordinatorUser.PhoneNumber))).Count();
                 }
@@ -74,6 +59,21 @@ namespace DataPersistenceLayer.Repositories
             {
                 return false;
             }
+        }
+
+        public bool ActiveTeacher()
+        {
+            IList<Teacher> teacher = _context.Set<Teacher>().Where(Teacher => Teacher.User.UserStatus == UserStatus.ACTIVE).ToList();
+            if (object.ReferenceEquals(null, teacher))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public IList<Teacher> GetActiveTeachers()
+        {
+            return _context.Set<Teacher>().Include(teacher => teacher.User).Where(Teacher => Teacher.User.UserStatus == UserStatus.ACTIVE).ToList();
         }
     }
 }
