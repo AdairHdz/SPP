@@ -61,17 +61,12 @@ namespace PresentationLayer
         {
             foreach (ActivityPracticioner activityPracticioner in activityPracticioners)
             {
-                string deliveryDate = "";
-                if (activityPracticioner.Document.DeliveryDate != null)
-                {
-                    deliveryDate = "       Fecha de entrega: " + activityPracticioner.Document.DeliveryDate;
-                }
                 ListViewActivity.Items.Add(
                      new
                      {
                          Name = activityPracticioner.Activity.Name,
                          Date = activityPracticioner.Activity.StartDate + " - " + activityPracticioner.Activity.FinishDate,
-                         Value = "Valor: " + activityPracticioner.Activity.ValueActivity.ToString() + deliveryDate,
+                         Value = "Valor: " + activityPracticioner.Activity.ValueActivity.ToString(),
                          Qualification = activityPracticioner.Qualification.ToString()
                      }
                  );
@@ -85,9 +80,15 @@ namespace PresentationLayer
             if (activityPracticioner!=null)
             {
                 ReportAdd partialReportAdd = new ReportAdd();
-                partialReportAdd.InitializeActivity(activityPracticioner, activityTypeReport);
-                partialReportAdd.Show();
-                Close();
+                if (partialReportAdd.InitializeActivity(activityPracticioner, activityTypeReport))
+                {
+                    partialReportAdd.Show();
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo obtener información de la actividad. Intente más tarde", "Documento", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
         }
 

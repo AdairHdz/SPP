@@ -25,7 +25,7 @@ namespace PresentationLayer
             InitializeComponent();
         }
 
-        public void InitializeActivity(ActivityPracticioner activityPracticionerReceived, string titleReport)
+        public bool InitializeActivity(ActivityPracticioner activityPracticionerReceived, string titleReport)
         {
             TextBlockNameReport.Text = titleReport;
             activityPracticioner = activityPracticionerReceived;
@@ -36,29 +36,42 @@ namespace PresentationLayer
             {
                 TextBlockDescription.Text = "Instrucciones: Ninguna";
             }
-            ObteinDocument();
-            TextBoxAnswer.Text = activityPracticioner.Answer;
-            LabelNameDocument.Content = document.Name;
-            route = document.RouteSave+"/"+ document.Name;
-            if (document.DeliveryDate != null)
-            {
-                LabelDateDeliveryDate.Content = "Fecha de entrega: "+ document.DeliveryDate;
-                ButtonDownloadFile.IsEnabled = true;
-            }
-            ValidateDateActivity();
+            return ObteinDocument();
         }
 
-        private void ObteinDocument() {
+        private bool ObteinDocument() {
             try
             {
                 ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
                 UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
                 document = unitOfWork.Documents.FindFirstOccurence(Document => Document.IdActivityPracticioner == activityPracticioner.IdActivityPracticioner);
+                if (document != null)
+                {
+                    InitializeDocument();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (IOException)
             {
-                MessageBox.Show("No se pudo obtener información del documento", "Documento", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
             }
+        }
+
+        private void InitializeDocument()
+        {
+            TextBoxAnswer.Text = activityPracticioner.Answer;
+            LabelNameDocument.Content = document.Name;
+            route = document.RouteSave + "/" + document.Name;
+            if (document.DeliveryDate != null)
+            {
+                LabelDateDeliveryDate.Content = "Fecha de entrega: " + document.DeliveryDate;
+                ButtonDownloadFile.IsEnabled = true;
+            }
+            ValidateDateActivity();
         }
 
         private void ValidateDateActivity()
