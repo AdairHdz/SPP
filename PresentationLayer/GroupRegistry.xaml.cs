@@ -15,8 +15,8 @@ namespace PresentationLayer
     /// </summary>
     public partial class GroupRegistry : Window
     {
-		private IList<Teacher> teachersAvailables = new List<Teacher>();
-		private IList<Practicioner> practicionersAvailables = new List<Practicioner>();
+		private IList<Teacher> _teachersAvailables = new List<Teacher>();
+		private IList<Practicioner> _practicionersAvailables = new List<Practicioner>();
 		public IList<Practicioner> PracticionersSelected = new List<Practicioner>();
 		public Group Group = new Group();
 		public GroupRegistry()
@@ -158,7 +158,7 @@ namespace PresentationLayer
 			if (practicioner != null)
 			{
 				PracticionersSelected.Add(practicioner);
-				practicionersAvailables.Remove(practicioner);
+				_practicionersAvailables.Remove(practicioner);
 				LoadPracticionerAvailableList();
 				LoadPracticionerSelectedList();
 			}
@@ -169,7 +169,7 @@ namespace PresentationLayer
 			Practicioner practicioner = ((Practicioner)ListViewPracticionersSelected.SelectedItem);
 			if (practicioner != null)
 			{
-				practicionersAvailables.Add(practicioner);
+				_practicionersAvailables.Add(practicioner);
 				PracticionersSelected.Remove(practicioner);
 				LoadPracticionerAvailableList();
 				LoadPracticionerSelectedList();
@@ -179,7 +179,7 @@ namespace PresentationLayer
 		private void LoadPracticionerAvailableList()
 		{
 			ListViewPracticioners.Items.Clear();
-			foreach (Practicioner practicioner in practicionersAvailables)
+			foreach (Practicioner practicioner in _practicionersAvailables)
 			{
 				ListViewPracticioners.Items.Add(practicioner);
 			}
@@ -200,12 +200,12 @@ namespace PresentationLayer
 			UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
 			try
 			{
-				teachersAvailables = unitOfWork.Teachers.GetActiveTeachers();
-				foreach (Teacher teacher in teachersAvailables)
+				_teachersAvailables = unitOfWork.Teachers.GetActiveTeachers();
+				foreach (Teacher teacher in _teachersAvailables)
 				{
 					ListViewTeacher.Items.Add(teacher);
 				}
-				practicionersAvailables = unitOfWork.Practicioners.PracticionersToGroup();
+				_practicionersAvailables = unitOfWork.Practicioners.PracticionersToGroup();
 				LoadPracticionerAvailableList();
 			}
 			catch (EntityException)
