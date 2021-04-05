@@ -14,9 +14,8 @@ namespace DataPersistenceLayer.Entities
         public string NameProject { get; set; }
 
         [Required]
-        [MaxLength(100)]      
-        public string DaysHours { get; set; }       
-      
+        [MaxLength(100)]
+        public string DaysHours { get; set; }
         [MaxLength(300)]
         public string Description { get; set; }
 

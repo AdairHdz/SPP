@@ -7,6 +7,7 @@ namespace DataPersistenceLayer.Repositories
     {
         bool ActiveTeacher();
         IList<Teacher> GetActiveTeachers();
+        bool TeacherIsAlreadyRegistered(Teacher teacher, bool isUpdate);
         
     }
 }

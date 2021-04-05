@@ -33,5 +33,12 @@ namespace PresentationLayer
             coordinatorRegistry.Show();
             Close();
         }
+
+        private void RegisterTeacherButtonClicked(object sender, RoutedEventArgs e)
+        {
+            TeacherRegistry teacherRegistry = new TeacherRegistry();
+            teacherRegistry.Show();
+            Close();
+        }
     }
 }

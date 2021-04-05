@@ -134,6 +134,12 @@
     <Compile Include="ProjectRegistry.xaml.cs">
       <DependentUpon>ProjectRegistry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ReportAdd.xaml.cs">
+      <DependentUpon>ReportAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportList.xaml.cs">
+      <DependentUpon>ReportList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ResponsibleProjectChoose.xaml.cs">
       <DependentUpon>ResponsibleProjectChoose.xaml</DependentUpon>
     </Compile>
@@ -170,6 +176,9 @@
     <Compile Include="TeacherMenu.xaml.cs">
       <DependentUpon>TeacherMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TeacherRegistry.xaml.cs">
+      <DependentUpon>TeacherRegistry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\GenderParser.cs" />
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
@@ -179,6 +188,7 @@
     <Compile Include="Validators\PracticionerValidator.cs" />
     <Compile Include="Validators\ProjectValidator.cs" />
     <Compile Include="Validators\ResponsibleProjectValidator.cs" />
+    <Compile Include="Validators\TeacherValidator.cs" />
     <Compile Include="Validators\SchedulingActivityValidator.cs" />
     <Compile Include="Validators\UserFeedback.cs" />
     <Compile Include="Validators\UserValidator.cs" />
@@ -266,6 +276,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="ReportAdd.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ReportList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ResponsibleProjectChoose.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -328,6 +346,10 @@
     <Page Include="TeacherMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TeacherRegistry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
