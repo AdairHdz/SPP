@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -88,17 +90,24 @@
       <DependentUpon>202104032128405_AddingDayHourToProject.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202104021823238_UpdateProject.cs" />
+    <Compile Include="Migrations\202104040706073_UpdateGroup.cs" />
+    <Compile Include="Migrations\202104040706073_UpdateGroup.designer.cs">
+      <DependentUpon>202104040706073_UpdateGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProfessionalPracticesContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CoordinatorRepository.cs" />
+    <Compile Include="Repositories\GroupRepository.cs" />
     <Compile Include="Repositories\ICoordinatorRepository.cs" />
+    <Compile Include="Repositories\IGroupRepository.cs" />
     <Compile Include="Repositories\ILinkedOrganizationRepository.cs" />
     <Compile Include="Repositories\IPhoneRepository.cs" />
     <Compile Include="Repositories\IPracticionerRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IResponsibleProjectRepository.cs" />
     <Compile Include="Repositories\IStateRepository.cs" />
+    <Compile Include="Repositories\ITeacherRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\LinkedOrganizationRepository.cs" />
     <Compile Include="Repositories\PhoneRepository.cs" />
@@ -106,6 +115,7 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\ResponsibleProjectRepository.cs" />
     <Compile Include="Repositories\StateRepository.cs" />
+    <Compile Include="Repositories\TeacherRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="UnitsOfWork\IUnitOfWork.cs" />
     <Compile Include="UnitsOfWork\UnitOfWork.cs" />
@@ -117,6 +127,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104032128405_AddingDayHourToProject.resx">
       <DependentUpon>202104032128405_AddingDayHourToProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104040706073_UpdateGroup.resx">
+      <DependentUpon>202104040706073_UpdateGroup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

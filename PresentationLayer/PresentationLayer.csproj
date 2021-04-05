@@ -89,6 +89,9 @@
     <Compile Include="FirstLogin.xaml.cs">
       <DependentUpon>FirstLogin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GroupRegistry.xaml.cs">
+      <DependentUpon>GroupRegistry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LinkedOrganizationChoose.xaml.cs">
       <DependentUpon>LinkedOrganizationChoose.xaml</DependentUpon>
     </Compile>
@@ -170,6 +173,7 @@
     <Compile Include="Utils\GenderParser.cs" />
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
+    <Compile Include="Validators\GroupValidator.cs" />
     <Compile Include="Validators\LinkedOrganizationValidator.cs" />
     <Compile Include="Validators\PhoneValidator.cs" />
     <Compile Include="Validators\PracticionerValidator.cs" />
@@ -201,6 +205,10 @@
     <Page Include="FirstLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GroupRegistry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LinkedOrganizationChoose.xaml">
       <Generator>MSBuild:Compile</Generator>

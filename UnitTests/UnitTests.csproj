@@ -107,6 +107,7 @@
     <Compile Include="DataPersistenceLayerTests\TeacherTest\ConsultTeacherTest.cs" />
     <Compile Include="DataPersistenceLayerTests\TeacherTest\TeacherTest.cs" />
     <Compile Include="DataPersistenceLayerTests\UserTest\UserTest.cs" />
+    <Compile Include="GroupRegistryTestCase\GroupRegistryTest.cs" />
     <Compile Include="HashingTests\BCryptHashingTest.cs" />
     <Compile Include="HashingTests\BCryptHasherTest.cs" />
     <Compile Include="LinkedOrganizationDeletionTestCase\LinkedOrganizationDeletionTest.cs" />

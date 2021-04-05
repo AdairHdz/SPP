@@ -107,7 +107,7 @@
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition Height="50"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Button Margin="0,0,0,10" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Background="DarkMagenta">
+                    <Button Margin="0,0,0,10" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Background="DarkMagenta" Click="GroupRegistryButtonClicked">
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
