@@ -16,8 +16,6 @@ namespace DataPersistenceLayer.Entities
         [Required]
         [MaxLength(100)]
         public string DaysHours { get; set; }
-
-        [Required]
         [MaxLength(300)]
         public string Description { get; set; }
 
