@@ -55,6 +55,11 @@ namespace PresentationLayer.Validators
 				.GreaterThan(0).WithState(project => "TextBoxQuantityPracticing")
 				.LessThan(5).WithState(project => "TextBoxQuantityPracticing");
 
+			RuleFor(project => project.DaysHours).NotEmpty().WithState(project => "TextBoxDaysHours")
+				.MinimumLength(5).WithState(project => "TextBoxDaysHours")
+				.MaximumLength(100).WithState(project => "TextBoxDaysHours")
+				.Matches("[a-zA-Z+]").WithState(project => "TextBoxDaysHours");
+
 			RuleFor(project => project.Term).NotEmpty().MinimumLength(5).MaximumLength(50).Matches("[a-zA-Z+]");
 			RuleFor(project => project.Duration).NotEmpty().Equals(480);
 			RuleFor(project => project.StaffNumberCoordinator).NotEmpty().MinimumLength(5).MaximumLength(20).Matches("[0-9]");

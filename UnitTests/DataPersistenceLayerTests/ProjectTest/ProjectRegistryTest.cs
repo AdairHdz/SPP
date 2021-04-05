@@ -39,6 +39,7 @@ namespace UnitTests.DataPersistenceLayerTests.ProjectTest
                         "Cumplir en tiempo y forma con las entregas de prototipos y productos " +
                         "Desarrollar en un ambiente colaborativo "+
                         "Trabajar de acuerdo a los estándares establecidos",
+                    DaysHours = "A acordar con el estudiante (en horario de oficina)",
                     Duration = 480,
                     Term = "FEBRERO-JULIO 2021",
                     QuantityPracticing = 3,
@@ -86,6 +87,7 @@ namespace UnitTests.DataPersistenceLayerTests.ProjectTest
                         "Cumplir en tiempo y forma con las entregas de prototipos y productos " +
                         "Desarrollar en un ambiente colaborativo " +
                         "Trabajar de acuerdo a los estándares establecidos",
+                DaysHours = "A acordar con el estudiante (en horario de oficina)",
                 Duration = 480,
                 Term = "FEBRERO-JULIO 2021",
                 QuantityPracticing = 3,
