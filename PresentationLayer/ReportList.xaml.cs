@@ -14,9 +14,9 @@ namespace PresentationLayer
     /// </summary>
     public partial class ReportList : Window
     {
-        private IEnumerable<ActivityPracticioner> activityPracticioners;
-        public static User User { get; set; }
-        private string activityTypeReport;
+        private IEnumerable<ActivityPracticioner> _activityPracticioners;
+        public static User _User { get; set; }
+        private string _activityTypeReport;
         public ReportList()
         {
             InitializeComponent();
@@ -24,24 +24,24 @@ namespace PresentationLayer
 
         public bool InitializeStackPanel(ActivityType activityType)
         {
-            activityTypeReport = "Añadir Reporte Mensual";
+            _activityTypeReport = "Añadir Reporte Mensual";
             
             try
             {
                 ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
                 UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-                Practicioner practicioner = unitOfWork.Practicioners.FindFirstOccurence(Practicioner => Practicioner.IdUser == User.IdUser);
+                Practicioner practicioner = unitOfWork.Practicioners.FindFirstOccurence(Practicioner => Practicioner.IdUser == _User.IdUser);
                 if (practicioner != null)
                 {
                     if (activityType.Equals(ActivityType.PartialReport))
                     {
-                        activityTypeReport = "Añadir Reporte Parcial";
+                        _activityTypeReport = "Añadir Reporte Parcial";
                         TextBlockNameActivity.Text = "Reportes Parcial";
-                        activityPracticioners = unitOfWork.ActivityPracticioners.Find(ActivityPracticioner => ActivityPracticioner.Enrollment.Equals(practicioner.Enrollment) && ActivityPracticioner.Activity.ActivityType.Equals(ActivityType.PartialReport));
+                        _activityPracticioners = unitOfWork.ActivityPracticioners.Find(ActivityPracticioner => ActivityPracticioner.Enrollment.Equals(practicioner.Enrollment) && ActivityPracticioner.Activity.ActivityType.Equals(ActivityType.PartialReport));
                     }
                     else
                     {
-                        activityPracticioners = unitOfWork.ActivityPracticioners.Find(ActivityPracticioner => ActivityPracticioner.Enrollment.Equals(practicioner.Enrollment) && ActivityPracticioner.Activity.ActivityType.Equals(ActivityType.MonthlyReport));
+                        _activityPracticioners = unitOfWork.ActivityPracticioners.Find(ActivityPracticioner => ActivityPracticioner.Enrollment.Equals(practicioner.Enrollment) && ActivityPracticioner.Activity.ActivityType.Equals(ActivityType.MonthlyReport));
                     }
                     AddReportPartialInListView();
                     return true;
@@ -59,7 +59,7 @@ namespace PresentationLayer
 
         private void AddReportPartialInListView()
         {
-            foreach (ActivityPracticioner activityPracticioner in activityPracticioners)
+            foreach (ActivityPracticioner activityPracticioner in _activityPracticioners)
             {
                 ListViewActivity.Items.Add(
                      new
@@ -76,11 +76,11 @@ namespace PresentationLayer
         private void PartialReportItemsControlMouseDoubleClicked(object listViewReport, RoutedEventArgs routedEventArgs)
         {
             int itemSelect = ((ListView)listViewReport).SelectedIndex;
-            ActivityPracticioner activityPracticioner = activityPracticioners.ElementAt(itemSelect);
+            ActivityPracticioner activityPracticioner = _activityPracticioners.ElementAt(itemSelect);
             if (activityPracticioner!=null)
             {
                 ReportAdd partialReportAdd = new ReportAdd();
-                if (partialReportAdd.InitializeActivity(activityPracticioner, activityTypeReport))
+                if (partialReportAdd.InitializeActivity(activityPracticioner, _activityTypeReport))
                 {
                     partialReportAdd.Show();
                     Close();

@@ -17,9 +17,9 @@ namespace PresentationLayer
     /// </summary>
     public partial class ReportAdd : Window
     {
-        private string route;
-        private ActivityPracticioner activityPracticioner;
-        private Document document;
+        private string _route;
+        private ActivityPracticioner _activityPracticioner;
+        private Document _document;
         public ReportAdd()
         {
             InitializeComponent();
@@ -28,11 +28,11 @@ namespace PresentationLayer
         public bool InitializeActivity(ActivityPracticioner activityPracticionerReceived, string titleReport)
         {
             TextBlockNameReport.Text = titleReport;
-            activityPracticioner = activityPracticionerReceived;
-            LabelName.Content = "Actividad: " + activityPracticioner.Activity.Name + "     Valor: " + activityPracticioner.Activity.ValueActivity.ToString();
-            LabelDate.Content = "Fecha de Inicio: " + activityPracticioner.Activity.StartDate + " Fecha de Finalización: " + activityPracticioner.Activity.FinishDate;
-            TextBlockDescription.Text = "Instrucciones: " + activityPracticioner.Activity.Description;
-            if (string.IsNullOrWhiteSpace(activityPracticioner.Activity.Description))
+            _activityPracticioner = activityPracticionerReceived;
+            LabelName.Content = "Actividad: " + _activityPracticioner.Activity.Name + "     Valor: " + _activityPracticioner.Activity.ValueActivity.ToString();
+            LabelDate.Content = "Fecha de Inicio: " + _activityPracticioner.Activity.StartDate + " Fecha de Finalización: " + _activityPracticioner.Activity.FinishDate;
+            TextBlockDescription.Text = "Instrucciones: " + _activityPracticioner.Activity.Description;
+            if (string.IsNullOrWhiteSpace(_activityPracticioner.Activity.Description))
             {
                 TextBlockDescription.Text = "Instrucciones: Ninguna";
             }
@@ -44,8 +44,8 @@ namespace PresentationLayer
             {
                 ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
                 UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-                document = unitOfWork.Documents.FindFirstOccurence(Document => Document.IdActivityPracticioner == activityPracticioner.IdActivityPracticioner);
-                if (document != null)
+                _document = unitOfWork.Documents.FindFirstOccurence(Document => Document.IdActivityPracticioner == _activityPracticioner.IdActivityPracticioner);
+                if (_document != null)
                 {
                     InitializeDocument();
                     return true;
@@ -63,12 +63,12 @@ namespace PresentationLayer
 
         private void InitializeDocument()
         {
-            TextBoxAnswer.Text = activityPracticioner.Answer;
-            LabelNameDocument.Content = document.Name;
-            route = document.RouteSave + "/" + document.Name;
-            if (document.DeliveryDate != null)
+            TextBoxAnswer.Text = _activityPracticioner.Answer;
+            LabelNameDocument.Content = _document.Name;
+            _route = _document.RouteSave + "/" + _document.Name;
+            if (_document.DeliveryDate != null)
             {
-                LabelDateDeliveryDate.Content = "Fecha de entrega: " + document.DeliveryDate;
+                LabelDateDeliveryDate.Content = "Fecha de entrega: " + _document.DeliveryDate;
                 ButtonDownloadFile.IsEnabled = true;
             }
             ValidateDateActivity();
@@ -77,17 +77,17 @@ namespace PresentationLayer
         private void ValidateDateActivity()
         {
             DateTime localDate = DateTime.Now;
-            if (activityPracticioner.Activity.ActivityStatus.Equals(ActivityStatus.CANCELLED)|| activityPracticioner.ActivityPracticionerStatus.Equals(ActivityPracticionerStatus.QUALIFIED) ||
-                activityPracticioner.Activity.FinishDate < localDate)
+            if (_activityPracticioner.Activity.ActivityStatus.Equals(ActivityStatus.CANCELLED)|| _activityPracticioner.ActivityPracticionerStatus.Equals(ActivityPracticionerStatus.QUALIFIED) ||
+                _activityPracticioner.Activity.FinishDate < localDate)
             {
                 TextBoxAnswer.IsReadOnly = true;
                 ButtonAddFile.Visibility = Visibility.Hidden;
                 ButtonSave.Visibility = Visibility.Hidden;
                 TextBlockObservation.Visibility = Visibility.Visible;
-                TextBlockObservation.Text = "Observaciones por el Docente: "+activityPracticioner.Observation;
-                if (activityPracticioner.Activity.FinishDate < localDate && !activityPracticioner.Activity.ActivityStatus.Equals(ActivityStatus.CANCELLED))
+                TextBlockObservation.Text = "Observaciones por el Docente: "+_activityPracticioner.Observation;
+                if (_activityPracticioner.Activity.FinishDate < localDate && !_activityPracticioner.Activity.ActivityStatus.Equals(ActivityStatus.CANCELLED))
                 {
-                    activityPracticioner.Activity.ActivityStatus = ActivityStatus.FINISHED;
+                    _activityPracticioner.Activity.ActivityStatus = ActivityStatus.FINISHED;
                 }
             }
         }
@@ -95,7 +95,7 @@ namespace PresentationLayer
         private void BehindButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
             ReportList partialReportList = new ReportList();
-            partialReportList.InitializeStackPanel(activityPracticioner.Activity.ActivityType);
+            partialReportList.InitializeStackPanel(_activityPracticioner.Activity.ActivityType);
             partialReportList.Show();
             Close();
         }
@@ -108,7 +108,7 @@ namespace PresentationLayer
             };
             if (search.ShowDialog() == true)
             {
-                route = search.FileName;
+                _route = search.FileName;
                 LabelNameDocument.Content = search.SafeFileName;
                 ButtonDownloadFile.IsEnabled = true;
             }   
@@ -132,7 +132,7 @@ namespace PresentationLayer
                             MessageBox.Show("El archivo no se pudo guardar. Intente más tarde", "Guardado Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                         ReportList partialReportList = new ReportList();
-                        partialReportList.InitializeStackPanel(activityPracticioner.Activity.ActivityType);
+                        partialReportList.InitializeStackPanel(_activityPracticioner.Activity.ActivityType);
                         partialReportList.Show();
                         Close();
                     }
@@ -146,7 +146,7 @@ namespace PresentationLayer
         
         private bool CreateDirectoryDocument()
         {
-            string pathDirectoryDocument = document.IdDocument.ToString();
+            string pathDirectoryDocument = _document.IdDocument.ToString();
             string pathDirectory =  Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Activity/" + pathDirectoryDocument;
             string path = pathDirectory+ "/" + LabelNameDocument.Content;
             try
@@ -155,16 +155,16 @@ namespace PresentationLayer
                 {
                     Directory.CreateDirectory(pathDirectory);
                 }
-                if (!string.IsNullOrWhiteSpace(document.RouteSave))
+                if (!string.IsNullOrWhiteSpace(_document.RouteSave))
                 {
-                    File.Delete(document.RouteSave+ "/" + document.Name);
+                    File.Delete(_document.RouteSave+ "/" + _document.Name);
                 }
-                if (!route.Equals(path))
+                if (!_route.Equals(path))
                 {
-                    File.Copy(route, path, true);
+                    File.Copy(_route, path, true);
                 }
-                document.Name = LabelNameDocument.Content.ToString();
-                document.RouteSave = pathDirectory;
+                _document.Name = LabelNameDocument.Content.ToString();
+                _document.RouteSave = pathDirectory;
                 return true;
             }
             catch (IOException)
@@ -189,19 +189,19 @@ namespace PresentationLayer
             {
                 ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
                 UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-                ActivityPracticioner activityPracticionerUpdate = unitOfWork.ActivityPracticioners.Get(activityPracticioner.IdActivityPracticioner);
+                ActivityPracticioner activityPracticionerUpdate = unitOfWork.ActivityPracticioners.Get(_activityPracticioner.IdActivityPracticioner);
                 activityPracticionerUpdate.Answer = TextBoxAnswer.Text;
-                Document documentUpdate = unitOfWork.Documents.Get(document.IdDocument);
-                documentUpdate.Name = document.Name;
-                documentUpdate.RouteSave = document.RouteSave;
+                Document documentUpdate = unitOfWork.Documents.Get(_document.IdDocument);
+                documentUpdate.Name = _document.Name;
+                documentUpdate.RouteSave = _document.RouteSave;
                 documentUpdate.TypeDocument = "Reporte Mensual";
-                if (activityPracticioner.Activity.ActivityType.Equals(ActivityType.PartialReport))
+                if (_activityPracticioner.Activity.ActivityType.Equals(ActivityType.PartialReport))
                 {
                     documentUpdate.TypeDocument = "Reporte Parcial";
                 }
                 DateTime deliveryDate = DateTime.Now;
                 documentUpdate.DeliveryDate = deliveryDate;
-                activityPracticionerUpdate.Activity.ActivityStatus = activityPracticioner.Activity.ActivityStatus;
+                activityPracticionerUpdate.Activity.ActivityStatus = _activityPracticioner.Activity.ActivityStatus;
 
                 int rowsAffected = unitOfWork.Complete();
                 unitOfWork.Dispose();
@@ -217,7 +217,7 @@ namespace PresentationLayer
         {
             if (!string.IsNullOrWhiteSpace(LabelNameDocument.Content.ToString()))
             {
-                if (File.Exists(route))
+                if (File.Exists(_route))
                 {
                     WebClient myWebClient = new WebClient();
                     string routeDestination = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/" + LabelNameDocument.Content.ToString();
@@ -242,7 +242,7 @@ namespace PresentationLayer
                         }
                         else
                         {
-                            myWebClient.DownloadFile(route, routeDestination);
+                            myWebClient.DownloadFile(_route, routeDestination);
                             MessageBox.Show("El archivo se descargo la carpeta del escritorio", "Descarga", MessageBoxButton.OK, MessageBoxImage.Information);
                             isDownload = false;
                         }

@@ -88,7 +88,7 @@ namespace PresentationLayer
                     if (user.UserType == UserType.Practicioner)
                     {
                         PracticionerMenu practicionerMenu = new PracticionerMenu();
-                        ReportList.User = user;
+                        ReportList._User = user;
                         practicionerMenu.Show();
                         Close();
                     }
