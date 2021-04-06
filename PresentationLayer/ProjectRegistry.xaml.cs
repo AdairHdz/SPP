@@ -16,17 +16,17 @@ namespace PresentationLayer
 	/// </summary> 
 	public partial class ProjectRegistry : Window
 	{
-		private Project project;
-		private LinkedOrganization linkedOrganization;
-		private ResponsibleProject responsibleProject;
-		private List<SchedulingActivity> listSchedulingActivity;
-		private bool isValidSchedulingActivity;
+		private Project _project;
+		private LinkedOrganization _linkedOrganization;
+		private ResponsibleProject _responsibleProject;
+		private List<SchedulingActivity> _listSchedulingActivity;
+		private bool _isValidSchedulingActivity;
 		public static string StaffNumber { get; set; }
 
 		public ProjectRegistry()
 		{
 			InitializeComponent();
-			this.DataContext = project;
+			this.DataContext = _project;
 			CreateTerm();
 		}
 
@@ -52,10 +52,10 @@ namespace PresentationLayer
 		{
 			LinkedOrganizationChoose chooseLinkedOrganization = new LinkedOrganizationChoose();
 			chooseLinkedOrganization.ShowDialog();
-			linkedOrganization = LinkedOrganizationChoose.ObteinLinkedOrganization();
-			if (!object.ReferenceEquals(null, linkedOrganization))
+			_linkedOrganization = LinkedOrganizationChoose.ObteinLinkedOrganization();
+			if (!object.ReferenceEquals(null, _linkedOrganization))
 			{
-				TextBoxLinkedOrganization.Text = linkedOrganization.Name;
+				TextBoxLinkedOrganization.Text = _linkedOrganization.Name;
 			}
 		}
 
@@ -63,16 +63,16 @@ namespace PresentationLayer
 		{
 			ResponsibleProjectChoose chooseResponsibleProject = new ResponsibleProjectChoose();
 			chooseResponsibleProject.ShowDialog();
-			responsibleProject = ResponsibleProjectChoose.ObteinResponsibleProject();
-			if (!object.ReferenceEquals(null, responsibleProject))
+			_responsibleProject = ResponsibleProjectChoose.ObteinResponsibleProject();
+			if (!object.ReferenceEquals(null, _responsibleProject))
 			{
-				TextBoxResponsibleProject.Text = responsibleProject.Name + " " + responsibleProject.LastName;
+				TextBoxResponsibleProject.Text = _responsibleProject.Name + " " + _responsibleProject.LastName;
 			}
 		}
 
 		private void RegisterButtonClicked(object sender, RoutedEventArgs routedEventArgs)
 		{
-			project = new Project();
+			_project = new Project();
 			CreateProjectFromInputData();
 			if (ValidateDataProject())
 			{
@@ -109,7 +109,7 @@ namespace PresentationLayer
 			}
 			else
 			{
-				if (listSchedulingActivity.Count == 0)
+				if (_listSchedulingActivity.Count == 0)
 				{
 					TextBoxScheduleActivityOne.BorderBrush = Brushes.Red;
 				}
@@ -138,34 +138,35 @@ namespace PresentationLayer
 
 		private void CreateProjectFromInputData()
 		{
-			project = new Project();
-			project.NameProject = TextBoxName.Text;
-			project.Description = TextBoxDescriptionGeneral.Text;
-			project.ObjectiveGeneral = TextBoxObjectiveGeneral.Text;
-			project.ObjectiveImmediate = TextBoxObjectiveImmediate.Text;
-			project.ObjectiveMediate = TextBoxObjectiveMediate.Text;
-			project.Methodology = TextBoxMethodology.Text;
-			project.Resources = TextBoxResources.Text;
-			project.Activities = TextBoxActivities.Text;
-			project.Responsibilities = TextBoxResponsibilities.Text;
-			project.Duration = 480;
+			_project = new Project();
+			_project.NameProject = TextBoxName.Text;
+			_project.Description = TextBoxDescriptionGeneral.Text;
+			_project.ObjectiveGeneral = TextBoxObjectiveGeneral.Text;
+			_project.ObjectiveImmediate = TextBoxObjectiveImmediate.Text;
+			_project.ObjectiveMediate = TextBoxObjectiveMediate.Text;
+			_project.Methodology = TextBoxMethodology.Text;
+			_project.Resources = TextBoxResources.Text;
+			_project.Activities = TextBoxActivities.Text;
+			_project.Responsibilities = TextBoxResponsibilities.Text;
+			_project.Duration = 480;
 			if (!string.IsNullOrWhiteSpace(TextBoxQuantityPracticing.Text))
 			{
-				project.QuantityPracticing = Int32.Parse(TextBoxQuantityPracticing.Text);
+				_project.QuantityPracticing = Int32.Parse(TextBoxQuantityPracticing.Text);
 			}
-			project.Term = LabelTerm.Content.ToString();
-			project.StaffNumberCoordinator = StaffNumber;
-			if (!object.ReferenceEquals(null, responsibleProject)) { 
-				project.IdResponsibleProject = responsibleProject.IdResponsibleProject;
+			_project.Term = LabelTerm.Content.ToString();
+			_project.StaffNumberCoordinator = StaffNumber;
+			_project.DaysHours = "A acordar con el estudiante (en horario de oficina)";
+			if (!object.ReferenceEquals(null, _responsibleProject)) { 
+				_project.IdResponsibleProject = _responsibleProject.IdResponsibleProject;
 			}
-			if (!object.ReferenceEquals(null, linkedOrganization)){
-				project.IdLinkedOrganization = linkedOrganization.IdLinkedOrganization;
+			if (!object.ReferenceEquals(null, _linkedOrganization)){
+				_project.IdLinkedOrganization = _linkedOrganization.IdLinkedOrganization;
 			}
 		}
 
 		private bool ProjectIsAlreadyRegistered(UnitOfWork unitOfWork)
 		{
-			Project projectWithSameName = unitOfWork.Projects.FindFirstOccurence(Project => Project.NameProject == project.NameProject);
+			Project projectWithSameName = unitOfWork.Projects.FindFirstOccurence(Project => Project.NameProject == _project.NameProject);
 			if (!object.ReferenceEquals(null, projectWithSameName))
 			{
 				return true;
@@ -175,10 +176,10 @@ namespace PresentationLayer
 
 		private bool ValidateDataProject()
 		{
-			isValidSchedulingActivity = true;
-			listSchedulingActivity = new List<SchedulingActivity>();
+			_isValidSchedulingActivity = true;
+			_listSchedulingActivity = new List<SchedulingActivity>();
 			ProjectValidator projectValidator = new ProjectValidator();
-			ValidationResult dataValidationResult = projectValidator.Validate(project);
+			ValidationResult dataValidationResult = projectValidator.Validate(_project);
 			IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
 			UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
 			userFeedback.ShowFeedback();
@@ -186,7 +187,7 @@ namespace PresentationLayer
 			ValidateScheduleActivity(TextBoxScheduleActivityTwo, LabelMonth2.Content.ToString());
 			ValidateScheduleActivity(TextBoxScheduleActivityThree, LabelMonth3.Content.ToString());
 			ValidateScheduleActivity(TextBoxScheduleActivityFour, LabelMonth4.Content.ToString());
-			return dataValidationResult.IsValid && isValidSchedulingActivity && listSchedulingActivity.Count!=0;
+			return dataValidationResult.IsValid && _isValidSchedulingActivity && _listSchedulingActivity.Count!=0;
 		}
 
 		private void ValidateScheduleActivity(System.Windows.Controls.TextBox TextBoxActivity,string month)
@@ -201,43 +202,43 @@ namespace PresentationLayer
 				ValidationResult dataValidationResult = schedulingActivityValidator.Validate(schedulingActivity);
                 if (!dataValidationResult.IsValid)
                 {
-					isValidSchedulingActivity = false;
+					_isValidSchedulingActivity = false;
 					TextBoxActivity.BorderBrush = Brushes.Red;
 				}
                 else
                 {
 					TextBoxActivity.BorderBrush = Brushes.Green;
 				}
-				listSchedulingActivity.Add(schedulingActivity);
+				_listSchedulingActivity.Add(schedulingActivity);
 			}        
 		}
 
 		private bool RegisternewProject(UnitOfWork unitOfWork)
 		{			
-			unitOfWork.Projects.Add(project);
+			unitOfWork.Projects.Add(_project);
 			int rowsAffected = unitOfWork.Complete();
 			return RegisterSchedulingActivity(unitOfWork) && rowsAffected ==1;
 		}
 
 		private void AddIdProjectInSchedulingActivity()
         {
-			for (int index = 0; index < listSchedulingActivity.Count; index++)
+			for (int index = 0; index < _listSchedulingActivity.Count; index++)
 			{
-				listSchedulingActivity[index].IdProject = project.IdProject;
+				_listSchedulingActivity[index].IdProject = _project.IdProject;
             }
         }
 
 		private bool RegisterSchedulingActivity(UnitOfWork unitOfWork)
         {
-			Project projectRegistry = unitOfWork.Projects.FindFirstOccurence(Project => Project.NameProject == project.NameProject);
+			Project projectRegistry = unitOfWork.Projects.FindFirstOccurence(Project => Project.NameProject == _project.NameProject);
 			if (!object.ReferenceEquals(null, projectRegistry))
 			{
-				project.IdProject = projectRegistry.IdProject;
+				_project.IdProject = projectRegistry.IdProject;
 				AddIdProjectInSchedulingActivity();
-				unitOfWork.SchedulingActivities.AddRange(listSchedulingActivity);
+				unitOfWork.SchedulingActivities.AddRange(_listSchedulingActivity);
 				int rowsAffected = unitOfWork.Complete();
 				unitOfWork.Dispose();
-				return rowsAffected.Equals(listSchedulingActivity.Count);
+				return rowsAffected.Equals(_listSchedulingActivity.Count);
 			}
 			return false; 
 		}
