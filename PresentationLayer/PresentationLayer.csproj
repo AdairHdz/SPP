@@ -74,6 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ActivityReportList.xaml.cs">
+      <DependentUpon>ActivityReportList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CoordinatorConsultation.xaml.cs">
       <DependentUpon>CoordinatorConsultation.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,9 @@
     </Compile>
     <Compile Include="CoordinatorModification.xaml.cs">
       <DependentUpon>CoordinatorModification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEvaluation.xaml.cs">
+      <DependentUpon>ReportEvaluation.xaml</DependentUpon>
     </Compile>
     <Compile Include="FirstLogin.xaml.cs">
       <DependentUpon>FirstLogin.xaml</DependentUpon>
@@ -192,6 +198,10 @@
     <Compile Include="Validators\SchedulingActivityValidator.cs" />
     <Compile Include="Validators\UserFeedback.cs" />
     <Compile Include="Validators\UserValidator.cs" />
+    <Page Include="ActivityReportList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CoordinatorConsultation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -211,6 +221,10 @@
     <Page Include="CoordinatorRegistry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReportEvaluation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="FirstLogin.xaml">
       <Generator>MSBuild:Compile</Generator>

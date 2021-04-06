@@ -6,10 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 
-namespace UnitTests.DataPersistenceLayerTests.Report
+namespace UnitTests.DataPersistenceLayerTests.ReportTest
 {
     [TestClass]
-    public class ResponsibleProjectTest
+    public class ReportAddTest
     {
         private UnitOfWork _unitOfWork;
         private List<ActivityPracticioner> _data;

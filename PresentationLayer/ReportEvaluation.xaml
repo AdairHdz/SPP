@@ -1,0 +1,114 @@
+﻿<Window x:Class="PresentationLayer.ReportEvaluation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        WindowStartupLocation="CenterScreen"
+        Icon="images/IconoSystem.png"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="15"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Evaluar Reporte" Height="700" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="0" Fill="#5B007B"/>
+        <TextBlock Grid.Row="0" Text="Evaluar Reporte" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
+        <Button Name="ButtonBehind" Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="15" Click="BehindButtonClicked">
+            <materialDesign:PackIcon Kind="ArrowLeftBold" Height="30" Width="30" HorizontalAlignment="Center"/>
+        </Button>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition> 
+                    <RowDefinition Height="35"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Content="Nombre: " VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+                <Label Name="LabelName" Height="35" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+                <Label Content="Instrucciones: " VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+                <TextBlock Name="TextBlockDescription" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" FontFamily="Arial"/>
+
+                <Label Content="Fecha de inicio: " VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+                <Label Name="LabelStartDate" Height="35" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+                <Label Content="Fecha de finalización: " VerticalAlignment="Top" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+                <Label Name="LabelFinishDate" Height="35" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+                <Label Content="Valor: " VerticalAlignment="Top" Grid.Row="4" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+                <Label Name="LabelValueActivity" Height="35" Grid.Row="4" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            </Grid>
+            <ListView x:Name="ListViewPracticioners" Grid.Column="1" HorizontalAlignment="Center" Margin="20,0,20,10" Background="Azure" VerticalAlignment="Center"
+                  SelectionChanged="PracticionerListViewSelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Enrollment}" Header="Matricula"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Nombre Completo"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Background="AntiqueWhite" Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Content="Respuesta: " HorizontalAlignment="Right" Grid.Row="0" VerticalAlignment="Center" Grid.Column="0" Height="35" FontFamily="Arial"/>
+                <TextBlock Name="TextBlockAnswer" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                
+                <Label Content="Documento: " VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+                <Label Name="LabelNameDocument" Height="35" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <Button Name="ButtonDownloadFile" IsEnabled="False" Content="Descargar" ToolTip="Descargar el archivo" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Width="95" HorizontalAlignment="Right" Foreground="Black" Style="{StaticResource MaterialDesignFlatButton}" Click="DownloadFileButtonClicked"/>
+            </Grid>
+            <Grid Grid.Column="1" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="55"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBox x:Name="TextBoxObservation" Grid.Row="0" Grid.Column="0" IsReadOnly="True" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignOutlinedTextBox}" VerticalAlignment="Center" Height="85" MinWidth="300"
+                AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" materialDesign:HintAssist.Hint="Escribe las observaciones"/>
+                <Label Content="Calificación: " Height="35" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <TextBox Name="TextBoxQualification" Height="30" Grid.Row="1" Grid.Column="1" IsReadOnly="True" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="60" HorizontalAlignment="Left"/>
+                <Button x:Name="ButtonQualification" Grid.Row="1" Grid.Column="1" IsEnabled="False" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                VerticalAlignment="Center" HorizontalAlignment="Right" Content="Calificar" Margin="0,0,10,0" Click="QualificationButtonClicked"></Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
