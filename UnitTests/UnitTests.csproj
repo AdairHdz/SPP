@@ -108,6 +108,7 @@
     <Compile Include="DataPersistenceLayerTests\TeacherTest\ConsultTeacherTest.cs" />
     <Compile Include="DataPersistenceLayerTests\TeacherTest\TeacherTest.cs" />
     <Compile Include="DataPersistenceLayerTests\UserTest\UserTest.cs" />
+    <Compile Include="GroupRegistryTestCase\GroupRegistryTest.cs" />
     <Compile Include="HashingTests\BCryptHashingTest.cs" />
     <Compile Include="HashingTests\BCryptHasherTest.cs" />
     <Compile Include="LinkedOrganizationDeletionTestCase\LinkedOrganizationDeletionTest.cs" />
@@ -133,7 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataPersistenceLayer\DataPersistenceLayer.csproj">
-      <Project>{5AEEAEAA-3CB2-4EAE-B3AC-1703740CDDEE}</Project>
+      <Project>{5aeeaeaa-3cb2-4eae-b3ac-1703740cddee}</Project>
       <Name>DataPersistenceLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\PresentationLayer\PresentationLayer.csproj">

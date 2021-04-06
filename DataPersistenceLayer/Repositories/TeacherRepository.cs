@@ -1,5 +1,6 @@
 ﻿using DataPersistenceLayer.Entities;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -58,6 +59,21 @@ namespace DataPersistenceLayer.Repositories
             {
                 return false;
             }
+        }
+
+        public bool ActiveTeacher()
+        {
+            IList<Teacher> teacher = _context.Set<Teacher>().Where(Teacher => Teacher.User.UserStatus == UserStatus.ACTIVE).ToList();
+            if (object.ReferenceEquals(null, teacher))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public IList<Teacher> GetActiveTeachers()
+        {
+            return _context.Set<Teacher>().Include(teacher => teacher.User).Where(Teacher => Teacher.User.UserStatus == UserStatus.ACTIVE).ToList();
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class UpdateProject : DbMigration
     {
         public override void Up()
@@ -26,7 +26,7 @@
             CreateIndex("dbo.Projects", "StaffNumberCoordinator");
             AddForeignKey("dbo.Projects", "StaffNumberCoordinator", "dbo.Coordinators", "StaffNumber", cascadeDelete: true);
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.Projects", "StaffNumberCoordinator", "dbo.Coordinators");

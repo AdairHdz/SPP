@@ -89,6 +89,9 @@
     <Compile Include="FirstLogin.xaml.cs">
       <DependentUpon>FirstLogin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GroupRegistry.xaml.cs">
+      <DependentUpon>GroupRegistry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LinkedOrganizationChoose.xaml.cs">
       <DependentUpon>LinkedOrganizationChoose.xaml</DependentUpon>
     </Compile>
@@ -179,6 +182,7 @@
     <Compile Include="Utils\GenderParser.cs" />
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
+    <Compile Include="Validators\GroupValidator.cs" />
     <Compile Include="Validators\LinkedOrganizationValidator.cs" />
     <Compile Include="Validators\PhoneValidator.cs" />
     <Compile Include="Validators\PracticionerValidator.cs" />
@@ -211,6 +215,10 @@
     <Page Include="FirstLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GroupRegistry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LinkedOrganizationChoose.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -373,7 +381,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataPersistenceLayer\DataPersistenceLayer.csproj">
-      <Project>{5AEEAEAA-3CB2-4EAE-B3AC-1703740CDDEE}</Project>
+      <Project>{5aeeaeaa-3cb2-4eae-b3ac-1703740cddee}</Project>
       <Name>DataPersistenceLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.csproj">

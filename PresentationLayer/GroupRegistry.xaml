@@ -1,0 +1,100 @@
+﻿<Window x:Class="PresentationLayer.GroupRegistry"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		WindowStartupLocation="CenterScreen"
+		mc:Ignorable="d"
+		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+		TextElement.FontWeight="Regular"
+		TextElement.FontSize="15"
+		TextOptions.TextFormattingMode="Ideal"
+		TextOptions.TextRenderingMode="Auto"
+		Background="{DynamicResource MaterialDesignPaper}"
+		FontFamily="{DynamicResource MaterialDesignFont}"
+		Title="Registrar Grupo" Height="720" Width="1267.5">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="340"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="0" Fill="#5B007B"/>
+        <TextBlock Grid.Row="0" Text="Registrar Grupo" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
+				    FontWeight="Bold" Margin="526,16,372,6"/>
+
+        <Grid x:Name="FormGrid" Grid.Row="1" HorizontalAlignment="Center" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="600"></ColumnDefinition>
+                <ColumnDefinition Width="600"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Content="Profesores disponibles" FontWeight="Bold" Margin="44,5,352,163" />
+            <ListView x:Name="ListViewTeacher" HorizontalAlignment="Center"  Background="Azure" Width="522" 
+                Margin="18,32,60,8" MouseDoubleClick="SelectionTeacher">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding StaffNumber}" Header="No.Personal"  />
+                        <GridViewColumn Width="160" DisplayMemberBinding="{Binding User.Name}" Header="Nombre" />
+                        <GridViewColumn Width="160" DisplayMemberBinding="{Binding User.LastName}" Header="Apellido" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Label Content="NRC" FontSize="18" FontWeight="Bold" Margin="20,2,504,166" Grid.Column="1" />
+            <TextBox Name="TextBoxNRC" Height="30" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="375" HorizontalAlignment="Left" Margin="124,4,0,0" />
+            <Label Content="Periodo" FontSize="18" FontWeight="Bold" Margin="20,47,471,121" Grid.Column="1" />
+            <ComboBox Name="ComboBoxPeriod" Grid.Column="1" HorizontalAlignment="Left" Margin="124,50,0,0" VerticalAlignment="Top" Width="370" />
+            <Label Content="Nombre" FontSize="18" FontWeight="Bold" Margin="20,165,454,3" Grid.Column="1" />
+            <Label Name="LabelNameTeacher" FontSize="18" Margin="143,166,102,2" Grid.Column="1" />
+            <Label Content="No.Personal" FontSize="18" FontWeight="Bold" Margin="20,128,460,40" Grid.Column="1" />
+            <Label Name="LabelStaffNumber" FontSize="18" Margin="143,128,313,40" Grid.Column="1" RenderTransformOrigin="1.625,0.719" />
+            <Label Content="Datos profesor a asignar" FontSize="18" FontWeight="Bold" Margin="178,90,174,78" Grid.Column="1" />
+
+
+
+        </Grid>
+
+        <Grid Grid.Row="2" HorizontalAlignment="Center" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="600"></ColumnDefinition>
+                <ColumnDefinition Width="600"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Content="Practicantes disponibles" FontWeight="Bold" Margin="194,12,202,296" />
+            <ListView x:Name="ListViewPracticioners" HorizontalAlignment="Center"   Background="Azure"  Width="480" 
+				   Margin="50,36,70,4" MouseDoubleClick="SelectionPracticioner">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding Enrollment}" Header="Matrícula"  />
+                        <GridViewColumn Width="160" DisplayMemberBinding="{Binding User.Name}" Header="Nombre" />
+                        <GridViewColumn Width="160" DisplayMemberBinding="{Binding User.LastName}" Header="Apellido" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <ListView x:Name="ListViewPracticionersSelected" HorizontalAlignment="Center" Background="Azure"  Width="480" 
+				   Margin="64,38,56,4" Grid.Column="1" MouseDoubleClick="DiscardPracticioner" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding Enrollment}" Header="Matrícula"  />
+                        <GridViewColumn Width="160" DisplayMemberBinding="{Binding User.Name}" Header="Nombre" />
+                        <GridViewColumn Width="160" DisplayMemberBinding="{Binding User.LastName}" Header="Apellido" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Label Content="Practicantes seleccionados" FontWeight="Bold" Margin="194,2,202,306" Grid.Column="1" />
+            <Label FontSize="12" Content="Seleccione al menos 5 practicantes" Margin="191,23,162,285" Grid.Column="1" />
+        </Grid>
+
+        <Grid Grid.Row="3" HorizontalAlignment="Center" Width="296" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="ButtonRegistry" Grid.Column="0" Style="{StaticResource MaterialDesignRaisedAccentButton}" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Registrar" Click="RegistryButtonClicked" Margin="6,6,0,11"/>
+            <Button x:Name="ButtonBack" Style="{StaticResource MaterialDesignRaisedDarkButton}"  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Cancelar" Click="CancelButtonClicked" Grid.ColumnSpan="2" Margin="128,8,0,9"/>
+        </Grid>
+    </Grid>
+</Window>
+ 

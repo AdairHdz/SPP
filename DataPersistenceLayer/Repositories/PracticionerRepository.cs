@@ -1,5 +1,6 @@
 ﻿using DataPersistenceLayer.Entities;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -98,5 +99,32 @@ namespace DataPersistenceLayer.Repositories
             Practicioner practicioner = _context.Set<Practicioner>().Include(s => s.User.Account).Where(practicionerSearch => practicionerSearch.Enrollment == enrrolment).First();
             return practicioner;
         }
+
+        public bool RequiredPracticionersToGroup()
+        {
+            IList<Practicioner> practicioner = _context.Set<Practicioner>().Where(Practicioner => Practicioner.IdGroup == null
+            && Practicioner.User.UserStatus == UserStatus.ACTIVE).ToList();
+            if (practicioner.Count < 5)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public IList<Practicioner> PracticionersToGroup()
+        {
+            return _context.Set<Practicioner>().Include(practicioner => practicioner.User).Where(Practicioner => Practicioner.IdGroup == null
+            && Practicioner.User.UserStatus == UserStatus.ACTIVE).ToList();  
+        }
+
+        public void AddGroup(IList<Practicioner> practicionersSelected, int idGroup)
+        {
+            foreach (Practicioner p in practicionersSelected)
+            {
+                Practicioner practicioner = _context.Set<Practicioner>().Where(Practicioner => Practicioner.Enrollment == p.Enrollment).FirstOrDefault();
+                practicioner.IdGroup = idGroup;
+            }
+        }
+        
     }
 }
