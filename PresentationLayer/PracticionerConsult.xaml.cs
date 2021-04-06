@@ -107,48 +107,49 @@ namespace PresentationLayer
 
 		private IEnumerable<Practicioner> ConsultPracticioner()
 		{
-			IEnumerable<Practicioner> practicioner = null;
+			IList<Practicioner> practicioner = new List<Practicioner>();
 			ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
 			UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
+			string optionFilter = ((ComboBoxItem)ComboBoxFilter.SelectedItem).Content.ToString();
 			try
 			{
 				switch (optionFilter)
 				{
 					case "Todos":
-						practicioner = unitOfWork.Practicioners.GetAll();
+						practicioner = unitOfWork.Practicioners.GetAllPracticionersWithUserData();
 						break;
 					case "Activos":
-						practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.UserStatus == UserStatus.ACTIVE);
+						practicioner = unitOfWork.Practicioners.GetPracticionersWithUserData(Practicioner => Practicioner.User.UserStatus == UserStatus.ACTIVE);
 						break;
 					case "Inactivos":
-						practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.UserStatus == UserStatus.INACTIVE);
+						practicioner = unitOfWork.Practicioners.GetPracticionersWithUserData(Practicioner => Practicioner.User.UserStatus == UserStatus.INACTIVE);
 						break;
 					case "Nombre":
-						practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.Name.ToUpperInvariant().Contains(textSearch.ToUpperInvariant()));
+						practicioner = unitOfWork.Practicioners.GetPracticionersWithUserData(Practicioner => Practicioner.User.Name.ToUpperInvariant().Contains(textSearch.ToUpperInvariant()));
 						break;
 					case "Apellido":
-						practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.LastName.ToUpperInvariant().Contains(textSearch.ToUpperInvariant()));
+						practicioner = unitOfWork.Practicioners.GetPracticionersWithUserData(Practicioner => Practicioner.User.LastName.ToUpperInvariant().Contains(textSearch.ToUpperInvariant()));
 						break;
 					case "Correo":
-						practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.Email.ToUpperInvariant().Contains(textSearch.ToUpperInvariant())); ;
+						practicioner = unitOfWork.Practicioners.GetPracticionersWithUserData(Practicioner => Practicioner.User.Email.ToUpperInvariant().Contains(textSearch.ToUpperInvariant())); ;
 						break;
 					case "Periodo":
-						practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.Term.ToUpperInvariant().Contains(textSearch.ToUpperInvariant())); ;
+						practicioner = unitOfWork.Practicioners.GetPracticionersWithUserData(Practicioner => Practicioner.Term.ToUpperInvariant().Contains(textSearch.ToUpperInvariant())); ;
 						break;
 					case "Teléfono":
-						practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.PhoneNumber.Equals(textSearch));
+						practicioner = unitOfWork.Practicioners.GetPracticionersWithUserData(Practicioner => Practicioner.User.PhoneNumber.Equals(textSearch));
 						break;
 					case "CorreoAlterno":
-						practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.AlternateEmail.ToUpperInvariant().Contains(textSearch.ToUpperInvariant()));
+						practicioner = unitOfWork.Practicioners.GetPracticionersWithUserData(Practicioner => Practicioner.User.AlternateEmail.ToUpperInvariant().Contains(textSearch.ToUpperInvariant()));
 						break;
 					case "Matrícula":
-						practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.Enrollment.Equals(textSearch));
+						practicioner = unitOfWork.Practicioners.GetPracticionersWithUserData(Practicioner => Practicioner.Enrollment.Equals(textSearch));
 						break;
 					case "Hombres":
-						practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.Gender == Gender.MALE);
+						practicioner = unitOfWork.Practicioners.GetPracticionersWithUserData(Practicioner => Practicioner.User.Gender == Gender.MALE);
 						break;
 					case "Mujeres":
-						practicioner = unitOfWork.Practicioners.Find(Practicioner => Practicioner.User.Gender == Gender.FEMALE);
+						practicioner = unitOfWork.Practicioners.GetPracticionersWithUserData(Practicioner => Practicioner.User.Gender == Gender.FEMALE);
 						break;
 				}
 			}
@@ -156,10 +157,10 @@ namespace PresentationLayer
 			{
 				MessageBox.Show("No se pudo obtener información de la base de datos. Intente más tarde", "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
-            finally
-            {
+			finally
+			{
 				unitOfWork.Dispose();
-            }
+			}
 			return practicioner;
 		}
 

@@ -1,4 +1,5 @@
 ﻿using DataPersistenceLayer.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace DataPersistenceLayer.Repositories
@@ -13,6 +14,8 @@ namespace DataPersistenceLayer.Repositories
         bool RequiredPracticionersToGroup();
         IList<Practicioner> PracticionersToGroup();
         void AddGroup(IList<Practicioner> practicionersSelected, int idGroup);
-       
+        IList<Practicioner> GetAllPracticionersWithUserData();
+        IList<Practicioner> GetPracticionersWithUserData(Func<Practicioner, bool> predicate);
+
     }
 }

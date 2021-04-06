@@ -31,7 +31,7 @@ namespace PresentationLayer
 			this.DataContext = Practicioner;
 		}
 
-		private void CancelButtonClicked(object sender, RoutedEventArgs e)
+		private void CancelButtonClicked(object sender, RoutedEventArgs routedEventArgs)
 		{
 			MessageBoxResult messageBoxResult = MessageBox.Show("¿Seguro desea cancelar?",
 				"Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -45,7 +45,7 @@ namespace PresentationLayer
 
 		}
 
-		private void RegisterButtonClicked(object sender, RoutedEventArgs e)
+		private void RegisterButtonClicked(object sender, RoutedEventArgs routedEventArgs)
 		{
 			CreatePracticioner();
 			if (IsValidData())
@@ -151,6 +151,7 @@ namespace PresentationLayer
 			string salt = bCryptHashGenerator.GenerateSalt();
 			string hashedPassword = bCryptHashGenerator.GenerateHashedString(Practicioner.User.Account.Password, salt);
 			Practicioner.User.Account.Password = hashedPassword;
+			Practicioner.User.Account.Salt = salt;
 		}
 
 		private void RegisterNewPracticioner(UnitOfWork unitOfWork)
