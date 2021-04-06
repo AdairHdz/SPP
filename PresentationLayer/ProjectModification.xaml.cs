@@ -65,6 +65,7 @@ namespace PresentationLayer
             TextBoxResponsibilities.Text = _project.Responsibilities;
             TextBoxQuantityPracticing.Text = _project.QuantityPracticing.ToString();
             LabelTerm.Content = _project.Term;
+            TextBoxDaysHours.Text = _project.DaysHours;
             TextBoxLinkedOrganization.Text = _project.LinkedOrganization.Name;
             _responsibleProject = new ResponsibleProject();
             _responsibleProject.IdResponsibleProject = _project.IdResponsibleProject;
@@ -126,6 +127,7 @@ namespace PresentationLayer
             _project.Resources = TextBoxResources.Text;
             _project.Activities = TextBoxActivities.Text;
             _project.Responsibilities = TextBoxResponsibilities.Text;
+            _project.DaysHours = TextBoxDaysHours.Text;
             if (!string.IsNullOrWhiteSpace(TextBoxQuantityPracticing.Text))
             {
                 _project.QuantityPracticing = Int32.Parse(TextBoxQuantityPracticing.Text);
@@ -235,6 +237,7 @@ namespace PresentationLayer
             updateProject.Resources = _project.Resources;
             updateProject.Activities = _project.Activities;
             updateProject.Responsibilities = _project.Responsibilities;
+            updateProject.DaysHours = _project.DaysHours;
             updateProject.QuantityPracticing = _project.QuantityPracticing;
             updateProject.IdResponsibleProject = _project.IdResponsibleProject;
             updateProject.IdLinkedOrganization = _project.IdLinkedOrganization;
