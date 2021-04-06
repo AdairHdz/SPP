@@ -59,23 +59,23 @@ namespace DataPersistenceLayer.Repositories
             {
                 if (isUpdate)
                 {
-                    practicionerThatMatch = _context.Set<Practicioner>().Include(s => s.User)
-                    .Where(p => p.User.IdUser != practicionerUser.IdUser
-                    && (p.User.AlternateEmail.Equals(practicionerUser.AlternateEmail)
-                    || p.User.Email.Equals(practicionerUser.Email)
-                    || p.User.Email.Equals(practicionerUser.AlternateEmail)
-                    || p.User.AlternateEmail.Equals(practicionerUser.Email)
-                    || p.User.PhoneNumber.Equals(practicionerUser.PhoneNumber))).Count();
+                    practicionerThatMatch = _context.Set<Practicioner>().Include(UserPracticioner => UserPracticioner.User)
+                    .Where(PracticionerFound => PracticionerFound.User.IdUser != practicionerUser.IdUser
+                    && (PracticionerFound.User.AlternateEmail.Equals(practicionerUser.AlternateEmail)
+                    || PracticionerFound.User.Email.Equals(practicionerUser.Email)
+                    || PracticionerFound.User.Email.Equals(practicionerUser.AlternateEmail)
+                    || PracticionerFound.User.AlternateEmail.Equals(practicionerUser.Email)
+                    || PracticionerFound.User.PhoneNumber.Equals(practicionerUser.PhoneNumber))).Count();
                 }
                 else
                 {
                     practicionerThatMatch = _context.Set<Practicioner>()
-                    .Where(p => p.Enrollment.Equals(practicioner.Enrollment)
-                    || p.User.AlternateEmail.Equals(practicionerUser.AlternateEmail)
-                    || p.User.Email.Equals(practicionerUser.Email)
-                    || p.User.Email.Equals(practicionerUser.AlternateEmail)
-                    || p.User.AlternateEmail.Equals(practicionerUser.Email)
-                    || p.User.PhoneNumber.Equals(practicionerUser.PhoneNumber)).Include(c => c.User).Count();
+                    .Where(PracticionerFound => PracticionerFound.Enrollment.Equals(practicioner.Enrollment)
+                    || PracticionerFound.User.AlternateEmail.Equals(practicionerUser.AlternateEmail)
+                    || PracticionerFound.User.Email.Equals(practicionerUser.Email)
+                    || PracticionerFound.User.Email.Equals(practicionerUser.AlternateEmail)
+                    || PracticionerFound.User.AlternateEmail.Equals(practicionerUser.Email)
+                    || PracticionerFound.User.PhoneNumber.Equals(practicionerUser.PhoneNumber)).Include(UserPracticioner => UserPracticioner.User).Count();
                 }
 
                 if (practicionerThatMatch != 0)
@@ -96,7 +96,7 @@ namespace DataPersistenceLayer.Repositories
 
         public Practicioner GetAllInformationPracticioner(string enrrolment)
         {
-            Practicioner practicioner = _context.Set<Practicioner>().Include(s => s.User.Account).Where(practicionerSearch => practicionerSearch.Enrollment == enrrolment).First();
+            Practicioner practicioner = _context.Set<Practicioner>().Include(PracticionerUser => PracticionerUser.User.Account).Where(PracticionerSearch => PracticionerSearch.Enrollment == enrrolment).First();
             return practicioner;
         }
 
@@ -113,18 +113,28 @@ namespace DataPersistenceLayer.Repositories
 
         public IList<Practicioner> PracticionersToGroup()
         {
-            return _context.Set<Practicioner>().Include(practicioner => practicioner.User).Where(Practicioner => Practicioner.IdGroup == null
+            return _context.Set<Practicioner>().Include(UserPracticioner => UserPracticioner.User).Where(Practicioner => Practicioner.IdGroup == null
             && Practicioner.User.UserStatus == UserStatus.ACTIVE).ToList();  
         }
 
         public void AddGroup(IList<Practicioner> practicionersSelected, int idGroup)
         {
-            foreach (Practicioner p in practicionersSelected)
+            foreach (Practicioner practicionerInList in practicionersSelected)
             {
-                Practicioner practicioner = _context.Set<Practicioner>().Where(Practicioner => Practicioner.Enrollment == p.Enrollment).FirstOrDefault();
+                Practicioner practicioner = _context.Set<Practicioner>().Where(Practicioner => Practicioner.Enrollment == practicionerInList.Enrollment).FirstOrDefault();
                 practicioner.IdGroup = idGroup;
             }
         }
-        
+
+        public IList<Practicioner> GetAllPracticionersWithUserData()
+        {
+            return _context.Set<Practicioner>().Include(UserPracticioner => UserPracticioner.User).ToList();
+        }
+
+        public IList<Practicioner> GetPracticionersWithUserData(Func<Practicioner, bool> predicate)
+        {
+            return _context.Set<Practicioner>().Include(UserPracticioner => UserPracticioner.User).Where(predicate).ToList();
+        }
+
     }
 }

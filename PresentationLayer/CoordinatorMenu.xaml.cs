@@ -43,7 +43,7 @@ namespace PresentationLayer
 			ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
 			UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
 			IEnumerable<Practicioner> thereArePracticioners = unitOfWork.Practicioners.GetAll();
-			if (thereArePracticioners == null)
+			if (!IENumerableHasElement(thereArePracticioners))
 			{
 				MessageBox.Show("No hay ningún practicante registrado", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
@@ -53,6 +53,16 @@ namespace PresentationLayer
 				practicionerConsult.Show();
 				Close();
 			}
+		}
+		private bool IENumerableHasElement(IEnumerable<Practicioner> ieNumerable)
+		{
+			bool isFull = false;
+			foreach (Practicioner item in ieNumerable)
+			{
+				isFull = true;
+				break;
+			}
+			return isFull;
 		}
 		private void RegisterPracticionerButtonClicked(object sender, RoutedEventArgs routedEventArgs)
 		{

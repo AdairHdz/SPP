@@ -54,15 +54,12 @@ namespace PresentationLayer
 			}
 			catch (SqlException)
 			{
-				MessageBox.Show("No hay conexión a la base de datos. Intente más tarde.");
 				_unitOfWork.Dispose();
-				CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
-				coordinatorMenu.Show();
-				this.Close();
+				CatchDBException();
 			}
 		}
 
-		private void ModifyButtonClicked(object sender, RoutedEventArgs e)
+		private void ModifyButtonClicked(object sender, RoutedEventArgs routedEventArgs)
 		{
 			CreatePracticionerFromInputData();
 			if (ValidateData())
@@ -91,11 +88,17 @@ namespace PresentationLayer
 				}
 				catch (SqlException)
 				{
-					MessageBox.Show("No hay conexión con la base de datos. Intente más tarde.");
-					_unitOfWork.Dispose();
-					this.Close();
+					CatchDBException();
 				}
 			}
+		}
+
+		private void CatchDBException()
+        {
+			MessageBox.Show("No hay conexión con la base de datos. Intente más tarde.");
+			CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
+			coordinatorMenu.Show();
+			this.Close();
 		}
 
 		private bool ValidateData()
@@ -108,12 +111,6 @@ namespace PresentationLayer
 			IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
 			UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
 			userFeedback.ShowFeedback();
-
-			foreach (ValidationFailure v in validationFailures)
-			{
-				Console.WriteLine(v);
-			}
-
 			if (dataValidationResult.IsValid)
 			{
 				isValid = true;
@@ -152,7 +149,7 @@ namespace PresentationLayer
 			return messageBoxResult == MessageBoxResult.Yes;
 		}
 
-		private void CancelButtonClicked(object sender, RoutedEventArgs e)
+		private void CancelButtonClicked(object sender, RoutedEventArgs routedEventArgs)
 		{
 			PracticionerConsult practicionerConsult = new PracticionerConsult();
 			practicionerConsult.Show();

@@ -81,8 +81,10 @@ namespace UnitTests.PracticionerRegistryTestCase
 					}
 				}
 			};
-			var result = _practicionerValidator.TestValidate(newPracticioner);
-			result.ShouldNotHaveAnyValidationErrors();
+			_unitOfWork.Practicioners.Add(newPracticioner);
+			int expected = 2;
+			int actual = _practicioners.Count;
+			Assert.AreEqual(expected, actual);
 		}
 
 		[TestMethod]

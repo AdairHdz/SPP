@@ -109,6 +109,7 @@ namespace PresentationLayer
             string salt = bCryptHashGenerator.GenerateSalt();
             string hashedPassword = bCryptHashGenerator.GenerateHashedString(Coordinator.User.Account.Password, salt);
             Coordinator.User.Account.Password = hashedPassword;
+            Coordinator.User.Account.Salt = salt;
         }
 
         private void RegisterNewCoordinator(UnitOfWork unitOfWork)
