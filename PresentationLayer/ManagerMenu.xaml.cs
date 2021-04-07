@@ -40,5 +40,12 @@ namespace PresentationLayer
             teacherRegistry.Show();
             Close();
         }
+
+        private void ConsultCoordinatorButtonClicked(object sender, RoutedEventArgs e)
+        {
+            CoordinatorConsultation coordinatorConsultation = new CoordinatorConsultation();
+            coordinatorConsultation.Show();
+            Close();
+        }
     }
 }
