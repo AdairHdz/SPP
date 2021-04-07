@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Modificar Practicante" Height="650" Width="750">
+        Title="Modificar Practicante" Height="600" Width="750">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"></RowDefinition>
@@ -24,9 +24,8 @@
         <TextBlock Grid.Row="0" Text="Modificar Practicante" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
                    VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
 
-        <Grid x:Name="FormGrid" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="46,10,35,10" Width="661" Height="519">
+        <Grid x:Name="FormGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="46,9,35,9" Width="661" Height="471" Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="45"></RowDefinition>
                 <RowDefinition Height="45"></RowDefinition>
                 <RowDefinition Height="45"></RowDefinition>
                 <RowDefinition Height="45"></RowDefinition>
@@ -75,20 +74,16 @@
             <TextBox Name="TextBoxPhoneNumber" Height="30" Grid.Row="7" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
                      materialDesign:HintAssist.HelperText="Máximo 10 caracteres Ej.2281564676 " Text="{Binding User.PhoneNumber, Mode=TwoWay}"/>
 
-            <Label Content="Matricula: " VerticalAlignment="Top" Grid.Row="8" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-            <TextBox Name="TextBoxUsername" Height="30" Grid.Row="8" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
-                     materialDesign:HintAssist.HelperText="Máximo 10 caracteres Ej.zS18012124 " Text="{Binding Enrollment, Mode=TwoWay}"/>
-
-            <Label Content="Estatus" Grid.Row="9" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-            <ComboBox Name="ComboBoxPracticionerStatus" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Left"
+            <Label Content="Estatus" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+            <ComboBox Name="ComboBoxPracticionerStatus" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left"
                          VerticalAlignment="Top">
                 <ComboBoxItem Content="Activo" Tag="1"></ComboBoxItem>
                 <ComboBoxItem Content="Inactivo" Tag="0"></ComboBoxItem>
             </ComboBox>
 
-            <Button Grid.Row="10" Grid.Column="0" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
-            ToolTip="Resource name: MaterialDesignRaisedAccentButton" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Modificar" Click="ModifyButtonClicked" Margin="199,7,365,7" Grid.ColumnSpan="2"></Button>
-            <Button Grid.Row="10" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+            <Button Grid.Row="9" Grid.Column="0" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Modificar" Click="ModifyButtonClicked" Margin="199,7,355,7" Grid.ColumnSpan="2" Width="107"></Button>
+            <Button Grid.Row="9" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
             Content="Cancelar" Click="CancelButtonClicked" RenderTransformOrigin="0.059,0.453" Margin="114,7,203,7"/>
 
         </Grid>
