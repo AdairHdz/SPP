@@ -47,47 +47,36 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="0" Content="Número de personal" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <Label Grid.Column="0" Grid.Row="0" Content="Nombre(s)" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 <TextBox Style="{DynamicResource MaterialDesignTextBox}"
                          FontFamily="{DynamicResource MaterialDesignFont}"
                          Grid.Column="1"
                          Grid.ColumnSpan="2"
                          Grid.Row="0"
-                         Name="TextBoxStaffNumber"
-                         Text="{Binding StaffNumber, Mode=TwoWay}"
-                         Width="300" HorizontalAlignment="Left"
-                         VerticalAlignment="Bottom"/>
-
-                <Label Grid.Column="0" Grid.Row="1" Content="Nombre(s)" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                <TextBox Style="{DynamicResource MaterialDesignTextBox}"
-                         FontFamily="{DynamicResource MaterialDesignFont}"
-                         Grid.Column="1"
-                         Grid.ColumnSpan="2"
-                         Grid.Row="1"
                          Name="TextBoxFirstName"
                          Text="{Binding User.Name, Mode=TwoWay}"
                          Width="300" HorizontalAlignment="Left"
                          VerticalAlignment="Bottom"/>
 
-                <Label Grid.Column="0" Grid.Row="2" Content="Apellido(s)" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="Apellido(s)" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 <TextBox Style="{DynamicResource MaterialDesignTextBox}"
                          FontFamily="{DynamicResource MaterialDesignFont}"
                          Grid.Column="1"
                          Grid.ColumnSpan="2"
-                         Grid.Row="2"
+                         Grid.Row="1"
                          Name="TextBoxLastName"
                          Text="{Binding User.LastName, Mode=TwoWay}"
                          Width="300" HorizontalAlignment="Left"
                          VerticalAlignment="Bottom"/>
 
-                <Label Grid.Column="0" Grid.Row="3" Content="Género" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                <RadioButton Grid.Column="1"  Grid.Row="3"
+                <Label Grid.Column="0" Grid.Row="2" Content="Género" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <RadioButton Grid.Column="1"  Grid.Row="2"
                              Content="Hombre" Style="{DynamicResource MaterialDesignAccentRadioButton}"
                              Name="ManRadioButton"
                              GroupName="GenderRadioButtonGroup"
                              VerticalAlignment="Bottom"
                              Tag="1"></RadioButton>
-                <RadioButton Grid.Column="2" Grid.Row="3"
+                <RadioButton Grid.Column="2" Grid.Row="2"
                              Content="Mujer" Style="{DynamicResource MaterialDesignAccentRadioButton}"
                              Name="WomanRadioButton"
                              GroupName="GenderRadioButtonGroup"
@@ -95,47 +84,47 @@
                              VerticalAlignment="Bottom"></RadioButton>
 
 
-                <Label Grid.Column="0" Grid.Row="4" Content="Correo" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <Label Grid.Column="0" Grid.Row="3" Content="Correo" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 <TextBox Style="{DynamicResource MaterialDesignTextBox}"
                          FontFamily="{DynamicResource MaterialDesignFont}"
                          Grid.Column="1"
                          Grid.ColumnSpan="2"
-                         Grid.Row="4"
+                         Grid.Row="3"
                          Name="TextBoxEmail"
                          Text="{Binding User.Email, Mode=TwoWay}"
                          Width="300" HorizontalAlignment="Left"
                          VerticalAlignment="Bottom"/>
 
-                <Label Grid.Column="0" Grid.Row="5" Content="Correo alternativo" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <Label Grid.Column="0" Grid.Row="4" Content="Correo alternativo" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 <TextBox Style="{DynamicResource MaterialDesignTextBox}"
                          FontFamily="{DynamicResource MaterialDesignFont}"
                          Grid.Column="1"
                          Grid.ColumnSpan="2"
-                         Grid.Row="5"
+                         Grid.Row="4"
                          Name="TextBoxAlternateEmail"
                          Text="{Binding User.AlternateEmail, Mode=TwoWay}"
                          Width="300" HorizontalAlignment="Left"
                          VerticalAlignment="Bottom"/>
 
-                <Label Grid.Column="0" Grid.Row="6" Content="Teléfono" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <Label Grid.Column="0" Grid.Row="5" Content="Teléfono" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 <TextBox Style="{DynamicResource MaterialDesignTextBox}"
                          FontFamily="{DynamicResource MaterialDesignFont}"
                          Grid.Column="1"
                          Grid.ColumnSpan="2"
-                         Grid.Row="6"
+                         Grid.Row="5"
                          Name="TextBoxPhoneNumber"
                          Text="{Binding User.PhoneNumber, Mode=TwoWay}"
                          Width="300" HorizontalAlignment="Left"
                          VerticalAlignment="Bottom"/>
 
-                <Label Content="Estatus" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                <ComboBox Name="ComboBoxCoordinatorStatus" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left"
+                <Label Content="Estatus" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <ComboBox Name="ComboBoxCoordinatorStatus" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left"
                          VerticalAlignment="Bottom">
                     <ComboBoxItem Content="Activo" Tag="1"></ComboBoxItem>
                     <ComboBoxItem Content="Inactivo" Tag="0"></ComboBoxItem>
                 </ComboBox>
 
-                <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="9">
+                <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="8">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
