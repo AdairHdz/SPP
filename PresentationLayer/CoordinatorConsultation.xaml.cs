@@ -38,7 +38,7 @@ namespace PresentationLayer
             if(retrievedCoordinators.Count == 0)
             {
                 MessageBox.Show("No se encontraron registros");
-                this.Close();
+                GoBackToManagerMenu();
             }
             DisplayCoordinatorsData(retrievedCoordinators);
         }
@@ -116,7 +116,7 @@ namespace PresentationLayer
 
         private void BackButtonClicked(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            GoBackToManagerMenu();
         }
 
         private void CoordinatorListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -140,5 +140,14 @@ namespace PresentationLayer
                 ButtonDelete.IsEnabled = false;
             }
         }
+
+
+        private void GoBackToManagerMenu()
+        {
+            ManagerMenu managerMenu = new ManagerMenu();
+            managerMenu.Show();
+            Close();
+        }
+
     }
 }
