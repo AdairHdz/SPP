@@ -43,7 +43,7 @@ namespace PresentationLayer
 			ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
 			UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
 			IEnumerable<Practicioner> thereArePracticioners = unitOfWork.Practicioners.GetAll();
-			if (!IENumerableHasElement(thereArePracticioners))
+			if (!IENumerableHasPracticioners(thereArePracticioners))
 			{
 				MessageBox.Show("No hay ningún practicante registrado", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
@@ -54,7 +54,7 @@ namespace PresentationLayer
 				Close();
 			}
 		}
-		private bool IENumerableHasElement(IEnumerable<Practicioner> ieNumerable)
+		private bool IENumerableHasPracticioners(IEnumerable<Practicioner> ieNumerable)
 		{
 			bool isFull = false;
 			foreach (Practicioner item in ieNumerable)
@@ -139,6 +139,46 @@ namespace PresentationLayer
 				unitOfWork.Dispose();
             }
 
+		}
+
+		private void GroupModifyButtonClicked(object sender, RoutedEventArgs routedEventArgs)
+		{
+			ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
+			UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
+			try
+			{
+				IEnumerable<Group> thereAreGroups = unitOfWork.Groups.GetAll();
+				if (IENumerableHasGroups(thereAreGroups))
+				{
+					GroupModifyList groupModify = new GroupModifyList();
+					groupModify.Show();
+					Close();
+				}
+				else
+				{
+					MessageBox.Show("No hay ningún grupo registrado. Por favor registre uno", "Ingreso Faliido", MessageBoxButton.OK, MessageBoxImage.Error);
+
+				}
+			}
+			catch (EntityException)
+			{
+				MessageBox.Show("No hay conexión con la base de datos. Intente más tarde", "Ingreso Faliido", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+			finally
+			{
+				unitOfWork.Dispose();
+			}
+
+		}
+		private bool IENumerableHasGroups(IEnumerable<Group> ieNumerable)
+		{
+			bool isFull = false;
+			foreach (Group item in ieNumerable)
+			{
+				isFull = true;
+				break;
+			}
+			return isFull;
 		}
 
 

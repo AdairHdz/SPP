@@ -16,6 +16,8 @@ namespace DataPersistenceLayer.Repositories
         void AddGroup(IList<Practicioner> practicionersSelected, int idGroup);
         IList<Practicioner> GetAllPracticionersWithUserData();
         IList<Practicioner> GetPracticionersWithUserData(Func<Practicioner, bool> predicate);
-
+        IList<Practicioner> GetPracticionersInThisGroup(int idGroup);
+        IList<Practicioner> GetPracticionerActiveNotInThisGroup(int idGroup);
+        void RemoveGroup(IList<Practicioner> practicionersToRemove);
     }
 }

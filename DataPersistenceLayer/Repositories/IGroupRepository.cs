@@ -7,6 +7,11 @@ namespace DataPersistenceLayer.Repositories
     {
         bool GroupIsAlreadyRegistered(Group group);
         int GroupId();
+        Teacher GetTeacherAssigned(string staffNumber);
+        bool GroupCanBeModify(Group group);
+
+
+
 
     }
 }

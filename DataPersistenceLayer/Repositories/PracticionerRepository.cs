@@ -136,5 +136,24 @@ namespace DataPersistenceLayer.Repositories
             return _context.Set<Practicioner>().Include(UserPracticioner => UserPracticioner.User).Where(predicate).ToList();
         }
 
+        public IList<Practicioner> GetPracticionersInThisGroup(int idGroup)
+        {
+            return _context.Set<Practicioner>().Include(UserPracticioner => UserPracticioner.User).Where(Practicioner => Practicioner.IdGroup == idGroup).ToList();
+        }
+        public IList<Practicioner> GetPracticionerActiveNotInThisGroup(int idGroup)
+        {
+            return _context.Set<Practicioner>().Include(UserPracticioner => UserPracticioner.User).Where(Practicioner => Practicioner.IdGroup != idGroup
+            && Practicioner.User.UserStatus == UserStatus.ACTIVE).ToList();
+        }
+
+        public void RemoveGroup(IList<Practicioner> practicionersToRemove)
+        {
+            foreach (Practicioner practicionerInList in practicionersToRemove)
+            {
+                Practicioner practicioner = _context.Set<Practicioner>().Where(Practicioner => Practicioner.Enrollment == practicionerInList.Enrollment).FirstOrDefault();
+                practicioner.IdGroup = null;
+            }
+        }
+
     }
 }

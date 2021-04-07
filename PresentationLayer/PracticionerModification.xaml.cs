@@ -162,7 +162,7 @@ namespace PresentationLayer
 			ComboBoxPeriod.Items.Insert(0, term);
 			ComboBoxPeriod.Items.Insert(1, "FEBRERO-JULIO " + year);
 			ComboBoxPeriod.Items.Insert(2, "AGOSTO " + year + " -ENERO " + (Int32.Parse(year) + 1));
-			ComboBoxPeriod.SelectedIndex = 1;
+			ComboBoxPeriod.SelectedIndex = 0;
 		}
 	}
 }
