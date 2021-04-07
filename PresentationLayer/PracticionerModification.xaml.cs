@@ -17,7 +17,7 @@ namespace PresentationLayer
 	{
 
 		private readonly ProfessionalPracticesContext _professionalPracticesContext;
-        private readonly UnitOfWork _unitOfWork;
+		private readonly UnitOfWork _unitOfWork;
 		public Practicioner Practicioner = new Practicioner
 		{
 			User = new User
@@ -66,9 +66,8 @@ namespace PresentationLayer
 			{
 				try
 				{
-					bool thereIsAnotherCoordinatorWithTheSameInformation =
-					_unitOfWork.Practicioners.PracticionerIsAlreadyRegistered(Practicioner, true);
-					if (thereIsAnotherCoordinatorWithTheSameInformation)
+					bool practicionerWithSameData = _unitOfWork.Practicioners.PracticionerIsAlreadyRegistered(Practicioner, true);
+					if (practicionerWithSameData)
 					{
 						MessageBox.Show("Este practicante ya está registrado");
 					}
@@ -94,7 +93,7 @@ namespace PresentationLayer
 		}
 
 		private void CatchDBException()
-        {
+		{
 			MessageBox.Show("No hay conexión con la base de datos. Intente más tarde.");
 			CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
 			coordinatorMenu.Show();
