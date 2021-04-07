@@ -52,7 +52,7 @@ namespace PresentationLayer
             {
                 MessageBox.Show("No hay conexión a la base de datos. Intente más tarde.");
                 _unitOfWork.Dispose();
-                this.Close();
+                GoBackToCoordinatorConsultation();
             }
             
         }
@@ -88,7 +88,7 @@ namespace PresentationLayer
             {
                 MessageBox.Show("No hay conexión a la base de datos. Intente más tarde.");
                 _unitOfWork.Dispose();
-                this.Close();
+                GoBackToCoordinatorConsultation();
             }
         }
 
@@ -130,7 +130,7 @@ namespace PresentationLayer
                 if (activeCoordinatorUser == null || activeCoordinatorUser.IdUser == Coordinator.User.IdUser)
                 {
                     SaveChanges();
-                    this.Close();
+                    GoBackToCoordinatorConsultation();
                 }
                 else
                 {
@@ -140,7 +140,7 @@ namespace PresentationLayer
             else
             {
                 SaveChanges();
-                this.Close();
+                GoBackToCoordinatorConsultation();
             }
         }
         
@@ -161,14 +161,20 @@ namespace PresentationLayer
         private void CancelButtonClicked(object sender, RoutedEventArgs e)
         {
             _unitOfWork.Dispose();
-            CoordinatorConsultation coordinatorConsultation = new CoordinatorConsultation();
-            coordinatorConsultation.Show();
-            this.Close();
+            GoBackToCoordinatorConsultation();
         }
 
         private void BackButtonClicked(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            GoBackToCoordinatorConsultation();
         }
+
+        private void GoBackToCoordinatorConsultation()
+        {
+            CoordinatorConsultation coordinatorConsultation = new CoordinatorConsultation();
+            coordinatorConsultation.Show();
+            Close();
+        }
+
     }
 }

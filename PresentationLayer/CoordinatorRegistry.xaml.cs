@@ -126,14 +126,21 @@ namespace PresentationLayer
 
             if(messageBoxResult == MessageBoxResult.Yes)
             {
-                this.Close();
+                GoBackToManagerMenu();
             }
             
         }
 
+        private void GoBackToManagerMenu()
+        {
+            ManagerMenu managerMenu = new ManagerMenu();
+            managerMenu.Show();
+            Close();
+        }
+
         private void BackButtonClicked(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            GoBackToManagerMenu();
         }
     }
 }

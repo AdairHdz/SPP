@@ -50,6 +50,7 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -91,18 +92,23 @@
                     <TextBox Name="TextBoxResponsibilities" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="Wrap" VerticalAlignment="Stretch" MinWidth="250" AcceptsReturn="True"
                 VerticalScrollBarVisibility="Auto" SpellCheck.IsEnabled="True" Margin="0,10,0,10" Height="60" materialDesign:HintAssist.HelperText="Máximo 300 caracteres."></TextBox>
 
-                    <Label Content="Duración: " VerticalAlignment="Top" Grid.Row="9" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="0,10,0,10"/>
-                    <Label Content="480 hrs" VerticalAlignment="Top" Grid.Row="9" Grid.ColumnSpan="2" Grid.Column="1" HorizontalContentAlignment="Left" Height="35" FontFamily="Arial" Margin="0,10,0,10"/>
+                    <Label Content="Días y horario: " VerticalAlignment="Center" Grid.Row="9" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+                    <TextBox Name="TextBoxDaysHours" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="Wrap" VerticalAlignment="Stretch" MinWidth="250" AcceptsReturn="True"
+                VerticalScrollBarVisibility="Auto" SpellCheck.IsEnabled="True" Margin="0,10,0,10" Height="60" materialDesign:HintAssist.HelperText="Máximo 300 caracteres."></TextBox>
+                    
 
-                    <Label Content="Cantidad de Practicantes: " VerticalAlignment="Top" Grid.Row="10" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-                    <TextBox Name="TextBoxQuantityPracticing" Height="30" Grid.ColumnSpan="2" Grid.Row="10" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.HelperText="Máximo 1 caracter de 1-4." />
+                    <Label Content="Duración: " VerticalAlignment="Top" Grid.Row="10" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="0,10,0,10"/>
+                    <Label Content="480 hrs" VerticalAlignment="Top" Grid.Row="10" Grid.ColumnSpan="2" Grid.Column="1" HorizontalContentAlignment="Left" Height="35" FontFamily="Arial" Margin="0,10,0,10"/>
 
-                    <Label Content="Periodo: " VerticalAlignment="Top" Grid.Row="11" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="0,20,0,15"/>
-                    <Label Name="LabelTerm" VerticalAlignment="Top" Grid.Row="11" Grid.ColumnSpan="2" Grid.Column="1" HorizontalContentAlignment="Left" Height="35" FontFamily="Arial" Margin="0,20,0,15"/>
+                    <Label Content="Cantidad de Practicantes: " VerticalAlignment="Top" Grid.Row="11" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+                    <TextBox Name="TextBoxQuantityPracticing" Height="30" Grid.ColumnSpan="2" Grid.Row="11" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.HelperText="Máximo 1 caracter de 1-4." />
 
-                    <Label Content="Organización Vinculada: " VerticalAlignment="Top" Grid.Row="12" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-                    <TextBox Name="TextBoxLinkedOrganization" Height="30" Grid.Row="12" Grid.Column="1" FontFamily="Arial" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" MinWidth="200" HorizontalAlignment="Left" IsReadOnly="True"/>
-                    <Button Margin="20,0,0,30" Grid.Row="12" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Background="DarkMagenta" Click="ChooseLinkedOrganizationButtonClicked">
+                    <Label Content="Periodo: " VerticalAlignment="Top" Grid.Row="12" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="0,20,0,15"/>
+                    <Label Name="LabelTerm" VerticalAlignment="Top" Grid.Row="12" Grid.ColumnSpan="2" Grid.Column="1" HorizontalContentAlignment="Left" Height="35" FontFamily="Arial" Margin="0,20,0,15"/>
+
+                    <Label Content="Organización Vinculada: " VerticalAlignment="Top" Grid.Row="13" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+                    <TextBox Name="TextBoxLinkedOrganization" Height="30" Grid.Row="13" Grid.Column="1" FontFamily="Arial" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" MinWidth="200" HorizontalAlignment="Left" IsReadOnly="True"/>
+                    <Button Margin="20,0,0,30" Grid.Row="13" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Background="DarkMagenta" Click="ChooseLinkedOrganizationButtonClicked">
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
@@ -113,9 +119,9 @@
                         </Grid>
                     </Button>
 
-                    <Label Content="Responsable del proyecto: " VerticalAlignment="Top" Grid.Row="13" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-                    <TextBox Name="TextBoxResponsibleProject" Height="30" Grid.Row="13" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" FontFamily="Arial" VerticalAlignment="Top" MinWidth="200" HorizontalAlignment="Left" IsReadOnly="True" />
-                    <Button Margin="20,0,0,20" Grid.Row="13" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Background="DarkMagenta" Click="ChooseResponsibleProjectButtonClicked">
+                    <Label Content="Responsable del proyecto: " VerticalAlignment="Top" Grid.Row="14" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+                    <TextBox Name="TextBoxResponsibleProject" Height="30" Grid.Row="14" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" FontFamily="Arial" VerticalAlignment="Top" MinWidth="200" HorizontalAlignment="Left" IsReadOnly="True" />
+                    <Button Margin="20,0,0,20" Grid.Row="14" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Background="DarkMagenta" Click="ChooseResponsibleProjectButtonClicked">
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>

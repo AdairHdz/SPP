@@ -103,6 +103,7 @@ namespace PresentationLayer
                         else
                         {
                             TeacherMenu teacherMenu = new TeacherMenu();
+                            TeacherMenu._User = user;
                             teacherMenu.Show();
                             Close();
                         }

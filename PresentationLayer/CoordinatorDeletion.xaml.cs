@@ -41,13 +41,13 @@ namespace PresentationLayer
                 else
                 {
                     MessageBox.Show("Error. No existe ningún coordinador activo en la base de datos.");
-                    this.Close();
+                    GoBackToCoordinatorConsultation();
                 }
             }
             catch (SqlException)
             {
                 MessageBox.Show("No hay conexión a la base de datos. Intente más tarde");
-                this.Close();
+                GoBackToCoordinatorConsultation();
             }
             finally
             {
@@ -89,21 +89,26 @@ namespace PresentationLayer
                 finally
                 {
                     unitOfWork.Dispose();
-                    this.Close();
+                    GoBackToCoordinatorConsultation();
                 }                                                
             }
         }
 
         private void CancelButtonClicked(object sender, RoutedEventArgs e)
         {
-            CoordinatorConsultation coordinatorConsultation = new CoordinatorConsultation();
-            coordinatorConsultation.Show();
-            this.Close();
+            GoBackToCoordinatorConsultation();
         }
 
         private void BackButtonClicked(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            GoBackToCoordinatorConsultation();
+        }
+
+        private void GoBackToCoordinatorConsultation()
+        {
+            CoordinatorConsultation coordinatorConsultation = new CoordinatorConsultation();
+            coordinatorConsultation.Show();
+            Close();
         }
     }
 }

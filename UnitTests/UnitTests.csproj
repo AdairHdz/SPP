@@ -102,7 +102,8 @@
     <Compile Include="DataPersistenceLayerTests\ProjectTest\ProjectRegistryTest.cs" />
     <Compile Include="DataPersistenceLayerTests\ProjectTest\ResponsibleProjectChooseTest.cs" />
     <Compile Include="DataPersistenceLayerTests\ProjectTest\SchedulingActivityTest.cs" />
-    <Compile Include="DataPersistenceLayerTests\Report\ReportTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\ReportTest\ReportEvaluationTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\ReportTest\ReportAddTest.cs" />
     <Compile Include="DataPersistenceLayerTests\ResponsibleProjectTest\ResponsibleProjectTestConsult.cs" />
     <Compile Include="DataPersistenceLayerTests\ResponsibleProjectTest\ResponsibleProjectTest.cs" />
     <Compile Include="DataPersistenceLayerTests\TeacherTest\ConsultTeacherTest.cs" />
