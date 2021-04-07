@@ -130,7 +130,7 @@ namespace PresentationLayer
                 if (activeCoordinatorUser == null || activeCoordinatorUser.IdUser == Coordinator.User.IdUser)
                 {
                     SaveChanges();
-                    this.Close();
+                    GoBackToCoordinatorConsultation();
                 }
                 else
                 {
