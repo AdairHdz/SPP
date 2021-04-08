@@ -9,8 +9,8 @@ namespace PresentationLayer.Validators
         public UserValidator()
         {
             RuleFor(user => user.Name).NotEmpty().WithState(user => "TextBoxFirstName")
-                .MinimumLength(1).WithState(user => "TextBoxFirstName").
-                MaximumLength(50).Matches("^[a-zA-Z ]+$").WithState(user => "TextBoxFirstName");
+                .MaximumLength(30).WithState(user => "TextBoxFirstName")
+                .Matches("^[a-zA-Z ]+$").WithState(user => "TextBoxFirstName");
             RuleFor(user => user.LastName).NotEmpty().WithState(user => "TextBoxLastName")
                 .MaximumLength(30).WithState(user => "TextBoxLastName")
                 .Matches("^[a-zA-Z ]+$").WithState(user => "TextBoxLastName");
@@ -22,8 +22,6 @@ namespace PresentationLayer.Validators
             RuleFor(user => user.Email).Must(BeValidEmail)
                 .WithState(user => "TextBoxEmail");
             RuleFor(user => user.AlternateEmail).Must(BeValidEmail).WithState(s => "TextBoxAlternateEmail");
-            //Unless(e => e.AlternateEmail == null || e.AlternateEmail.Length == 0).WithState(s => "TextBoxAlternateEmail");
-
         }
 
         public bool BeValidEmail(string email)
