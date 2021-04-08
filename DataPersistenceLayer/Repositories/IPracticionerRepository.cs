@@ -19,5 +19,9 @@ namespace DataPersistenceLayer.Repositories
         IList<Practicioner> GetPracticionersInThisGroup(int idGroup);
         IList<Practicioner> GetPracticionerActiveNotInThisGroup(int idGroup);
         void RemoveGroup(IList<Practicioner> practicionersToRemove);
+        int GetAccumulatedHours(string enrollment);
+        string GetPracticionerProject(string enrollment);
+        IList<ActivityPracticioner> GetPracticionerPartialReports(string enrollment);
+        IList<ActivityPracticioner> GetPracticionerMonthlyReports(string enrollment);
     }
 }

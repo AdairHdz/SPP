@@ -46,7 +46,7 @@
                 <RowDefinition Height="190"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Button Height="40" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" >
+            <Button Height="40" Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" Click="ConsultProgressButtonClicked">
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="120"></ColumnDefinition>

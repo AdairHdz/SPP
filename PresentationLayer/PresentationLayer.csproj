@@ -77,6 +77,9 @@
     <Compile Include="ActivityReportList.xaml.cs">
       <DependentUpon>ActivityReportList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConsultProgress.xaml.cs">
+      <DependentUpon>ConsultProgress.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CoordinatorConsultation.xaml.cs">
       <DependentUpon>CoordinatorConsultation.xaml</DependentUpon>
     </Compile>
@@ -207,6 +210,10 @@
     <Page Include="ActivityReportList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConsultProgress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CoordinatorConsultation.xaml">
       <Generator>MSBuild:Compile</Generator>

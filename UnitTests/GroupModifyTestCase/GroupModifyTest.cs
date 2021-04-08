@@ -4,7 +4,6 @@ using DataPersistenceLayer.UnitsOfWork;
 using FluentValidation.TestHelper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PresentationLayer.Validators;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using UnitTests.DataPersistenceLayerTests;
@@ -18,8 +17,6 @@ namespace UnitTests.GroupModifyTestCase
 		private GroupValidator _groupValidator;
 		private List<Group> _group;
 		private DbSet<Group> _mockSetGroup;
-		private List<Teacher> _teacher;
-		private DbSet<Teacher> _mockSetTeacher;
 		private ProfessionalPracticesContext _mockContext;
 		private UnitOfWork _unitOfWork;
 
@@ -38,8 +35,6 @@ namespace UnitTests.GroupModifyTestCase
 					StaffNumber = "65245"
 				}
 			};
-			_mockSetTeacher = DbContextMock.GetQueryableMockDbSet(_teacher, t => t.StaffNumber);
-			_mockContext = DbContextMock.GetContext(_mockSetTeacher);
 			_mockSetGroup = DbContextMock.GetQueryableMockDbSet(_group, g => g.IdGroup);
 			_mockContext = DbContextMock.GetContext(_mockSetGroup);
 
