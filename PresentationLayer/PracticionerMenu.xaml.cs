@@ -67,10 +67,10 @@ namespace PresentationLayer
             UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
             try
             {
-                bool practicionerHaveAProject = unitOfWork.Practicioners.PracticionerHasActiveProject(practicionerEnrollment);
+                bool practicionerHaveAProject = unitOfWork.Practicioners.PracticionerHasActiveProject(_practicionerEnrollment);
                 if (practicionerHaveAProject)
                 {
-                    ConsultProgress consultProgress = new ConsultProgress(practicionerEnrollment);
+                    ConsultProgress consultProgress = new ConsultProgress(_practicionerEnrollment);
                     consultProgress.Show();
                     Close();
                 }
