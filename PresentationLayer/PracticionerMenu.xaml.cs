@@ -14,7 +14,7 @@ namespace PresentationLayer
     /// </summary>
     public partial class PracticionerMenu : Window
     {
-        private readonly string practicionerEnrollment;
+        private readonly string _practicionerEnrollment;
         public PracticionerMenu()
         {
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace PresentationLayer
         public PracticionerMenu(string enrollment)
         {
             InitializeComponent();
-            practicionerEnrollment = enrollment;
+            _practicionerEnrollment = enrollment;
         }
 
         private void LogOutButtonClicked(object sender, RoutedEventArgs routedEventArgs)
