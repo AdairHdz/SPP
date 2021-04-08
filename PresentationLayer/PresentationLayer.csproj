@@ -95,6 +95,12 @@
     <Compile Include="FirstLogin.xaml.cs">
       <DependentUpon>FirstLogin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GroupModify.xaml.cs">
+      <DependentUpon>GroupModify.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GroupModifyList.xaml.cs">
+      <DependentUpon>GroupModifyList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GroupRegistry.xaml.cs">
       <DependentUpon>GroupRegistry.xaml</DependentUpon>
     </Compile>
@@ -229,6 +235,14 @@
     <Page Include="FirstLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GroupModify.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GroupModifyList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GroupRegistry.xaml">
       <SubType>Designer</SubType>
