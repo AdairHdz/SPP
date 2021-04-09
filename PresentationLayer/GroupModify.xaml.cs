@@ -106,7 +106,8 @@ namespace PresentationLayer
 
 		public void CreateGroup()
 		{
-			switch (ComboBoxStatus.Text)
+			string status =  ComboBoxStatus.Text;
+			switch (status)
 			{
 				case "Activo":
 					Group.GroupStatus = GroupStatus.ACTIVE;

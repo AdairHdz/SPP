@@ -12,14 +12,14 @@ namespace PresentationLayer
 	/// </summary>
 	public partial class ConsultProgress : Window
 	{
-		private readonly string enrollment;
-		private int hourCovered;
+		private readonly string _enrollment;
+		private int _hourCovered;
 		public int ProfessionalPracticesState { get; set; }
 
 		public ConsultProgress(string practicionerEnrollment)
 		{
 			InitializeComponent();
-			enrollment = practicionerEnrollment;
+			_enrollment = practicionerEnrollment;
 			LoadPracticionerInformation();
 			LoadReportsInformation();
 			CalculateProgress();
@@ -28,7 +28,7 @@ namespace PresentationLayer
 
 		private void BehindButtonClicked(object sender, RoutedEventArgs routedEventArgs)
 		{
-			PracticionerMenu practicionerMenu = new PracticionerMenu(enrollment);
+			PracticionerMenu practicionerMenu = new PracticionerMenu(_enrollment);
 			practicionerMenu.Show();
 			Close();
 		}
@@ -40,8 +40,8 @@ namespace PresentationLayer
 			UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
 			try
 			{
-				practicioner = unitOfWork.Practicioners.FindFirstOccurence(Practicioner => Practicioner.Enrollment.Equals(enrollment));
-				textBlockProjectName.Text = unitOfWork.Practicioners.GetPracticionerProject(enrollment);
+				practicioner = unitOfWork.Practicioners.FindFirstOccurence(Practicioner => Practicioner.Enrollment.Equals(_enrollment));
+				textBlockProjectName.Text = unitOfWork.Practicioners.GetPracticionerProject(_enrollment);
 				labelEnrollment.Content = practicioner.Enrollment;
 				labelEmail.Content = practicioner.User.Email;
 				labelName.Content = practicioner.User.Name + " " + practicioner.User.LastName;
@@ -63,18 +63,18 @@ namespace PresentationLayer
 			UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
 			try
 			{
-				IList<ActivityPracticioner> partialReport = unitOfWork.Practicioners.GetPracticionerPartialReports(enrollment);
+				IList<ActivityPracticioner> partialReport = unitOfWork.Practicioners.GetPracticionerPartialReports(_enrollment);
 				foreach (ActivityPracticioner partial in partialReport)
 				{
 					ListViewPartialReport.Items.Add(partial);
 				}
 
-				IList<ActivityPracticioner> monthlyReport = unitOfWork.Practicioners.GetPracticionerMonthlyReports(enrollment);
+				IList<ActivityPracticioner> monthlyReport = unitOfWork.Practicioners.GetPracticionerMonthlyReports(_enrollment);
 				foreach (ActivityPracticioner monthly in monthlyReport)
 				{
 					ListViewMonthlyReport.Items.Add(monthly);
 				}
-				hourCovered = unitOfWork.Practicioners.GetAccumulatedHours(enrollment);
+				_hourCovered = unitOfWork.Practicioners.GetAccumulatedHours(_enrollment);
 			}
 			catch (EntityException)
 			{
@@ -88,15 +88,15 @@ namespace PresentationLayer
 
 		private void CalculateProgress()
 		{
-			int quantity = hourCovered * 100 / 200;
-			labelPercentage.Content = quantity + " % " +hourCovered+" horas cubiertas de 200 horas";
+			int quantity = _hourCovered * 100 / 200;
+			labelPercentage.Content = quantity + " % " +_hourCovered+" horas cubiertas de 200 horas";
 			ProfessionalPracticesState = quantity ;
 		}
 
 		private void ShowException()
         {
 			MessageBox.Show("No hay conexión a la base de datos. Intente más tarde", "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
-			PracticionerMenu practicionerMenu = new PracticionerMenu(enrollment);
+			PracticionerMenu practicionerMenu = new PracticionerMenu(_enrollment);
 			practicionerMenu.Show();
 			this.Close();
 		}
