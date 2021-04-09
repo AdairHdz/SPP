@@ -21,6 +21,8 @@ namespace PresentationLayer
         public Login()
         {
             InitializeComponent();
+            DocumentGenerator dg = new DocumentGenerator();
+            dg.CreateWordDocument(@"C:\Users\Adair Hernández\Desktop\Sexto semestre\Desarrollo de software\Proyecto final\SPP\Utilities\Views\AcceptanceOfficeTemplate(1).docx", @"C:\Users\Adair Hernández\Desktop\Sexto semestre\Desarrollo de software\Proyecto final\SPP\Utilities\Documents\SuccessAcceptance.docx");
         }
 
         private void LoginButtonClicked(object sender, RoutedEventArgs routedEventArgs)
