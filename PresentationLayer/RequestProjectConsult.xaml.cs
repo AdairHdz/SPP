@@ -14,8 +14,8 @@ namespace PresentationLayer
 	{
 		private readonly string _enrollment;
 		private Project _project;
-		private ProfessionalPracticesContext _professionalPracticesContext;
-		private UnitOfWork _unitOfWork;
+		private readonly ProfessionalPracticesContext _professionalPracticesContext;
+		private readonly UnitOfWork _unitOfWork;
 		public RequestProjectConsult (int projectId, string enrollment)
 		{
 			InitializeComponent();

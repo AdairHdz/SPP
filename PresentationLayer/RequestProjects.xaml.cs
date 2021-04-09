@@ -17,9 +17,9 @@ namespace PresentationLayer
 	public partial class RequestProjects : Window
 	{
 		private readonly string _enrollment;
-		public RequestProject RequestProject = new RequestProject();
-		private ProfessionalPracticesContext _professionalPracticesContext;
-		private UnitOfWork _unitOfWork;
+		public RequestProject _requestProject = new RequestProject();
+		private readonly ProfessionalPracticesContext _professionalPracticesContext;
+		private readonly UnitOfWork _unitOfWork;
 
 		public RequestProjects(string enrollment)
 		{
@@ -28,7 +28,7 @@ namespace PresentationLayer
 			_unitOfWork = new UnitOfWork(_professionalPracticesContext);
 			_enrollment = enrollment;
 			LoadInformation();
-			this.DataContext = RequestProject;
+			this.DataContext = _requestProject;
 		}
 
 		private void BackButtonClicked(object sender, RoutedEventArgs routedEventArgs)
@@ -57,7 +57,7 @@ namespace PresentationLayer
 					CreateRequest(project.IdProject);
 					try
 					{
-						_unitOfWork.RequestProjects.Add(RequestProject);
+						_unitOfWork.RequestProjects.Add(_requestProject);
 						MessageBox.Show("El proyecto se solicitó exitosamente");
 						PracticionerMenu practicionerMenu = new PracticionerMenu(_enrollment);
 						practicionerMenu.Show();
@@ -83,10 +83,10 @@ namespace PresentationLayer
 
 		private void CreateRequest(int idProject)
         {
-			RequestProject.Enrollment = _enrollment;
-			RequestProject.RequestDate = DateTime.Now;
-			RequestProject.IdProject = idProject;
-			RequestProject.RequestStatus = RequestStatus.REQUESTED;
+			_requestProject.Enrollment = _enrollment;
+			_requestProject.RequestDate = DateTime.Now;
+			_requestProject.IdProject = idProject;
+			_requestProject.RequestStatus = RequestStatus.REQUESTED;
         }
 
 		private void SelectProject(object sender, SelectionChangedEventArgs selectionChanged)
