@@ -11,10 +11,10 @@ namespace DataPersistenceLayer.UnitsOfWork
         ICoordinatorRepository Coordinators { get; }
         ILinkedOrganizationRepository LinkedOrganizations { get; }
         IPracticionerRepository Practicioners { get; }
-        IRepository<Project> Projects { get; }
+        IProjectRepository Projects { get; }
         IRepository<PartialReport> PartialReports { get; }
         IRepository<MonthlyReport> MonthlyReports { get; }
-        IRepository<RequestProject> RequestProjects { get; }
+        IRequestProjectRepository RequestProjects { get; }
         IResponsibleProjectRepository ResponsibleProjects { get; }
         IRepository<Sector> Sectors { get; }
         IStateRepository States { get; }

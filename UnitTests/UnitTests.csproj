@@ -123,6 +123,7 @@
     <Compile Include="PracticionerRegistryTestCase\PracticionerRegistryTest.cs" />
     <Compile Include="ProjectDeletionTestCase\ProjectDeletionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestProjectsTestCase\RequestProjectTest.cs" />
     <Compile Include="TeacherRegistryTestCase\TeacherRegistry.cs" />
     <Compile Include="ValidatorsTests\ResponsibleProjectValidatorTest.cs" />
     <Compile Include="ValidatorsTests\LinkedOrganizationValidatorTest.cs" />

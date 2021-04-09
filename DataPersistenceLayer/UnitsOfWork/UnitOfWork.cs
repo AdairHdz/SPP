@@ -11,10 +11,10 @@ namespace DataPersistenceLayer.UnitsOfWork
         public ICoordinatorRepository Coordinators { get; private set; }
         public ILinkedOrganizationRepository LinkedOrganizations { get; private set; }
         public IPracticionerRepository Practicioners { get; private set; }
-        public IRepository<Project> Projects { get; private set; }
+        public IProjectRepository Projects { get; private set; }
         public IRepository<PartialReport> PartialReports { get; private set; }
         public IRepository<MonthlyReport> MonthlyReports { get; private set; }
-        public IRepository<RequestProject> RequestProjects { get; private set; }
+        public IRequestProjectRepository RequestProjects { get; private set; }
         public IResponsibleProjectRepository ResponsibleProjects { get; private set; }
         public IRepository<Sector> Sectors { get; private set; }
         public IStateRepository States { get; private set; }
@@ -36,10 +36,10 @@ namespace DataPersistenceLayer.UnitsOfWork
             Coordinators = new CoordinatorRepository(_context);
             LinkedOrganizations = new LinkedOrganizationRepository(_context);
             Practicioners = new PracticionerRepository(_context);
-            Projects = new Repository<Project>(_context);
+            Projects = new ProjectRepository(_context);
             PartialReports = new Repository<PartialReport>(_context);
             MonthlyReports = new Repository<MonthlyReport>(_context);
-            RequestProjects = new Repository<RequestProject>(_context);
+            RequestProjects = new RequestProjectRepository(_context);
             ResponsibleProjects = new ResponsibleProjectRepository(_context);
             Teachers = new TeacherRepository(_context);
             Users = new UserRepository(_context);
