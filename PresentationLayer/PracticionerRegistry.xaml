@@ -81,7 +81,7 @@
 
             <Label Content="Contraseña: " VerticalAlignment="Top" Grid.Row="9" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
             <PasswordBox Name="PasswordBoxPassword" Height="30" Grid.Row="9" Grid.Column="1" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
-                         materialDesign:HintAssist.HelperText="De 8 a 50 caracteres Ej.Wigetta@123 " />
+                         materialDesign:HintAssist.HelperText="De 8 a 50 caracteres Ej.Wigetta@123" />
 
             <Button Grid.Row="10" Grid.Column="0" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
             ToolTip="Resource name: MaterialDesignRaisedAccentButton" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Registrar" Click="RegisterButtonClicked" Margin="199,7,365,7" Grid.ColumnSpan="2"></Button>
