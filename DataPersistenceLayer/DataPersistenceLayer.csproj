@@ -94,6 +94,10 @@
     <Compile Include="Migrations\202104070337123_FixingDatabaseError.designer.cs">
       <DependentUpon>202104070337123_FixingDatabaseError.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104071827019_UpdateMonthlyReport.cs" />
+    <Compile Include="Migrations\202104071827019_UpdateMonthlyReport.designer.cs">
+      <DependentUpon>202104071827019_UpdateMonthlyReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProfessionalPracticesContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,6 +131,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104070337123_FixingDatabaseError.resx">
       <DependentUpon>202104070337123_FixingDatabaseError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104071827019_UpdateMonthlyReport.resx">
+      <DependentUpon>202104071827019_UpdateMonthlyReport.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

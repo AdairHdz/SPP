@@ -4,7 +4,6 @@ using DataPersistenceLayer.UnitsOfWork;
 using FluentValidation.TestHelper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PresentationLayer.Validators;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using UnitTests.DataPersistenceLayerTests;
