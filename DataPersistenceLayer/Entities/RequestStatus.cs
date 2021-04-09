@@ -5,6 +5,7 @@ namespace DataPersistenceLayer.Entities
     public enum RequestStatus
     {
         APROVED,
-        DENIED
+        DENIED,
+        REQUESTED
     }
 }

@@ -77,6 +77,9 @@
     <Compile Include="ActivityReportList.xaml.cs">
       <DependentUpon>ActivityReportList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConsultProgress.xaml.cs">
+      <DependentUpon>ConsultProgress.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CoordinatorConsultation.xaml.cs">
       <DependentUpon>CoordinatorConsultation.xaml</DependentUpon>
     </Compile>
@@ -94,6 +97,12 @@
     </Compile>
     <Compile Include="FirstLogin.xaml.cs">
       <DependentUpon>FirstLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GroupModify.xaml.cs">
+      <DependentUpon>GroupModify.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GroupModifyList.xaml.cs">
+      <DependentUpon>GroupModifyList.xaml</DependentUpon>
     </Compile>
     <Compile Include="GroupRegistry.xaml.cs">
       <DependentUpon>GroupRegistry.xaml</DependentUpon>
@@ -145,6 +154,12 @@
     </Compile>
     <Compile Include="ReportList.xaml.cs">
       <DependentUpon>ReportList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RequestProjects.xaml.cs">
+      <DependentUpon>RequestProjects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RequestProjectConsult.xaml.cs">
+      <DependentUpon>RequestProjectConsult.xaml</DependentUpon>
     </Compile>
     <Compile Include="ResponsibleProjectChoose.xaml.cs">
       <DependentUpon>ResponsibleProjectChoose.xaml</DependentUpon>
@@ -202,6 +217,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="ConsultProgress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CoordinatorConsultation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -229,6 +248,14 @@
     <Page Include="FirstLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GroupModify.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GroupModifyList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GroupRegistry.xaml">
       <SubType>Designer</SubType>
@@ -297,6 +324,14 @@
     <Page Include="ReportList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RequestProjects.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RequestProjectConsult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResponsibleProjectChoose.xaml">
       <Generator>MSBuild:Compile</Generator>
