@@ -7,6 +7,7 @@ using DataPersistenceLayer.Entities;
 using DataPersistenceLayer;
 using DataPersistenceLayer.UnitsOfWork;
 using System.Data.Entity.Core;
+using System.Data.SqlClient;
 using System.Net;
 
 
@@ -52,13 +53,47 @@ namespace PresentationLayer
                 }
                 else
                 {
-                    return false;
+                    if (AddDocumentPracticioner(unitOfWork))
+                    {
+                        _document = unitOfWork.Documents.FindFirstOccurence(Document => Document.IdActivityPracticioner == _activityPracticioner.IdActivityPracticioner);
+                        if (_document != null)
+                        {
+                            InitializeDocument();
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
-            catch (IOException)
+            catch (SqlException)
             {
                 return false;
             }
+            catch (EntityException)
+            {
+                return false;
+            }
+        }
+
+        private bool AddDocumentPracticioner(UnitOfWork unitOfWork)
+        {
+            Document addDocument = new Document();
+            addDocument.TypeDocument = "Reporte Mensual";
+            if (_activityPracticioner.Activity.ActivityType.Equals(ActivityType.PartialReport))
+            {
+                addDocument.TypeDocument = "Reporte Parcial";
+            }
+            addDocument.IdActivityPracticioner = _activityPracticioner.IdActivityPracticioner;
+            unitOfWork.Documents.Add(addDocument);
+            int rowsAffected = unitOfWork.Complete();
+            return rowsAffected == 1;
         }
 
         private void InitializeDocument()
@@ -104,7 +139,7 @@ namespace PresentationLayer
         {
             OpenFileDialog search = new OpenFileDialog()
             {
-                Filter = "Document files (*.docx)|*.docx| Document files (*.pdf)|*.pdf"
+                Filter = "Document files (*.pdf)|*.pdf"
             };
             if (search.ShowDialog() == true)
             {
@@ -194,11 +229,6 @@ namespace PresentationLayer
                 Document documentUpdate = unitOfWork.Documents.Get(_document.IdDocument);
                 documentUpdate.Name = _document.Name;
                 documentUpdate.RouteSave = _document.RouteSave;
-                documentUpdate.TypeDocument = "Reporte Mensual";
-                if (_activityPracticioner.Activity.ActivityType.Equals(ActivityType.PartialReport))
-                {
-                    documentUpdate.TypeDocument = "Reporte Parcial";
-                }
                 DateTime deliveryDate = DateTime.Now;
                 documentUpdate.DeliveryDate = deliveryDate;
                 activityPracticionerUpdate.Activity.ActivityStatus = _activityPracticioner.Activity.ActivityStatus;
@@ -206,6 +236,10 @@ namespace PresentationLayer
                 int rowsAffected = unitOfWork.Complete();
                 unitOfWork.Dispose();
                 return rowsAffected >= 0 || rowsAffected <= 3;
+            }
+            catch (SqlException)
+            {
+                return false;
             }
             catch (EntityException)
             {
@@ -230,12 +264,10 @@ namespace PresentationLayer
                             int indexPrevious = index - 1;
                             if (index == 1)
                             {
-                                routeDestination = routeDestination.Replace(".docx", "(" + index.ToString() + ")" + ".docx");
                                 routeDestination = routeDestination.Replace(".pdf", "(" + index.ToString() + ")" + ".pdf");
                             }
                             else
                             {
-                                routeDestination = routeDestination.Replace("(" + indexPrevious.ToString() + ")" + ".docx", "(" + index.ToString() + ")" + ".docx");
                                 routeDestination = routeDestination.Replace("(" + indexPrevious.ToString() + ")" + ".pdf", "(" + index.ToString() + ")" + ".pdf");
                             }
                             index++;

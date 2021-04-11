@@ -7,6 +7,7 @@ using DataPersistenceLayer.Entities;
 using DataPersistenceLayer;
 using DataPersistenceLayer.UnitsOfWork;
 using System.Data.Entity.Core;
+using System.Data.SqlClient;
 namespace PresentationLayer
 {
     /// <summary>
@@ -43,18 +44,40 @@ namespace PresentationLayer
                     {
                         _activityPracticioners = unitOfWork.ActivityPracticioners.Find(ActivityPracticioner => ActivityPracticioner.Enrollment.Equals(practicioner.Enrollment) && ActivityPracticioner.Activity.ActivityType.Equals(ActivityType.MonthlyReport));
                     }
-                    AddReportPartialInListView();
-                    return true;
+                    if (IENumerableHasActivityPracticioners(_activityPracticioners))
+                    {
+                        AddReportPartialInListView();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
                     return false;
                 }
             }
+            catch (SqlException)
+            {
+                return false;
+            }
             catch (EntityException)
             {
                 return false;
             }
+        }
+
+        private bool IENumerableHasActivityPracticioners(IEnumerable<ActivityPracticioner> ieNumerable)
+        {
+            bool isFull = false;
+            foreach (ActivityPracticioner item in ieNumerable)
+            {
+                isFull = true;
+                break;
+            }
+            return isFull;
         }
 
         private void AddReportPartialInListView()
@@ -87,7 +110,7 @@ namespace PresentationLayer
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo obtener información de la actividad. Intente más tarde", "Documento", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("No se pudo obtener información de la actividad. Intente más tarde", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }
