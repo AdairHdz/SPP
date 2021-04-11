@@ -1,4 +1,8 @@
-﻿
+﻿using DataPersistenceLayer;
+using DataPersistenceLayer.Entities;
+using DataPersistenceLayer.UnitsOfWork;
+using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Windows;
 
 namespace PresentationLayer
@@ -15,9 +19,37 @@ namespace PresentationLayer
 
         private void ConsultTeacherButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
-            TeacherConsultation teacherConsultation = new TeacherConsultation();
-            teacherConsultation.Show();
-            Close();
+            try
+            {
+                ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
+                UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
+                IEnumerable<Teacher> thereAreTeachers = unitOfWork.Teachers.GetAll();
+                if (!IENumerableHasTeachers(thereAreTeachers))
+                {
+                    MessageBox.Show("No hay ningún profesor registrado", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    TeacherConsultation teacherConsultation = new TeacherConsultation();
+                    teacherConsultation.Show();
+                    Close();
+                }
+            }
+            catch (EntityException)
+            {
+                MessageBox.Show("No se pudo obtener información. Intente más tarde", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private bool IENumerableHasTeachers(IEnumerable<Teacher> ieNumerable)
+        {
+            bool isFull = false;
+            foreach (Teacher item in ieNumerable)
+            {
+                isFull = true;
+                break;
+            }
+            return isFull;
         }
 
         private void LogOutButtonClicked(object sender, RoutedEventArgs routedEventArgs)
