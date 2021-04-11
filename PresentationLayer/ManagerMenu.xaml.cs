@@ -1,14 +1,15 @@
-﻿using DataPersistenceLayer;
+using DataPersistenceLayer;
 using DataPersistenceLayer.Entities;
 using DataPersistenceLayer.UnitsOfWork;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
+using System.Data.SqlClient;
 using System.Windows;
 
 namespace PresentationLayer
 {
     /// <summary>
-    /// Lógica de interacción para AdministratorMenu.xaml
+    /// Lógica de interacción para ManagerMenu.xaml
     /// </summary>
     public partial class ManagerMenu : Window
     {
@@ -19,26 +20,35 @@ namespace PresentationLayer
 
         private void ConsultTeacherButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
+            ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
+            UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
             try
             {
-                ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
-                UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
                 IEnumerable<Teacher> thereAreTeachers = unitOfWork.Teachers.GetAll();
-                if (!IENumerableHasTeachers(thereAreTeachers))
-                {
-                    MessageBox.Show("No hay ningún profesor registrado", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else
+                if (IENumerableHasTeachers(thereAreTeachers))
                 {
                     TeacherConsultation teacherConsultation = new TeacherConsultation();
                     teacherConsultation.Show();
                     Close();
                 }
+                else
+                {
+                    MessageBox.Show("No hay profesores registrados. Por favor registre uno");
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("No hay conexión a la base de datos. Intente más tarde");
             }
             catch (EntityException)
             {
-                MessageBox.Show("No se pudo obtener información. Intente más tarde", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("No hay conexión a la base de datos. Intente más tarde");
             }
+            finally
+            {
+                unitOfWork.Dispose();
+            }
+            
         }
 
         private bool IENumerableHasTeachers(IEnumerable<Teacher> ieNumerable)

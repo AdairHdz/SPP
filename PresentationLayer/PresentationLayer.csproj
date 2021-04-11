@@ -197,6 +197,9 @@
     <Compile Include="TeacherMenu.xaml.cs">
       <DependentUpon>TeacherMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TeacherModification.xaml.cs">
+      <DependentUpon>TeacherModification.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TeacherRegistry.xaml.cs">
       <DependentUpon>TeacherRegistry.xaml</DependentUpon>
     </Compile>
@@ -395,6 +398,10 @@
     <Page Include="TeacherMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TeacherModification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TeacherRegistry.xaml">
       <SubType>Designer</SubType>

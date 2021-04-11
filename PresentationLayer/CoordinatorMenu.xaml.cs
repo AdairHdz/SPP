@@ -20,10 +20,38 @@ namespace PresentationLayer
 
 		private void ConsultResponsibleProjectButtonClicked(object sender, RoutedEventArgs routedEventArgs)
 		{
-			ResponsibleProjectConsult listResponsibleProject = new ResponsibleProjectConsult();
-			listResponsibleProject.Show();
-			Close();
+			try
+			{
+				ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
+				UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
+				IEnumerable<ResponsibleProject> thereAreResponsibleProjects = unitOfWork.ResponsibleProjects.GetAll();
+				if (!IENumerableHasResponsibleProjects(thereAreResponsibleProjects))
+				{
+					MessageBox.Show("No hay ningún responsable del proyecto registrado", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Error);
+				}
+				else
+				{
+					ResponsibleProjectConsult listResponsibleProject = new ResponsibleProjectConsult();
+					listResponsibleProject.Show();
+					Close();
+				}
+			}
+			catch (EntityException)
+			{
+				MessageBox.Show("No se pudo obtener información. Intente más tarde", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
 		}
+		private bool IENumerableHasResponsibleProjects(IEnumerable<ResponsibleProject> ieNumerable)
+		{
+			bool isFull = false;
+			foreach (ResponsibleProject item in ieNumerable)
+			{
+				isFull = true;
+				break;
+			}
+			return isFull;
+		}
+
 		private void RegisterResponsibleProjectButtonClicked(object sender, RoutedEventArgs routedEventArgs)
 		{
 			ResponsableProjectRegistry registerResponsable = new ResponsableProjectRegistry();
@@ -87,23 +115,43 @@ namespace PresentationLayer
 		
 		private void RegisterProjectButtonClicked(object sender, RoutedEventArgs routedEventArgs)
 		{
-		  try
+			try
 			{
 				ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
 				UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
 				Coordinator coordinator = unitOfWork.Coordinators.FindFirstOccurence(Coordinator => Coordinator.IdUser == User.IdUser);
 				if (!object.ReferenceEquals(null, coordinator)) {
-					ProjectRegistry projectRegistry = new ProjectRegistry();
-					ProjectRegistry.StaffNumber = coordinator.StaffNumber;
-					projectRegistry.Show();
-					Close();
+					IEnumerable<ResponsibleProject> thereAreResponsibleProjects = unitOfWork.ResponsibleProjects.Find(ResponsibleProject => ResponsibleProject.ResponsibleProjectStatus == ResponsibleProjectStatus.ACTIVE);
+					IEnumerable<LinkedOrganization> thereAreLinkedOrganizations = unitOfWork.LinkedOrganizations.Find(LinkedOrganization => LinkedOrganization.LinkedOrganizationStatus == LinkedOrganizationStatus.ACTIVE);
+					if (IENumerableHasResponsibleProjects(thereAreResponsibleProjects) && IENumerableHasLinkedOrganizations(thereAreLinkedOrganizations)) {
+						ProjectRegistry projectRegistry = new ProjectRegistry();
+						ProjectRegistry.StaffNumber = coordinator.StaffNumber;
+						projectRegistry.Show();
+						Close();
+                    }
+                    else
+                    {
+						MessageBox.Show("No se encuentra un Responsable del proyecto o Organización vinculada registrado", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Error);
+					}
 				}
 			}
 			catch (EntityException)
 			{
-				MessageBox.Show("El coordinador no se encontro. Intente más tarde", "Ingreso Faliido", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show("No se pudo obtener información. Intente más tarde", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
+
+		private bool IENumerableHasLinkedOrganizations(IEnumerable<LinkedOrganization> ieNumerable)
+		{
+			bool isFull = false;
+			foreach (LinkedOrganization item in ieNumerable)
+			{
+				isFull = true;
+				break;
+			}
+			return isFull;
+		}
+
 		private void ConsultProjectButtonClicked(object sender, RoutedEventArgs e)
 		{
 			ProjectConsultation projectConsultation = new ProjectConsultation();

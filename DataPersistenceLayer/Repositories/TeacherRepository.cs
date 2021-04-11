@@ -75,5 +75,10 @@ namespace DataPersistenceLayer.Repositories
         {
             return _context.Set<Teacher>().Include(teacher => teacher.User).Where(Teacher => Teacher.User.UserStatus == UserStatus.ACTIVE).ToList();
         }
+
+        public Teacher GetTeacherWithAllInformation(string staffNumber)
+        {
+            return _context.Set<Teacher>().Include(s => s.User.Account).Where(Teacher => Teacher.StaffNumber == staffNumber).First();
+        }
     }
 }
