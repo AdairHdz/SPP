@@ -98,6 +98,10 @@
     <Compile Include="Migrations\202104071827019_UpdateMonthlyReport.designer.cs">
       <DependentUpon>202104071827019_UpdateMonthlyReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104120431091_UpdateActivity.cs" />
+    <Compile Include="Migrations\202104120431091_UpdateActivity.designer.cs">
+      <DependentUpon>202104120431091_UpdateActivity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProfessionalPracticesContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -138,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104071827019_UpdateMonthlyReport.resx">
       <DependentUpon>202104071827019_UpdateMonthlyReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104120431091_UpdateActivity.resx">
+      <DependentUpon>202104120431091_UpdateActivity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

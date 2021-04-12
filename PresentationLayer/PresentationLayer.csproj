@@ -92,6 +92,15 @@
     <Compile Include="CoordinatorModification.xaml.cs">
       <DependentUpon>CoordinatorModification.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManageReports.xaml.cs">
+      <DependentUpon>ManageReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageReportsAddActivity.xaml.cs">
+      <DependentUpon>ManageReportsAddActivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageReportsModifyActivity.xaml.cs">
+      <DependentUpon>ManageReportsModifyActivity.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ReportEvaluation.xaml.cs">
       <DependentUpon>ReportEvaluation.xaml</DependentUpon>
     </Compile>
@@ -241,6 +250,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CoordinatorRegistry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManageReports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManageReportsAddActivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManageReportsModifyActivity.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

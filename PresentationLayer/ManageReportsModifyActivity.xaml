@@ -1,0 +1,89 @@
+﻿<Window x:Class="PresentationLayer.ManageReportsModifyActivity"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="15"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Modificar Actividad" Height="650" Width="750">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="93*"/>
+            <ColumnDefinition Width="649*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="0" Fill="#5B007B" Grid.ColumnSpan="2"/>
+        <TextBlock Grid.Row="0" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold" Grid.Column="1" Margin="167,26,233,25" Width="249"><Run Text="Modificar"/><Run Text=" Actividad"/></TextBlock>
+
+        <Grid x:Name="FormGrid" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="46,28,35,12" Width="661" Height="499" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65"></RowDefinition>
+                <RowDefinition Height="85"></RowDefinition>
+                <RowDefinition Height="75"></RowDefinition>
+                <RowDefinition Height="75"></RowDefinition>
+                <RowDefinition Height="75"></RowDefinition>
+                <RowDefinition Height="75"></RowDefinition>
+                <RowDefinition ></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Content="Nombre: " VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <TextBox Name="TextBoxName" Height="30" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
+                     materialDesign:HintAssist.HelperText="Máximo 150 caracteres." Text="{Binding Name, Mode=TwoWay}" />
+
+            <Label Content="Descripción:" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <TextBox Name="TextBoxDescription" Height="55"  Grid.Row="1" Grid.Column="1"  TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
+                     materialDesign:HintAssist.HelperText="Máximo 255 caracteres." Text="{Binding Description, Mode=TwoWay}"/>
+
+            <Label Content="Tipo de actividad: " VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <ComboBox Name="ComboBoxType" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"
+                         VerticalAlignment="Top" Margin="0,6,0,0">
+                <ComboBoxItem Content="Reporte Parcial" Tag="1"></ComboBoxItem>
+                <ComboBoxItem Content="Reporte Mensual" Tag="0"></ComboBoxItem>
+            </ComboBox>
+
+            <Label Content="Estado:" VerticalAlignment="Top" Grid.Row="4" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <Label Content="Fecha término:" VerticalAlignment="Top" Grid.Row="5" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+
+            <Button Grid.Row="6" Grid.Column="0" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Modificar" Click="ModifyButtonClicked" Margin="200,8,339,9" Grid.ColumnSpan="2" Width="122"></Button>
+            <Button Grid.Row="6" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+            Content="Cancelar" Click="CancelButtonClicked" RenderTransformOrigin="0.059,0.453" Margin="104,8,192,9" Width="115"/>
+
+            <Label Content="Valor:" VerticalAlignment="Top" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="1,7,410,0" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="TextBoxValue" Height="30"  Grid.Row="3"  TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
+                materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z." Text="{Binding ValueActivity, Mode=TwoWay}" Grid.Column="1" Margin="1,2,0,0"/>
+
+            <StackPanel Grid.Row="5" Grid.Column="1" Margin="0,0,201,18">
+                <DatePicker  Margin="0,0,80,0"/>
+            </StackPanel>
+            <StackPanel Grid.Row="5" Grid.Column="1" Margin="200,0,16,18">
+                <materialDesign:TimePicker HorizontalAlignment="Right"  VerticalAlignment="Top" RenderTransformOrigin="-4.25,0.778" Width="126" />
+            </StackPanel>
+            <Label Content="Hora término:" VerticalAlignment="Top" Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="168,4,141,0"/>
+            <ComboBox x:Name="ComboBoxStatus" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left"
+                VerticalAlignment="Top" >
+                <ComboBoxItem Content="Activa" Tag="1"/>
+                <ComboBoxItem Content="Cancelada" Tag="0"/>
+                <ComboBoxItem Content="Finalizada" Tag="2"/>
+            </ComboBox>
+
+        </Grid>
+    </Grid>
+</Window>
+
