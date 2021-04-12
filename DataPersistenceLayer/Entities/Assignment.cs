@@ -24,7 +24,7 @@ namespace DataPersistenceLayer.Entities
         [ForeignKey("IdProject")]
         public virtual Project Project { get; set; }
 
-        [MaxLength(9)]
+        [MaxLength(10)]
         public string Enrollment { get; set; }
         [ForeignKey("Enrollment")]
         public virtual Practicioner Practicioner { get; set; }

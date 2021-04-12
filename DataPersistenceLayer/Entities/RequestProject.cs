@@ -13,7 +13,7 @@ namespace DataPersistenceLayer.Entities
 
         public int IdProject { get; set; }
         [ForeignKey("IdProject")]
-        public Project Project { get; set; }
+        public virtual Project Project { get; set; }
 
         public string Enrollment { get; set; }
         [ForeignKey("Enrollment")]

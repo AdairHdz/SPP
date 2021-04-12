@@ -26,6 +26,7 @@ namespace DataPersistenceLayer.UnitsOfWork
         IRepository<Activity> Activities { get; }
         IRepository<ActivityPracticioner> ActivityPracticioners { get; }
         IRepository<Document> Documents { get;}
+        IRepository<OfficeOfAcceptance> OfficesOfAcceptance { get; }
         int Complete();
     }
 }

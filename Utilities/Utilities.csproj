@@ -61,6 +61,7 @@
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,9 +71,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcceptanceOfficeTemplate.cs" />
+    <Compile Include="AssignmentOfficeTemplate.cs" />
     <Compile Include="BCryptHashGenerator.cs" />
     <Compile Include="DocumentGenerator.cs" />
+    <Compile Include="DocumentSaver.cs" />
+    <Compile Include="FileExplorer.cs" />
     <Compile Include="IHashing.cs" />
+    <Compile Include="InvalidPathException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
