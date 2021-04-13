@@ -70,10 +70,10 @@
                 materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z." Text="{Binding ValueActivity, Mode=TwoWay}" Grid.Column="1" Margin="1,2,0,0"/>
 
             <StackPanel Grid.Row="5" Grid.Column="1" Margin="0,0,201,18">
-                <DatePicker  Margin="0,0,80,0"/>
+                <DatePicker Name="DatePickerDate"  Margin="0,0,80,0"/>
             </StackPanel>
             <StackPanel Grid.Row="5" Grid.Column="1" Margin="200,0,16,18">
-                <materialDesign:TimePicker HorizontalAlignment="Right"  VerticalAlignment="Top" RenderTransformOrigin="-4.25,0.778" Width="126" />
+                <materialDesign:TimePicker Name="TimePickerHour" HorizontalAlignment="Right"  VerticalAlignment="Top" RenderTransformOrigin="-4.25,0.778" Width="126" />
             </StackPanel>
             <Label Content="Hora término:" VerticalAlignment="Top" Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="168,4,141,0"/>
             <ComboBox x:Name="ComboBoxStatus" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left"

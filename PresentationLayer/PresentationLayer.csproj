@@ -213,6 +213,7 @@
       <DependentUpon>TeacherRegistry.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\GenderParser.cs" />
+    <Compile Include="Validators\ActivityValidator.cs" />
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
     <Compile Include="Validators\GroupValidator.cs" />
