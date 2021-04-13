@@ -53,8 +53,8 @@
             <Label Content="Tipo de actividad: " VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
             <ComboBox Name="ComboBoxType" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"
                          VerticalAlignment="Top" Margin="0,6,0,0">
-                <ComboBoxItem Content="Reporte Parcial" Tag="1"></ComboBoxItem>
-                <ComboBoxItem Content="Reporte Mensual" Tag="0"></ComboBoxItem>
+                <ComboBoxItem Content="Reporte Parcial" Tag="0"></ComboBoxItem>
+                <ComboBoxItem Content="Reporte Mensual" Tag="1"></ComboBoxItem>
             </ComboBox>
 
             <Label Content="Estado:" VerticalAlignment="Top" Grid.Row="4" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
@@ -78,8 +78,8 @@
             <Label Content="Hora término:" VerticalAlignment="Top" Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="168,4,141,0"/>
             <ComboBox x:Name="ComboBoxStatus" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left"
                 VerticalAlignment="Top" >
-                <ComboBoxItem Content="Activa" Tag="1"/>
-                <ComboBoxItem Content="Cancelada" Tag="0"/>
+                <ComboBoxItem Content="Activa" Tag="0"/>
+                <ComboBoxItem Content="Cancelada" Tag="1"/>
                 <ComboBoxItem Content="Finalizada" Tag="2"/>
             </ComboBox>
 

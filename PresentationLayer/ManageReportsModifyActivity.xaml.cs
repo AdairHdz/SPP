@@ -34,6 +34,7 @@ namespace PresentationLayer
             try
             {
                 Activity = _unitOfWork.Activities.Get(idActivity);
+                ColocateActivity();
                 
             }
             catch (SqlException)
@@ -41,6 +42,40 @@ namespace PresentationLayer
                 _unitOfWork.Dispose();
                 CatchDBException();
             }
+        }
+
+        private void ColocateActivity()
+        {
+            TextBoxValue.Text = Activity.ValueActivity.ToString();
+          
+            if (Activity.ActivityStatus == ActivityStatus.ACTIVE)
+            {
+                ComboBoxStatus.SelectedIndex = 0;
+            }
+            else
+            {
+                if (Activity.ActivityStatus == ActivityStatus.FINISHED)
+                {
+                    ComboBoxStatus.SelectedIndex = 2;
+                } 
+                else
+                {
+                    ComboBoxStatus.SelectedIndex = 1;
+                }
+            }
+
+            if (Activity.ActivityType == ActivityType.MonthlyReport)
+            {
+                ComboBoxType.SelectedIndex = 1;
+            }
+            else
+            {
+                ComboBoxType.SelectedIndex = 0;
+            }
+
+            DatePickerDate.SelectedDate = Activity.FinishDate;
+            TimePickerHour.SelectedTime = Activity.FinishDate;
+
         }
         private void CancelButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
@@ -66,6 +101,9 @@ namespace PresentationLayer
                 {
                     _unitOfWork.Dispose();
                 }
+            } else
+            {
+                MessageBox.Show("Ingrese datos válidos");
             }
         }
 
@@ -80,49 +118,61 @@ namespace PresentationLayer
         private bool ValidateData()
         {
             bool isValid = false;
-            ActivityValidator activityValidator = new ActivityValidator();
+            ActivityValidator activityValidator = new ActivityValidator(true);
             ValidationResult dataValidationResult = activityValidator.Validate(Activity);
-
             IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
             UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
             userFeedback.ShowFeedback();
-            foreach (ValidationFailure v in validationFailures)
-            {
-                Console.WriteLine(v);
-            }
-            if (dataValidationResult.IsValid)
+            if (dataValidationResult.IsValid && ValidDateTime())
             {
                 isValid = true;
             }
             return isValid;
         }
 
+        private bool ValidDateTime()
+        {
+            string date = DatePickerDate.SelectedDate.Value.ToString("yyyy-MM-dd");
+            string hour = TimePickerHour.SelectedTime.Value.ToString("HH:mm:ss");
+            DateTime dateFinish = Convert.ToDateTime(date + " " + hour);
+            bool isValid = true;
+            if (dateFinish != Activity.FinishDate)
+            {
+                isValid = ActivityValidator.ValidDate(dateFinish);
+                if (isValid)
+                {
+                    Activity.FinishDate = Convert.ToDateTime(dateFinish);
+                } 
+                else
+                {
+                    isValid = false;
+                }
+            }
+            return isValid;
+        }
+
         private void CreateActivity()
         {
-            string date = DatePickerDate.SelectedDate.ToString();
-            string hour = TimePickerHour.SelectedTime.ToString();
-            Activity.FinishDate = Convert.ToDateTime(date + " " + hour);
-
             int selectedType = int.Parse(((System.Windows.Controls.ComboBoxItem)ComboBoxType.SelectedItem).Tag.ToString());
             if (selectedType == 0)
             {
-                Activity.ActivityType = ActivityType.MonthlyReport;
+                Activity.ActivityType = ActivityType.PartialReport;
             }
             else
             {
-                Activity.ActivityType = ActivityType.PartialReport;
+                Activity.ActivityType = ActivityType.MonthlyReport;
             }
 
             int selectedStatus = int.Parse(((System.Windows.Controls.ComboBoxItem)ComboBoxStatus.SelectedItem).Tag.ToString());
             if (selectedStatus == 0)
             {
-                Activity.ActivityStatus = ActivityStatus.CANCELLED;
+                Activity.ActivityStatus = ActivityStatus.ACTIVE;
             }
             else
             {
                 if (selectedStatus == 1)
                 {
-                    Activity.ActivityStatus = ActivityStatus.ACTIVE;
+                    Activity.ActivityStatus = ActivityStatus.CANCELLED;
                 }
                 else
                 {
@@ -131,5 +181,6 @@ namespace PresentationLayer
             }
 
         }
+
     }
 }

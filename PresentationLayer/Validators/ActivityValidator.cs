@@ -21,14 +21,29 @@ namespace PresentationLayer.Validators
 
             RuleFor(activity => activity.ActivityStatus).IsInEnum();
 
-            RuleFor(activity => activity.StartDate).NotEmpty().Must(ValidStartDate);
+            RuleFor(activity => activity.StartDate).NotEmpty().Must(ValidDate);
 
-            RuleFor(activity => activity.FinishDate).NotEmpty().Must(ValidStartDate);
+            RuleFor(activity => activity.FinishDate).NotEmpty().Must(ValidDate);
+        }
+
+        public ActivityValidator(bool isUpdate)
+        {
+            RuleFor(activity => activity.Name).NotEmpty().WithState(user => "TextBoxName")
+                .MaximumLength(150).WithState(user => "TextBoxName");
+
+            RuleFor(activity => activity.Description).NotEmpty().WithState(user => "TextBoxDescription")
+                .MaximumLength(150).WithState(user => "TextBoxDescription");
+
+            RuleFor(activity => activity.ActivityType).IsInEnum();
+
+            RuleFor(activity => activity.ValueActivity).NotEmpty().Must(ValidValue).WithState(activity => "TextBoxValue");
+
+            RuleFor(activity => activity.ActivityStatus).IsInEnum();
         }
 
         public bool ValidValue(double value)
         {
-            Regex regularExpression = new Regex("^[0-9]{2}$");
+            Regex regularExpression = new Regex("^[0-9]{3}$");
             string valueString = value.ToString();
             bool hasValidFormat = regularExpression.IsMatch(valueString);
             if (value > 100 || value < 1)
@@ -38,9 +53,10 @@ namespace PresentationLayer.Validators
             return hasValidFormat;
         }
 
-        public bool ValidStartDate(DateTime? dateTime)
+        public static bool ValidDate(DateTime? dateTime)
         {
-            DateTime dateNow = DateTime.UtcNow;
+            string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime dateNow = Convert.ToDateTime(date);
             if (dateTime < dateNow)
             {
                 return false;

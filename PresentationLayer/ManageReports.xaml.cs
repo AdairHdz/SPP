@@ -36,12 +36,13 @@ namespace PresentationLayer
 
 		private void ModifyButtonClicked(object sender, RoutedEventArgs routedEventArgs)
 		{
-			Group group = ((Group)ListViewGroups.SelectedItem);
-			if (group != null)
+			Activity activity = ((Activity)ListViewActivities.SelectedItem);
+			if (activity != null)
 			{
-				ManageReportsModifyActivity modifyActivity = new ManageReportsModifyActivity(_staffNumber, group.IdGroup);
+				ManageReportsModifyActivity modifyActivity = new ManageReportsModifyActivity(_staffNumber, activity.IdActivity);
 				modifyActivity.Show();
 				ListViewActivities.Items.Clear();
+				ButtonModifyActivity.IsEnabled = false;
 			}
 		}
 
