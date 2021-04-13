@@ -87,23 +87,35 @@ namespace PresentationLayer
             if (_activityPracticioner!=null)
             {
                 _document = _documents.FirstOrDefault(Document => Document.IdActivityPracticioner == _activityPracticioner.IdActivityPracticioner);
-                LabelNameDocument.Content = _document.Name;
-                TextBlockAnswer.Text = _activityPracticioner.Answer;
-                if (!string.IsNullOrWhiteSpace(_document.RouteSave))
+                if (_document != null)
                 {
-                    ButtonDownloadFile.IsEnabled = true;
-                    ButtonQualification.IsEnabled = true;
-                    TextBoxObservation.IsReadOnly = false;
-                    TextBoxQualification.IsReadOnly = false;
-                    TextBoxObservation.Text = _activityPracticioner.Observation;
-                    TextBoxQualification.Text = _activityPracticioner.Qualification.ToString();
+                    LabelNameDocument.Content = _document.Name;
+                    TextBlockAnswer.Text = _activityPracticioner.Answer;
+                    if (!string.IsNullOrWhiteSpace(_document.RouteSave))
+                    {
+                        ButtonDownloadFile.IsEnabled = true;
+                        ButtonQualification.IsEnabled = true;
+                        TextBoxObservation.IsReadOnly = false;
+                        TextBoxQualification.IsReadOnly = false;
+                        TextBoxObservation.Text = _activityPracticioner.Observation;
+                        TextBoxQualification.Text = _activityPracticioner.Qualification.ToString();
+                    }
+                    else
+                    {
+                        ButtonDownloadFile.IsEnabled = false;
+                        ButtonQualification.IsEnabled = true;
+                        TextBoxObservation.IsReadOnly = false;
+                        TextBoxQualification.IsReadOnly = false;
+                        TextBoxObservation.Text = _activityPracticioner.Observation;
+                        TextBoxQualification.Text = _activityPracticioner.Qualification.ToString();
+                    }
                 }
                 else
-                {
+                { 
                     ButtonDownloadFile.IsEnabled = false;
-                    ButtonQualification.IsEnabled = true;
-                    TextBoxObservation.IsReadOnly = false;
-                    TextBoxQualification.IsReadOnly = false;
+                    ButtonQualification.IsEnabled = false;
+                    TextBoxObservation.IsReadOnly = true;
+                    TextBoxQualification.IsReadOnly = true;
                     TextBoxObservation.Text = _activityPracticioner.Observation;
                     TextBoxQualification.Text = _activityPracticioner.Qualification.ToString();
                 }
