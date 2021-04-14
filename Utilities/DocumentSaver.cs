@@ -6,10 +6,7 @@ namespace Utilities
     {
         private string _savingPath;        
 
-        private void OpenPathExplorer()
-        {
-            //_savingPath = FileExplorer.Show();
-        }
+        private void OpenPathExplorer() { }
 
         private bool IsValidPath()
         {
@@ -22,15 +19,7 @@ namespace Utilities
             OpenPathExplorer();
             DocumentGenerator documentGenerator = new DocumentGenerator();
             documentGenerator.CreateAcceptanceOfficeDocument($"{_savingPath}", acceptanceOfficeTemplate);
-            if (IsValidPath())
-            {
-                //DocumentGenerator dg = new DocumentGenerator();
-                //dg.CreateWordDocument($"{_savingPath}");
-            }
-            else
-            {
-                throw new InvalidPathException();
-            }
+            throw new InvalidPathException();
         }
 
     }
