@@ -209,14 +209,6 @@ namespace PresentationLayer
 			if(ProjectAndPracticionerHaveBeenSelected())
             {
 				SaveAssignmentOffice();
-				//if(ProjectCanStillReceivePracticioners())
-				//            {
-				//	SaveAssignmentOffice();
-				//            }
-				//            else
-				//            {
-				//	MessageBox.Show("No hay cupo");
-				//            }
 			}
             else
             {
