@@ -44,7 +44,7 @@ namespace PresentationLayer
 			}
 			else
 			{
-				MessageBox.Show("No se encontro actividades. Intente más tarde", "Ingreso Faliido", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show("No se encontro actividades. Intente más tarde", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
@@ -58,7 +58,7 @@ namespace PresentationLayer
 			}
 			else
 			{
-				MessageBox.Show("No se encontro actividades. Intente más tarde", "Ingreso Faliido", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show("No se encontro actividades. Intente más tarde", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 

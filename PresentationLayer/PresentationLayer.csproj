@@ -101,6 +101,9 @@
     <Compile Include="ManageReportsModifyActivity.xaml.cs">
       <DependentUpon>ManageReportsModifyActivity.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProjectSelectionsList.xaml.cs">
+      <DependentUpon>ProjectSelectionsList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ReportEvaluation.xaml.cs">
       <DependentUpon>ReportEvaluation.xaml</DependentUpon>
     </Compile>
@@ -251,6 +254,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CoordinatorRegistry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectSelectionsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

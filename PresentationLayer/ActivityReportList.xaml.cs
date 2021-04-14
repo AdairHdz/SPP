@@ -34,19 +34,16 @@ namespace PresentationLayer
                 {
                     _StaffNumberTeacher = teacher.StaffNumber;
                     _activities = unitOfWork.Activities.Find(Activity => Activity.StaffNumberTeacher.Equals(_StaffNumberTeacher) && (Activity.ActivityType.Equals(ActivityType.MonthlyReport) || Activity.ActivityType.Equals(ActivityType.PartialReport)));
-                    foreach (Activity activity in _activities)
+                    if (IENumerableHasActivities(_activities))
                     {
-                        ListViewActivity.Items.Add(
-                             new
-                             {
-                                 Name = activity.Name,
-                                 StartDate = "Fecha de Inicio: " + activity.StartDate,
-                                 FinishDate = "Fecha de finalización: " + activity.FinishDate,
-                                 Value = activity.ValueActivity.ToString()
-                             }
-                         );
+                        AddAcitivtiesInListView();
+                        return true;
                     }
-                    return true;
+                    else
+                    {
+                        return false;
+                    }
+                    
                 }
                 else
                 {
@@ -56,6 +53,33 @@ namespace PresentationLayer
             catch (EntityException)
             {
                 return false;
+            }
+        }
+
+        private bool IENumerableHasActivities(IEnumerable<Activity> ieNumerable)
+        {
+            bool isFull = false;
+            foreach (Activity item in ieNumerable)
+            {
+                isFull = true;
+                break;
+            }
+            return isFull;
+        }
+
+        private void AddAcitivtiesInListView()
+        {
+            foreach (Activity activity in _activities)
+            {
+                ListViewActivity.Items.Add(
+                     new
+                     {
+                         Name = activity.Name,
+                         StartDate = "Fecha de Inicio: " + activity.StartDate,
+                         FinishDate = "Fecha de finalización: " + activity.FinishDate,
+                         Value = activity.ValueActivity.ToString()
+                     }
+                 );
             }
         }
 

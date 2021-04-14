@@ -21,7 +21,7 @@ namespace PresentationLayer
         private string _password;
         public Login()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         private void LoginButtonClicked(object sender, RoutedEventArgs routedEventArgs)
