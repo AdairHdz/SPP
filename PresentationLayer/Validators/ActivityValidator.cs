@@ -20,25 +20,6 @@ namespace PresentationLayer.Validators
             RuleFor(activity => activity.ValueActivity).NotEmpty().Must(ValidValue).WithState(activity => "TextBoxValue");
 
             RuleFor(activity => activity.ActivityStatus).IsInEnum();
-
-            RuleFor(activity => activity.StartDate).NotEmpty().Must(ValidDate);
-
-            RuleFor(activity => activity.FinishDate).NotEmpty().Must(ValidDate);
-        }
-
-        public ActivityValidator(bool isUpdate)
-        {
-            RuleFor(activity => activity.Name).NotEmpty().WithState(user => "TextBoxName")
-                .MaximumLength(150).WithState(user => "TextBoxName");
-
-            RuleFor(activity => activity.Description).NotEmpty().WithState(user => "TextBoxDescription")
-                .MaximumLength(150).WithState(user => "TextBoxDescription");
-
-            RuleFor(activity => activity.ActivityType).IsInEnum();
-
-            RuleFor(activity => activity.ValueActivity).NotEmpty().Must(ValidValue).WithState(activity => "TextBoxValue");
-
-            RuleFor(activity => activity.ActivityStatus).IsInEnum();
         }
 
         public bool ValidValue(double value)
@@ -58,6 +39,24 @@ namespace PresentationLayer.Validators
             string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             DateTime dateNow = Convert.ToDateTime(date);
             if (dateTime < dateNow)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool ValidDateStartAndFinish(DateTime dateTimeStart, DateTime dateTimeFinish)
+        {
+            if (dateTimeStart > dateTimeFinish)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool ValidDateFinish(DateTime? dateTimeStart, DateTime dateTimeFinish)
+        {
+            if (dateTimeFinish < dateTimeStart)
             {
                 return false;
             }

@@ -26,6 +26,7 @@ namespace PresentationLayer
 
         private void LoginButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
+            UpdateActivities();
             try
             {
                 ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
@@ -149,6 +150,26 @@ namespace PresentationLayer
             UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
             userFeedback.ShowFeedback();
             return dataValidationResult.IsValid;
+        }
+
+        private void UpdateActivities ()
+        {
+            ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
+            UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
+            try
+            {
+                unitOfWork.Activities.ChangeToFinished();
+                unitOfWork.Complete();
+            }
+            catch (EntityException)
+            {
+                MessageBox.Show("No hay conexión con la base de datos. Intente más tarde", "Ingreso Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
+                Close();
+            }
+            finally
+            {
+                unitOfWork.Dispose();
+            }
         }
     }
 }

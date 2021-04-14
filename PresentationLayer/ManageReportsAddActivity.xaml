@@ -53,8 +53,8 @@
             <Label Content="Tipo de actividad: " VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
             <ComboBox Name="ComboBoxType" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"
                          VerticalAlignment="Top" Margin="0,6,0,0">
-                <ComboBoxItem Content="Reporte Parcial" Tag="1"></ComboBoxItem>
-                <ComboBoxItem Content="Reporte Mensual" Tag="0"></ComboBoxItem>
+                <ComboBoxItem Content="Reporte Parcial" Tag="0"></ComboBoxItem>
+                <ComboBoxItem Content="Reporte Mensual" Tag="1"></ComboBoxItem>
             </ComboBox>
 
             <Label Content="Fecha inicio:" VerticalAlignment="Top" Grid.Row="4" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
@@ -67,22 +67,22 @@
 
             <Label Content="Valor:" VerticalAlignment="Top" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="1,7,410,0" Grid.ColumnSpan="2"/>
             <TextBox x:Name="TextBoxValue" Height="30"  Grid.Row="3"  TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
-                materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z." Text="{Binding ValueActivity, Mode=TwoWay}" Grid.Column="1" Margin="1,2,0,0"/>
+                materialDesign:HintAssist.HelperText="Un valor entre 1 y 100." Text="{Binding ValueActivity, Mode=TwoWay}" Grid.Column="1" Margin="1,2,0,0"/>
 
             <StackPanel Grid.Row="4" Grid.Column="1" Margin="0,0,201,18">
-                <DatePicker  Margin="0,0,80,0"/>
+                <DatePicker Name="DatePickerDateStart"  Margin="0,0,80,0"/>
             </StackPanel>
             
             <StackPanel Grid.Row="4" Grid.Column="1" Margin="216,0,0,18">
-                <materialDesign:TimePicker HorizontalAlignment="Right"  VerticalAlignment="Top" RenderTransformOrigin="-4.25,0.778" Width="126" Margin="0,0,14,0" />
+                <materialDesign:TimePicker Name="TimePickerTimeStart" HorizontalAlignment="Right"  VerticalAlignment="Top" RenderTransformOrigin="-4.25,0.778" Width="126" Margin="0,0,14,0" />
             </StackPanel>
             <Label Content="Hora inicio:" VerticalAlignment="Top" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="180,4,141,0"/>
 
             <StackPanel Grid.Row="5" Grid.Column="1" Margin="0,0,201,18">
-                <DatePicker  Margin="0,0,80,0"/>
+                <DatePicker  Name="DatePickerDateFinish" Margin="0,0,80,0"/>
             </StackPanel>
             <StackPanel Grid.Row="5" Grid.Column="1" Margin="202,0,14,18">
-                <materialDesign:TimePicker HorizontalAlignment="Right"  VerticalAlignment="Top" RenderTransformOrigin="-4.25,0.778" Width="126" />
+                <materialDesign:TimePicker Name="TimePickerTimeFinish" HorizontalAlignment="Right"  VerticalAlignment="Top" RenderTransformOrigin="-4.25,0.778" Width="126" />
             </StackPanel>
             <Label Content="Hora término:" VerticalAlignment="Top" Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="170,4,139,0"/>
 

@@ -29,9 +29,16 @@ namespace PresentationLayer
 
 		private void AddButtonClicked(object sender, RoutedEventArgs routedEventArgs)
 		{
-			ManageReportsAddActivity manageReportsAddActivity = new ManageReportsAddActivity(_staffNumber);
-			manageReportsAddActivity.Show();
-			ListViewActivities.Items.Clear();
+			Group group = ((Group)ListViewGroups.SelectedItem);
+			if (group != null)
+			{
+				ManageReportsAddActivity manageReportsAddActivity = new ManageReportsAddActivity(_staffNumber, group.IdGroup);
+				manageReportsAddActivity.Show();
+				ListViewActivities.Items.Clear();
+				ButtonAddActivity.IsEnabled = false;
+				ButtonModifyActivity.IsEnabled = false;
+				ListViewGroups.SelectedItem = null;
+			}
 		}
 
 		private void ModifyButtonClicked(object sender, RoutedEventArgs routedEventArgs)

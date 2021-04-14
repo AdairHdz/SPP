@@ -67,7 +67,7 @@
 
             <Label Content="Valor:" VerticalAlignment="Top" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="1,7,410,0" Grid.ColumnSpan="2"/>
             <TextBox x:Name="TextBoxValue" Height="30"  Grid.Row="3"  TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
-                materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z." Text="{Binding ValueActivity, Mode=TwoWay}" Grid.Column="1" Margin="1,2,0,0"/>
+                materialDesign:HintAssist.HelperText="Un valor entre 1 y 100." Text="{Binding ValueActivity, Mode=TwoWay}" Grid.Column="1" Margin="1,2,0,0"/>
 
             <StackPanel Grid.Row="5" Grid.Column="1" Margin="0,0,201,18">
                 <DatePicker Name="DatePickerDate"  Margin="0,0,80,0"/>

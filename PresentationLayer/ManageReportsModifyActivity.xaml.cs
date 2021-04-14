@@ -15,7 +15,7 @@ namespace PresentationLayer
     /// </summary>
     public partial class ManageReportsModifyActivity : Window
     {
-        private string _staffNumber;
+        private readonly string _staffNumber;
         public Activity Activity = new Activity();
         private readonly ProfessionalPracticesContext _professionalPracticesContext;
         private readonly UnitOfWork _unitOfWork;
@@ -118,7 +118,7 @@ namespace PresentationLayer
         private bool ValidateData()
         {
             bool isValid = false;
-            ActivityValidator activityValidator = new ActivityValidator(true);
+            ActivityValidator activityValidator = new ActivityValidator();
             ValidationResult dataValidationResult = activityValidator.Validate(Activity);
             IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
             UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
@@ -132,14 +132,14 @@ namespace PresentationLayer
 
         private bool ValidDateTime()
         {
+            bool isValid = true;
             string date = DatePickerDate.SelectedDate.Value.ToString("yyyy-MM-dd");
             string hour = TimePickerHour.SelectedTime.Value.ToString("HH:mm:ss");
             DateTime dateFinish = Convert.ToDateTime(date + " " + hour);
-            bool isValid = true;
+            
             if (dateFinish != Activity.FinishDate)
             {
-                isValid = ActivityValidator.ValidDate(dateFinish);
-                if (isValid)
+                if (ActivityValidator.ValidDate(dateFinish) && ActivityValidator.ValidDateFinish(Activity.StartDate, dateFinish))
                 {
                     Activity.FinishDate = Convert.ToDateTime(dateFinish);
                 } 
