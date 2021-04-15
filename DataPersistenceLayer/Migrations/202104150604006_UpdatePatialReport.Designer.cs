@@ -7,13 +7,13 @@ namespace DataPersistenceLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class FixingDatabaseError : IMigrationMetadata
+    public sealed partial class UpdatePatialReport : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FixingDatabaseError));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdatePatialReport));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104070337123_FixingDatabaseError"; }
+            get { return "202104150604006_UpdatePatialReport"; }
         }
         
         string IMigrationMetadata.Source

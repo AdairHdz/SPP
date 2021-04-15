@@ -7,10 +7,17 @@ namespace DataPersistenceLayer.Entities
     {
         [Key]
         public int IdActivity { get; set; }
+
+        [Required]
+        [MaxLength(300)]
         public string Name { get; set; }
+
+        [Required]
+        [MaxLength(100)]
         public string PlannedWeek { get; set; }
-        public string PlannedMonth { get; set; }
-        public string RealMonth { get; set; }
+
+        [Required]
+        [MaxLength(100)]
         public string RealWeek { get; set; }
         public int IdPartialReport { get; set; }
         
