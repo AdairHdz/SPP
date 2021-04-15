@@ -117,10 +117,12 @@
     <Compile Include="LinkedOrganizationDeletionTestCase\LinkedOrganizationDeletionTest.cs" />
     <Compile Include="LinkedOrganizationModificationTestCase\LinkedOrganizationModificationTest.cs" />
     <Compile Include="LinkedOrganizationModificationTestCase\PhoneTest.cs" />
+    <Compile Include="ManageReportsTestCase\ManageReportsTest.cs" />
     <Compile Include="PracticionerDeletionTestCase\PracticionerDeletionTest.cs" />
     <Compile Include="PracticionerDeletionTestCase\AssignmentTest.cs" />
     <Compile Include="PracticionerModificationTestClase\PracticionerModificationTest.cs" />
     <Compile Include="PracticionerRegistryTestCase\PracticionerRegistryTest.cs" />
+    <Compile Include="ProjectAssignationTestCase\ProjectAssignationTest.cs" />
     <Compile Include="ProjectDeletionTestCase\ProjectDeletionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestProjectsTestCase\RequestProjectTest.cs" />
