@@ -80,5 +80,12 @@ namespace DataPersistenceLayer.Repositories
         {
             return _context.Set<Teacher>().Include(s => s.User.Account).Where(Teacher => Teacher.StaffNumber == staffNumber).First();
         }
+
+        public string GetStaffNumberTeacher(string password, string userName)
+        {
+            Teacher teacher = _context.Set<Teacher>().Where(Teacher => Teacher.User.Account.Password == password 
+            && Teacher.User.Account.Username == userName).First();
+            return teacher.StaffNumber;
+        }
     }
 }
