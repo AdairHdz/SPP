@@ -20,7 +20,7 @@ namespace PresentationLayer
         private User user;
         public Login()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         private void LoginButtonClicked(object sender, RoutedEventArgs routedEventArgs)

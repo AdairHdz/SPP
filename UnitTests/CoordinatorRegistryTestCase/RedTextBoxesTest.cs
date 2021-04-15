@@ -66,7 +66,7 @@ namespace UnitTests.CoordinatorRegistryTestCase
 
             uf.ShowFeedback();
 
-            Assert.AreEqual(5, uf.ControlsThatHaveBeenPaintedInRed.Count);
+            Assert.AreEqual(4, uf.ControlsThatHaveBeenPaintedInRed.Count);
         }
     }
 }

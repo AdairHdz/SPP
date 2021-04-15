@@ -56,7 +56,8 @@
                          Name="TextBoxFirstName"
                          Text="{Binding User.Name, Mode=TwoWay}"
                          Width="300" HorizontalAlignment="Left"
-                         VerticalAlignment="Bottom"/>
+                         VerticalAlignment="Bottom"
+                         materialDesign:HintAssist.HelperText="Máximo 30 caracteres de A-Z/a-z."/>
 
                 <Label Grid.Column="0" Grid.Row="1" Content="Apellido(s)" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 <TextBox Style="{DynamicResource MaterialDesignTextBox}"
@@ -67,7 +68,8 @@
                          Name="TextBoxLastName"
                          Text="{Binding User.LastName, Mode=TwoWay}"
                          Width="300" HorizontalAlignment="Left"
-                         VerticalAlignment="Bottom"/>
+                         VerticalAlignment="Bottom"
+                         materialDesign:HintAssist.HelperText="Máximo 30 caracteres de A-Z/a-z."/>
 
                 <Label Grid.Column="0" Grid.Row="2" Content="Género" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 <RadioButton Grid.Column="1"  Grid.Row="2"
@@ -93,7 +95,8 @@
                          Name="TextBoxEmail"
                          Text="{Binding User.Email, Mode=TwoWay}"
                          Width="300" HorizontalAlignment="Left"
-                         VerticalAlignment="Bottom"/>
+                         VerticalAlignment="Bottom"
+                         materialDesign:HintAssist.HelperText="Máximo 254 caracteres Ej. martha_14_5@gmail.com."/>
 
                 <Label Grid.Column="0" Grid.Row="4" Content="Correo alternativo" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 <TextBox Style="{DynamicResource MaterialDesignTextBox}"
@@ -104,7 +107,8 @@
                          Name="TextBoxAlternateEmail"
                          Text="{Binding User.AlternateEmail, Mode=TwoWay}"
                          Width="300" HorizontalAlignment="Left"
-                         VerticalAlignment="Bottom"/>
+                         VerticalAlignment="Bottom"
+                         materialDesign:HintAssist.HelperText="Máximo 254 caracteres Ej. martha_14_5@gmail.com."/>
 
                 <Label Grid.Column="0" Grid.Row="5" Content="Teléfono" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 <TextBox Style="{DynamicResource MaterialDesignTextBox}"
@@ -115,7 +119,8 @@
                          Name="TextBoxPhoneNumber"
                          Text="{Binding User.PhoneNumber, Mode=TwoWay}"
                          Width="300" HorizontalAlignment="Left"
-                         VerticalAlignment="Bottom"/>
+                         VerticalAlignment="Bottom"
+                         materialDesign:HintAssist.HelperText="10 caracteres de 0 A 9"/>
 
                 <Label Content="Estatus" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 <ComboBox Name="ComboBoxCoordinatorStatus" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left"

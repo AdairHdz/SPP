@@ -229,6 +229,11 @@ namespace PresentationLayer
 			return isFull;
 		}
 
-
-	}
+        private void AssignProject(object sender, RoutedEventArgs e)
+        {
+			ProjectSelectionsList projectSelectionsList = new ProjectSelectionsList();
+			projectSelectionsList.Show();
+			Close();
+        }
+    }
 }
