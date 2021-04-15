@@ -4,6 +4,7 @@ using DataPersistenceLayer.UnitsOfWork;
 using FluentValidation.Results;
 using PresentationLayer.Utils;
 using PresentationLayer.Validators;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
 using System.Data.SqlClient;
@@ -59,17 +60,10 @@ namespace PresentationLayer
             {
                 if (!TeacherIsAlreadyRegistered(unitOfWork))
                 {
-                    if (!ThereIsAnActiveTeacher(unitOfWork))
-                    {
-                        HashAccountPassword();
-                        RegisterNewTeacher(unitOfWork);
-                        MessageBox.Show("Profesor registrado exitosamente");
-                        GoBackToManagerMenu();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ya existe un profesor activo en el sistema.");
-                    }
+                    HashAccountPassword();
+                    RegisterNewTeacher(unitOfWork);
+                    MessageBox.Show("Profesor registrado exitosamente");
+                    GoBackToManagerMenu();
                 }
                 else
                 {
@@ -97,6 +91,8 @@ namespace PresentationLayer
             _teacher.User.UserType = UserType.Teacher;
             _teacher.User.Account.Password = PasswordBoxPassword.Password;
             _teacher.User.Gender = GenderParser.ParseFromRadioButtonsToObject(ManRadioButton);
+            _teacher.User.Account.Password = PasswordBoxPassword.Password;
+            _teacher.RegistrationDate = DateTime.Now;
         }
 
         private bool TeacherIsAlreadyRegistered(UnitOfWork unitOfWork)
@@ -105,19 +101,13 @@ namespace PresentationLayer
             return teacherIsAlreadyRegistered;
         }
 
-        private bool ThereIsAnActiveTeacher(UnitOfWork unitOfWork)
-        {
-            User retrievedUser =
-                    unitOfWork.Users.FindFirstOccurence(user => user.UserStatus == UserStatus.ACTIVE && user.UserType == UserType.Teacher);
-            return retrievedUser != null;
-        }
-
         private void HashAccountPassword()
         {
             BCryptHashGenerator bCryptHashGenerator = new BCryptHashGenerator();
             string salt = bCryptHashGenerator.GenerateSalt();
             string hashedPassword = bCryptHashGenerator.GenerateHashedString(_teacher.User.Account.Password, salt);
             _teacher.User.Account.Password = hashedPassword;
+            _teacher.User.Account.Salt = salt;
         }
 
         private void RegisterNewTeacher(UnitOfWork unitOfWork)
