@@ -74,11 +74,14 @@
     <Compile Include="AcceptanceOfficeTemplate.cs" />
     <Compile Include="AssignmentOfficeTemplate.cs" />
     <Compile Include="BCryptHashGenerator.cs" />
+    <Compile Include="CheckListItem.cs" />
     <Compile Include="DocumentGenerator.cs" />
     <Compile Include="DocumentSaver.cs" />
     <Compile Include="FileExplorer.cs" />
     <Compile Include="IHashing.cs" />
     <Compile Include="InvalidPathException.cs" />
+    <Compile Include="PartialReportGenerator.cs" />
+    <Compile Include="PartialReportTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -129,21 +129,30 @@ namespace PresentationLayer
                 Assignment assignment = unitOfWork.Assignments.FindFirstOccurence(Assignment => Assignment.Enrollment == _practicionerEnrollment);
                 if (assignment!=null)
                 {
-                    IEnumerable<ActivityPracticioner> activities = unitOfWork.ActivityPracticioners.Find(ActivityPracticioner => ActivityPracticioner.Enrollment.Equals(_practicionerEnrollment) &&
-                    ActivityPracticioner.Activity.ActivityType == ActivityType.PartialReport && ActivityPracticioner.Activity.ActivityStatus == ActivityStatus.ACTIVE);
-                    if (IENumerableHasActivityPracticioners(activities)) {
-                        IEnumerable<PartialReport> partialReports = unitOfWork.PartialReports.Find(PartialReport => PartialReport.Enrollment.Equals(_practicionerEnrollment));
-                        if (IENumberPartialRepot(partialReports)<2)
+                    Practicioner practicioner = unitOfWork.Practicioners.FindFirstOccurence(Practicioner => Practicioner.Enrollment.Equals(_practicionerEnrollment));
+                    if (practicioner.Group != null)
+                    {
+                        IEnumerable<ActivityPracticioner> activities = unitOfWork.ActivityPracticioners.Find(ActivityPracticioner => ActivityPracticioner.Enrollment.Equals(_practicionerEnrollment) &&
+                        ActivityPracticioner.Activity.ActivityType == ActivityType.PartialReport && ActivityPracticioner.Activity.ActivityStatus == ActivityStatus.ACTIVE);
+                        if (IENumerableHasActivityPracticioners(activities))
                         {
-                            PartialReportGeneration partialReportGeneration = new PartialReportGeneration();
-                            if (partialReportGeneration.InitializePartialReportGeneration(_practicionerEnrollment))
+                            IEnumerable<PartialReport> partialReports = unitOfWork.PartialReports.Find(PartialReport => PartialReport.Enrollment.Equals(practicioner.Enrollment));
+                            if (IENumberPartialRepot(partialReports) < 2)
                             {
-                                partialReportGeneration.Show();
-                                Close();
+                                PartialReportGeneration partialReportGeneration = new PartialReportGeneration();
+                                if (partialReportGeneration.InitializePartialReportGeneration(_practicionerEnrollment))
+                                {
+                                    partialReportGeneration.Show();
+                                    Close();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No hay conexión a la base de datos. Intente más tarde", "Generación Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
                             }
                             else
                             {
-                                MessageBox.Show("No hay conexión a la base de datos. Intente más tarde", "Generación Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show("No puede generar más de dos reportes parciales", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                         }
                         else
@@ -153,7 +162,7 @@ namespace PresentationLayer
                     }
                     else
                     {
-                        MessageBox.Show("No tiene activas actividades de reporte parcial. Contacte a su profesor", "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("No esta asignado a un grupo Contacte a su coordinador", "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 else
@@ -187,7 +196,6 @@ namespace PresentationLayer
             foreach (PartialReport item in ieNumerable)
             {
                 numberPartialReports++;
-                break;
             }
             return numberPartialReports;
         }

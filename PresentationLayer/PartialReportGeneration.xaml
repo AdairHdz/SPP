@@ -80,7 +80,7 @@
 
                 <Rectangle Grid.Row="2" Fill="DarkViolet" Height="45" Margin="0,0,0,10"/>
                 <Label Content="Datos del Proyecto" VerticalAlignment="Center" Grid.Row="2" Margin="0,0,0,10" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="35" FontFamily="Arial" Foreground="White" FontSize="20"/>
-                <Grid Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid x:Name="FormGridActivity" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
@@ -96,10 +96,10 @@
                     <Label Name="LabelPracticioner" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Left" Height="35" FontFamily="Arial" Margin="0,0,20,0"/>
 
                     <Label Content="Organización vinculada: " VerticalAlignment="Top" Grid.Row="0" Grid.Column="2" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-                    <TextBlock Name="TextBlockLinkedOrganization" VerticalAlignment="Top" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" Height="35" FontFamily="Arial"/>
+                    <TextBlock Name="TextBlockLinkedOrganization"   TextWrapping="Wrap"  VerticalAlignment="Top" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" Height="35" FontFamily="Arial"/>
 
                     <Label Content="Proyecto: " VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
-                    <TextBlock Name="TextBlockProject" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="35" FontFamily="Arial" Margin="0,0,20,0"/>
+                    <TextBlock Name="TextBlockProject" VerticalAlignment="Top" Grid.Row="1" TextWrapping="Wrap" Grid.Column="1" HorizontalAlignment="Left" Height="35" FontFamily="Arial" Margin="0,0,20,0"/>
 
                     <Label Content="Período del reporte y horas cubiertas: " VerticalAlignment="Top" Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
                     <TextBlock Name="TextBlockHours" VerticalAlignment="Top" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" Height="35" FontFamily="Arial"/>
@@ -121,7 +121,7 @@
 
                 <Rectangle Grid.Row="8" Fill="DarkViolet" Height="45" Margin="0,0,0,10"/>
                 <Label Content="Avance de actividades realizadas en relación al plan de trabajo" VerticalAlignment="Center" Grid.Row="8" Margin="0,0,0,10" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Height="35" FontFamily="Arial" FontSize="20" Foreground="White" FontWeight="Bold"/>
-                <Grid Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid Name="FormGridWeek" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>

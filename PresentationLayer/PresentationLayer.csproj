@@ -209,7 +209,6 @@
     <Compile Include="TeacherRegistry.xaml.cs">
       <DependentUpon>TeacherRegistry.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utils\CheckListItem.cs" />
     <Compile Include="Utils\GenderParser.cs" />
     <Compile Include="Validators\ActivityMadeValidator.cs" />
     <Compile Include="Validators\CoordinatorValidator.cs" />

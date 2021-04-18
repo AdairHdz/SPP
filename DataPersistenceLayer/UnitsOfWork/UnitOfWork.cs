@@ -53,6 +53,7 @@ namespace DataPersistenceLayer.UnitsOfWork
             Activities = new Repository<Activity>(_context);
             ActivityPracticioners = new Repository<ActivityPracticioner>(_context);
             Documents = new Repository<Document>(_context);
+            ActivityMades = new Repository<ActivityMade>(_context);
         }
 
         /// <summary>

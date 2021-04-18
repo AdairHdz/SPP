@@ -7,11 +7,11 @@ using DataPersistenceLayer.Entities;
 using DataPersistenceLayer;
 using DataPersistenceLayer.UnitsOfWork;
 using System.Data.Entity.Core;
-using System.Collections.ObjectModel;
-using Word = Microsoft.Office.Interop.Word;
 using System.Globalization;
-using PresentationLayer.Utils;
+using Utilities;
 using PresentationLayer.Validators;
+using System.Windows.Media;
+using System.Threading;
 
 namespace PresentationLayer
 {
@@ -27,43 +27,40 @@ namespace PresentationLayer
         private string _hours;
         private PartialReport _partialReport;
         private List<ActivityMade> _activityMades;
-        private string _routeDestination;
-        private string _routeCurrent;
-        private object _missing;
-        private Word.Document _wordDocumentPartialReport;
-        private Word.Application _wordApp;
+        private PartialReportTemplate _partialReportTemplate;
         private ActivityMade _activityMadeOne;
         private ActivityMade _activityMadeTwo;
         private ActivityMade _activityMadeThree;
         private ActivityMade _activityMadeFour;
         private ActivityMade _activityMadeFive;
         private bool _isValidActivityMade;
-        public ObservableCollection<CheckListItem> ListBoxP1S { get; set; }
-        public ObservableCollection<CheckListItem> ListBoxP2S { get; set; }
-        public ObservableCollection<CheckListItem> ListBoxP3S { get; set; }
-        public ObservableCollection<CheckListItem> ListBoxP4S { get; set; }
-        public ObservableCollection<CheckListItem> ListBoxP5S { get; set; }
-        public ObservableCollection<CheckListItem> ListBoxR1S { get; set; }
-        public ObservableCollection<CheckListItem> ListBoxR2S { get; set; }
-        public ObservableCollection<CheckListItem> ListBoxR3S { get; set; }
-        public ObservableCollection<CheckListItem> ListBoxR4S { get; set; }
-        public ObservableCollection<CheckListItem> ListBoxR5S { get; set; }
+        private bool _isValidWeek;
+        public List<CheckListItem> ListBoxP1S { get; set; }
+        public List<CheckListItem> ListBoxP2S { get; set; }
+        public List<CheckListItem> ListBoxP3S { get; set; }
+        public List<CheckListItem> ListBoxP4S { get; set; }
+        public List<CheckListItem> ListBoxP5S { get; set; }
+        public List<CheckListItem> ListBoxR1S { get; set; }
+        public List<CheckListItem> ListBoxR2S { get; set; }
+        public List<CheckListItem> ListBoxR3S { get; set; }
+        public List<CheckListItem> ListBoxR4S { get; set; }
+        public List<CheckListItem> ListBoxR5S { get; set; }
         public PartialReportGeneration()
         {
             InitializeComponent();
             CreateCheckBoxList();
         }
 
-        public ObservableCollection<CheckListItem> AddItems(string nameActivity) {
-            ObservableCollection<CheckListItem> ListBox = new ObservableCollection<CheckListItem>();
-            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "1>", TheText = "S1", TheValue = 1 });
-            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "2>", TheText = "S2", TheValue = 2 });
-            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "3>", TheText = "S3", TheValue = 3 });
-            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "4>", TheText = "S4", TheValue = 4 });
-            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "5>", TheText = "S5", TheValue = 5 });
-            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "6>", TheText = "S6", TheValue = 6 });
-            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "7>", TheText = "S7", TheValue = 7 });
-            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "8>", TheText = "S8", TheValue = 8 });
+        public List<CheckListItem> AddItems(string nameActivity) {
+            List<CheckListItem> ListBox = new List<CheckListItem>();
+            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "1>", TheText = "S1"});
+            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "2>", TheText = "S2"});
+            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "3>", TheText = "S3"});
+            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "4>", TheText = "S4"});
+            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "5>", TheText = "S5"});
+            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "6>", TheText = "S6"});
+            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "7>", TheText = "S7"});
+            ListBox.Add(new CheckListItem { TheName = "<" + nameActivity + "8>", TheText = "S8"});
             return ListBox;
         }
         public void CreateCheckBoxList()
@@ -93,7 +90,7 @@ namespace PresentationLayer
                     _assignment = unitOfWork.Assignments.FindFirstOccurence(Assignment => Assignment.Practicioner.Enrollment == _practicioner.Enrollment);
                     if (_assignment != null)
                     {
-                        _teacher = unitOfWork.Teachers.FindFirstOccurence(Teacher => Teacher.StaffNumber == _assignment.Practicioner.Group.StaffNumber);
+                        _teacher = unitOfWork.Teachers.FindFirstOccurence(Teacher => Teacher.StaffNumber == _practicioner.Group.StaffNumber);
                         if (_teacher != null)
                         {
                             PartialReport partialReport = unitOfWork.PartialReports.FindFirstOccurence(PartialReport => PartialReport.Enrollment == _practicioner.Enrollment);
@@ -174,7 +171,7 @@ namespace PresentationLayer
             LabelNumberReport.Content = _numberReport;
             TextBlockHours.Text = _hours;
             DateTime localDate = DateTime.Now;
-            string day = localDate.ToString();
+            string day = localDate.Day.ToString();
             int month = localDate.Month;
             string year = localDate.Year.ToString();
             DateTimeFormatInfo formatDate = CultureInfo.CurrentCulture.DateTimeFormat;
@@ -182,145 +179,60 @@ namespace PresentationLayer
             LabelDate.Content = day + " de " + nameMonth + " de " + year;
         }
 
-        private void FindAndReplace(Word.Application wordApp, object ToFindText, object replaceWithText)
-        {
-            object matchCase = true;
-            object matchWholeWord = true;
-            object matchWildCards = false;
-            object matchSoundLike = false;
-            object matchAllForms = false;
-            object forward = true;
-            object format = false;
-            object matchKashida = false;
-            object matchDiactitics = false;
-            object matchAlefHamza = false;
-            object matchControl = false;
-            object read_only = false;
-            object visible = true;
-            object replace = 2;
-            object wrap = 1;
 
-            wordApp.Selection.Find.Execute(ref ToFindText,
-                ref matchCase, ref matchWholeWord,
-                ref matchWildCards, ref matchSoundLike,
-                ref matchAllForms, ref forward,
-                ref wrap, ref format, ref replaceWithText,
-                ref replace, ref matchKashida,
-                ref matchDiactitics, ref matchAlefHamza,
-                ref matchControl);
+        private void MyDataTemplate()
+        {
+            _partialReportTemplate.Career = LabelCareer.Content.ToString();
+            _partialReportTemplate.Techaer = LabelTeacher.Content.ToString();
+            _partialReportTemplate.NRC = LabelNRC.Content.ToString();
+            _partialReportTemplate.Term = LabelTerm.Content.ToString();
+            _partialReportTemplate.Practicioner = LabelPracticioner.Content.ToString();
+            _partialReportTemplate.Project = TextBlockProject.Text;
+            _partialReportTemplate.Date = LabelDate.Content.ToString();
+            _partialReportTemplate.LinkedOrganization = TextBlockLinkedOrganization.Text;
+            _partialReportTemplate.Hours = TextBlockHours.Text;
+            _partialReportTemplate.Number = LabelNumberReport.Content.ToString();
+            _partialReportTemplate.GeneralObjective = TextBlockObjectiveGeneral.Text;
+            _partialReportTemplate.Methodology = TextBlockMethodology.Text;
+            _partialReportTemplate.ActivityOne = TextBoxActivityOne.Text;
+            _partialReportTemplate.ActivityTwo = TextBoxActivityTwo.Text;
+            _partialReportTemplate.ActivityThree = TextBoxActivityThree.Text;
+            _partialReportTemplate.ActivityFour = TextBoxActivityFour.Text;
+            _partialReportTemplate.ActivityFive = TextBoxActivityFive.Text;
+            _partialReportTemplate.Result = TextBoxResults.Text;
+            _partialReportTemplate.Observations = TextBoxObservations.Text;
+            _partialReportTemplate.WeekPlan1 = ReplaceWordWeek(ListBoxP1);
+            _partialReportTemplate.WeekPlan2 = ReplaceWordWeek(ListBoxP2);
+            _partialReportTemplate.WeekPlan3 = ReplaceWordWeek(ListBoxP3);
+            _partialReportTemplate.WeekPlan4 = ReplaceWordWeek(ListBoxP4);
+            _partialReportTemplate.WeekPlan5 = ReplaceWordWeek(ListBoxP5);
+            _partialReportTemplate.WeekReal1 = ReplaceWordWeek(ListBoxR1);
+            _partialReportTemplate.WeekReal2 = ReplaceWordWeek(ListBoxR2);
+            _partialReportTemplate.WeekReal3 = ReplaceWordWeek(ListBoxR3);
+            _partialReportTemplate.WeekReal4 = ReplaceWordWeek(ListBoxR4);
+            _partialReportTemplate.WeekReal5 = ReplaceWordWeek(ListBoxR5);
         }
 
-        private void CreateWordDocument(object filename, object saveAs)
-        {
-            _wordApp = new Word.Application();
-            _missing = System.Reflection.Missing.Value;
-            _wordDocumentPartialReport = null;
-            if (File.Exists((string)filename))
-            {
-                object readOnly = false;
-                object isVisible = false;
-                _wordApp.Visible = false;
-                _wordDocumentPartialReport = _wordApp.Documents.Open(ref filename, ref _missing, ref readOnly,
-                    ref _missing, ref _missing, ref _missing,
-                    ref _missing, ref _missing, ref _missing,
-                    ref _missing, ref _missing, ref _missing,
-                    ref _missing, ref _missing, ref _missing, ref _missing);
-                _wordDocumentPartialReport.Activate();
-                ReplaceWordPartialReport(_wordApp);
-            }
-            else
-            {
-                MessageBox.Show("No se encontro la plantilla. Intente más tarde", "No se encontro", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-        private void SaveDocument(object saveAs)
-        {
-            int index = 1;
-            bool isDownload = true;
-            string routeDestination = (string)saveAs;
-            while (isDownload)
-            {
-                if (File.Exists(routeDestination))
-                {
-                    int indexPrevious = index - 1;
-                    if (index == 1)
-                    {
-                        routeDestination = routeDestination.Replace(".docx", "(" + index.ToString() + ")" + ".docx");
-                    }
-                    else
-                    {
-                        routeDestination = routeDestination.Replace("(" + indexPrevious.ToString() + ")" + ".docx", "(" + index.ToString() + ")" + ".docx");
-                    }
-                    index++;
-                }
-                else
-                {
-                    object saveNewAs = routeDestination;
-                    _wordDocumentPartialReport.SaveAs2(ref saveNewAs, ref _missing, ref _missing, ref _missing,
-                    ref _missing, ref _missing, ref _missing,
-                    ref _missing, ref _missing, ref _missing,
-                    ref _missing, ref _missing, ref _missing,
-                    ref _missing, ref _missing, ref _missing);
-
-                    _wordDocumentPartialReport.Close();
-                    isDownload = false;
-                }
-            }
-        }
-
-        private void ReplaceWordPartialReport(Word.Application wordApp)
-        {
-            FindAndReplace(wordApp, "<Career>", LabelCareer.Content);
-            FindAndReplace(wordApp, "<Teacher>", LabelTeacher.Content);
-            FindAndReplace(wordApp, "<NRC>", LabelNRC.Content);
-            FindAndReplace(wordApp, "<Term>", LabelTerm.Content);
-
-            FindAndReplace(wordApp, "<Practicioner>", LabelPracticioner.Content);
-            FindAndReplace(wordApp, "<Project>", TextBlockProject.Text);
-            FindAndReplace(wordApp, "<Date>", LabelDate.Content);
-            FindAndReplace(wordApp, "<LinkedOrganization>", TextBlockLinkedOrganization.Text);
-            FindAndReplace(wordApp, "<Hours>", TextBlockHours.Text);
-            FindAndReplace(wordApp, "<Number>", LabelNumberReport.Content);
-
-            FindAndReplace(wordApp, "<GeneralObjective>", TextBlockObjectiveGeneral.Text);
-            FindAndReplace(wordApp, "<Methodology>", TextBlockMethodology.Text);
-
-            FindAndReplace(wordApp, "<ActivityOne>", TextBoxActivityOne.Text);
-            FindAndReplace(wordApp, "<ActivityTwo>", TextBoxActivityTwo.Text);
-            FindAndReplace(wordApp, "<ActivityThree>", TextBoxActivityThree.Text);
-            FindAndReplace(wordApp, "<ActivityOne>", TextBoxActivityOne.Text);
-            FindAndReplace(wordApp, "<ActivityOne>", TextBoxActivityOne.Text);
-            FindAndReplace(wordApp, "<ActivityFour>", TextBoxActivityFour.Text);
-            FindAndReplace(wordApp, "<ActivityFive>", TextBoxActivityFive.Text);
-
-            _activityMadeOne.PlannedWeek = ReplaceWordWeek(wordApp, ListBoxP1);
-            _activityMadeTwo.PlannedWeek = ReplaceWordWeek(wordApp, ListBoxP2);
-            _activityMadeThree.PlannedWeek = ReplaceWordWeek(wordApp, ListBoxP3);
-            _activityMadeFour.PlannedWeek = ReplaceWordWeek(wordApp, ListBoxP4);
-            _activityMadeFive.PlannedWeek = ReplaceWordWeek(wordApp, ListBoxP5);
-            _activityMadeOne.RealWeek = ReplaceWordWeek(wordApp, ListBoxR1);
-            _activityMadeTwo.RealWeek = ReplaceWordWeek(wordApp, ListBoxR2);
-            _activityMadeThree.RealWeek = ReplaceWordWeek(wordApp, ListBoxR3);
-            _activityMadeFour.RealWeek = ReplaceWordWeek(wordApp, ListBoxR4);
-            _activityMadeFive.RealWeek = ReplaceWordWeek(wordApp, ListBoxR5);
-
-            FindAndReplace(wordApp, "<Result>", TextBoxResults.Text);
-            FindAndReplace(wordApp, "<Observations>", TextBoxObservations.Text);
-        }
-
-        private string ReplaceWordWeek(Word.Application wordApp, System.Windows.Controls.ListBox listBox){
-            string week = null;
-            foreach (CheckListItem item in listBox.ItemsSource)
+        private List<CheckListItem> ReplaceWordWeek(System.Windows.Controls.ListBox listBox){
+            List<CheckListItem> listItems = (List < CheckListItem > )listBox.ItemsSource;
+            foreach (CheckListItem item in listItems)
             {
                 if (item.IsSelected == true)
                 {
-                    FindAndReplace(wordApp, item.TheName, "X");
-                    week = week +item.TheText+ "";
+                    item.TheValue = "X";
                 }
-                else
-                {
-                    FindAndReplace(wordApp, item.TheName, null);
-                }
+            }
+            return listItems;
+        }
+
+        private string ObteinWeek(System.Windows.Controls.ListBox listBox)
+        {
+            string week = null;
+            List<CheckListItem> listWeek = (List<CheckListItem>)listBox.ItemsSource;
+            List<CheckListItem> listWeekSelect = listWeek.FindAll(CheckListItem => CheckListItem.IsSelected == true);
+            foreach (CheckListItem item in listWeekSelect)
+            {
+                week = week + item.TheText + " ";
             }
             return week;
         }
@@ -331,32 +243,45 @@ namespace PresentationLayer
             try
             {
                 if (messageBoxResult == MessageBoxResult.Yes)
-                {
+                {                    
                     CreatePatialReportFromInputData();
-                    CreatePatialReportFromInputData();
-                    GererateRouteDocument();
-                    CreateWordDocument(_routeCurrent, _routeDestination);
+                    CreateActivityMadesFromInputData();
                     if (ValidateDataPatialReport())
                     {
-                        ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
-                        UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-                        if (RegisternewPartialReport(unitOfWork))
+                        string routeDestination = FileExplorer.Show("Guardar reporte parcial");
+                        if (!string.IsNullOrWhiteSpace(routeDestination))
                         {
-                            SaveDocument(_routeDestination);
-                            _wordApp.Quit();
-                            MessageBox.Show("El documento se genero correctamente en el escritorio", "Documento Generado", MessageBoxButton.OK, MessageBoxImage.Information);
+                            ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
+                            UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
+                            if (RegisternewPartialReport(unitOfWork))
+                            {
+                                _partialReportTemplate = new PartialReportTemplate();
+                                MyDataTemplate();
+                                PartialReportGenerator partialReportGenerator = new PartialReportGenerator();
+                                partialReportGenerator.CreatePartialReportDocument($"{routeDestination}", _partialReportTemplate);
+                                Thread.Sleep(3500);
+                                MessageBox.Show("El documento se genero correctamente en el escritorio", "Documento Generado", MessageBoxButton.OK, MessageBoxImage.Information);
+                                PracticionerMenu practicionerMenu = new PracticionerMenu(_practicioner.Enrollment);
+                                practicionerMenu.Show();
+                                Close();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Por favor, Ingrese el nombre del documento", "Datos Incorrectos", MessageBoxButton.OK, MessageBoxImage.Warning);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Por favor, Ingrese datos correctos en los campos marcados en rojo", "Datos Incorrectos", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Por favor, Complete todos los campos", "Datos Incorrectos", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        
                     }
                 }
             }
             catch (EntityException)
             {
                 MessageBox.Show("El proyecto no pudo generar el reporte. Intente más tarde", "Genración Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
-                PracticionerMenu practicionerMenu = new PracticionerMenu();
+                PracticionerMenu practicionerMenu = new PracticionerMenu(_practicioner.Enrollment);
                 practicionerMenu.Show();
                 Close();
             }
@@ -365,38 +290,85 @@ namespace PresentationLayer
         private bool ValidateDataPatialReport()
         {
             _isValidActivityMade = true;
+            _isValidWeek = true;
             _activityMades = new List<ActivityMade>();
             PartialReportValidator partialReportValidator = new PartialReportValidator();
             ValidationResult dataValidationResult = partialReportValidator.Validate(_partialReport);
             IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
             UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
             userFeedback.ShowFeedback();
-            ValidateActivityMade(TextBoxActivityOne.Name, ListBoxP1.Name, ListBoxR1.Name, _activityMadeOne);
-            ValidateActivityMade(TextBoxActivityTwo.Name, ListBoxP2.Name, ListBoxR2.Name, _activityMadeTwo);
-            ValidateActivityMade(TextBoxActivityThree.Name, ListBoxP3.Name, ListBoxR3.Name, _activityMadeThree);
-            ValidateActivityMade(TextBoxActivityFour.Name, ListBoxP4.Name, ListBoxR4.Name, _activityMadeFour);
-            ValidateActivityMade(TextBoxActivityFour.Name, ListBoxP5.Name, ListBoxR5.Name, _activityMadeFive);
-            return dataValidationResult.IsValid && _isValidActivityMade && _activityMades.Count != 0;
+            ValidateActivityMade();
+            ValidateWeek(ListBoxP1);
+            ValidateWeek(ListBoxP2);
+            ValidateWeek(ListBoxP3);
+            ValidateWeek(ListBoxP4);
+            ValidateWeek(ListBoxP5);
+
+            ValidateWeek(ListBoxR1);
+            ValidateWeek(ListBoxR2);
+            ValidateWeek(ListBoxR3);
+            ValidateWeek(ListBoxR4);
+            ValidateWeek(ListBoxR5);
+
+            return dataValidationResult.IsValid && _isValidActivityMade && _activityMades.Count != 0 && _isValidWeek;
         }
 
-        private void ValidateActivityMade(string nameTextBoxActivity , string nameListBoxPlan, string nameListBoxReal, ActivityMade activityMade)
+        private void ValidateWeek(System.Windows.Controls.ListBox listBoxWeek)
         {
-            /*TextBoxActivity.BorderBrush = Brushes.Gray;*/
-            ActivityMadeValidator activityMadeValidator = new ActivityMadeValidator(nameTextBoxActivity, nameListBoxPlan, nameListBoxReal);
-            ValidationResult dataValidationResult = activityMadeValidator.Validate(activityMade);
-            if (!dataValidationResult.IsValid)
+            List<CheckListItem> listWeek = (List<CheckListItem>)listBoxWeek.ItemsSource;
+            List<CheckListItem> listWeekSelect = listWeek.FindAll(CheckListItem => CheckListItem.IsSelected == true);
+            if (listWeekSelect.Count == 0)
+            {
+                _isValidWeek = false;
+            }
+        }
+
+        private void ValidateActivityMade()
+        {
+            TextBoxActivityOne.BorderBrush = Brushes.Green;
+            TextBoxActivityTwo.BorderBrush = Brushes.Green;
+            TextBoxActivityThree.BorderBrush = Brushes.Green;
+            TextBoxActivityFour.BorderBrush = Brushes.Green;
+            TextBoxActivityFive.BorderBrush = Brushes.Green;
+
+            ActivityMadeValidator activityMadeValidator = new ActivityMadeValidator();
+            ValidationResult dataValidationResultOne = activityMadeValidator.Validate(_activityMadeOne);
+            if (!dataValidationResultOne.IsValid)
             {
                 _isValidActivityMade = false;
+                TextBoxActivityOne.BorderBrush = Brushes.Red;
             }
-             _activityMades.Add(activityMade);
+            ValidationResult dataValidationResultTwo = activityMadeValidator.Validate(_activityMadeTwo);
+            if (!dataValidationResultTwo.IsValid)
+            {
+                _isValidActivityMade = false;
+                TextBoxActivityTwo.BorderBrush = Brushes.Red;
+            }
+            ValidationResult dataValidationResultThree = activityMadeValidator.Validate(_activityMadeThree);
+            if (!dataValidationResultThree.IsValid)
+            {
+                _isValidActivityMade = false;
+                TextBoxActivityThree.BorderBrush = Brushes.Red;
+            }
+            ValidationResult dataValidationResultFour = activityMadeValidator.Validate(_activityMadeFour);
+            if (!dataValidationResultFour.IsValid)
+            {
+                _isValidActivityMade = false;
+                TextBoxActivityFour.BorderBrush = Brushes.Red;
+            }
+            ValidationResult dataValidationResultFive = activityMadeValidator.Validate(_activityMadeFive);
+            if (!dataValidationResultFive.IsValid)
+            {
+                _isValidActivityMade = false;
+                TextBoxActivityFive.BorderBrush = Brushes.Red;
+            }
+            _activityMades.Add(_activityMadeOne);
+            _activityMades.Add(_activityMadeTwo);
+            _activityMades.Add(_activityMadeThree);
+            _activityMades.Add(_activityMadeFour);
+            _activityMades.Add(_activityMadeFive);
         }
 
-        private void GererateRouteDocument()
-        {
-            _routeDestination = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/" + "reporteParcial.docx";
-            _routeCurrent = AppDomain.CurrentDomain.BaseDirectory;
-            _routeCurrent = _routeCurrent.Replace(@"\bin\Debug\", "/Reports/partialReport.docx");
-        }
         private void CreatePatialReportFromInputData()
         {
             _partialReport = new PartialReport();
@@ -422,6 +394,16 @@ namespace PresentationLayer
             _activityMadeThree.Name = TextBoxActivityThree.Text;
             _activityMadeFour.Name = TextBoxActivityFour.Text;
             _activityMadeFive.Name = TextBoxActivityFive.Text;
+            _activityMadeOne.PlannedWeek = ObteinWeek(ListBoxP1);
+            _activityMadeTwo.PlannedWeek = ObteinWeek(ListBoxP2);
+            _activityMadeThree.PlannedWeek = ObteinWeek(ListBoxP3);
+            _activityMadeFour.PlannedWeek = ObteinWeek(ListBoxP4);
+            _activityMadeFive.PlannedWeek = ObteinWeek(ListBoxP5);
+            _activityMadeOne.RealWeek = ObteinWeek(ListBoxR1);
+            _activityMadeTwo.RealWeek = ObteinWeek(ListBoxR2);
+            _activityMadeThree.RealWeek = ObteinWeek(ListBoxR3);
+            _activityMadeFour.RealWeek = ObteinWeek(ListBoxR4);
+            _activityMadeFive.RealWeek = ObteinWeek(ListBoxR5);
         }
 
         private bool RegisternewPartialReport(UnitOfWork unitOfWork)
@@ -433,9 +415,9 @@ namespace PresentationLayer
 
         private bool RegisterActivityMades(UnitOfWork unitOfWork)
         {
-            PartialReport partialReport = unitOfWork.PartialReports.FindFirstOccurence(PartialReport => PartialReport.IdProject == _partialReport.IdProject 
+            PartialReport partialReport = unitOfWork.PartialReports.FindFirstOccurence(PartialReport => PartialReport.IdProject == _partialReport.IdProject
             && PartialReport.Enrollment.Equals(_partialReport.Enrollment) && PartialReport.NumberReport.Equals(_partialReport.NumberReport));
-            if (!object.ReferenceEquals(null, partialReport))
+            if (partialReport!=null)
             {
                 _partialReport.IdParcialReport = partialReport.IdParcialReport;
                 AddIdPartialReportInActivitiesMade();
@@ -460,7 +442,7 @@ namespace PresentationLayer
             MessageBoxResult messageBoxResult = MessageBox.Show("¿Seguro desea cancelar?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
-                PracticionerMenu practicionerMenu = new PracticionerMenu();
+                PracticionerMenu practicionerMenu = new PracticionerMenu(_practicioner.Enrollment);
                 practicionerMenu.Show();
                 Close();
             }
@@ -468,7 +450,7 @@ namespace PresentationLayer
 
         private void BehindButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
-            PracticionerMenu practicionerMenu = new PracticionerMenu();
+            PracticionerMenu practicionerMenu = new PracticionerMenu(_practicioner.Enrollment);
             practicionerMenu.Show();
             Close();
         }
