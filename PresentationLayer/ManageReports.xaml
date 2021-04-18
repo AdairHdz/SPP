@@ -1,0 +1,75 @@
+﻿<Window x:Class="PresentationLayer.ManageReports"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		WindowStartupLocation="CenterScreen"
+		mc:Ignorable="d"
+		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+		TextElement.FontWeight="Regular"
+		TextElement.FontSize="15"
+		TextOptions.TextFormattingMode="Ideal"
+		TextOptions.TextRenderingMode="Auto"
+		Background="{DynamicResource MaterialDesignPaper}"
+		FontFamily="{DynamicResource MaterialDesignFont}"
+		Title="Administrar Reportes" Height="720" Width="967.5">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="250"></RowDefinition>
+            <RowDefinition Height="292"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="0" Fill="#5B007B"/>
+        <TextBlock Grid.Row="0" Text="Administrar Reportes" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
+					FontWeight="Bold" Margin="324,16,372,6"/>
+        <Button Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="15" Click="CancelButtonClicked">
+            <materialDesign:PackIcon Kind="ArrowLeftBold" Height="30" Width="30" HorizontalAlignment="Center"/>
+        </Button>
+
+        <Grid x:Name="FormGrid" Grid.Row="1" HorizontalAlignment="Center" Margin="180,0,188,0" Width="592" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="600"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Content="Grupos a cargo" FontWeight="Bold" Margin="226,3,0,183" />
+            <ListView x:Name="ListViewGroups" HorizontalAlignment="Center"  Background="Azure" Width="400" 
+				Margin="106,40,94,-1" MouseDoubleClick="SelectionGroupToSearchActivity" SelectionChanged="SelectionGroup">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Nrc}" Header="NRC"  />
+                        <GridViewColumn DisplayMemberBinding="{Binding Term}" Header="Periodo" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Row="2" HorizontalAlignment="Center" Margin="130,0,134,0" Width="696" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="700"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Content="Actividades asignadas al grupo seleccionado" FontWeight="Bold" Margin="166,0,166,262" />
+            <ListView x:Name="ListViewActivities" HorizontalAlignment="Center"   Background="Azure"  Width="650" 
+				   Margin="28,42,22,2" SelectionChanged="ModifyActivity">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="300" DisplayMemberBinding="{Binding Name}" Header="Nombre"  />
+                        <GridViewColumn Width="160" DisplayMemberBinding="{Binding ActivityType}" Header="Tipo" />
+                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding ActivityStatus}" Header="Estado" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Row="3" HorizontalAlignment="Center" Width="557" Margin="248,0,255,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="ButtonAddActivity" IsEnabled="False" Grid.Column="0" Style="{StaticResource MaterialDesignRaisedAccentButton}" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Agregar Actividad" Click="AddButtonClicked" Margin="80,14,0,23"/>
+            <Button x:Name="ButtonModifyActivity" IsEnabled="False" Style="{StaticResource MaterialDesignRaisedDarkButton}"  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Modificar Actividad" Click="ModifyButtonClicked" Margin="47,14,0,23" Grid.Column="1"/>
+        </Grid>
+    </Grid>
+</Window>
+ 

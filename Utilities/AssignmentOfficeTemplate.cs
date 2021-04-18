@@ -24,7 +24,7 @@ namespace Utilities
             ResponsibleProject responsibleProject = project.ResponsibleProject;
             LinkedOrganization linkedOrganization = project.LinkedOrganization;            
 
-            OfficeNumber = "XX/YY";
+            OfficeNumber = $"{assignment.IdAssignment}/{DateTime.Now.Year}";
             DateOfGeneration = DateTime.Now;
             ResponsibleProjectName = $"{responsibleProject.Name} {responsibleProject.LastName}";
             ResponsibleProjectCharge = responsibleProject.Charge;

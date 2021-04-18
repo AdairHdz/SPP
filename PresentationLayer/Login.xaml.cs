@@ -18,6 +18,7 @@ namespace PresentationLayer
         private Account accountCurrent;
         private Account accountReceived;
         private User user;
+        private string _password;
         public Login()
         {
             InitializeComponent();            
@@ -25,6 +26,7 @@ namespace PresentationLayer
 
         private void LoginButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
+            UpdateActivities();
             try
             {
                 ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
@@ -102,7 +104,8 @@ namespace PresentationLayer
                         }
                         else
                         {
-                            TeacherMenu teacherMenu = new TeacherMenu();
+                            string staffNumber = GetStaffNumberTeacher();
+                            TeacherMenu teacherMenu = new TeacherMenu(staffNumber);
                             TeacherMenu._User = user;
                             teacherMenu.Show();
                             Close();
@@ -119,17 +122,54 @@ namespace PresentationLayer
             }
         }
 
+        private string GetStaffNumberTeacher()
+        {
+            ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
+            UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
+            string staffNumber = null;
+            try
+            {
+                staffNumber = unitOfWork.Teachers.GetStaffNumberTeacher(_password, TextBoxUsername.Text);
+            }
+            catch (EntityException)
+            {
+                MessageBox.Show("No se pudo Iniciar sesión. Intente más tarde", "Inicio de sesión Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return staffNumber;
+        }
+
         private bool IsValidAccountPassword()
         {
             BCryptHashGenerator bCryptHashGenerator = new BCryptHashGenerator();
             string hashedPassword = bCryptHashGenerator.GenerateHashedString(accountCurrent.Password, accountReceived.Salt);
             accountCurrent.Password = hashedPassword;
+            _password = hashedPassword;
             AccountValidator accountValidator = new AccountValidator(accountReceived);
             ValidationResult dataValidationResult = accountValidator.Validate(accountCurrent);
             IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
             UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
             userFeedback.ShowFeedback();
             return dataValidationResult.IsValid;
+        }
+
+        private void UpdateActivities ()
+        {
+            ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
+            UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
+            try
+            {
+                unitOfWork.Activities.ChangeToFinished();
+                unitOfWork.Complete();
+            }
+            catch (EntityException)
+            {
+                MessageBox.Show("No hay conexión con la base de datos. Intente más tarde", "Ingreso Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
+                Close();
+            }
+            finally
+            {
+                unitOfWork.Dispose();
+            }
         }
     }
 }

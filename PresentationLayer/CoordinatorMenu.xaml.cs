@@ -229,6 +229,13 @@ namespace PresentationLayer
 			return isFull;
 		}
 
+        private void GenerateReportButtonClicked(object sender, RoutedEventArgs e)
+        {
+			IndicatorsReportGeneration indicatorsReportGeneration = new IndicatorsReportGeneration();
+			indicatorsReportGeneration.Show();
+			Close();
+        }
+
         private void AssignProject(object sender, RoutedEventArgs e)
         {
 			ProjectSelectionsList projectSelectionsList = new ProjectSelectionsList();

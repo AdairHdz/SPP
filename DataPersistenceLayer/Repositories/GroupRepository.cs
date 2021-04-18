@@ -58,5 +58,25 @@ namespace DataPersistenceLayer.Repositories
 			return _context.Set<Teacher>().Include(UserTeacher => UserTeacher.User).SingleOrDefault(Group => Group.StaffNumber == staffNumber);
 
 		}
+
+		public bool GetIfThisTeacherHaveActiveGroups(string staffNumber)
+        {
+			IList<Group> groupSearch = _context.Set<Group>().Where(group => group.StaffNumber == staffNumber && group.GroupStatus == GroupStatus.ACTIVE).ToList();
+			if (groupSearch.Count != 0)
+            {
+				return true;
+            }
+			return false; 
+		}
+
+		public IList<Group> GetActiveGroupsForThisTeacher(string staffNumber)
+		{
+			return _context.Set<Group>().Where(group => group.StaffNumber == staffNumber && group.GroupStatus == GroupStatus.ACTIVE).ToList();
+		}
+
+		public IList<Activity> GetActivitiesForThisGroup(int idGroup)
+        {
+			return _context.Set<Activity>().Where(activity => activity.IdGroup == idGroup).ToList();
+		}
 	}
 }
