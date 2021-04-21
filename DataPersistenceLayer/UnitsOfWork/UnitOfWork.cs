@@ -23,7 +23,7 @@ namespace DataPersistenceLayer.UnitsOfWork
         public IUserRepository Users { get; private set; }
         public IRepository<SchedulingActivity> SchedulingActivities { get; private set; }
         public IGroupRepository Groups { get; private set; }
-        public IRepository<Activity> Activities { get; private set; }
+        public IActivityRepository Activities { get; private set; }
         public IRepository<ActivityPracticioner> ActivityPracticioners { get; private set; }
         public IRepository<Document> Documents { get; private set; }
         public IRepository<ActivityMade> ActivityMades { get; private set; }
@@ -50,7 +50,7 @@ namespace DataPersistenceLayer.UnitsOfWork
             Phones = new PhoneRepository(_context);
             SchedulingActivities = new Repository<SchedulingActivity>(_context);
             Groups = new GroupRepository(_context);
-            Activities = new Repository<Activity>(_context);
+            Activities = new ActivityRepository(_context);
             ActivityPracticioners = new Repository<ActivityPracticioner>(_context);
             Documents = new Repository<Document>(_context);
             ActivityMades = new Repository<ActivityMade>(_context);

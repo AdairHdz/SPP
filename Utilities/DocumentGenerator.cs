@@ -112,7 +112,7 @@ namespace Utilities
                 myWordDoc.Activate();
 
                 //find and replace
-
+                this.FindAndReplace(wordApp, myWordDoc, "<officeNumber>", assignmentOfficeTemplate.OfficeNumber);
                 this.FindAndReplace(wordApp, myWordDoc, "<day>", assignmentOfficeTemplate.DateOfGeneration.Day.ToString());
                 this.FindAndReplace(wordApp, myWordDoc, "<month>", assignmentOfficeTemplate.DateOfGeneration.Month.ToString());
                 this.FindAndReplace(wordApp, myWordDoc, "<year>", assignmentOfficeTemplate.DateOfGeneration.Year.ToString());

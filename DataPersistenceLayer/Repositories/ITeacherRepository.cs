@@ -9,6 +9,7 @@ namespace DataPersistenceLayer.Repositories
 		IList<Teacher> GetActiveTeachers();
 		bool TeacherIsAlreadyRegistered(Teacher teacher, bool isUpdate);
 		Teacher GetTeacherWithAllInformation(string staffNumber);
+		string GetStaffNumberTeacher(string password, string userName);
 
 	}
 }

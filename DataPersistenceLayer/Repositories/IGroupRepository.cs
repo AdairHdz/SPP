@@ -9,9 +9,9 @@ namespace DataPersistenceLayer.Repositories
         int GroupId();
         Teacher GetTeacherAssigned(string staffNumber);
         bool GroupCanBeModify(Group group);
-
-
-
+        bool GetIfThisTeacherHaveActiveGroups(string staffNumber);
+        IList<Group> GetActiveGroupsForThisTeacher(string staffNumber);
+        IList<Activity> GetActivitiesForThisGroup(int idGroup);
 
     }
 }

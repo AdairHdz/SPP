@@ -35,6 +35,12 @@ namespace DataPersistenceLayer.Entities
         public string StaffNumberTeacher { get; set; }
 
         [ForeignKey("StaffNumberTeacher")]
-        public virtual Teacher teacher { get; set; } 
+        public virtual Teacher teacher { get; set; }
+
+        [Required]
+        public int IdGroup { get; set; }
+
+        [ForeignKey("IdGroup")]
+        public virtual Group Group { get; set; }
     }
 }

@@ -13,9 +13,16 @@ namespace PresentationLayer
     public partial class TeacherMenu : Window
     {
         public static User _User { get; set; }
+        private readonly string _staffNumber;
         public TeacherMenu()
         {
             InitializeComponent();
+        }
+
+        public TeacherMenu(string staffNumber)
+        {
+            InitializeComponent();
+            _staffNumber = staffNumber;
         }
 
         private void LogOutButtonClicked(object sender, RoutedEventArgs routedEventArgs)
@@ -25,7 +32,7 @@ namespace PresentationLayer
             Close();
         }
 
-        private void EvaluateReportButtonClicked(object sender, RoutedEventArgs e)
+        private void EvaluateReportButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
             ActivityReportList activityReportList = new ActivityReportList();
             ActivityReportList._User = _User;
@@ -37,6 +44,32 @@ namespace PresentationLayer
             else
             {
                 MessageBox.Show("No se encontro actividades. Intente más tarde", "No se puede acceder", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ManageReportButtonClicked(object sender, RoutedEventArgs routedEventArgs)
+        {
+            ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
+            UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
+            try
+            {
+                if (unitOfWork.Groups.GetIfThisTeacherHaveActiveGroups(_staffNumber))
+                {
+                    ManageReports manageReports = new ManageReports(_staffNumber);
+                    manageReports.Show();
+                    Close();
+                } else
+                {
+                    MessageBox.Show("No tiene grupos asignados en estado activo", "Ingreso Faliido", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (EntityException)
+            {
+                MessageBox.Show("No hay conexión a la base de datos. Por favor intente más tarde");
+            }
+            finally
+            {
+                unitOfWork.Dispose();
             }
         }
     }
