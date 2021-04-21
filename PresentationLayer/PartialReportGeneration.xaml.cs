@@ -280,7 +280,7 @@ namespace PresentationLayer
             }
             catch (EntityException)
             {
-                MessageBox.Show("El proyecto no pudo generar el reporte. Intente más tarde", "Genración Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("No se pudo generar el reporte. Intente más tarde", "Genración Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
                 PracticionerMenu practicionerMenu = new PracticionerMenu(_practicioner.Enrollment);
                 practicionerMenu.Show();
                 Close();
