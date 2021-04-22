@@ -26,6 +26,7 @@ namespace DataPersistenceLayer.UnitsOfWork
         public IActivityRepository Activities { get; private set; }
         public IRepository<ActivityPracticioner> ActivityPracticioners { get; private set; }
         public IRepository<Document> Documents { get; private set; }
+        public IRepository<ActivityMade> ActivityMades { get; private set; }
         public IRepository<OfficeOfAcceptance> OfficesOfAcceptance { get; private set; }
         private readonly ProfessionalPracticesContext _context;
 
@@ -52,7 +53,7 @@ namespace DataPersistenceLayer.UnitsOfWork
             Activities = new ActivityRepository(_context);
             ActivityPracticioners = new Repository<ActivityPracticioner>(_context);
             Documents = new Repository<Document>(_context);
-            OfficesOfAcceptance = new Repository<OfficeOfAcceptance>(_context);
+            ActivityMades = new Repository<ActivityMade>(_context);
         }
 
         /// <summary>

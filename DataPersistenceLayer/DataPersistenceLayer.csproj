@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -90,9 +90,9 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserStatus.cs" />
     <Compile Include="Entities\UserType.cs" />
-    <Compile Include="Migrations\202104070337123_FixingDatabaseError.cs" />
-    <Compile Include="Migrations\202104070337123_FixingDatabaseError.designer.cs">
-      <DependentUpon>202104070337123_FixingDatabaseError.cs</DependentUpon>
+    <Compile Include="Migrations\202104150604006_UpdatePatialReport.cs" />
+    <Compile Include="Migrations\202104150604006_UpdatePatialReport.designer.cs">
+      <DependentUpon>202104150604006_UpdatePatialReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202104071827019_UpdateMonthlyReport.cs" />
     <Compile Include="Migrations\202104071827019_UpdateMonthlyReport.designer.cs">
@@ -139,8 +139,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104070337123_FixingDatabaseError.resx">
-      <DependentUpon>202104070337123_FixingDatabaseError.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104150604006_UpdatePatialReport.resx">
+      <DependentUpon>202104150604006_UpdatePatialReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104071827019_UpdateMonthlyReport.resx">
       <DependentUpon>202104071827019_UpdateMonthlyReport.cs</DependentUpon>
