@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Ale_2\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Ale_2\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_SPP.534322649.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Ale_2\AppData\Roaming\JetBrains\Rider2020.3\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\Ale_2\AppData\Roaming\JetBrains\Rider2020.3\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\Ale_2\source\repos\SPPDS" t="IncludeFlat">
+      <e p="DataPersistenceLayer" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="DataPersistenceLayer.csproj" t="IncludeRecursive" />
+        <e p="Entities" t="Include">
+          <e p="Account.cs" t="Include" />
+          <e p="Activity.cs" t="Include" />
+          <e p="ActivityMade.cs" t="Include" />
+          <e p="ActivityPracticioner.cs" t="Include" />
+          <e p="ActivityPracticionerStatus.cs" t="Include" />
+          <e p="ActivityStatus.cs" t="Include" />
+          <e p="ActivityType.cs" t="Include" />
+          <e p="AdvanceQuestion.cs" t="Include" />
+          <e p="Assignment.cs" t="Include" />
+          <e p="AssignmentStatus.cs" t="Include" />
+          <e p="City.cs" t="Include" />
+          <e p="Coordinator.cs" t="Include" />
+          <e p="Document.cs" t="Include" />
+          <e p="Gender.cs" t="Include" />
+          <e p="Group.cs" t="Include" />
+          <e p="GroupStatus.cs" t="Include" />
+          <e p="LinkedOrganization.cs" t="Include" />
+          <e p="LinkedOrganizationStatus.cs" t="Include" />
+          <e p="Manager.cs" t="Include" />
+          <e p="MonthlyReport.cs" t="Include" />
+          <e p="OfficeOfAcceptance.cs" t="Include" />
+          <e p="PartialReport.cs" t="Include" />
+          <e p="Phone.cs" t="Include" />
+          <e p="Practicioner.cs" t="Include" />
+          <e p="Project.cs" t="Include" />
+          <e p="ProjectStatus.cs" t="Include" />
+          <e p="RequestProject.cs" t="Include" />
+          <e p="RequestStatus.cs" t="Include" />
+          <e p="ResponsibleProject.cs" t="Include" />
+          <e p="ResponsibleProjectStatus.cs" t="Include" />
+          <e p="SchedulingActivity.cs" t="Include" />
+          <e p="Sector.cs" t="Include" />
+          <e p="State.cs" t="Include" />
+          <e p="Teacher.cs" t="Include" />
+          <e p="User.cs" t="Include" />
+          <e p="UserStatus.cs" t="Include" />
+          <e p="UserType.cs" t="Include" />
+        </e>
+        <e p="Migrations" t="Include">
+          <e p="202104070337123_FixingDatabaseError.cs" t="Include" />
+          <e p="202104070337123_FixingDatabaseError.designer.cs" t="Include" />
+          <e p="202104070337123_FixingDatabaseError.resx" t="Include" />
+          <e p="202104071827019_UpdateMonthlyReport.cs" t="Include" />
+          <e p="202104071827019_UpdateMonthlyReport.designer.cs" t="Include" />
+          <e p="202104071827019_UpdateMonthlyReport.resx" t="Include" />
+          <e p="202104120431091_UpdateActivity.cs" t="Include" />
+          <e p="202104120431091_UpdateActivity.designer.cs" t="Include" />
+          <e p="202104120431091_UpdateActivity.resx" t="Include" />
+          <e p="Configuration.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="ProfessionalPracticesContext.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Repositories" t="Include">
+          <e p="ActivityRepository.cs" t="Include" />
+          <e p="CoordinatorRepository.cs" t="Include" />
+          <e p="GroupRepository.cs" t="Include" />
+          <e p="IActivityRepository.cs" t="Include" />
+          <e p="ICoordinatorRepository.cs" t="Include" />
+          <e p="IGroupRepository.cs" t="Include" />
+          <e p="ILinkedOrganizationRepository.cs" t="Include" />
+          <e p="IPhoneRepository.cs" t="Include" />
+          <e p="IPracticionerRepository.cs" t="Include" />
+          <e p="IProjectRepository.cs" t="Include" />
+          <e p="IRepository.cs" t="Include" />
+          <e p="IRequestProjectRepositoy.cs" t="Include" />
+          <e p="IResponsibleProjectRepository.cs" t="Include" />
+          <e p="IStateRepository.cs" t="Include" />
+          <e p="ITeacherRepository.cs" t="Include" />
+          <e p="IUserRepository.cs" t="Include" />
+          <e p="LinkedOrganizationRepository.cs" t="Include" />
+          <e p="PhoneRepository.cs" t="Include" />
+          <e p="PracticionerRepository.cs" t="Include" />
+          <e p="ProjectRepository.cs" t="Include" />
+          <e p="Repository.cs" t="Include" />
+          <e p="RequestProjectRepository.cs" t="Include" />
+          <e p="ResponsibleProjectRepository.cs" t="Include" />
+          <e p="StateRepository.cs" t="Include" />
+          <e p="TeacherRepository.cs" t="Include" />
+          <e p="UserRepository.cs" t="Include" />
+        </e>
+        <e p="UnitsOfWork" t="Include">
+          <e p="IUnitOfWork.cs" t="Include" />
+          <e p="UnitOfWork.cs" t="Include" />
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive">
+        <e p="MSTest.TestAdapter.2.1.1\build\_common\es" t="Include">
+          <e p="Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll" t="Include" />
+          <e p="Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll" t="Include" />
+        </e>
+        <e p="MSTest.TestAdapter.2.1.1\build\_common\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" t="Include" />
+        <e p="MSTest.TestAdapter.2.1.1\build\_common\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" t="Include" />
+        <e p="MSTest.TestAdapter.2.1.1\build\_common\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" t="Include" />
+      </e>
+      <e p="PresentationLayer" t="IncludeRecursive">
+        <e p="ActivityReportList.xaml" t="Include" />
+        <e p="ActivityReportList.xaml.cs" t="Include" />
+        <e p="App.config" t="Include" />
+        <e p="App.xaml" t="Include" />
+        <e p="App.xaml.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ConsultProgress.xaml" t="Include" />
+        <e p="ConsultProgress.xaml.cs" t="Include" />
+        <e p="CoordinatorConsultation.xaml" t="Include" />
+        <e p="CoordinatorConsultation.xaml.cs" t="Include" />
+        <e p="CoordinatorDeletion.xaml" t="Include" />
+        <e p="CoordinatorDeletion.xaml.cs" t="Include" />
+        <e p="CoordinatorMenu.xaml" t="Include" />
+        <e p="CoordinatorMenu.xaml.cs" t="Include" />
+        <e p="CoordinatorModification.xaml" t="Include" />
+        <e p="CoordinatorModification.xaml.cs" t="Include" />
+        <e p="CoordinatorRegistry.xaml" t="Include" />
+        <e p="CoordinatorRegistry.xaml.cs" t="Include" />
+        <e p="FirstLogin.xaml" t="Include" />
+        <e p="FirstLogin.xaml.cs" t="Include" />
+        <e p="GroupModify.xaml" t="Include" />
+        <e p="GroupModify.xaml.cs" t="Include" />
+        <e p="GroupModifyList.xaml" t="Include" />
+        <e p="GroupModifyList.xaml.cs" t="Include" />
+        <e p="GroupRegistry.xaml" t="Include" />
+        <e p="GroupRegistry.xaml.cs" t="Include" />
+        <e p="Images" t="Include">
+          <e p="IconoSystem.png" t="Include" />
+          <e p="logoSystem.png" t="Include" />
+          <e p="logOut.png" t="Include" />
+        </e>
+        <e p="LinkedOrganizationChoose.xaml" t="Include" />
+        <e p="LinkedOrganizationChoose.xaml.cs" t="Include" />
+        <e p="LinkedOrganizationConsultation.xaml" t="Include" />
+        <e p="LinkedOrganizationConsultation.xaml.cs" t="Include" />
+        <e p="LinkedOrganizationDeletion.xaml" t="Include" />
+        <e p="LinkedOrganizationDeletion.xaml.cs" t="Include" />
+        <e p="LinkedOrganizationModification.xaml" t="Include" />
+        <e p="LinkedOrganizationModification.xaml.cs" t="Include" />
+        <e p="LinkedOrganizationRegistry.xaml" t="Include" />
+        <e p="LinkedOrganizationRegistry.xaml.cs" t="Include" />
+        <e p="Login.xaml" t="Include" />
+        <e p="Login.xaml.cs" t="Include" />
+        <e p="MainWindow.xaml" t="Include" />
+        <e p="MainWindow.xaml.cs" t="Include" />
+        <e p="ManageReports.xaml" t="Include" />
+        <e p="ManageReports.xaml.cs" t="Include" />
+        <e p="ManageReportsAddActivity.xaml" t="Include" />
+        <e p="ManageReportsAddActivity.xaml.cs" t="Include" />
+        <e p="ManageReportsModifyActivity.xaml" t="Include" />
+        <e p="ManageReportsModifyActivity.xaml.cs" t="Include" />
+        <e p="ManagerMenu.xaml" t="Include" />
+        <e p="ManagerMenu.xaml.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="ActivityReportList.g.cs" t="Include" />
+            <e p="App.g.cs" t="Include" />
+            <e p="ConsultProgress.g.cs" t="Include" />
+            <e p="CoordinatorConsultation.g.cs" t="Include" />
+            <e p="CoordinatorDeletion.g.cs" t="Include" />
+            <e p="CoordinatorMenu.g.cs" t="Include" />
+            <e p="CoordinatorModification.g.cs" t="Include" />
+            <e p="CoordinatorRegistry.g.cs" t="Include" />
+            <e p="FirstLogin.g.cs" t="Include" />
+            <e p="GroupModify.g.cs" t="Include" />
+            <e p="GroupModifyList.g.cs" t="Include" />
+            <e p="GroupRegistry.g.cs" t="Include" />
+            <e p="LinkedOrganizationChoose.g.cs" t="Include" />
+            <e p="LinkedOrganizationConsultation.g.cs" t="Include" />
+            <e p="LinkedOrganizationDeletion.g.cs" t="Include" />
+            <e p="LinkedOrganizationModification.g.cs" t="Include" />
+            <e p="LinkedOrganizationRegistry.g.cs" t="Include" />
+            <e p="Login.g.cs" t="Include" />
+            <e p="MainWindow.g.cs" t="Include" />
+            <e p="ManageReports.g.cs" t="Include" />
+            <e p="ManageReportsAddActivity.g.cs" t="Include" />
+            <e p="ManageReportsModifyActivity.g.cs" t="Include" />
+            <e p="ManagerMenu.g.cs" t="Include" />
+            <e p="PracticionerConsult.g.cs" t="Include" />
+            <e p="PracticionerDeletion.g.cs" t="Include" />
+            <e p="PracticionerMenu.g.cs" t="Include" />
+            <e p="PracticionerModification.g.cs" t="Include" />
+            <e p="PracticionerRegistry.g.cs" t="Include" />
+            <e p="ProjectConsultation.g.cs" t="Include" />
+            <e p="ProjectDeletion.g.cs" t="Include" />
+            <e p="ProjectModification.g.cs" t="Include" />
+            <e p="ProjectRegistry.g.cs" t="Include" />
+            <e p="ProjectSelectionsList.g.cs" t="Include" />
+            <e p="ReportAdd.g.cs" t="Include" />
+            <e p="ReportEvaluation.g.cs" t="Include" />
+            <e p="ReportList.g.cs" t="Include" />
+            <e p="RequestProjectConsult.g.cs" t="Include" />
+            <e p="RequestProjects.g.cs" t="Include" />
+            <e p="ResponsibleProjectChoose.g.cs" t="Include" />
+            <e p="ResponsibleProjectConsult.g.cs" t="Include" />
+            <e p="ResponsibleProjectDeletion.g.cs" t="Include" />
+            <e p="ResponsibleProjectModification.g.cs" t="Include" />
+            <e p="ResponsibleProjectRegistry.g.cs" t="Include" />
+            <e p="SchedulingActivityModification.g.cs" t="Include" />
+            <e p="SchedulingActivityRegistration.g.cs" t="Include" />
+            <e p="TeacherConsultation.g.cs" t="Include" />
+            <e p="TeacherDeletion.g.cs" t="Include" />
+            <e p="TeacherMenu.g.cs" t="Include" />
+            <e p="TeacherModification.g.cs" t="Include" />
+            <e p="TeacherRegistry.g.cs" t="Include" />
+          </e>
+        </e>
+        <e p="packages.config" t="Include" />
+        <e p="PracticionerConsult.xaml" t="Include" />
+        <e p="PracticionerConsult.xaml.cs" t="Include" />
+        <e p="PracticionerDeletion.xaml" t="Include" />
+        <e p="PracticionerDeletion.xaml.cs" t="Include" />
+        <e p="PracticionerMenu.xaml" t="Include" />
+        <e p="PracticionerMenu.xaml.cs" t="Include" />
+        <e p="PracticionerModification.xaml" t="Include" />
+        <e p="PracticionerModification.xaml.cs" t="Include" />
+        <e p="PracticionerRegistry.xaml" t="Include" />
+        <e p="PracticionerRegistry.xaml.cs" t="Include" />
+        <e p="PresentationLayer.csproj" t="IncludeRecursive" />
+        <e p="ProjectConsultation.xaml" t="Include" />
+        <e p="ProjectConsultation.xaml.cs" t="Include" />
+        <e p="ProjectDeletion.xaml" t="Include" />
+        <e p="ProjectDeletion.xaml.cs" t="Include" />
+        <e p="ProjectModification.xaml" t="Include" />
+        <e p="ProjectModification.xaml.cs" t="Include" />
+        <e p="ProjectRegistry.xaml" t="Include" />
+        <e p="ProjectRegistry.xaml.cs" t="Include" />
+        <e p="ProjectSelectionsList.xaml" t="Include" />
+        <e p="ProjectSelectionsList.xaml.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+        <e p="ReportAdd.xaml" t="Include" />
+        <e p="ReportAdd.xaml.cs" t="Include" />
+        <e p="ReportEvaluation.xaml" t="Include" />
+        <e p="ReportEvaluation.xaml.cs" t="Include" />
+        <e p="ReportList.xaml" t="Include" />
+        <e p="ReportList.xaml.cs" t="Include" />
+        <e p="RequestProjectConsult.xaml" t="Include" />
+        <e p="RequestProjectConsult.xaml.cs" t="Include" />
+        <e p="RequestProjects.xaml" t="Include" />
+        <e p="RequestProjects.xaml.cs" t="Include" />
+        <e p="ResponsibleProjectChoose.xaml" t="Include" />
+        <e p="ResponsibleProjectChoose.xaml.cs" t="Include" />
+        <e p="ResponsibleProjectConsult.xaml" t="Include" />
+        <e p="ResponsibleProjectConsult.xaml.cs" t="Include" />
+        <e p="ResponsibleProjectDeletion.xaml" t="Include" />
+        <e p="ResponsibleProjectDeletion.xaml.cs" t="Include" />
+        <e p="ResponsibleProjectModification.xaml" t="Include" />
+        <e p="ResponsibleProjectModification.xaml.cs" t="Include" />
+        <e p="ResponsibleProjectRegistry.xaml" t="Include" />
+        <e p="ResponsibleProjectRegistry.xaml.cs" t="Include" />
+        <e p="SchedulingActivityModification.xaml" t="Include" />
+        <e p="SchedulingActivityModification.xaml.cs" t="Include" />
+        <e p="SchedulingActivityRegistration.xaml" t="Include" />
+        <e p="SchedulingActivityRegistration.xaml.cs" t="Include" />
+        <e p="TeacherConsultation.xaml" t="Include" />
+        <e p="TeacherConsultation.xaml.cs" t="Include" />
+        <e p="TeacherDeletion.xaml" t="Include" />
+        <e p="TeacherDeletion.xaml.cs" t="Include" />
+        <e p="TeacherMenu.xaml" t="Include" />
+        <e p="TeacherMenu.xaml.cs" t="Include" />
+        <e p="TeacherModification.xaml" t="Include" />
+        <e p="TeacherModification.xaml.cs" t="Include" />
+        <e p="TeacherRegistry.xaml" t="Include" />
+        <e p="TeacherRegistry.xaml.cs" t="Include" />
+        <e p="Utils" t="Include">
+          <e p="GenderParser.cs" t="Include" />
+        </e>
+        <e p="Validators" t="Include">
+          <e p="AccountValidator.cs" t="Include" />
+          <e p="ActivityValidator.cs" t="Include" />
+          <e p="CoordinatorValidator.cs" t="Include" />
+          <e p="GroupValidator.cs" t="Include" />
+          <e p="LinkedOrganizationValidator.cs" t="Include" />
+          <e p="PhoneValidator.cs" t="Include" />
+          <e p="PracticionerValidator.cs" t="Include" />
+          <e p="ProjectValidator.cs" t="Include" />
+          <e p="ResponsibleProjectValidator.cs" t="Include" />
+          <e p="SchedulingActivityValidator.cs" t="Include" />
+          <e p="TeacherValidator.cs" t="Include" />
+          <e p="UserFeedback.cs" t="Include" />
+          <e p="UserValidator.cs" t="Include" />
+        </e>
+      </e>
+      <e p="SPP.sln" t="IncludeFlat" />
+      <e p="UnitTests" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ConsultProgressTestCase" t="Include">
+          <e p="ConsultProgressTest.cs" t="Include" />
+        </e>
+        <e p="CoordinatorDeletionTestCase" t="Include">
+          <e p="CoordinatorDeletionTest.cs" t="Include" />
+        </e>
+        <e p="CoordinatorModificationTestCase" t="Include">
+          <e p="CoordinatorModificationTest.cs" t="Include" />
+        </e>
+        <e p="CoordinatorRegistryTestCase" t="Include">
+          <e p="CoordinatorRegistryTest.cs" t="Include" />
+          <e p="GreenTextBoxesTest.cs" t="Include" />
+          <e p="RedTextBoxesTest.cs" t="Include" />
+        </e>
+        <e p="DataPersistenceLayerTests" t="Include">
+          <e p="CoordinatorTest" t="Include">
+            <e p="CoordinatorTest.cs" t="Include" />
+          </e>
+          <e p="DbContextMock.cs" t="Include" />
+          <e p="LoginTest.cs" t="Include" />
+          <e p="ProjectTest" t="Include">
+            <e p="LinkedOrganizationChooseTest.cs" t="Include" />
+            <e p="ProjectModificationTest.cs" t="Include" />
+            <e p="ProjectRegistryTest.cs" t="Include" />
+            <e p="ResponsibleProjectChooseTest.cs" t="Include" />
+            <e p="SchedulingActivityTest.cs" t="Include" />
+          </e>
+          <e p="ReportTest" t="Include">
+            <e p="ReportAddTest.cs" t="Include" />
+            <e p="ReportEvaluationTest.cs" t="Include" />
+          </e>
+          <e p="ResponsibleProjectTest" t="Include">
+            <e p="ResponsibleProjectTest.cs" t="Include" />
+            <e p="ResponsibleProjectTestConsult.cs" t="Include" />
+          </e>
+          <e p="TeacherTest" t="Include">
+            <e p="ConsultTeacherTest.cs" t="Include" />
+            <e p="TeacherTest.cs" t="Include" />
+          </e>
+          <e p="UserTest" t="Include">
+            <e p="UserTest.cs" t="Include" />
+          </e>
+        </e>
+        <e p="GroupModifyTestCase" t="Include">
+          <e p="GroupModifyTest.cs" t="Include" />
+        </e>
+        <e p="GroupRegistryTestCase" t="Include">
+          <e p="GroupRegistryTest.cs" t="Include" />
+        </e>
+        <e p="HashingTests" t="Include">
+          <e p="BCryptHasherTest.cs" t="Include" />
+          <e p="BCryptHashingTest.cs" t="Include" />
+        </e>
+        <e p="LinkedOrganizationDeletionTestCase" t="Include">
+          <e p="LinkedOrganizationDeletionTest.cs" t="Include" />
+        </e>
+        <e p="LinkedOrganizationModificationTestCase" t="Include">
+          <e p="LinkedOrganizationModificationTest.cs" t="Include" />
+          <e p="PhoneTest.cs" t="Include" />
+        </e>
+        <e p="LinkedOrganizationRegistryTestCase" t="Include" />
+        <e p="ManageReportsTestCase" t="Include">
+          <e p="ManageReportsTest.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="PracticionerDeletionTestCase" t="Include">
+          <e p="AssignmentTest.cs" t="Include" />
+          <e p="PracticionerDeletionTest.cs" t="Include" />
+        </e>
+        <e p="PracticionerModificationTestClase" t="Include">
+          <e p="PracticionerModificationTest.cs" t="Include" />
+        </e>
+        <e p="PracticionerRegistryTestCase" t="Include">
+          <e p="PracticionerRegistryTest.cs" t="Include" />
+        </e>
+        <e p="ProjectAssignationTestCase" t="Include">
+          <e p="ProjectAssignationTest.cs" t="Include" />
+        </e>
+        <e p="ProjectDeletionTestCase" t="Include">
+          <e p="ProjectDeletionTest.cs" t="Include" />
+        </e>
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="RequestProjectsTestCase" t="Include">
+          <e p="RequestProjectTest.cs" t="Include" />
+        </e>
+        <e p="TeacherModificationTestCase" t="Include">
+          <e p="TeacherModificationTest.cs" t="Include" />
+        </e>
+        <e p="TeacherRegistryTestCase" t="Include">
+          <e p="TeacherRegistry.cs" t="Include" />
+        </e>
+        <e p="UnitTests.csproj" t="IncludeRecursive" />
+        <e p="ValidatorsTests" t="Include">
+          <e p="LinkedOrganizationValidatorTest.cs" t="Include" />
+          <e p="ResponsibleProjectValidatorTest.cs" t="Include" />
+          <e p="UserValidatorTest.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Utilities" t="IncludeRecursive">
+        <e p="AcceptanceOfficeTemplate.cs" t="Include" />
+        <e p="AssignmentOfficeTemplate.cs" t="Include" />
+        <e p="BCryptHashGenerator.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="DocumentGenerator.cs" t="Include" />
+        <e p="Documents" t="Include" />
+        <e p="DocumentSaver.cs" t="Include" />
+        <e p="FileExplorer.cs" t="Include" />
+        <e p="IHashing.cs" t="Include" />
+        <e p="Images" t="Include" />
+        <e p="InvalidPathException.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Utilities.csproj" t="IncludeRecursive" />
+        <e p="Views" t="Include">
+          <e p="AssignmentOfficeTemplate.cs.docx" t="Include" />
+        </e>
+      </e>
+    </e>
+  </component>
+</project>
