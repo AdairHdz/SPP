@@ -92,6 +92,18 @@
     <Compile Include="CoordinatorModification.xaml.cs">
       <DependentUpon>CoordinatorModification.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IndicatorsReportGeneration.xaml.cs">
+      <DependentUpon>IndicatorsReportGeneration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageReports.xaml.cs">
+      <DependentUpon>ManageReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageReportsAddActivity.xaml.cs">
+      <DependentUpon>ManageReportsAddActivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageReportsModifyActivity.xaml.cs">
+      <DependentUpon>ManageReportsModifyActivity.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProjectSelectionsList.xaml.cs">
       <DependentUpon>ProjectSelectionsList.xaml</DependentUpon>
     </Compile>
@@ -211,6 +223,7 @@
     </Compile>
     <Compile Include="Utils\GenderParser.cs" />
     <Compile Include="Validators\ActivityMadeValidator.cs" />
+    <Compile Include="Validators\ActivityValidator.cs" />
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
     <Compile Include="Validators\GroupValidator.cs" />
@@ -251,6 +264,22 @@
     <Page Include="CoordinatorRegistry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IndicatorsReportGeneration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ManageReports.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ManageReportsAddActivity.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ManageReportsModifyActivity.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ProjectSelectionsList.xaml">
       <SubType>Designer</SubType>
