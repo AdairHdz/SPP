@@ -24,7 +24,7 @@ namespace PresentationLayer.Validators
 
         public bool ValidValue(double value)
         {
-            Regex regularExpression = new Regex("^[0-9]{3}$");
+            Regex regularExpression = new Regex("^[0-9]");
             string valueString = value.ToString();
             bool hasValidFormat = regularExpression.IsMatch(valueString);
             if (value > 100 || value < 1)

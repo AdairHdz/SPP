@@ -119,6 +119,7 @@
     <Compile Include="LinkedOrganizationModificationTestCase\LinkedOrganizationModificationTest.cs" />
     <Compile Include="LinkedOrganizationModificationTestCase\PhoneTest.cs" />
     <Compile Include="ManageReportsTestCase\ManageReportsTest.cs" />
+    <Compile Include="MonthlyReportGenerationTestCase\MonthlyReportGenerationTest.cs" />
     <Compile Include="PracticionerDeletionTestCase\PracticionerDeletionTest.cs" />
     <Compile Include="PracticionerDeletionTestCase\AssignmentTest.cs" />
     <Compile Include="PracticionerModificationTestClase\PracticionerModificationTest.cs" />

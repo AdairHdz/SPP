@@ -96,6 +96,8 @@
     <Compile Include="IHashing.cs" />
     <Compile Include="IndicatorsReportGenerator.cs" />
     <Compile Include="InvalidPathException.cs" />
+    <Compile Include="MonthlyReportGenerator.cs" />
+    <Compile Include="MonthlyReportTemplate.cs" />
     <Compile Include="PartialReportGenerator.cs" />
     <Compile Include="PartialReportTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,7 +106,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Views\AssignmentOfficeTemplate.cs.docx" />
+    <None Include="Views\AcceptanceOfficeTemplate.docx" />
+    <None Include="Views\monthlyReport.docx" />
+    <None Include="Views\partialReport.docx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Documents\" />

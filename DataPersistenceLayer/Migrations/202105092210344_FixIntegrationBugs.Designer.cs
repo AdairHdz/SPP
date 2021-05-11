@@ -7,13 +7,13 @@ namespace DataPersistenceLayer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class UpdateMonthlyReport : IMigrationMetadata
+    public sealed partial class FixIntegrationBugs : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateMonthlyReport));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FixIntegrationBugs));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104071827019_UpdateMonthlyReport"; }
+            get { return "202105092210344_FixIntegrationBugs"; }
         }
         
         string IMigrationMetadata.Source

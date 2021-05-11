@@ -82,8 +82,9 @@ namespace PresentationLayer
                 {
                     activity.Enrollment = practicioner.Enrollment;
                     unitOfWork.ActivityPracticioners.Add(activity);
+                    unitOfWork.Complete();
                 }
-                unitOfWork.Complete();
+               
                 unitOfWork.Dispose();
             }
             catch (EntityException)
