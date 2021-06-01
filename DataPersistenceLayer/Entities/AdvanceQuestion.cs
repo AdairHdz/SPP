@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataPersistenceLayer.Entities
 {
@@ -10,5 +11,8 @@ namespace DataPersistenceLayer.Entities
         public string Question { get; set; }
         public string Reasons { get; set; }
         public bool Reply { get; set; }
+        public int IdMonthlyReport { get; set; }
+        [ForeignKey("IdMonthlyReport ")]
+        public MonthlyReport MonthlyReport { get; set; }
     }
 }

@@ -199,5 +199,50 @@ namespace PresentationLayer
             }
             return numberPartialReports;
         }
+
+        private void GenerateMonthlyReportButtonClicked(object sender, RoutedEventArgs routedEventArgs)
+        {
+            ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
+            UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
+            try
+            {
+                bool haveAssigmentProject = unitOfWork.Practicioners.SearchPracticionerProject(_practicionerEnrollment);
+                if (haveAssigmentProject)
+                {
+                    bool haveMonthlyReport = unitOfWork.Practicioners.SearchPracticionerMonthlyReports(_practicionerEnrollment);
+                    if (haveMonthlyReport)
+                    {
+                        bool existButIsDelivered = unitOfWork.Activities.SearchDocument(_practicionerEnrollment);
+                        if (!existButIsDelivered)
+                        {
+                            MonthlyReportGeneration.Enrollment = _practicionerEnrollment;
+                            MonthlyReportGeneration generateMonthlyReport = new MonthlyReportGeneration();
+                            generateMonthlyReport.Show();
+                            Close();
+                        } 
+                        else
+                        {
+                            MessageBox.Show("Ya entregaste el reporte mensual");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No tiene una actividad de tipo reporte mensual activa. Contacte a su profesor", "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No tiene un proyecto asignado. Contacte a su coordinador", "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (EntityException)
+            {
+                MessageBox.Show("No hay conexión a la base de datos. Intente más tarde", "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                unitOfWork.Dispose();
+            }
+        }
     }
 }
