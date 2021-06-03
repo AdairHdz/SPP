@@ -7,7 +7,7 @@ namespace DataPersistenceLayer.Entities
     public class PartialReport
     {
         [Key]
-        public int IdParcialReport { get; set; }
+        public int IdPartialReport { get; set; }
 
         [Required]
         [MaxLength(20)]

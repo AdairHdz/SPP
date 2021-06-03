@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using FluentValidation.Results;
@@ -260,7 +260,7 @@ namespace PresentationLayer
                                 PartialReportGenerator partialReportGenerator = new PartialReportGenerator();
                                 partialReportGenerator.CreatePartialReportDocument($"{routeDestination}", _partialReportTemplate);
                                 Thread.Sleep(3500);
-                                MessageBox.Show("El documento se genero correctamente en el escritorio", "Documento Generado", MessageBoxButton.OK, MessageBoxImage.Information);
+                                MessageBox.Show("El documento se genero correctamente", "Documento Generado", MessageBoxButton.OK, MessageBoxImage.Information);
                                 PracticionerMenu practicionerMenu = new PracticionerMenu(_practicioner.Enrollment);
                                 practicionerMenu.Show();
                                 Close();
@@ -419,7 +419,7 @@ namespace PresentationLayer
             && PartialReport.Enrollment.Equals(_partialReport.Enrollment) && PartialReport.NumberReport.Equals(_partialReport.NumberReport));
             if (partialReport!=null)
             {
-                _partialReport.IdParcialReport = partialReport.IdParcialReport;
+                _partialReport.IdPartialReport = partialReport.IdPartialReport;
                 AddIdPartialReportInActivitiesMade();
                 unitOfWork.ActivityMades.AddRange(_activityMades);
                 int rowsAffected = unitOfWork.Complete();
@@ -433,7 +433,7 @@ namespace PresentationLayer
         {
             for (int index = 0; index < _activityMades.Count; index++)
             {
-                _activityMades[index].IdPartialReport = _partialReport.IdParcialReport;
+                _activityMades[index].IdPartialReport = _partialReport.IdPartialReport;
             }
         }
 
