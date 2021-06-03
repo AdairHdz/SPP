@@ -8,6 +8,8 @@ namespace DataPersistenceLayer.Repositories
         void ChangeToFinished();
         IList<Practicioner> GetPracticionersToActivity(int idGroup);
         int GetId();
+        int GetIdActivityMonthlyReportPracticioner(string enrollment);
+        bool SearchDocument(string enrollment);
 
     }
 }

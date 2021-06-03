@@ -1,0 +1,96 @@
+﻿<Window x:Class="PresentationLayer.MonthlyReportGeneration"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:PresentationLayer"
+		WindowStartupLocation="CenterScreen"
+		Icon="images/IconoSystem.png"
+		mc:Ignorable="d"
+		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+		TextElement.FontWeight="Regular"
+		TextElement.FontSize="15"
+		TextOptions.TextFormattingMode="Ideal"
+		TextOptions.TextRenderingMode="Auto"
+		Background="{DynamicResource MaterialDesignPaper}"
+		FontFamily="{DynamicResource MaterialDesignFont}"
+		Title="Generar reporte mensual" Height="550" Width="800">
+    <ScrollViewer Background="White">
+        <Grid x:Name="FormGrid" Height="746">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Rectangle Grid.Row="0" Fill="#5B007B" Margin="0,0,0,6"/>
+            <TextBlock Grid.Row="0" Text="Generar Reporte Mensual" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
+				VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
+            <Label Content="Nombre del estudiante: " VerticalAlignment="Top" Grid.Row="1" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="0,0,457,0" Grid.RowSpan="2"/>
+            <Label Content="Organización: " VerticalAlignment="Top" Grid.Row="2" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="0,0,457,0" Grid.RowSpan="2"/>
+            <Label Content="Nombre del proyecto: " VerticalAlignment="Top" Grid.Row="3" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="0,0,457,0" Grid.RowSpan="2"/>
+            <Label Name="LabelOrganization" VerticalAlignment="Top" Grid.Row="1" HorizontalContentAlignment="Left" Height="34" FontFamily="Arial" Margin="317,29,4,0" Grid.RowSpan="3"  />
+            <Label Name="LabelPracticioner" VerticalAlignment="Top" Grid.Row="1" HorizontalContentAlignment="Left" Height="34" FontFamily="Arial" Margin="315,0,0,0" Grid.RowSpan="2" />
+            <Label Name="LabelProject" VerticalAlignment="Top" Grid.Row="3" HorizontalContentAlignment="Left" Height="34" FontFamily="Arial" Margin="316,0,0,0" Grid.RowSpan="2"  />
+
+            <Label Content="MES-AÑO que reporta: " VerticalAlignment="Top" Grid.Row="4" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="0,0,457,0" Grid.RowSpan="2"/>
+            <StackPanel Grid.Row="4" Margin="324,0,245,0">
+                <DatePicker  Name="DatePickerDate" Margin="0,0,80,0"/>
+            </StackPanel>
+
+            <Label Content="Horas reportadas:" VerticalAlignment="Top" Grid.Row="5" HorizontalContentAlignment="Right" Height="34" FontFamily="Arial" Margin="80,2,551,0"  />
+            <Label Content="Horas acumuladas:" VerticalAlignment="Top" Grid.Row="5" HorizontalContentAlignment="Right" Height="34" FontFamily="Arial" Margin="378,2,253,0"  />
+            <TextBox Name="TextBoxReportedHours" Height="30" Grid.Row="5" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="132" HorizontalAlignment="Left" Margin="227,2,0,0" />
+            <TextBox IsReadOnly="True" Name="TextBoxCumulativeHours" Height="30" Grid.Row="5" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="132" HorizontalAlignment="Left" Margin="530,2,0,0" />
+
+            <Label Content="Actividades realizadas:" VerticalAlignment="Top" Grid.Row="6" HorizontalContentAlignment="Right" Height="34" FontFamily="Arial" Margin="104,12,481,0"  />
+            <TextBox Name="TextBoxActivities" Height="70" Grid.Row="6" TextWrapping="Wrap" FontSize="15" VerticalAlignment="Top" Width="340" HorizontalAlignment="Left" Margin="319,4,0,0" />
+
+            <Label Content="Resultados obtenidos:" VerticalAlignment="Top" Grid.Row="7" HorizontalContentAlignment="Right" Height="34" FontFamily="Arial" Margin="104,12,481,0"  />
+            <TextBox Name="TextBoxResults" Height="70" Grid.Row="7" TextWrapping="Wrap" FontSize="15" VerticalAlignment="Top" Width="340" HorizontalAlignment="Left" Margin="319,4,0,0" />
+
+            <TextBlock Grid.Row="8" Text="Valoración de avance" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="Black"
+				VerticalAlignment="Center" HorizontalAlignment="Center"  />
+
+            <Label Content="Indicar razones" VerticalAlignment="Top" Grid.Row="8" HorizontalContentAlignment="Right" Height="31" FontFamily="Arial" Margin="570,39,85,0" Grid.RowSpan="2" />
+
+            <Label Name="LabelQuestionOne" Content="He cumplido con la asistencia puntual &#xD;&#xA;en el horario correspondiente:" VerticalAlignment="Top" Grid.Row="9" HorizontalContentAlignment="Right" Height="43" FontFamily="Arial" Margin="13,23,489,0" />
+            <RadioButton  Grid.Row="9" Content="Sí" Style="{DynamicResource MaterialDesignAccentRadioButton}"
+							 Name="RadioButtonYesOne"  GroupName="GroupOne"  VerticalAlignment="Top" Tag="1" Margin="332,32,393,0"></RadioButton>
+            <RadioButton Grid.Row="9"  Content="No" Style="{DynamicResource MaterialDesignAccentRadioButton}"
+							 Name="RadioButtonNoOne"  GroupName="GroupOne"  Tag="2" VerticalAlignment="Top" Margin="419,32,290,0"></RadioButton>
+            <TextBox Name="TextBoxReasonOne" Height="30" Grid.Row="9" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="237" HorizontalAlignment="Left" Margin="526,29,0,0" />
+
+            <Label Name="LabelQuestionTwo" Content="Mi avance va conforme al cronograma de trabajo:" VerticalAlignment="Top" Grid.Row="10" HorizontalContentAlignment="Right" Height="43" FontFamily="Arial" Margin="13,23,489,0" />
+            <RadioButton  Grid.Row="10" Content="Sí" Style="{DynamicResource MaterialDesignAccentRadioButton}"
+							 Name="RadioButtonYesTwo"  GroupName="GroupTwo"  VerticalAlignment="Top" Tag="1" Margin="332,32,393,0"></RadioButton>
+            <RadioButton Grid.Row="10"  Content="No" Style="{DynamicResource MaterialDesignAccentRadioButton}"
+							 Name="RadioButtonNoTwo"  GroupName="GroupTwo"  Tag="2" VerticalAlignment="Top" Margin="419,32,290,0"></RadioButton>
+            <TextBox Name="TextBoxReasonTwo" Height="30" Grid.Row="10" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="237" HorizontalAlignment="Left" Margin="526,29,0,0" />
+
+            <Label Name="LabelQuestionThree" Content="Se han presentado inconvenientes para el &#xD;&#xA;desarrollo de mis actividades:" VerticalAlignment="Top" Grid.Row="11" HorizontalContentAlignment="Right" Height="43" FontFamily="Arial" Margin="13,23,489,0" />
+            <RadioButton  Grid.Row="11" Content="Sí" Style="{DynamicResource MaterialDesignAccentRadioButton}"
+							 Name="RadioButtonYesThree"  GroupName="GroupThree"  VerticalAlignment="Top" Tag="1" Margin="332,32,393,0"></RadioButton>
+            <RadioButton Grid.Row="11"  Content="No" Style="{DynamicResource MaterialDesignAccentRadioButton}"
+							 Name="RadioButtonNoThree"  GroupName="GroupThree"  Tag="2" VerticalAlignment="Top" Margin="419,32,290,0"></RadioButton>
+            <TextBox Name="TextBoxReasonThree" Height="30" Grid.Row="11" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="237" HorizontalAlignment="Left" Margin="526,29,0,0" />
+
+            <Button Grid.Row="12" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Aceptar" Click="AcceptButtonClicked" Margin="199,7,365,7" Grid.ColumnSpan="2"></Button>
+            <Button Grid.Row="12" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+            Content="Cancelar" Click="CancelButtonClicked" Margin="290,7,203,7"/>
+
+        </Grid>
+    </ScrollViewer>
+</Window>

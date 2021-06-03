@@ -104,6 +104,9 @@
     <Compile Include="ManageReportsModifyActivity.xaml.cs">
       <DependentUpon>ManageReportsModifyActivity.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MonthlyReportGeneration.xaml.cs">
+      <DependentUpon>MonthlyReportGeneration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProjectSelectionsList.xaml.cs">
       <DependentUpon>ProjectSelectionsList.xaml</DependentUpon>
     </Compile>
@@ -228,6 +231,7 @@
     <Compile Include="Validators\AccountValidator.cs" />
     <Compile Include="Validators\GroupValidator.cs" />
     <Compile Include="Validators\LinkedOrganizationValidator.cs" />
+    <Compile Include="Validators\MonthlyReportValidator.cs" />
     <Compile Include="Validators\PartialReportValidor.cs" />
     <Compile Include="Validators\PhoneValidator.cs" />
     <Compile Include="Validators\PracticionerValidator.cs" />
@@ -280,6 +284,10 @@
     <Page Include="ManageReportsModifyActivity.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MonthlyReportGeneration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProjectSelectionsList.xaml">
       <SubType>Designer</SubType>

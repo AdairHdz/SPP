@@ -42,5 +42,30 @@ namespace DataPersistenceLayer.Repositories
 			Activity activity = _context.Set<Activity>().OrderByDescending(activity => activity.IdActivity).FirstOrDefault();
 			return activity.IdActivity;
 		}
+
+		public int GetIdActivityMonthlyReportPracticioner(string enrollment) 
+        {
+			Practicioner practicioner = _context.Set<Practicioner>().SingleOrDefault(Practicioner => Practicioner.Enrollment == enrollment);
+			
+			Activity activity  = _context.Set<Activity>().SingleOrDefault(Activity => Activity.IdGroup == practicioner.IdGroup 
+			&& Activity.ActivityType == ActivityType.MonthlyReport && Activity.ActivityStatus == ActivityStatus.ACTIVE);
+
+			ActivityPracticioner activityPracticioner = _context.Set<ActivityPracticioner>().SingleOrDefault(ActivityPracticioner => ActivityPracticioner.Enrollment == enrollment 
+			&& ActivityPracticioner.IdActivity == activity.IdActivity);
+
+			return activityPracticioner.IdActivityPracticioner;
+		}
+
+		public bool SearchDocument(string enrollment)
+		{
+			ActivityPracticioner activityPracticioners = _context.Set<ActivityPracticioner>().Include(Act => Act.Activity).SingleOrDefault(ActivityPracticioner => ActivityPracticioner.Enrollment == enrollment
+			&& ActivityPracticioner.Activity.ActivityType == ActivityType.MonthlyReport && ActivityPracticioner.Activity.ActivityStatus == ActivityStatus.ACTIVE);
+			Document document = _context.Set<Document>().SingleOrDefault(Document => Document.IdActivityPracticioner == activityPracticioners.IdActivityPracticioner);
+			if (!object.ReferenceEquals(null, document))
+			{
+				return true;
+			}
+			return false;
+		}
 	}
 }

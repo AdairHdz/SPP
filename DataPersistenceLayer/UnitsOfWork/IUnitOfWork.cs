@@ -13,7 +13,7 @@ namespace DataPersistenceLayer.UnitsOfWork
         IPracticionerRepository Practicioners { get; }
         IProjectRepository Projects { get; }
         IRepository<PartialReport> PartialReports { get; }
-        IRepository<MonthlyReport> MonthlyReports { get; }
+        IMonthlyReportRepository MonthlyReports { get; }
         IRequestProjectRepository RequestProjects { get; }
         IResponsibleProjectRepository ResponsibleProjects { get; }
         IRepository<Sector> Sectors { get; }
@@ -28,6 +28,7 @@ namespace DataPersistenceLayer.UnitsOfWork
         IRepository<Document> Documents { get;}
         IRepository<ActivityMade> ActivityMades { get; }
         IRepository<OfficeOfAcceptance> OfficesOfAcceptance { get; }
+        IRepository<AdvanceQuestion> AdvanceQuestions { get; }
         int Complete();
     }
 }

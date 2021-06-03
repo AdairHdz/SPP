@@ -189,5 +189,37 @@ namespace DataPersistenceLayer.Repositories
 				&& ActivityPracticioner.Activity.ActivityType == ActivityType.MonthlyReport).ToList();
 		}
 
+		public bool SearchPracticionerMonthlyReports(string enrollment)
+		{
+			IList<ActivityPracticioner> activityPracticioners = _context.Set<ActivityPracticioner>().Include(Act => Act.Activity).Where(ActivityPracticioner => ActivityPracticioner.Enrollment == enrollment
+			&& ActivityPracticioner.Activity.ActivityType == ActivityType.MonthlyReport && ActivityPracticioner.Activity.ActivityStatus == ActivityStatus.ACTIVE).ToList();
+			if (activityPracticioners.Count == 0)
+            {
+				return false;
+            }
+			else
+            {
+				return true;
+            }
+		}
+
+		public bool SearchPracticionerProject(string enrollment)
+		{
+			Assignment assignment = _context.Set<Assignment>().SingleOrDefault(Assignment => Assignment.Enrollment == enrollment
+			&& Assignment.Status == AssignmentStatus.Assigned);
+			if (object.ReferenceEquals(null, assignment))
+			{
+				return false;
+			}
+			return true;
+		}
+
+		public Project GetPracticionerInformationProject(string enrollment)
+		{
+			Assignment assignment = _context.Set<Assignment>().SingleOrDefault(Assignment => Assignment.Enrollment == enrollment
+			&& Assignment.Status == AssignmentStatus.Assigned);
+			Project project = _context.Set<Project>().Include(Project => Project.ResponsibleProject).SingleOrDefault(Project => Project.IdProject == assignment.IdProject);
+			return project;
+		}
 	}
 }

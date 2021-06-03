@@ -23,5 +23,10 @@ namespace DataPersistenceLayer.Repositories
         string GetPracticionerProject(string enrollment);
         IList<ActivityPracticioner> GetPracticionerPartialReports(string enrollment);
         IList<ActivityPracticioner> GetPracticionerMonthlyReports(string enrollment);
+        bool SearchPracticionerMonthlyReports(string enrollment);
+        bool SearchPracticionerProject(string enrollment);
+        Project GetPracticionerInformationProject(string enrollment);
+
+
     }
 }
