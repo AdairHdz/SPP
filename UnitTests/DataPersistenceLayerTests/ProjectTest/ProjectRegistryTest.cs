@@ -54,7 +54,7 @@ namespace UnitTests.DataPersistenceLayerTests.ProjectTest
         [TestMethod]
         public void DetermineIfProjectAlreadyExists_Exists()
         {
-            Project projectWithSameName = _unitOfWork.Projects.FindFirstOccurence(Project => Project.NameProject == "Sistema Académico");
+            Project projectWithSameName = _unitOfWork.Projects.FindFirstOccurence(Project => Project.NameProject == "Sistema Integral Académico");
 
             Assert.IsNotNull(projectWithSameName);
         }

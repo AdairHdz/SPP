@@ -29,14 +29,19 @@
             <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Rectangle Grid.Row="0" Fill="#5B007B"/>
-        <TextBlock Grid.Row="0" Text="Proyectos seleccionados" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Fill="#5B007B"/>
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Proyectos seleccionados" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
                    VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
         <Button Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="15" Click="BackButtonClicked">
             <materialDesign:PackIcon Kind="ArrowLeftBold" Height="30" Width="30" HorizontalAlignment="Center"/>
         </Button>
 
-        <Grid Grid.Row="1" HorizontalAlignment="Center">
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition ></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -59,9 +64,11 @@
                 IsEnabled="False" FontFamily="Arial" FontSize="15" />
             <Button x:Name="ButtonSearch" IsEnabled="False" Grid.Column="2" Foreground="White" Content="{materialDesign:PackIcon Magnify}" ToolTip="Buscar un filtro" Style="{StaticResource MaterialDesignRaisedLightButton}" Click="SearchButtonClicked"/>
         </Grid>
+        
+        
 
         <TextBlock Text="Practicantes" Grid.Row="2" FontSize="20" FontWeight="Bold" TextAlignment="Center" Foreground="#444444"/>
-        <ListView x:Name="ListViewPracticioners" SelectionMode="Single" Grid.Row="3" HorizontalAlignment="Center" ItemsSource="{Binding _practicionersList}" Margin="30,0,30,10" Background="Azure" SelectedIndex="{Binding Path=SelectedIndexValue}" Width="832">
+        <ListView x:Name="ListViewPracticioners" SelectionMode="Single" Grid.Row="3" HorizontalAlignment="Center" ItemsSource="{Binding _practicionersList}" Margin="30,0,30,10" Background="Azure" SelectedIndex="{Binding Path=SelectedIndexValue}" SelectionChanged="PracticionerSelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Enrollment}" Header="Matrícula"/>
@@ -74,8 +81,17 @@
             </ListView.View>
         </ListView>
 
-        <TextBlock Text="Proyectos elegidos" Grid.Row="5" FontSize="20" FontWeight="Bold" TextAlignment="Center" Foreground="#444444"/>
-        <ListView x:Name="ListViewProject" Grid.Row="6" SelectionMode="Single" HorizontalAlignment="Center" ItemsSource="{Binding _requestedProjects}" Margin="30,0,30,10" Background="Azure" SelectedIndex="{Binding Path=SelectedIndexValue}" Width="832">
+        <TextBlock Text="Proyectos seleccionados" Grid.Row="2" Grid.Column="1" FontSize="20" FontWeight="Bold" TextAlignment="Center" Foreground="#444444"/>
+        <ListView x:Name="ListViewSelectedProjects" SelectionMode="Single" IsEnabled="False" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" ItemsSource="{Binding requestedProjects}" Margin="30,0,30,10" Background="Azure" SelectedIndex="{Binding Path=SelectedIndexValue}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nombre del proyecto" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <TextBlock Text="Proyectos disponibles" Grid.Row="5" Grid.ColumnSpan="2" FontSize="20" FontWeight="Bold" TextAlignment="Center" Foreground="#444444"/>
+        <ListView x:Name="ListViewProject" Grid.Row="6" SelectionMode="Single" HorizontalAlignment="Center" ItemsSource="{Binding _requestedProjects}" Margin="30,0,30,10" Background="Azure" SelectedIndex="{Binding Path=SelectedIndexValue}" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding NameProject}" Header="Nombre del proyecto"/>
@@ -85,6 +101,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="ButtonAssign" Grid.Row="7" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedAccentButton}" FontSize="16" VerticalAlignment="Center" Content="Asignar proyecto" Click="AssignProjectButtonClicked"/>
+        <Button Grid.ColumnSpan="2" x:Name="ButtonAssign" Grid.Row="7" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedAccentButton}" FontSize="16" VerticalAlignment="Center" Content="Asignar proyecto" Click="AssignProjectButtonClicked"/>
     </Grid>
 </Window>
