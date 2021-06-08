@@ -216,11 +216,6 @@ namespace PresentationLayer
 			}
         }
 
-		private bool ProjectCanStillReceivePracticioners()
-        {
-			return _selectedProject.QuantityPracticingAssing < _selectedProject.QuantityPracticing;
-		}
-
 		private bool ProjectAndPracticionerHaveBeenSelected()
         {
 			return _selectedPracticioner != null && _selectedProject != null;
@@ -236,18 +231,56 @@ namespace PresentationLayer
 				string assignmentOfficeFilePath = FileExplorer.Show("Guardar oficio de asignación");
 				string acceptanceOfficeFilePath = FileExplorer.Show("Guardar oficio de aceptación");
 				Coordinator coordinator = unitOfWork.Coordinators.FindFirstOccurence(c => c.User.UserStatus == UserStatus.ACTIVE);
-				SaveAssignmentToDatabase(unitOfWork, assignmentOfficeFilePath, acceptanceOfficeFilePath);
+
+				_selectedProject = unitOfWork.Projects.Get(_selectedProject.IdProject);
+				_selectedPracticioner = unitOfWork.Practicioners.Get(_selectedPracticioner.Enrollment);
+
+				OfficeOfAcceptance officeOfAcceptance = new OfficeOfAcceptance
+				{
+					DateOfAcceptance = DateTime.Now,
+					RouteSave = acceptanceOfficeFilePath
+				};
+
+				_assignment = new Assignment
+				{
+					CompletionTerm = "",
+					DateAssignment = DateTime.Now,
+					RouteSave = assignmentOfficeFilePath,
+					StartTerm = _selectedProject.Term,
+					Status = AssignmentStatus.Assigned,
+					OfficeOfAcceptance = officeOfAcceptance,
+					IdProject = _selectedProject.IdProject,
+					Enrollment = _selectedPracticioner.Enrollment
+				};				
 
 				AcceptanceOfficeTemplate acceptanceOfficeTemplate = new AcceptanceOfficeTemplate();
 				acceptanceOfficeTemplate.MapData(_selectedProject, _selectedPracticioner, _assignment, coordinator);
 
 				AssignmentOfficeTemplate assignmentOfficeTemplate = new AssignmentOfficeTemplate();
 				assignmentOfficeTemplate.MapData(_selectedProject, _selectedPracticioner, _assignment, coordinator);
-
+				
 				DocumentGenerator documentGenerator = new DocumentGenerator();
 				documentGenerator.CreateAcceptanceOfficeDocument($"{_assignment.RouteSave}", acceptanceOfficeTemplate);
-				documentGenerator.CreateAssignmentOfficeTemplate($"{_assignment.OfficeOfAcceptance.RouteSave}", assignmentOfficeTemplate);
-				
+				documentGenerator.CreateAssignmentOfficeTemplate($"{_assignment.OfficeOfAcceptance.RouteSave}", assignmentOfficeTemplate);				
+				_selectedProject.QuantityPracticingAssing += 1;
+				if (_selectedProject.QuantityPracticingAssing == _selectedProject.QuantityPracticing)
+				{
+					_selectedProject.Status = ProjectStatus.FILLED;
+				}
+				List<RequestProject> requestedProjects = _selectedPracticioner.Requests;
+				foreach (RequestProject requestedProject in requestedProjects)
+				{
+					if (requestedProject.IdProject == _selectedProject.IdProject)
+					{
+						requestedProject.RequestStatus = RequestStatus.APROVED;
+					}
+					else
+					{
+						requestedProject.RequestStatus = RequestStatus.DENIED;
+					}
+				}
+				unitOfWork.Assignments.Add(_assignment);
+				unitOfWork.Complete();
 				MessageBox.Show("Proyecto asignado de forma exitosa");				
 			}
             catch (EntityException)
@@ -259,67 +292,24 @@ namespace PresentationLayer
 				MessageBox.Show("Ha ocurrido un error en la conexión con la base de datos", "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
             catch (NullReferenceException)
-            {
+            {				
 				MessageBox.Show("Ocurrió un error al intentar generar el oficio de asignación; por favor, intente más tarde", "Guardado Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
             catch (COMException)
             {
 				MessageBox.Show("Ocurrió un error al intentar generar el oficio de asignación, debido a que la ruta o el nombre del archivo que especificó no es válido; por favor, intente más tarde", "Guardado Fallido", MessageBoxButton.OK, MessageBoxImage.Error);				
 			}
+			catch(ObjectDisposedException)
+            {				
+				MessageBox.Show("Ocurrió un error al intentar generar el oficio de asignación; por favor, intente más tarde", "Guardado Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
             finally
             {
-				unitOfWork.Dispose();
-				GoBackToCoordinatorMenu();
+                unitOfWork.Dispose();
+                GoBackToCoordinatorMenu();
 			}
 			
 		}
-
-		private void SaveAssignmentToDatabase(UnitOfWork unitOfWork, string assignmentOfficeFilePath, string acceptanceOfficeFilePath)
-        {			
-			_selectedProject = unitOfWork.Projects.Get(_selectedProject.IdProject);
-			_selectedPracticioner = unitOfWork.Practicioners.Get(_selectedPracticioner.Enrollment);
-
-			_selectedProject.QuantityPracticingAssing += 1;
-			if (_selectedProject.QuantityPracticingAssing == _selectedProject.QuantityPracticing)
-			{
-				_selectedProject.Status = ProjectStatus.FILLED;
-			}
-
-			List<RequestProject> requestedProjects = _selectedPracticioner.Requests;
-			foreach(RequestProject requestedProject in requestedProjects)
-            {
-				if(requestedProject.IdProject == _selectedProject.IdProject)
-                {
-					requestedProject.RequestStatus = RequestStatus.APROVED;
-                }
-                else
-                {
-					requestedProject.RequestStatus = RequestStatus.DENIED;
-				}
-            }
-
-			OfficeOfAcceptance officeOfAcceptance = new OfficeOfAcceptance
-			{
-				DateOfAcceptance = DateTime.Now,
-				RouteSave = acceptanceOfficeFilePath
-			};
-
-			_assignment = new Assignment
-			{
-				CompletionTerm = "",
-				DateAssignment = DateTime.Now,
-				RouteSave = assignmentOfficeFilePath,
-				StartTerm = _selectedProject.Term,
-				Status = AssignmentStatus.Assigned,
-				OfficeOfAcceptance = officeOfAcceptance,
-                IdProject = _selectedProject.IdProject,
-                Enrollment = _selectedPracticioner.Enrollment
-            };
-
-			unitOfWork.Assignments.Add(_assignment);
-
-            unitOfWork.Complete();
-        }
 
 		private void LoadSelectedProjects()
         {			
@@ -362,6 +352,45 @@ namespace PresentationLayer
 			{
 				ListViewProject.Items.Add(project);
 			}
+		}
+
+        private void PracticionerSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+			
+			_selectedPracticioner = GetSelectedPracticioner();
+			if (_selectedPracticioner != null)
+            {
+				ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
+				UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
+				try
+                {
+					ListViewSelectedProjects.Items.Clear();
+					_selectedPracticioner = unitOfWork.Practicioners.Get(_selectedPracticioner.Enrollment);
+					List<RequestProject> requestedProjects = _selectedPracticioner.Requests;
+					foreach (RequestProject requestedProject in requestedProjects)
+					{
+						ListViewSelectedProjects.Items.Add(requestedProject.Project.NameProject);
+					}
+				}
+				catch (SqlException)
+				{
+					MessageBox.Show("Ha ocurrido un error en la conexión con la base de datos", "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
+					GoBackToCoordinatorMenu();
+
+				}
+				catch (EntityException)
+				{
+					MessageBox.Show("Ha ocurrido un error en la conexión con la base de datos", "Consulta Fallida", MessageBoxButton.OK, MessageBoxImage.Error);
+					GoBackToCoordinatorMenu();
+				}
+				finally
+				{
+					unitOfWork.Dispose();
+				}				
+
+			}
+
+
 		}
     }
 }
