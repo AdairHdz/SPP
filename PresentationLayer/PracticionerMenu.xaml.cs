@@ -16,10 +16,6 @@ namespace PresentationLayer
     public partial class PracticionerMenu : Window
     {
         private readonly string _practicionerEnrollment;
-        public PracticionerMenu()
-        {
-            InitializeComponent();
-        }
 
         public PracticionerMenu(string enrollment)
         {
@@ -51,6 +47,7 @@ namespace PresentationLayer
 		private void AddMonthlyReport(object sender, RoutedEventArgs e)
 		{
 			ReportList reportList = new ReportList();
+            ReportList.Enrollment = _practicionerEnrollment;
 			if (reportList.InitializeStackPanel(ActivityType.MonthlyReport))
 			{
 				reportList.Show();

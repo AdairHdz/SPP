@@ -18,6 +18,7 @@ namespace PresentationLayer
         private IEnumerable<ActivityPracticioner> _activityPracticioners;
         public static User _User { get; set; }
         private string _activityTypeReport;
+        public static string Enrollment { get; set; }
         public ReportList()
         {
             InitializeComponent();
@@ -117,7 +118,7 @@ namespace PresentationLayer
 
         private void BehindButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
-            PracticionerMenu practicionerMenu = new PracticionerMenu();
+            PracticionerMenu practicionerMenu = new PracticionerMenu(Enrollment);
             practicionerMenu.Show();
             Close();
         }
