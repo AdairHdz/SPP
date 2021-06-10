@@ -13,7 +13,7 @@ namespace PresentationLayer.Validators
                 .MaximumLength(150).WithState(user => "TextBoxName");
 
             RuleFor(activity => activity.Description).NotEmpty().WithState(user => "TextBoxDescription")
-                .MaximumLength(150).WithState(user => "TextBoxDescription");
+                .MaximumLength(255).WithState(user => "TextBoxDescription");
 
             RuleFor(activity => activity.ActivityType).IsInEnum();
 

@@ -88,8 +88,8 @@ namespace PresentationLayer
 
 		private void CalculateProgress()
 		{
-			int quantity = _hourCovered * 100 / 200;
-			labelPercentage.Content = quantity + " % " +_hourCovered+" horas cubiertas de 200 horas";
+			int quantity = _hourCovered * 100 / 480;
+			labelPercentage.Content = quantity + " % " +_hourCovered+" horas cubiertas de 480 horas";
 			ProfessionalPracticesState = quantity ;
 		}
 

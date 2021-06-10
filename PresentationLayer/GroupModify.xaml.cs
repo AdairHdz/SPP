@@ -62,6 +62,8 @@ namespace PresentationLayer
 				if (_unitOfWork.Groups.GroupCanBeModify(Group))
 				{
 					ChangeGroupToPracticioners();
+					_unitOfWork.Complete();
+					_unitOfWork.Dispose();
 					MessageBox.Show("Grupo modificado exitosamente");
 					CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
 					coordinatorMenu.Show();
@@ -69,17 +71,12 @@ namespace PresentationLayer
 				}
 				else
 				{
-					MessageBox.Show("El NRC-Periodo del grupo ya está registrado. Por favor ingrese uno nuevo"+ Group.IdGroup);
+					MessageBox.Show("El NRC-Periodo del grupo ya está registrado. Por favor ingrese uno nuevo");
 				}
 			}
 			catch (EntityException)
 			{
 				ShowExceptionDB();
-			}
-			finally
-			{
-				_unitOfWork.Complete();
-				_unitOfWork.Dispose();
 			}
 		}
 
@@ -223,7 +220,6 @@ namespace PresentationLayer
 			catch (EntityException)
 			{
 				ShowExceptionDB();
-				_unitOfWork.Dispose();
 			}
 		}
 
@@ -261,6 +257,7 @@ namespace PresentationLayer
 
 		private void ShowExceptionDB()
 		{
+			_unitOfWork.Dispose();
 			MessageBox.Show("No hay conexión a la base de datos. Intente más tarde");
 			CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
 			coordinatorMenu.Show();

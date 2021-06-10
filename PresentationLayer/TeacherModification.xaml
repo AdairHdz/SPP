@@ -41,11 +41,11 @@
             </Grid.ColumnDefinitions>
             <Label Content="Nombre: " VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
             <TextBox Name="TextBoxFirstName" Height="30" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
-                     materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z." Text="{Binding User.Name, Mode=TwoWay}" />
+                     materialDesign:HintAssist.HelperText="Máximo 30 caracteres de A-Z/a-z." Text="{Binding User.Name, Mode=TwoWay}" />
 
             <Label Content="Apellidos: " VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
             <TextBox Name="TextBoxLastName" Height="30"  Grid.Row="1" Grid.Column="1"  TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
-                     materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z." Text="{Binding User.LastName, Mode=TwoWay}"/>
+                     materialDesign:HintAssist.HelperText="Máximo 30 caracteres de A-Z/a-z." Text="{Binding User.LastName, Mode=TwoWay}"/>
 
             <Label Content="Género: " VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="0,8,0,0"/>
             <RadioButton Name="RadioButtonWomen" Content="Femenino" Grid.Column="1" HorizontalAlignment="Left" Margin="38,14,0,0" Grid.Row="2" VerticalAlignment="Top" FontFamily="Arial"
