@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using FluentValidation.Results;
@@ -260,7 +260,7 @@ namespace PresentationLayer
                                 PartialReportGenerator partialReportGenerator = new PartialReportGenerator();
                                 partialReportGenerator.CreatePartialReportDocument($"{routeDestination}", _partialReportTemplate);
                                 Thread.Sleep(3500);
-                                MessageBox.Show("El documento se genero correctamente en el escritorio", "Documento Generado", MessageBoxButton.OK, MessageBoxImage.Information);
+                                MessageBox.Show("El documento se genero correctamente", "Documento Generado", MessageBoxButton.OK, MessageBoxImage.Information);
                                 PracticionerMenu practicionerMenu = new PracticionerMenu(_practicioner.Enrollment);
                                 practicionerMenu.Show();
                                 Close();
