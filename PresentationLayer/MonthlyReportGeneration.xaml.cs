@@ -283,7 +283,7 @@ namespace PresentationLayer
             IList<ValidationFailure> validationFailures = dataValidationResult.Errors;
             UserFeedback userFeedback = new UserFeedback(FormGrid, validationFailures);
             userFeedback.ShowFeedback();
-            if (ValidateQuestions() && dataValidationResult.IsValid && ValidateMonthYear())
+            if (ValidateQuestions() && dataValidationResult.IsValid && ValidateMonthYear() && ValidateHours())
             {
                 foreach(ValidationFailure v in validationFailures)
                 {
@@ -303,6 +303,17 @@ namespace PresentationLayer
                 {
                     valid = true;
                 }
+            }
+            return valid;
+        }
+
+        private bool ValidateHours()
+        {
+            bool valid = true;
+            int hours = Convert.ToInt32(TextBoxReportedHours.Text) + Convert.ToInt32(TextBoxCumulativeHours.Text);
+            if (hours > 480)
+            {
+                valid = false;
             }
             return valid;
         }

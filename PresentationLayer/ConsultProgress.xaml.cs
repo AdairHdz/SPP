@@ -14,7 +14,7 @@ namespace PresentationLayer
 	{
 		private readonly string _enrollment;
 		private int _hourCovered;
-		public int ProfessionalPracticesState { get; set; }
+		public float ProfessionalPracticesState { get; set; }
 
 		public ConsultProgress(string practicionerEnrollment)
 		{
@@ -88,8 +88,8 @@ namespace PresentationLayer
 
 		private void CalculateProgress()
 		{
-			int quantity = _hourCovered * 100 / 200;
-			labelPercentage.Content = quantity + " % " +_hourCovered+" horas cubiertas de 200 horas";
+			float quantity = _hourCovered * 100 / 480;
+			labelPercentage.Content = quantity + " % " +_hourCovered+" horas cubiertas de 480 horas";
 			ProfessionalPracticesState = quantity ;
 		}
 
