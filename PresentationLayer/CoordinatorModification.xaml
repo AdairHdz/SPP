@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <Rectangle Grid.Row="0" Fill="#5B007B"/>
-        <TextBlock Grid.Row="0" Text="Registrar coordinador" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
+        <TextBlock Grid.Row="0" Text="Modificar coordinador" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
                    VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
         <Button Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="15" Click="BackButtonClicked">
             <materialDesign:PackIcon Kind="ArrowLeftBold" Height="30" Width="30" HorizontalAlignment="Center"/>

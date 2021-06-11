@@ -9,7 +9,7 @@ namespace PresentationLayer.Validators
         {
            
             RuleFor(practicioner => practicioner.User.Account.Password).NotEmpty().WithState(account => "PasswordBoxPassword")
-               .WithState(account => "PasswordBoxPassword").MaximumLength(60)
+               .WithState(account => "PasswordBoxPassword").MaximumLength(80)
                .WithState(account => "PasswordBoxPassword").MinimumLength(8);
             ValidationGeneral();
 

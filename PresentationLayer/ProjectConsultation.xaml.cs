@@ -102,6 +102,10 @@ namespace PresentationLayer
                         retrievedProjects = unitOfWork.Projects.Find(project =>
                             project.Status == ProjectStatus.INACTIVE).ToList();
                         break;
+                    case "Nombre":
+                        retrievedProjects = unitOfWork.Projects.Find(project => 
+                        project.NameProject.ToUpperInvariant().Contains(TextBoxSearch.Text.ToUpperInvariant())).ToList();
+                        break;
                 }
             }
             catch (SqlException)

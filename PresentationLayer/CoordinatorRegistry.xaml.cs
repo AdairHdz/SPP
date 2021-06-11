@@ -52,6 +52,7 @@ namespace PresentationLayer
                         HashAccountPassword();
                         RegisterNewCoordinator(unitOfWork);
                         MessageBox.Show("Coordinador registrado exitosamente");
+                        GoBackToManagerMenu();
                     }
                     else
                     {
