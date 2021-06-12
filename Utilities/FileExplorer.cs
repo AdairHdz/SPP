@@ -18,5 +18,19 @@ namespace Utilities
             }
             return savingPath;
         }
+
+        public static string ShowExplorer(string windowTitle)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Pdf document|*.pdf";
+            saveFileDialog.Title = windowTitle;
+            saveFileDialog.ShowDialog();
+            string savingPath = saveFileDialog.FileName;
+            if (savingPath.Length == 0)
+            {
+                throw new NullReferenceException();
+            }
+            return savingPath;
+        }
     }
 }
