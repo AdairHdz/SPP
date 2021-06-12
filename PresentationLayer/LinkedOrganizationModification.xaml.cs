@@ -49,7 +49,7 @@ namespace PresentationLayer
             {
                 MessageBox.Show("No se pudo obtener la información de la base de datos");
                 unitOfWork.Dispose();
-                GoBackToCoordinatorMenu();
+                GoBackToLinkedOrganizationConsultation();
             }
         }
 
@@ -65,7 +65,7 @@ namespace PresentationLayer
             ComboBoxState.SelectedItem = LinkedOrganizationToBeModified.State;
 
             State stateSelected = _registeredStates.Find(st => st.NameState.Equals(LinkedOrganizationToBeModified.State.NameState));
-
+            ComboBoxCity.Items.Clear();
             foreach (City city in stateSelected.Cities)
             {
                 ComboBoxCity.Items.Add(city);
@@ -92,7 +92,7 @@ namespace PresentationLayer
 
         private void BackButtonClicked(object sender, RoutedEventArgs e)
         {
-            GoBackToCoordinatorMenu();
+            GoBackToLinkedOrganizationConsultation();
         }
 
         private void ComboBoxSectorSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -118,14 +118,14 @@ namespace PresentationLayer
 
             if (messageBoxResult == MessageBoxResult.Yes)
             {
-                GoBackToCoordinatorMenu();
+                GoBackToLinkedOrganizationConsultation();
             }
         }
 
-        private void GoBackToCoordinatorMenu()
+        private void GoBackToLinkedOrganizationConsultation()
         {
-            CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
-            coordinatorMenu.Show();
+            LinkedOrganizationConsultation linkedOrganizationConsultation = new LinkedOrganizationConsultation();
+            linkedOrganizationConsultation.Show();
             this.Close();
         }
 
@@ -165,13 +165,13 @@ namespace PresentationLayer
                     _unitOfWork.Complete();
                     _unitOfWork.Dispose();
                     MessageBox.Show("La organización vinculada se modificó con éxito");
-                    GoBackToCoordinatorMenu();
+                    GoBackToLinkedOrganizationConsultation();
                 }
             }
             catch (SqlException)
             {
                 MessageBox.Show("No se pudo obtener la información de la base de datos");
-                GoBackToCoordinatorMenu();
+                GoBackToLinkedOrganizationConsultation();
             }
 
         }
