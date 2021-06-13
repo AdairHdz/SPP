@@ -21,6 +21,7 @@ namespace PresentationLayer
         private string _route;
         private ActivityPracticioner _activityPracticioner;
         private Document _document;
+        public static string Enrollment { get; set; }
         public ReportAdd()
         {
             InitializeComponent();
@@ -130,6 +131,7 @@ namespace PresentationLayer
         private void BehindButtonClicked(object sender, RoutedEventArgs routedEventArgs)
         {
             ReportList partialReportList = new ReportList();
+            ReportList.Enrollment = Enrollment;
             partialReportList.InitializeStackPanel(_activityPracticioner.Activity.ActivityType);
             partialReportList.Show();
             Close();
@@ -167,6 +169,7 @@ namespace PresentationLayer
                             MessageBox.Show("El archivo no se pudo guardar. Intente más tarde", "Guardado Fallido", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                         ReportList partialReportList = new ReportList();
+                        ReportList.Enrollment = Enrollment;
                         partialReportList.InitializeStackPanel(_activityPracticioner.Activity.ActivityType);
                         partialReportList.Show();
                         Close();

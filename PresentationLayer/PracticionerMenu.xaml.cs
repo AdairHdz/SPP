@@ -33,7 +33,8 @@ namespace PresentationLayer
 		private void AddPartialReport(object sender, RoutedEventArgs e)
 		{
 			ReportList reportList = new ReportList();
-			if (reportList.InitializeStackPanel(ActivityType.PartialReport))
+            ReportList.Enrollment = _practicionerEnrollment;
+            if (reportList.InitializeStackPanel(ActivityType.PartialReport))
 			{
 				reportList.Show();
 				Close();
@@ -209,18 +210,10 @@ namespace PresentationLayer
                     bool haveMonthlyReport = unitOfWork.Practicioners.SearchPracticionerMonthlyReports(_practicionerEnrollment);
                     if (haveMonthlyReport)
                     {
-                        bool existButIsDelivered = unitOfWork.Activities.SearchDocument(_practicionerEnrollment);
-                        if (!existButIsDelivered)
-                        {
-                            MonthlyReportGeneration.Enrollment = _practicionerEnrollment;
-                            MonthlyReportGeneration generateMonthlyReport = new MonthlyReportGeneration();
-                            generateMonthlyReport.Show();
-                            Close();
-                        } 
-                        else
-                        {
-                            MessageBox.Show("Ya entregaste el reporte mensual");
-                        }
+                        MonthlyReportGeneration.Enrollment = _practicionerEnrollment;
+                        MonthlyReportGeneration generateMonthlyReport = new MonthlyReportGeneration();
+                        generateMonthlyReport.Show();
+                        Close();
                     }
                     else
                     {

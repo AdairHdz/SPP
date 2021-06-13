@@ -104,6 +104,7 @@ namespace PresentationLayer
             if (activityPracticioner!=null)
             {
                 ReportAdd partialReportAdd = new ReportAdd();
+                ReportAdd.Enrollment = Enrollment;
                 if (partialReportAdd.InitializeActivity(activityPracticioner, _activityTypeReport))
                 {
                     partialReportAdd.Show();

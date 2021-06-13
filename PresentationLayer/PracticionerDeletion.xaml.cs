@@ -69,8 +69,8 @@ namespace PresentationLayer
 				finally
 				{
 					unitOfWork.Dispose();
-					CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
-					coordinatorMenu.Show();
+					PracticionerConsult practicionerConsult = new PracticionerConsult();
+					practicionerConsult.Show();
 					this.Close();
 				}
 			}
