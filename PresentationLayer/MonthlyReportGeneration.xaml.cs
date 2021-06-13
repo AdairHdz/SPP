@@ -113,36 +113,7 @@ namespace PresentationLayer
             MyDataTemplate();
             MonthlyReportGenerator monthlyReportGenerator = new MonthlyReportGenerator();
             monthlyReportGenerator.CreateMonthlyReportDocument($"{routeDestination}", _monthlyReportTemplate);
-            AddDocument(routeDestination);
             Thread.Sleep(3500);
-        }
-
-        private void AddDocument(string routeDestination)
-        {
-            ProfessionalPracticesContext professionalPracticesContext = new ProfessionalPracticesContext();
-            UnitOfWork unitOfWork = new UnitOfWork(professionalPracticesContext);
-            int idActivity = unitOfWork.Activities.GetIdActivityMonthlyReportPracticioner(Enrollment);
-            Document document = new Document
-            {
-                Name = "MonthlyReport",
-                DeliveryDate = DateTime.Now,
-                TypeDocument = "MonthlyReport",
-                RouteSave = routeDestination,
-                IdActivityPracticioner = idActivity
-            };
-            try
-            {
-                unitOfWork.Documents.Add(document);
-                unitOfWork.Complete();
-            }
-            catch (EntityException)
-            {
-                ShowExceptionDB();
-            }
-            finally
-            {
-                unitOfWork.Dispose();
-            }
         }
 
         private void MyDataTemplate()
