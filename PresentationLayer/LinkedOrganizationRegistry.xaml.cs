@@ -113,6 +113,7 @@ namespace PresentationLayer
                     {
                         unitOfWork.LinkedOrganizations.Add(LinkedOrganization);
                         MessageBox.Show("La organización vinculada se registró exitosamente");
+                        GoBackToCoordinatorMenu();
                     }
                 }
                 catch (SqlException)
