@@ -116,7 +116,7 @@ namespace DataPersistenceLayer.Migrations
                         Account = new Account
                         {
                             IdAccount = 1,
-                            Username = "AdairHz",
+                            Username = "zS18012122",
                             Password = "$2a$08$MqktFO0I2aOa0cKYIuZQ2u/k3UXlev5EYKUuI9eB4MSuhxeubh0dq",
                             FirstLogin = false,
                             Salt = "$2a$08$MqktFO0I2aOa0cKYIuZQ2u",
@@ -142,7 +142,7 @@ namespace DataPersistenceLayer.Migrations
                         Account = new Account
                         {
                             IdAccount = 2,
-                            Username = "IrvingLzd",
+                            Username = "zS18012123",
                             Password = "$2a$08$MqktFO0I2aOa0cKYIuZQ2u/k3UXlev5EYKUuI9eB4MSuhxeubh0dq",
                             FirstLogin = false,
                             Salt = "$2a$08$MqktFO0I2aOa0cKYIuZQ2u",
@@ -168,7 +168,7 @@ namespace DataPersistenceLayer.Migrations
                         Account = new Account
                         {
                             IdAccount = 3,
-                            Username = "AldairSls26",
+                            Username = "zS18012124",
                             Password = "$2a$08$MqktFO0I2aOa0cKYIuZQ2u/k3UXlev5EYKUuI9eB4MSuhxeubh0dq",
                             FirstLogin = false,
                             Salt = "$2a$08$MqktFO0I2aOa0cKYIuZQ2u",
@@ -194,7 +194,7 @@ namespace DataPersistenceLayer.Migrations
                         Account = new Account
                         {
                             IdAccount = 4,
-                            Username = "YairDomLo",
+                            Username = "zS18012125",
                             Password = "$2a$08$MqktFO0I2aOa0cKYIuZQ2u/k3UXlev5EYKUuI9eB4MSuhxeubh0dq",
                             FirstLogin = false,
                             Salt = "$2a$08$MqktFO0I2aOa0cKYIuZQ2u",
