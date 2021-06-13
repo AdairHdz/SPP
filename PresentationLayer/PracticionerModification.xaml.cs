@@ -79,8 +79,8 @@ namespace PresentationLayer
 							_unitOfWork.Complete();
 							_unitOfWork.Dispose();
 							MessageBox.Show("Practicante modificado exitosamente.");
-							CoordinatorMenu coordinatorMenu = new CoordinatorMenu();
-							coordinatorMenu.Show();
+							PracticionerConsult practicionerConsult = new PracticionerConsult();
+							practicionerConsult.Show();
 							this.Close();
 						}
 					}
