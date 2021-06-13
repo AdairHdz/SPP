@@ -9,7 +9,7 @@ using DataPersistenceLayer.UnitsOfWork;
 using System.Data.Entity.Core;
 using System.Data.SqlClient;
 using System.Net;
-
+using Utilities;
 
 namespace PresentationLayer
 {
@@ -251,39 +251,19 @@ namespace PresentationLayer
         {
             if (!string.IsNullOrWhiteSpace(LabelNameDocument.Content.ToString()))
             {
-                if (File.Exists(_route))
+                try
                 {
-                    WebClient myWebClient = new WebClient();
-                    string routeDestination = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/" + LabelNameDocument.Content.ToString();
-                    int index = 1;
-                    bool isDownload = true;
-                    while (isDownload)
+                    string routeDestination = FileExplorer.ShowExplorer("Guardar documento");
+                    if (!string.IsNullOrWhiteSpace(routeDestination))
                     {
-                        if (File.Exists(routeDestination))
-                        {
-                            int indexPrevious = index - 1;
-                            if (index == 1)
-                            {
-                                routeDestination = routeDestination.Replace(".pdf", "(" + index.ToString() + ")" + ".pdf");
-                            }
-                            else
-                            {
-                                routeDestination = routeDestination.Replace("(" + indexPrevious.ToString() + ")" + ".pdf", "(" + index.ToString() + ")" + ".pdf");
-                            }
-                            index++;
-                        }
-                        else
-                        {
-                            myWebClient.DownloadFile(_route, routeDestination);
-                            MessageBox.Show("El archivo se descargo la carpeta del escritorio", "Descarga", MessageBoxButton.OK, MessageBoxImage.Information);
-                            isDownload = false;
-                        }
+                        WebClient myWebClient = new WebClient();
+                        myWebClient.DownloadFile(_route, routeDestination);
+                        MessageBox.Show("El archivo se descargo", "Descarga", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
+                }catch(NullReferenceException exception) { 
+                    MessageBox.Show("No se pudo descargar", "Descarga fallida", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                else
-                {
-                    MessageBox.Show("El archivo no se encontro", "Descarga Fallida", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+
             }
         }
     }
