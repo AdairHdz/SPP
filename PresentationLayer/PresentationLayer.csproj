@@ -74,20 +74,336 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Alert\AlertInformation.xaml.cs">
-      <DependentUpon>AlertInformation.xaml</DependentUpon>
+    <Compile Include="ActivityReportList.xaml.cs">
+      <DependentUpon>ActivityReportList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConsultProgress.xaml.cs">
+      <DependentUpon>ConsultProgress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CoordinatorConsultation.xaml.cs">
+      <DependentUpon>CoordinatorConsultation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CoordinatorDeletion.xaml.cs">
+      <DependentUpon>CoordinatorDeletion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CoordinatorMenu.xaml.cs">
+      <DependentUpon>CoordinatorMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CoordinatorModification.xaml.cs">
+      <DependentUpon>CoordinatorModification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IndicatorsReportGeneration.xaml.cs">
+      <DependentUpon>IndicatorsReportGeneration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageReports.xaml.cs">
+      <DependentUpon>ManageReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageReportsAddActivity.xaml.cs">
+      <DependentUpon>ManageReportsAddActivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageReportsModifyActivity.xaml.cs">
+      <DependentUpon>ManageReportsModifyActivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MonthlyReportGeneration.xaml.cs">
+      <DependentUpon>MonthlyReportGeneration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectSelectionsList.xaml.cs">
+      <DependentUpon>ProjectSelectionsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEvaluation.xaml.cs">
+      <DependentUpon>ReportEvaluation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FirstLogin.xaml.cs">
+      <DependentUpon>FirstLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GroupModify.xaml.cs">
+      <DependentUpon>GroupModify.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GroupModifyList.xaml.cs">
+      <DependentUpon>GroupModifyList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GroupRegistry.xaml.cs">
+      <DependentUpon>GroupRegistry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LinkedOrganizationChoose.xaml.cs">
+      <DependentUpon>LinkedOrganizationChoose.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LinkedOrganizationConsultation.xaml.cs">
+      <DependentUpon>LinkedOrganizationConsultation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LinkedOrganizationDeletion.xaml.cs">
+      <DependentUpon>LinkedOrganizationDeletion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LinkedOrganizationModification.xaml.cs">
+      <DependentUpon>LinkedOrganizationModification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LinkedOrganizationRegistry.xaml.cs">
+      <DependentUpon>LinkedOrganizationRegistry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerMenu.xaml.cs">
+      <DependentUpon>ManagerMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PracticionerConsult.xaml.cs">
+      <DependentUpon>PracticionerConsult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PracticionerDeletion.xaml.cs">
+      <DependentUpon>PracticionerDeletion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PracticionerMenu.xaml.cs">
+      <DependentUpon>PracticionerMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PracticionerModification.xaml.cs">
+      <DependentUpon>PracticionerModification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectConsultation.xaml.cs">
+      <DependentUpon>ProjectConsultation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectModification.xaml.cs">
+      <DependentUpon>ProjectModification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectRegistry.xaml.cs">
+      <DependentUpon>ProjectRegistry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportAdd.xaml.cs">
+      <DependentUpon>ReportAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReportList.xaml.cs">
+      <DependentUpon>ReportList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PartialReportGeneration.xaml.cs">
+      <DependentUpon>PartialReportGeneration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RequestProjects.xaml.cs">
+      <DependentUpon>RequestProjects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RequestProjectConsult.xaml.cs">
+      <DependentUpon>RequestProjectConsult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResponsibleProjectChoose.xaml.cs">
+      <DependentUpon>ResponsibleProjectChoose.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectDeletion.xaml.cs">
+      <DependentUpon>ProjectDeletion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResponsibleProjectDeletion.xaml.cs">
+      <DependentUpon>ResponsibleProjectDeletion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResponsibleProjectConsult.xaml.cs">
+      <DependentUpon>ResponsibleProjectConsult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResponsibleProjectModification.xaml.cs">
+      <DependentUpon>ResponsibleProjectModification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PracticionerRegistry.xaml.cs">
+      <DependentUpon>PracticionerRegistry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResponsibleProjectRegistry.xaml.cs">
+      <DependentUpon>ResponsibleProjectRegistry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SchedulingActivityModification.xaml.cs">
+      <DependentUpon>SchedulingActivityModification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SchedulingActivityRegistration.xaml.cs">
+      <DependentUpon>SchedulingActivityRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TeacherConsultation.xaml.cs">
+      <DependentUpon>TeacherConsultation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TeacherDeletion.xaml.cs">
+      <DependentUpon>TeacherDeletion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TeacherMenu.xaml.cs">
+      <DependentUpon>TeacherMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TeacherModification.xaml.cs">
+      <DependentUpon>TeacherModification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TeacherRegistry.xaml.cs">
+      <DependentUpon>TeacherRegistry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\GenderParser.cs" />
+    <Compile Include="Validators\ActivityMadeValidator.cs" />
+    <Compile Include="Validators\ActivityValidator.cs" />
     <Compile Include="Validators\CoordinatorValidator.cs" />
     <Compile Include="Validators\AccountValidator.cs" />
+    <Compile Include="Validators\GroupValidator.cs" />
+    <Compile Include="Validators\LinkedOrganizationValidator.cs" />
+    <Compile Include="Validators\MonthlyReportValidator.cs" />
+    <Compile Include="Validators\PartialReportValidor.cs" />
+    <Compile Include="Validators\PhoneValidator.cs" />
+    <Compile Include="Validators\PracticionerValidator.cs" />
+    <Compile Include="Validators\ProjectValidator.cs" />
+    <Compile Include="Validators\ResponsibleProjectValidator.cs" />
+    <Compile Include="Validators\TeacherValidator.cs" />
+    <Compile Include="Validators\SchedulingActivityValidator.cs" />
     <Compile Include="Validators\UserFeedback.cs" />
     <Compile Include="Validators\UserValidator.cs" />
-    <Page Include="Alert\AlertInformation.xaml">
+    <Page Include="ActivityReportList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConsultProgress.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CoordinatorConsultation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CoordinatorDeletion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CoordinatorMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CoordinatorModification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="CoordinatorRegistry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IndicatorsReportGeneration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ManageReports.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ManageReportsAddActivity.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ManageReportsModifyActivity.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MonthlyReportGeneration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectSelectionsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ReportEvaluation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FirstLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GroupModify.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GroupModifyList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GroupRegistry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LinkedOrganizationChoose.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LinkedOrganizationConsultation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LinkedOrganizationDeletion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LinkedOrganizationModification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LinkedOrganizationRegistry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ManagerMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PracticionerConsult.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PracticionerDeletion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PracticionerMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PracticionerModification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectConsultation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectModification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProjectRegistry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ReportAdd.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ReportList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PartialReportGeneration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RequestProjects.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RequestProjectConsult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResponsibleProjectChoose.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProjectDeletion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResponsibleProjectDeletion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResponsibleProjectConsult.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -104,6 +420,46 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ResponsibleProjectModification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PracticionerRegistry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResponsibleProjectRegistry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SchedulingActivityModification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SchedulingActivityRegistration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TeacherConsultation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TeacherDeletion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TeacherMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TeacherModification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TeacherRegistry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -134,13 +490,49 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataPersistenceLayer\DataPersistenceLayer.csproj">
-      <Project>{5AEEAEAA-3CB2-4EAE-B3AC-1703740CDDEE}</Project>
+      <Project>{5aeeaeaa-3cb2-4eae-b3ac-1703740cddee}</Project>
       <Name>DataPersistenceLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.csproj">
       <Project>{03A013A2-08B4-4031-84F2-CCAFB399509F}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\IconoSystem.png" />
+    <Resource Include="Images\logOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logoSystem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

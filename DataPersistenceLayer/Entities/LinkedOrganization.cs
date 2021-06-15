@@ -10,22 +10,22 @@ namespace DataPersistenceLayer.Entities
         public int IdLinkedOrganization { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(150)]
         public string Name { get; set; }
 
         [Required]
-        public int DirectUsers { get; set; }
+        [MaxLength(254)]
+        public string DirectUsers { get; set; }
 
         [Required]
-        public int IndirectUsers { get; set; }
+        [MaxLength(254)]
+        public string IndirectUsers { get; set; }
 
         [Required]
         [MaxLength(254)]
         public string Email { get; set; }
-
-        [Required]
-        [MaxLength(15)]
-        public string PhoneNumber { get; set; }
+        
+        public virtual List<Phone> PhoneNumbers { get; set; }
 
         [Required]
         [MaxLength(100)]

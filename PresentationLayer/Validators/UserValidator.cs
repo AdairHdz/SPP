@@ -8,20 +8,20 @@ namespace PresentationLayer.Validators
     {
         public UserValidator()
         {
-            RuleFor(user => user.Name).NotEmpty()
-                .WithState(user => "TextBoxFirstName").MaximumLength(50).Matches("[a-zA-Z+]");
-            RuleFor(user => user.LastName).NotEmpty()
-                .WithState(user => "TextBoxLastName").MaximumLength(30).Matches("[a-zA-Z+]");
+            RuleFor(user => user.Name).NotEmpty().WithState(user => "TextBoxFirstName")
+                .MaximumLength(30).WithState(user => "TextBoxFirstName")
+                .Matches("^[a-zA-Z ]+$").WithState(user => "TextBoxFirstName");
+            RuleFor(user => user.LastName).NotEmpty().WithState(user => "TextBoxLastName")
+                .MaximumLength(30).WithState(user => "TextBoxLastName")
+                .Matches("^[a-zA-Z ]+$").WithState(user => "TextBoxLastName");
             RuleFor(user => user.Gender).IsInEnum();
             RuleFor(user => user.UserStatus).IsInEnum();
             RuleFor(user => user.UserType).IsInEnum();
-            RuleFor(user => user.PhoneNumber).NotEmpty()
-                .WithState(user => "TextBoxPhoneNumber").Length(10).Matches("[0-9+]");
+            RuleFor(user => user.PhoneNumber).NotEmpty().WithState(user => "TextBoxPhoneNumber")
+                .Matches("^[0-9]{10}$").WithState(user => "TextBoxPhoneNumber");
             RuleFor(user => user.Email).Must(BeValidEmail)
                 .WithState(user => "TextBoxEmail");
-            RuleFor(user => user.AlternateEmail).Must(BeValidEmail).
-                Unless(e => e.AlternateEmail == null || e.AlternateEmail.Length == 0).WithState(s => "TextBoxAlternateEmail");
-            
+            RuleFor(user => user.AlternateEmail).Must(BeValidEmail).WithState(s => "TextBoxAlternateEmail");
         }
 
         public bool BeValidEmail(string email)

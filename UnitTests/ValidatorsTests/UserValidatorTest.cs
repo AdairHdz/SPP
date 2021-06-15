@@ -21,14 +21,14 @@ namespace UnitTests.ValidatorsTests
         {
             User user = new User
             {
-                Name = "Adair Benjamín",
-                LastName = "Hernández",
+                Name = "Adair Benjamin",
+                LastName = "Hernandez",
                 Gender = Gender.MALE,
                 UserStatus = UserStatus.ACTIVE,
                 UserType = UserType.Coordinator,
                 PhoneNumber = "2281244285",
                 Email = "adairho16@gmail.com",
-                AlternateEmail = ""
+                AlternateEmail = "adairho160@gmail.com"
             };
 
             var result = _userValidator.TestValidate(user);
@@ -41,8 +41,8 @@ namespace UnitTests.ValidatorsTests
         {
             User user = new User
             {
-                Name = "Adair Benjamín",
-                LastName = "Hernández",
+                Name = "Adair Benjamin",
+                LastName = "Hernandez",
                 Gender = Gender.MALE,
                 UserStatus = UserStatus.ACTIVE,
                 UserType = UserType.Coordinator,

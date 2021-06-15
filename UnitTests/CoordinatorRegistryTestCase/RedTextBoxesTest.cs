@@ -26,13 +26,37 @@ namespace UnitTests.CoordinatorRegistryTestCase
                 Name = "TextBoxLastName"
             };
 
+            TextBox phoneNumber = new TextBox
+            {
+                Text = "2281244285",
+                Name = "TextBoxPhoneNumber"
+            };
+
+            TextBox email = new TextBox
+            {
+                Text = "adairho16@gmail.com",
+                Name = "TextBoxEmail"
+            };
+
+            TextBox alternateEmail = new TextBox
+            {
+                Text = "adairho16@gmail.com",
+                Name = "TextBoxAlternateEmail"
+            };
+
             myGrid.Children.Add(name);
             myGrid.Children.Add(lastName);
+            myGrid.Children.Add(phoneNumber);
+            myGrid.Children.Add(email);
+            myGrid.Children.Add(alternateEmail);
 
             User user = new User
             {
                 Name = name.Text,
-                LastName = lastName.Text
+                LastName = lastName.Text,
+                Email = email.Text,
+                AlternateEmail = alternateEmail.Text,
+                PhoneNumber = phoneNumber.Text
             };
 
             UserValidator uv = new UserValidator();
@@ -42,7 +66,7 @@ namespace UnitTests.CoordinatorRegistryTestCase
 
             uf.ShowFeedback();
 
-            Assert.AreEqual(2, uf.ControlsThatHaveBeenPaintedInRed.Count);
+            Assert.AreEqual(4, uf.ControlsThatHaveBeenPaintedInRed.Count);
         }
     }
 }

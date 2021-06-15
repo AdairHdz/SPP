@@ -16,13 +16,13 @@ namespace DataPersistenceLayer.Entities
 
         [Required]
         public int IdUser { get; set; }
-        
+
         [ForeignKey("IdUser")]
         public virtual User User { get; set; }
 
-        public string Nrc { get; set; }
+        public int? IdGroup { get; set; }
 
-        [ForeignKey("Nrc")]
+        [ForeignKey("IdGroup")]
         public virtual Group Group { get; set; }
 
         public virtual List<RequestProject> Requests { get; set; }

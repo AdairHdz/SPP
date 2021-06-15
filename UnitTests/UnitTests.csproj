@@ -89,30 +89,65 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsultProgressTestCase\ConsultProgressTest.cs" />
+    <Compile Include="CoordinatorDeletionTestCase\CoordinatorDeletionTest.cs" />
+    <Compile Include="CoordinatorModificationTestCase\CoordinatorModificationTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\CoordinatorRegistryTest.cs" />
-    <Compile Include="CoordinatorRegistryTestCase\InformationValidationTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\GreenTextBoxesTest.cs" />
     <Compile Include="CoordinatorRegistryTestCase\RedTextBoxesTest.cs" />
     <Compile Include="DataPersistenceLayerTests\CoordinatorTest\CoordinatorTest.cs" />
     <Compile Include="DataPersistenceLayerTests\DbContextMock.cs" />
+    <Compile Include="DataPersistenceLayerTests\LoginTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\PartialReportTest\PartialReportGenerationTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\ProjectTest\LinkedOrganizationChooseTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\ProjectTest\ProjectModificationTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\ProjectTest\ProjectRegistryTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\ProjectTest\ResponsibleProjectChooseTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\ProjectTest\SchedulingActivityTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\ReportTest\ReportEvaluationTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\ReportTest\ReportAddTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\ResponsibleProjectTest\ResponsibleProjectTestConsult.cs" />
+    <Compile Include="DataPersistenceLayerTests\ResponsibleProjectTest\ResponsibleProjectTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\TeacherTest\ConsultTeacherTest.cs" />
+    <Compile Include="DataPersistenceLayerTests\TeacherTest\TeacherTest.cs" />
     <Compile Include="DataPersistenceLayerTests\UserTest\UserTest.cs" />
+    <Compile Include="GroupModifyTestCase\GroupModifyTest.cs" />
+    <Compile Include="GroupRegistryTestCase\GroupRegistryTest.cs" />
     <Compile Include="HashingTests\BCryptHashingTest.cs" />
     <Compile Include="HashingTests\BCryptHasherTest.cs" />
+    <Compile Include="LinkedOrganizationDeletionTestCase\LinkedOrganizationDeletionTest.cs" />
+    <Compile Include="LinkedOrganizationModificationTestCase\LinkedOrganizationModificationTest.cs" />
+    <Compile Include="LinkedOrganizationModificationTestCase\PhoneTest.cs" />
+    <Compile Include="ManageReportsTestCase\ManageReportsTest.cs" />
+    <Compile Include="MonthlyReportGenerationTestCase\MonthlyReportGenerationTest.cs" />
+    <Compile Include="PracticionerDeletionTestCase\PracticionerDeletionTest.cs" />
+    <Compile Include="PracticionerDeletionTestCase\AssignmentTest.cs" />
+    <Compile Include="PracticionerModificationTestClase\PracticionerModificationTest.cs" />
+    <Compile Include="PracticionerRegistryTestCase\PracticionerRegistryTest.cs" />
+    <Compile Include="ProjectAssignationTestCase\ProjectAssignationTest.cs" />
+    <Compile Include="ProjectDeletionTestCase\ProjectDeletionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestProjectsTestCase\RequestProjectTest.cs" />
+    <Compile Include="TeacherModificationTestCase\TeacherModificationTest.cs" />
+    <Compile Include="TeacherRegistryTestCase\TeacherRegistry.cs" />
+    <Compile Include="ValidatorsTests\ResponsibleProjectValidatorTest.cs" />
+    <Compile Include="ValidatorsTests\LinkedOrganizationValidatorTest.cs" />
     <Compile Include="ValidatorsTests\UserValidatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="LinkedOrganizationRegistryTestCase\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataPersistenceLayer\DataPersistenceLayer.csproj">
-      <Project>{5AEEAEAA-3CB2-4EAE-B3AC-1703740CDDEE}</Project>
+      <Project>{5aeeaeaa-3cb2-4eae-b3ac-1703740cddee}</Project>
       <Name>DataPersistenceLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\PresentationLayer\PresentationLayer.csproj">
-      <Project>{F543E835-3B2C-4C20-8727-036305861CBC}</Project>
+      <Project>{f543e835-3b2c-4c20-8727-036305861cbc}</Project>
       <Name>PresentationLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.csproj">

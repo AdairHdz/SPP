@@ -10,25 +10,29 @@ namespace DataPersistenceLayer.Entities
         public int IdParcialReport { get; set; }
 
         [Required]
-        public int NumberReport { get; set; }
+        [MaxLength(20)]
+        public string NumberReport { get; set; }
 
         [Required]
-        [MaxLength(254)]
+        [MaxLength(500)]
         public string ResultsObtained { get; set; }
 
         [Required]
         public int HoursCovered { get; set; }
 
-        [MaxLength(254)]
+        [MaxLength(500)]
         public string Observations { get; set; }
 
+        [Required]
         public DateTime? DeliveryDate { get; set; }
 
+        [Required]
         public int IdProject { get; set; }
         
         [ForeignKey("IdProject")]
         public Project Project { get; set; }
 
+        [Required]
         public string Enrollment { get; set; }
         [ForeignKey("Enrollment")]
         public Practicioner Practicioner { get; set; }

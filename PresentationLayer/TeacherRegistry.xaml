@@ -1,0 +1,189 @@
+﻿<Window x:Class="PresentationLayer.TeacherRegistry"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        WindowStartupLocation="CenterScreen"
+        Icon="images/IconoSystem.png"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="15"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="TeacherRegistry" Height="750" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="0" Fill="#5B007B"/>
+        <TextBlock Grid.Row="0" Text="Registrar profesor" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
+        <Button Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="15" Click="BackButtonClicked">
+            <materialDesign:PackIcon Kind="ArrowLeftBold" Height="30" Width="30" HorizontalAlignment="Center"/>
+        </Button>
+
+        <materialDesign:Card Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="6" Padding="10">
+            <Grid x:Name="FormGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Content="Número de personal" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <TextBox Style="{DynamicResource MaterialDesignTextBox}"
+                         FontFamily="{DynamicResource MaterialDesignFont}"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Grid.Row="0"
+                         Name="TextBoxStaffNumber"
+                         Text="{Binding StaffNumber, Mode=TwoWay}"
+                         Width="300" HorizontalAlignment="Left"
+                         VerticalAlignment="Bottom"
+                         materialDesign:HintAssist.HelperText="Máximo 20 caracteres de A-Z/a-z y de 0-9."/>
+
+                <Label Grid.Column="0" Grid.Row="1" Content="Nombre(s)" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <TextBox Style="{DynamicResource MaterialDesignTextBox}"
+                         FontFamily="{DynamicResource MaterialDesignFont}"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Grid.Row="1"
+                         Name="TextBoxFirstName"
+                         Text="{Binding User.Name, Mode=TwoWay}"
+                         Width="300" HorizontalAlignment="Left"
+                         VerticalAlignment="Bottom"
+                         materialDesign:HintAssist.HelperText="Máximo 30 caracteres de A-Z/a-z."/>
+
+                <Label Grid.Column="0" Grid.Row="2" Content="Apellido(s)" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <TextBox Style="{DynamicResource MaterialDesignTextBox}"
+                         FontFamily="{DynamicResource MaterialDesignFont}"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Grid.Row="2"
+                         Name="TextBoxLastName"
+                         Text="{Binding User.LastName, Mode=TwoWay}"
+                         Width="300" HorizontalAlignment="Left"
+                         VerticalAlignment="Bottom"
+                         materialDesign:HintAssist.HelperText="Máximo 30 caracteres de A-Z/a-z."/>
+
+                <Label Grid.Column="0" Grid.Row="3" Content="Género" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <RadioButton Grid.Column="1"  Grid.Row="3"
+                             Content="Hombre" Style="{DynamicResource MaterialDesignAccentRadioButton}"
+                             Name="ManRadioButton"
+                             GroupName="GenderRadioButtonGroup"
+                             VerticalAlignment="Bottom"
+                             Tag="1"></RadioButton>
+                <RadioButton Grid.Column="2" Grid.Row="3"
+                             Content="Mujer" Style="{DynamicResource MaterialDesignAccentRadioButton}"
+                             Name="WomanRadioButton"
+                             GroupName="GenderRadioButtonGroup"
+                             Tag="2"
+                             VerticalAlignment="Bottom"></RadioButton>
+
+
+                <Label Grid.Column="0" Grid.Row="4" Content="Correo" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <TextBox Style="{DynamicResource MaterialDesignTextBox}"
+                         FontFamily="{DynamicResource MaterialDesignFont}"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Grid.Row="4"
+                         Name="TextBoxEmail"
+                         Text="{Binding User.Email, Mode=TwoWay}"
+                         Width="300" HorizontalAlignment="Left"
+                         VerticalAlignment="Bottom"
+                         materialDesign:HintAssist.HelperText="Máximo 254 caracteres Ej. martha_14_5@gmail.com."/>
+
+                <Label Grid.Column="0" Grid.Row="5" Content="Correo alternativo" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <TextBox Style="{DynamicResource MaterialDesignTextBox}"
+                         FontFamily="{DynamicResource MaterialDesignFont}"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Grid.Row="5"
+                         Name="TextBoxAlternateEmail"
+                         Text="{Binding User.AlternateEmail, Mode=TwoWay}"
+                         Width="300" HorizontalAlignment="Left"
+                         VerticalAlignment="Bottom"
+                         materialDesign:HintAssist.HelperText="Máximo 254 caracteres Ej. martha_14_5@gmail.com."/>
+
+                <Label Grid.Column="0" Grid.Row="6" Content="Teléfono" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <TextBox Style="{DynamicResource MaterialDesignTextBox}"
+                         FontFamily="{DynamicResource MaterialDesignFont}"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Grid.Row="6"
+                         Name="TextBoxPhoneNumber"
+                         Text="{Binding User.PhoneNumber, Mode=TwoWay}"
+                         Width="300" HorizontalAlignment="Left"
+                         VerticalAlignment="Bottom"
+                         materialDesign:HintAssist.HelperText="10 caracteres de 0 A 9"/>
+
+                <Label Grid.Column="0" Grid.Row="7" Content="Nombre de usuario" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <TextBox Style="{DynamicResource MaterialDesignTextBox}"
+                         FontFamily="{DynamicResource MaterialDesignFont}"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Grid.Row="7"
+                         Name="TextBoxUsername"
+                         Text="{Binding User.Account.Username, Mode=TwoWay}"
+                         Width="300" HorizontalAlignment="Left"
+                         VerticalAlignment="Bottom"
+                         materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z."/>
+
+                <Label Grid.Column="0" Grid.Row="8" Content="Contraseña" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                <PasswordBox Style="{DynamicResource MaterialDesignPasswordBox}"
+                         FontFamily="{DynamicResource MaterialDesignFont}"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Grid.Row="8"
+                         Name="PasswordBoxPassword"
+                             Width="300" HorizontalAlignment="Left"
+                             VerticalAlignment="Bottom"
+                         materialDesign:HintAssist.HelperText="De 8 a 50 caracteres Ej.Wigetta@123 "/>
+
+                <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="9">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button Width="auto" Content="Registrar"
+                            Style="{StaticResource MaterialDesignRaisedButton}" Background="LimeGreen"
+                            Grid.Column="1" Click="RegisterButtonClicked"/>
+
+                    <Button Width="auto" Content="Cancelar"
+                            Style="{StaticResource MaterialDesignRaisedButton}"
+                            Grid.Column="3" Click="CancelButtonClicked"/>
+                </Grid>
+
+
+            </Grid>
+
+        </materialDesign:Card>
+
+    </Grid>
+</Window>

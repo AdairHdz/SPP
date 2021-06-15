@@ -10,8 +10,11 @@ namespace DataPersistenceLayer.Entities
         public int IdMonthlyReport { get; set; }
         public DateTime DeliveryDate { get; set; }
         public string PerformedActivities { get; set; }
-        public string resultsObtained { get; set; }
-
+        public string ResultsObtained { get; set; }
+        [Required]
+        public int HoursReported { get; set; }
+        [Required]
+        public int HoursCumulative { get; set; }
         public string Enrollment { get; set; }
         
         [ForeignKey("Enrollment")]

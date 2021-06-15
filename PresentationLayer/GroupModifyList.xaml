@@ -1,0 +1,50 @@
+﻿<Window x:Class="PresentationLayer.GroupModifyList"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		WindowStartupLocation="CenterScreen"
+		mc:Ignorable="d"
+		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+		TextElement.FontWeight="Regular"
+		TextElement.FontSize="15"
+		TextOptions.TextFormattingMode="Ideal"
+		TextOptions.TextRenderingMode="Auto"
+		Background="{DynamicResource MaterialDesignPaper}"
+		FontFamily="{DynamicResource MaterialDesignFont}"
+		Title="Lista de grupos" Height="648" Width="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="85"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="0" Fill="#5B007B"/>
+        <TextBlock Grid.Row="0" Text="Lista de Grupos" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
+				   VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold" Margin="323,21,279,30" Width="290"/>
+
+        <ListView x:Name="ListViewGroups" HorizontalAlignment="Center" ItemsSource="{Binding Items1}" Background="Azure"  Width="732"  Grid.Row="1" Margin="86,11,74,8"
+                  SelectionChanged="GroupListViewSelectionChanged" SelectedIndex="{Binding Path=SelectedIndexValue}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="120" DisplayMemberBinding="{Binding Nrc}" Header="NRC"  />
+                    <GridViewColumn Width="200" DisplayMemberBinding="{Binding Term}" Header="Periodo" />
+                    <GridViewColumn Width="110" DisplayMemberBinding="{Binding GroupStatus}" Header="Estado" />
+                    <GridViewColumn DisplayMemberBinding="{Binding StaffNumber}" Header="No. Personal Profesor" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Grid Grid.Row="2" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="ButtonModify" Grid.Column="0" IsEnabled="False" Style="{StaticResource MaterialDesignRaisedAccentButton}" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Modificar" Click="ModifyButtonClicked"/>
+            <Button Grid.Column="1" Style="{StaticResource MaterialDesignRaisedDarkButton}"  FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Regresar" Click="BackButtonClicked"/>
+        </Grid>
+    </Grid>
+</Window>
+ 

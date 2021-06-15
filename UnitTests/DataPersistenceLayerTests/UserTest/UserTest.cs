@@ -32,7 +32,8 @@ namespace UnitTests.DataPersistenceLayerTests.UserTest
                     UserStatus = UserStatus.ACTIVE,
                     Email = "eduardo@hotmail.com",
                     AlternateEmail = "aldair@hotmail.com",
-                    PhoneNumber = "2298046218"
+                    PhoneNumber = "2298046218",
+                    UserType = UserType.Coordinator
                 }
             };
             _mockSet = DbContextMock.GetQueryableMockDbSet(_data, x => x.IdUser);
@@ -191,30 +192,6 @@ namespace UnitTests.DataPersistenceLayerTests.UserTest
             Assert.IsTrue(userIsAlreadyRegistered);
         }
 
-        [TestMethod]
-        public void DetermineIfAlternateEmailIsAlreadyRegistered()
-        {
-            User newlyCreatedUser = new User
-            {
-                IdUser = 4,
-                Name = "Francisco",
-                LastName = "Portilla Texon",
-                Gender = Gender.MALE,
-                UserStatus = UserStatus.ACTIVE,
-                Email = "francisco@hotmail.com",
-                AlternateEmail = "aldair@hotmail.com",
-                PhoneNumber = "2298040147",
-                Account = new Account
-                {
-                    Username = "Francisco",
-                    Password = "salf,lsflfgs",
-                    FirstLogin = true
-                }
-            };
-
-            bool userIsAlreadyRegistered = _unitOfWork.Users.UserIsAlreadyRegistered(newlyCreatedUser);
-            Assert.IsTrue(userIsAlreadyRegistered);
-        }
 
         [TestMethod]
         public void DetermineIfPhoneNumberIsAlreadyRegistered()
@@ -239,6 +216,14 @@ namespace UnitTests.DataPersistenceLayerTests.UserTest
 
             bool userIsAlreadyRegistered = _unitOfWork.Users.UserIsAlreadyRegistered(newlyCreatedUser);            
             Assert.IsTrue(userIsAlreadyRegistered);
+        }
+
+        [TestMethod]
+        public void GetActiveCoordinator_Exists()
+        {
+            User retrievedUser =
+                    _unitOfWork.Users.FindFirstOccurence(user => user.UserStatus == UserStatus.ACTIVE && user.UserType == UserType.Coordinator);
+            Assert.IsNotNull(retrievedUser);
         }
 
     }

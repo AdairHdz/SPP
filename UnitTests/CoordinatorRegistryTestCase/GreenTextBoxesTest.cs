@@ -22,7 +22,7 @@ namespace UnitTests.CoordinatorRegistryTestCase
             };
             TextBox lastName = new TextBox
             {
-                Text = "Hernández",
+                Text = "Hernandez",
                 Name = "TextBoxLastName"
             };
 

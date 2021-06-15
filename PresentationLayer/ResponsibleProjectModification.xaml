@@ -1,0 +1,67 @@
+﻿<Window x:Class="PresentationLayer.ResponsibleProjectModification"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        WindowStartupLocation="CenterScreen"
+        Icon="images/IconoSystem.png"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="15"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Modificar responsable del proyecto" Height="550" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="0" Fill="#5B007B"/>
+        <TextBlock Grid.Row="0" Text="Modificar Responsable del Proyecto" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
+        <Button Grid.Row="0" HorizontalAlignment="Left"  Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" ToolTip="Regresar" Margin="15" Click="BehindButtonClicked">
+            <materialDesign:PackIcon Kind="ArrowLeftBold" Height="30" Width="30" HorizontalAlignment="Center"/>
+        </Button>
+
+        <Grid x:Name="FormGrid" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition Height="85"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Content="Nombre: " VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <TextBox x:Name="TextBoxName" Height="30" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" FontSize="15" VerticalAlignment="Top" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z."/>
+
+            <Label Content="Apellidos: " VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <TextBox x:Name="TextBoxLastName" Height="30" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" FontSize="15" VerticalAlignment="Top" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z."/>
+
+            <Label Content="Correo electrónico: " VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <TextBox x:Name="TextBoxEmail" Height="30" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" FontSize="15" VerticalAlignment="Top" Width="250" HorizontalAlignment="Left" materialDesign:HintAssist.HelperText="Máximo 254 caracteres Ej. martha_14_5@gmail.com."/>
+
+            <Label Content="Cargo: " VerticalAlignment="Top" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <TextBox x:Name="TextBoxCharge" Height="30" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" FontSize="15" VerticalAlignment="Top" Width="200" HorizontalAlignment="Left" materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z."/>
+
+            <Label Name="LabelStatus" Content="¿Desea activarlo?  " VerticalAlignment="Center" Grid.Row="4" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <Button Name ="ButtonActive" Grid.Row="4" Grid.Column="1" Foreground="White" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignRaisedLightButton}" Click="ActiveButtonClicked"
+            Content="Activar" />
+            
+            <Button Grid.Row="5" Grid.Column="0" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}" Click="ModifyButtonClicked"
+                VerticalAlignment="Center" HorizontalAlignment="Center" Content="Modificar"></Button>
+            <Button Grid.Row="5" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" Click="CancelButtonClicked"
+            Content="Cancelar" />
+        </Grid>
+    </Grid>
+</Window>

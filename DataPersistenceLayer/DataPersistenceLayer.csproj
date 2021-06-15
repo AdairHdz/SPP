@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -51,7 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Activity.cs" />
     <Compile Include="Entities\ActivityMade.cs" />
+    <Compile Include="Entities\ActivityPracticioner.cs" />
+    <Compile Include="Entities\ActivityPracticionerStatus.cs" />
+    <Compile Include="Entities\ActivityStatus.cs" />
+    <Compile Include="Entities\ActivityType.cs" />
     <Compile Include="Entities\Manager.cs" />
     <Compile Include="Entities\AdvanceQuestion.cs" />
     <Compile Include="Entities\Assignment.cs" />
@@ -83,30 +90,44 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserStatus.cs" />
     <Compile Include="Entities\UserType.cs" />
-    <Compile Include="Migrations\202102131617518_Initial.cs" />
-    <Compile Include="Migrations\202102131617518_Initial.designer.cs">
-      <DependentUpon>202102131617518_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202105092210344_FixIntegrationBugs.cs" />
+    <Compile Include="Migrations\202105092210344_FixIntegrationBugs.designer.cs">
+      <DependentUpon>202105092210344_FixIntegrationBugs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102131626447_UpdatedMaximumLengths.cs" />
-    <Compile Include="Migrations\202102131626447_UpdatedMaximumLengths.designer.cs">
-      <DependentUpon>202102131626447_UpdatedMaximumLengths.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102131641417_SetDateTimesToNullable.cs" />
-    <Compile Include="Migrations\202102131641417_SetDateTimesToNullable.designer.cs">
-      <DependentUpon>202102131641417_SetDateTimesToNullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102241803442_ChangedDatabaseStructure.cs" />
-    <Compile Include="Migrations\202102241803442_ChangedDatabaseStructure.designer.cs">
-      <DependentUpon>202102241803442_ChangedDatabaseStructure.cs</DependentUpon>
+    <Compile Include="Migrations\202105100323400_UpdateMonthlyReport.cs" />
+    <Compile Include="Migrations\202105100323400_UpdateMonthlyReport.designer.cs">
+      <DependentUpon>202105100323400_UpdateMonthlyReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProfessionalPracticesContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ActivityRepository.cs" />
     <Compile Include="Repositories\CoordinatorRepository.cs" />
+    <Compile Include="Repositories\GroupRepository.cs" />
+    <Compile Include="Repositories\IActivityRepository.cs" />
     <Compile Include="Repositories\ICoordinatorRepository.cs" />
+    <Compile Include="Repositories\IGroupRepository.cs" />
+    <Compile Include="Repositories\ILinkedOrganizationRepository.cs" />
+    <Compile Include="Repositories\IMonthlyReportRepository.cs" />
+    <Compile Include="Repositories\IPhoneRepository.cs" />
+    <Compile Include="Repositories\IPracticionerRepository.cs" />
+    <Compile Include="Repositories\IProjectRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\IRequestProjectRepositoy.cs" />
+    <Compile Include="Repositories\IResponsibleProjectRepository.cs" />
+    <Compile Include="Repositories\IStateRepository.cs" />
+    <Compile Include="Repositories\ITeacherRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Repositories\LinkedOrganizationRepository.cs" />
+    <Compile Include="Repositories\MonthlyReportRepository.cs" />
+    <Compile Include="Repositories\PhoneRepository.cs" />
+    <Compile Include="Repositories\PracticionerRepository.cs" />
+    <Compile Include="Repositories\ProjectRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\RequestProjectRepository.cs" />
+    <Compile Include="Repositories\ResponsibleProjectRepository.cs" />
+    <Compile Include="Repositories\StateRepository.cs" />
+    <Compile Include="Repositories\TeacherRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="UnitsOfWork\IUnitOfWork.cs" />
     <Compile Include="UnitsOfWork\UnitOfWork.cs" />
@@ -116,17 +137,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202102131617518_Initial.resx">
-      <DependentUpon>202102131617518_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105092210344_FixIntegrationBugs.resx">
+      <DependentUpon>202105092210344_FixIntegrationBugs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102131626447_UpdatedMaximumLengths.resx">
-      <DependentUpon>202102131626447_UpdatedMaximumLengths.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102131641417_SetDateTimesToNullable.resx">
-      <DependentUpon>202102131641417_SetDateTimesToNullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102241803442_ChangedDatabaseStructure.resx">
-      <DependentUpon>202102241803442_ChangedDatabaseStructure.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105100323400_UpdateMonthlyReport.resx">
+      <DependentUpon>202105100323400_UpdateMonthlyReport.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

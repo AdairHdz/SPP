@@ -1,0 +1,94 @@
+﻿<Window x:Class="PresentationLayer.PracticionerRegistry"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="15"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Registrar Practicante" Height="650" Width="750">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="0" Fill="#5B007B"/>
+        <TextBlock Grid.Row="0" Text="Registrar Practicante" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Foreground="White"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"  FontWeight="Bold"/>
+
+        <Grid x:Name="FormGrid" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="46,10,35,10" Width="661" Height="519">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Content="Nombre: " VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <TextBox Name="TextBoxFirstName" Height="30" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
+                     materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z." Text="{Binding User.Name, Mode=TwoWay}" />
+
+            <Label Content="Apellidos: " VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <TextBox Name="TextBoxLastName" Height="30"  Grid.Row="1" Grid.Column="1"  TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
+                     materialDesign:HintAssist.HelperText="Máximo 50 caracteres de A-Z/a-z." Text="{Binding User.LastName, Mode=TwoWay}"/>
+
+            <Label Content="Periodo: " VerticalAlignment="Top" Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <ComboBox Name="ComboBoxPeriod" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="332" Text="{Binding Term, Mode=TwoWay}" />
+
+            <Label Content="Número de créditos: " VerticalAlignment="Top" Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <TextBox Name="TextBoxCredits" Height="30" Grid.Row="3" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
+                     materialDesign:HintAssist.HelperText="Deben ser al menos el 80% de los créditos totales Ej. Mínimo 285" Text="{Binding Credits, Mode=TwoWay}"/>
+
+            <Label Content="Género: " VerticalAlignment="Top" Grid.Row="4" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial" Margin="0,8,0,0"/>
+            <RadioButton Name="RadioButtonWomen" Content="Femenino" Grid.Column="1" HorizontalAlignment="Left" Margin="40,13,0,0" Grid.Row="4" VerticalAlignment="Top" FontFamily="Arial"
+                         Style="{DynamicResource MaterialDesignAccentRadioButton}" GroupName="GenderRadioButtonGroup"  Tag="2"/>
+            <RadioButton Name="RadioButtonMen" Content="Masculino" Grid.Column="1" HorizontalAlignment="Left" Margin="158,13,0,0" Grid.Row="4" VerticalAlignment="Top" FontFamily="Arial"
+                         Style="{DynamicResource MaterialDesignAccentRadioButton}" GroupName="GenderRadioButtonGroup"  Tag="1"/>
+
+            <Label Content="Correo electrónico: " VerticalAlignment="Top" Grid.Row="5" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <TextBox Name="TextBoxEmail" Height="30" Grid.Row="5" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
+                     materialDesign:HintAssist.HelperText="Máximo 254 caracteres Ej. ale@gmail.com" Text="{Binding User.Email, Mode=TwoWay}"/>
+
+            <Label Content="Correo electrónico alterno: " VerticalAlignment="Top" Grid.Row="6" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <TextBox Name="TextBoxAlternateEmail" Height="30" Grid.Row="6" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
+                     materialDesign:HintAssist.HelperText="Máximo 254 caracteres Ej. ale@gmail.com" Text="{Binding User.AlternateEmail, Mode=TwoWay}"/>
+
+            <Label Content="Teléfono: " VerticalAlignment="Top" Grid.Row="7" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <TextBox Name="TextBoxPhoneNumber" Height="30" Grid.Row="7" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
+                     materialDesign:HintAssist.HelperText="Máximo 10 caracteres Ej.2281564676 " Text="{Binding User.PhoneNumber, Mode=TwoWay}"/>
+
+            <Label Content="Matricula: " VerticalAlignment="Top" Grid.Row="8" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <TextBox Name="TextBoxUsername" Height="30" Grid.Row="8" Grid.Column="1" TextWrapping="NoWrap" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
+                     materialDesign:HintAssist.HelperText="Máximo 10 caracteres Ej.zS18012124 " Text="{Binding Enrollment, Mode=TwoWay}"/>
+
+            <Label Content="Contraseña: " VerticalAlignment="Top" Grid.Row="9" Grid.Column="0" HorizontalContentAlignment="Right" Height="35" FontFamily="Arial"/>
+            <PasswordBox Name="PasswordBoxPassword" Height="30" Grid.Row="9" Grid.Column="1" FontSize="15" VerticalAlignment="Top" Width="401" HorizontalAlignment="Left" 
+                         materialDesign:HintAssist.HelperText="De 8 a 50 caracteres Ej.Wigetta@123" />
+
+            <Button Grid.Row="10" Grid.Column="0" FontSize="16" Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Registrar" Click="RegisterButtonClicked" Margin="199,7,365,7" Grid.ColumnSpan="2"></Button>
+            <Button Grid.Row="10" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedDarkButton}" ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+            Content="Cancelar" Click="CancelButtonClicked" RenderTransformOrigin="0.059,0.453" Margin="114,7,203,7"/>
+
+        </Grid>
+    </Grid>
+</Window>
+

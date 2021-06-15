@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DataPersistenceLayer.Entities
 {
@@ -9,5 +10,7 @@ namespace DataPersistenceLayer.Entities
 
         [MaxLength(25)]
         public string NameState { get; set; }
+
+        public virtual List<City> Cities { get; set; }
     }
 }
